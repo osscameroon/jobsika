@@ -1,0 +1,9 @@
+#!/bin/sh
+
+remote="$1"
+url="$2"
+
+make lint || exit 1
+make test || exit 1
+
+exit 0

@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    env_file:
+      - ./.docker-env
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  api:
+    depends_on:
+      - postgres
+    restart: always
+    image: golang:buster
+    command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres-and-run-api.sh
+    env_file:
+      - ./.docker-env
+    volumes:
+      - .:/api
+    ports:
+      - 7000:7000
+
+  e2etests:
+    depends_on:
+      - api
+    image: node:14-stretch
+    command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest
+    env_file:
+      - ./.docker-env
+      - ./.api-env
+    environment:
+      API_HOST: "http://api:7000/"
+    volumes:
+      - .:/api

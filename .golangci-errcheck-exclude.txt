@@ -1,0 +1,21 @@
+//This file specify which functions or method should be excluded
+//from golangci errcheck linter
+// check this page for more information https://github.com/kisielk/errcheck#excluding-functions
+
+//the function exclusion does not seem to work with golangci
+//as it needs to be updated https://github.com/golangci/golangci-lint/issues/959
+
+(*net/http.ResponseWriter).Write
+(net/http.ResponseWriter).Write
+
+(*github.com/fatih/color.Color).Printf
+(*github.com/fatih/color.Color).Println
+(*github.com/fatih/color.Color).Fprintf
+
+fmt.Printf
+fmt.Println
+fmt.Print
+fmt.Fprintf
+fmt.Fprintln
+fmt.Fprint
+fmt.Scan

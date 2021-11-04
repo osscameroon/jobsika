@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    env_file:
+      - ./.docker-env
+    ports:
+      - 5432:5432
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+
+  start-postgres:
+    depends_on:
+      - postgres
+    #replace this with an image that contains dependencies required by setup-postgres.sh
+    image: golang:buster
+    command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres.sh
+    env_file:
+      - ./.docker-env
+    volumes:
+      - .:/api
+
+  api:
+    depends_on:
+      - start-postgres
+    image: golang:buster
+    command: ["/bin/bash", "-c", "cd /api/ && make run"]
+    env_file:
+      - ./.postgres-env
+      - ./.api-env
+    volumes:
+      - .:/api
+    ports:
+      - 7000:7000

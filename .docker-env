@@ -1,0 +1,5 @@
+POSTGRES_DB=storage
+POSTGRES_PASSWORD=storage
+POSTGRES_USER=storage
+POSTGRES_HOST=host.docker.internal
+POSTGRES_PORT=5432
