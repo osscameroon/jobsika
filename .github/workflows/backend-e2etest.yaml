@@ -1,0 +1,21 @@
+name: Run end to end tests
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - backend/**
+      - .github/workflows/backend-end2end.yaml
+
+jobs:
+  e2etest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-go@v2
+        with:
+          go-version: 1.16
+      - name: Run Backend Tests
+        working-directory: ./backend
+        run: make docker-e2etest
