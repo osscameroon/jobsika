@@ -3,7 +3,6 @@ linters:
   enable:
     - whitespace
     - govet
-    - errcheck
     - deadcode
     - gosimple
     - unused

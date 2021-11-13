@@ -21,6 +21,10 @@ To run locally, this api require few dependencies
 Once you have installed the required depencies, you can now run the application
 following the patterns bellow
 
+#### Backend
+To run the backend you should jump to the `./backend` folder
+`cd ./backend`
+
 ##### Run
 `make run`
 
