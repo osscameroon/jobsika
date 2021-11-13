@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - backend/**
-      - .github/workflows/backend-end2end.yaml
+      - .github/workflows/backend-e2etest.yaml
 
 jobs:
   e2etest:
