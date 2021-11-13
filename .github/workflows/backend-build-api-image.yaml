@@ -39,7 +39,7 @@ jobs:
             type=sha,enable=true,priority=100,prefix=,suffix=,format=long
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           context: ./backend
           push: true
