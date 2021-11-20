@@ -47,7 +47,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Deploy on stage
-        uses: osscameroon/sammy-actions@v1
+        uses: osscameroon/sammy-actions@v1.1
         with:
           service: camerdevs
           type: compose
