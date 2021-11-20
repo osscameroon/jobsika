@@ -54,3 +54,4 @@ jobs:
           patch-field: ".services.api.image"
           patch-value: ${{ steps.meta.outputs.tags }}
           file: docker-compose.yml
+          gh-token: ${{ secrets.GA_WORKFLOW_DEPLOYMENTS_TOKEN }}
