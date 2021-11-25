@@ -8,5 +8,5 @@ import (
 
 //Health always returns 200 status code
 func Health(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{"message": "all good"})
+	c.JSON(http.StatusOK, gin.H{"message": "all good Eric"})
 }
