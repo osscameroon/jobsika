@@ -11,6 +11,8 @@ func main() {
 	//Health check endpoint
 	router.GET("/health", handlers.Health)
 
+	//Salaries
+	router.GET("/salaries", handlers.GetSalaries)
 
 	if err := router.Run(":7000"); err != nil {
 		return
