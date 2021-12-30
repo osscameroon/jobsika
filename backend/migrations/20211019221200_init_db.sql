@@ -1,16 +1,13 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS salaries (
   id BIGSERIAL NOT NULL PRIMARY KEY,
-  email VARCHAR(255) NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  firstname VARCHAR(255),
-  lastname VARCHAR(255),
-  gender VARCHAR(50),
-  dateofbirth DATE,
+  title VARCHAR(255) NOT NULL,
+  city VARCHAR(255) NOT NULL,
+  company VARCHAR(255) NOT NULL,
+  salary INTEGER NOT NULL,
   createdat DATE,
-  updatedat DATE,
-  CONSTRAINT email_unique UNIQUE (email)
+  updatedat DATE
 );
 
 -- +goose StatementEnd
