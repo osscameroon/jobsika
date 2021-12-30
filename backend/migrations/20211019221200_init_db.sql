@@ -11,8 +11,17 @@ CREATE TABLE IF NOT EXISTS salaries (
   updatedat DATE
 );
 
+CREATE TABLE IF NOT EXISTS companies (
+  id BIGSERIAL NOT NULL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  rating INTEGER NOT NULL,
+  createdat DATE,
+  updatedat DATE
+);
+
 -- +goose StatementEnd
 -- +goose Down
 -- +goose StatementBegin
 DROP TABLE IF EXISTS salaries;
+DROP TABLE IF EXISTS companies;
 -- +goose StatementEnd

@@ -14,6 +14,9 @@ func main() {
 	//Salaries
 	router.GET("/salaries", handlers.GetSalaries)
 
+	//Companies
+	router.GET("/companies", handlers.GetCompanies)
+
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)
 

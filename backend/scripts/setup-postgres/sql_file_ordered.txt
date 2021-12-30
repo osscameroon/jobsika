@@ -1,1 +1,2 @@
 ../../fixtures/postgres/sql/salaries.sql
+../../fixtures/postgres/sql/companies.sql
