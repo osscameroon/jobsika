@@ -16,7 +16,7 @@ describe(`${endpoint}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body[0])).equal(
-            '{"title":"Recruiting Manager","salary":1624669,"city":"Bobigny","company":"Livefish","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
+            '{"title":"Recruiting Manager","salary":1624669,"seniority":"Seniority","city":"Bobigny","company":"Livefish","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
           );
         });
     });
