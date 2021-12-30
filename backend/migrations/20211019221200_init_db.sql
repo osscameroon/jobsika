@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS salaries (
   title VARCHAR(255) NOT NULL,
   city VARCHAR(255) NOT NULL,
   company VARCHAR(255) NOT NULL,
+  seniority VARCHAR(255) NOT NULL,
   salary INTEGER NOT NULL,
   createdat DATE,
   updatedat DATE
@@ -13,5 +14,5 @@ CREATE TABLE IF NOT EXISTS salaries (
 -- +goose StatementEnd
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS salaries;
 -- +goose StatementEnd
