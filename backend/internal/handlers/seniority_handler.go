@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//GetSeniority handles user sign in
+//GetSeniority returns a list of seniority levels
 func GetSeniority(c *gin.Context) {
 	seniority := []string{
 		v1beta.SeniorityEntryLevel,
