@@ -12,3 +12,14 @@ func (db DB) GetCompanyRatings() ([]v1beta.CompanyRating, error) {
 
 	return ratings, nil
 }
+
+//GetCompanyRatingsByID get company ratings by ID
+func (db DB) GetCompanyRatingsByID(id int64) (v1beta.CompanyRating, error) {
+	rating := v1beta.CompanyRating{}
+	ret := db.c.First(&rating, "id = ?", id)
+	if ret.Error != nil {
+		return rating, ret.Error
+	}
+
+	return rating, nil
+}

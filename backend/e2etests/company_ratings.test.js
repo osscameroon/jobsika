@@ -18,5 +18,28 @@ describe(`${endpoint}`, function () {
           expect(JSON.stringify(res.body[0])).equal('{"id":1,"company_id":761,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
         });
     });
+
+    it("return a company-ratings of rating id == 1", async function () {
+      return request(apiHost)
+        .get(`${endpoint}/1`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal('{"id":1,"company_id":761,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
+        });
+    });
+
+    it("return company-ratings 404 for an no existing company id", async function () {
+      return request(apiHost)
+        .get(`${endpoint}/1001`)
+        .send()
+        .expect(404)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).contains('could not find company ratings');
+        });
+    });
+
   });
 });
