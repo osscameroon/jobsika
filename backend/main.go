@@ -14,6 +14,9 @@ func main() {
 	//Salaries
 	router.GET("/salaries", handlers.GetSalaries)
 
+	//Seniority
+	router.GET("/seniority", handlers.GetSeniority)
+
 	if err := router.Run(":7000"); err != nil {
 		return
 	}

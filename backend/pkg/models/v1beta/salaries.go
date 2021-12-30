@@ -2,6 +2,15 @@ package v1beta
 
 import "time"
 
+const (
+	SeniorityIntern      = "Intern"
+	SeniorityEntryLevel  = "Entry-level"
+	SeniorityMidLevel    = "Mid-level"
+	SenioritySenior      = "Senior"
+	SeniorityAboveSenior = "Above senior-level"
+	SeniorityExecutive   = "Executive"
+)
+
 //Salary defines the salary structure
 type Salary struct {
 	Title  string `json:"title" gorm:"column:title"`
