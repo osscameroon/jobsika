@@ -5,7 +5,9 @@ import (
 	"strconv"
 
 	"github.com/elhmn/camerdevs/internal/server"
+	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -20,7 +22,15 @@ func GetCompanyRatings(c *gin.Context) {
 		return
 	}
 
-	ratings, err := db.GetCompanyRatings()
+	var query v1beta.CompanyRatingQuery
+	if err := c.ShouldBindWith(&query, binding.Query); err != nil {
+		log.Error(err)
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": "bad query parameters"})
+		return
+	}
+
+	ratings, err := db.GetCompanyRatings(query)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusNotFound,

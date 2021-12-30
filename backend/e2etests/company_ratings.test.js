@@ -30,7 +30,7 @@ describe(`${endpoint}`, function () {
         });
     });
 
-    it("return company-ratings 404 for an no existing company id", async function () {
+    it("return company-ratings 404 for an non existing rating id", async function () {
       return request(apiHost)
         .get(`${endpoint}/1001`)
         .send()
@@ -41,5 +41,15 @@ describe(`${endpoint}`, function () {
         });
     });
 
+    it("return a company-ratings of company id == 763", async function () {
+      return request(apiHost)
+        .get(`${endpoint}?company_id=763`)
+        .send()
+        .expect(200)
+        .expect("content-type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(res.body.length).to.equal(2);
+        });
+    });
   });
 });
