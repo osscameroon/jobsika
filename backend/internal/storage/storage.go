@@ -3,7 +3,6 @@ package storage
 import (
 	"fmt"
 
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -38,24 +37,4 @@ func NewDB(opt DBOptions) (*DB, error) {
 	return &DB{
 		c: client,
 	}, nil
-}
-
-//StoreLoginAndPassword store user's login and password
-func (db DB) StoreLoginAndPassword(email string, password string) error {
-	ret := db.c.Create(&v1beta.User{Email: email, Password: password})
-	if ret.Error != nil {
-		return ret.Error
-	}
-	return nil
-}
-
-//GetUserByEmail get user by email
-func (db DB) GetUserByEmail(email string) (v1beta.User, error) {
-	user := v1beta.User{}
-	ret := db.c.Where("email = ?", email).First(&user)
-	if ret.Error != nil {
-		return user, ret.Error
-	}
-
-	return user, nil
 }
