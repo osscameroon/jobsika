@@ -2,7 +2,7 @@ package v1beta
 
 import "time"
 
-//Company defines the salary structure
+//Company defines the company structure
 type Company struct {
 	ID        int64     `json:"id" gorm:"column:id"`
 	Name      string    `json:"name" gorm:"column:name"`

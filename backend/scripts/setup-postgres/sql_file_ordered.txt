@@ -1,2 +1,3 @@
 ../../fixtures/postgres/sql/salaries.sql
 ../../fixtures/postgres/sql/companies.sql
+../../fixtures/postgres/sql/company_ratings.sql
