@@ -33,3 +33,6 @@ To run the backend you should jump to the `./backend` folder
 
 #### Build and run with docker
 `make docker-build && make docker-run`
+
+#### Server api documentation
+`make serve-swagger`

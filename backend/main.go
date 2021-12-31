@@ -1,12 +1,22 @@
 package main
 
 import (
+	_ "github.com/elhmn/camerdevs/docs"
 	"github.com/elhmn/camerdevs/internal/handlers"
+	"github.com/gin-gonic/contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	router := gin.Default()
+
+	router.Use(cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
+		ExposedHeaders:   []string{},
+		AllowCredentials: true,
+	}))
 
 	//Health check endpoint
 	router.GET("/health", handlers.Health)

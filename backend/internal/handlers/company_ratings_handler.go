@@ -58,6 +58,7 @@ func GetCompanyRatingsByID(c *gin.Context) {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "failed to parse parameters"})
+		return
 	}
 
 	ratings, err := db.GetCompanyRatingsByID(id)

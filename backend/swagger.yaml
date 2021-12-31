@@ -1,0 +1,111 @@
+basePath: /
+consumes:
+- application/json; charset=utf-8
+definitions:
+  Salary:
+    description: Salary defines the salary structure
+    properties:
+      city:
+        type: string
+        x-go-name: City
+      company_id:
+        format: int64
+        type: integer
+        x-go-name: CompanyID
+      createdat:
+        format: date-time
+        type: string
+        x-go-name: CreatedAt
+      id:
+        format: int64
+        type: integer
+        x-go-name: ID
+      salary:
+        format: int64
+        type: integer
+        x-go-name: Salary
+      seniority:
+        description: |-
+          Seniority can be set to the values bellow
+          Intern, Entry-level, Mid-level, Senior, Above Senior level, Executive
+        type: string
+        x-go-name: Seniority
+      title:
+        type: string
+        x-go-name: Title
+      updatedat:
+        format: date-time
+        type: string
+        x-go-name: UpdatedAt
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+host: localhost:7000
+info:
+  description: Documentation of our camerdevs API.
+  title: Camerdevs API.
+  version: 1.0.0
+paths:
+  /salaries:
+    get:
+      description: Salaries returns the list of salaries
+      operationId: idOfSalaryWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/salariesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - salaries
+  /salaries/{id}:
+    get:
+      description: Salaries returns the list of salaries
+      operationId: idOfSalary
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/salariesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - salaries
+produces:
+- application/json
+responses:
+  badRequestResponse:
+    description: ""
+    schema:
+      properties:
+        error:
+          example: bad request
+          type: string
+          x-go-name: Error
+      type: object
+  notFoundResponse:
+    description: ""
+    schema:
+      properties:
+        error:
+          example: could not found
+          type: string
+          x-go-name: Error
+      type: object
+  salariesResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/Salary'
+      type: array
+schemes:
+- http
+- https
+swagger: "2.0"
