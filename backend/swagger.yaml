@@ -1,0 +1,253 @@
+basePath: /
+consumes:
+- application/json; charset=utf-8
+definitions:
+  Company:
+    description: Company defines the company structure
+    properties:
+      createdat:
+        format: date-time
+        type: string
+        x-go-name: CreatedAt
+      id:
+        format: int64
+        type: integer
+        x-go-name: ID
+      name:
+        type: string
+        x-go-name: Name
+      rating:
+        format: int64
+        type: integer
+        x-go-name: Rating
+      updatedat:
+        format: date-time
+        type: string
+        x-go-name: UpdatedAt
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+  Salary:
+    description: Salary defines the salary structure
+    properties:
+      city:
+        type: string
+        x-go-name: City
+      company_id:
+        format: int64
+        type: integer
+        x-go-name: CompanyID
+      createdat:
+        format: date-time
+        type: string
+        x-go-name: CreatedAt
+      id:
+        format: int64
+        type: integer
+        x-go-name: ID
+      salary:
+        format: int64
+        type: integer
+        x-go-name: Salary
+      seniority:
+        description: |-
+          Seniority can be set to the values bellow
+          Intern, Entry-level, Mid-level, Senior, Above Senior level, Executive
+        type: string
+        x-go-name: Seniority
+      title:
+        type: string
+        x-go-name: Title
+      updatedat:
+        format: date-time
+        type: string
+        x-go-name: UpdatedAt
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+host: localhost:7000
+info:
+  description: Documentation of our camerdevs API.
+  title: Camerdevs API.
+  version: 1.0.0
+paths:
+  /companies:
+    get:
+      description: Companies returns the list of companies
+      operationId: idOfCompanyWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/companiesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - companies
+  /companies/{id}:
+    get:
+      description: Companies returns the list of companies
+      operationId: idOfCompany
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/companiesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - companies
+  /company-ratings:
+    get:
+      description: CompanyRatings returns the list of company-ratings
+      operationId: idOfCompanyRatingsWithoutID
+      parameters:
+      - format: int64
+        in: query
+        name: company_id
+        type: integer
+        uniqueItems: true
+        x-go-name: CompanyID
+      responses:
+        "200":
+          $ref: '#/responses/company-ratingsResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - company-ratings
+  /company-ratings/{id}:
+    get:
+      description: CompanyRatings returns the list of company-ratings
+      operationId: idOfCompanyRatings
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/companyRatingResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - company-ratings
+  /health:
+    get:
+      description: Companies returns health endpoint
+      operationId: idOfHealth
+      responses:
+        "200":
+          $ref: '#/responses/healthResponse'
+      tags:
+      - health
+  /salaries:
+    get:
+      description: Salaries returns the list of salaries
+      operationId: idOfSalaryWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/salariesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - salaries
+  /salaries/{id}:
+    get:
+      description: Salaries returns the list of salaries
+      operationId: idOfSalary
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/salariesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - salaries
+  /seniority:
+    get:
+      description: Companies returns seniority endpoint
+      operationId: idOfSeniority
+      responses:
+        "200":
+          $ref: '#/responses/seniorityResponse'
+      tags:
+      - seniority
+produces:
+- application/json
+responses:
+  badRequestResponse:
+    description: ""
+    schema:
+      properties:
+        error:
+          example: bad request
+          type: string
+          x-go-name: Error
+      type: object
+  companiesResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/Company'
+      type: array
+  company-ratingsResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/Company'
+      type: array
+  healthResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      properties:
+        message:
+          example: all good !
+          type: string
+          x-go-name: Message
+      type: object
+  notFoundResponse:
+    description: ""
+    schema:
+      properties:
+        error:
+          example: could not found
+          type: string
+          x-go-name: Error
+      type: object
+  salariesResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/Salary'
+      type: array
+  seniorityResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        type: string
+      type: array
+schemes:
+- http
+- https
+swagger: "2.0"

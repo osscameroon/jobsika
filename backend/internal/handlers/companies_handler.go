@@ -48,6 +48,7 @@ func GetCompanyByID(c *gin.Context) {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "failed to parse parameters"})
+		return
 	}
 
 	company, err := db.GetCompanyByID(id)

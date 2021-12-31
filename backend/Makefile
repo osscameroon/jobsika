@@ -122,6 +122,20 @@ stop-postgres:
 	docker-compose down && \
 	rm -rf postgres-data
 
+.PHONY:check-swagger
+check-swagger:
+	which swagger || (go get -u github.com/go-swagger/go-swagger/cmd/swagger)
+
+swagger.yaml: check-swagger
+	swagger generate spec -o ./swagger.yaml
+
+.PHONY: swagger
+swagger:
+
+.PHONY:serve-swagger
+serve-swagger: swagger.yaml check-swagger
+	swagger serve -F=swagger swagger.yaml
+
 check-lint:
 ifeq (, $(shell which golangci-lint))
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
