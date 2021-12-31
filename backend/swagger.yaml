@@ -184,6 +184,15 @@ paths:
           $ref: '#/responses/notFoundResponse'
       tags:
       - salaries
+  /seniority:
+    get:
+      description: Companies returns seniority endpoint
+      operationId: idOfSeniority
+      responses:
+        "200":
+          $ref: '#/responses/seniorityResponse'
+      tags:
+      - seniority
 produces:
 - application/json
 responses:
@@ -231,6 +240,12 @@ responses:
     schema:
       items:
         $ref: '#/definitions/Salary'
+      type: array
+  seniorityResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        type: string
       type: array
 schemes:
 - http
