@@ -17,6 +17,7 @@ func main() {
 
 	//Companies
 	router.GET("/companies", handlers.GetCompanies)
+	router.GET("/companies/:id", handlers.GetCompanyByID)
 
 	//CompanyRatings
 	router.GET("/company-ratings", handlers.GetCompanyRatings)
