@@ -12,3 +12,14 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 
 	return companies, nil
 }
+
+//GetCompanyByID get company by `id`
+func (db DB) GetCompanyByID(id int64) (v1beta.Company, error) {
+	company := v1beta.Company{}
+	ret := db.c.First(&company, "id = ?", id)
+	if ret.Error != nil {
+		return company, ret.Error
+	}
+
+	return company, nil
+}
