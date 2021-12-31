@@ -142,6 +142,15 @@ paths:
           $ref: '#/responses/notFoundResponse'
       tags:
       - company-ratings
+  /health:
+    get:
+      description: Companies returns health endpoint
+      operationId: idOfHealth
+      responses:
+        "200":
+          $ref: '#/responses/healthResponse'
+      tags:
+      - health
   /salaries:
     get:
       description: Salaries returns the list of salaries
@@ -199,6 +208,15 @@ responses:
       items:
         $ref: '#/definitions/Company'
       type: array
+  healthResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      properties:
+        message:
+          example: all good !
+          type: string
+          x-go-name: Message
+      type: object
   notFoundResponse:
     description: ""
     schema:
