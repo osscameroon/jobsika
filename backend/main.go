@@ -13,6 +13,7 @@ func main() {
 
 	//Salaries
 	router.GET("/salaries", handlers.GetSalaries)
+	router.GET("/salaries/:id", handlers.GetSalaryByID)
 
 	//Companies
 	router.GET("/companies", handlers.GetCompanies)
