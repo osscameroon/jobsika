@@ -8,7 +8,7 @@ ENV GO111MODULE=on \
 WORKDIR /build
 
 #copies go.sum and go.mod if exists
-COPY go.* .
+COPY go.* ./
 RUN go mod download
 
 COPY . .
