@@ -26,6 +26,11 @@ To run the backend you should jump to the `./backend` folder
 `cd ./backend`
 
 ##### Run
+
+First run the database:
+`make start-postgres`
+
+Then run the api:
 `make run`
 
 ##### Build and run
