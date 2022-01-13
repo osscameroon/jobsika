@@ -36,3 +36,6 @@ To run the backend you should jump to the `./backend` folder
 
 #### Server api documentation
 `make serve-swagger`
+
+#### How to run the api with the DB
+`make start-api`
