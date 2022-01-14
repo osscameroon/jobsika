@@ -134,6 +134,7 @@ swagger.yaml: check-swagger
 serve-swagger: swagger.yaml check-swagger
 	swagger serve -F=swagger swagger.yaml
 
+## install-deps: install main dependencies
 install-deps:
 	@echo "installing golangci-lint..."
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
