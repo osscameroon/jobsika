@@ -129,12 +129,25 @@ check-swagger:
 swagger.yaml: check-swagger
 	swagger generate spec -o ./swagger.yaml
 
-.PHONY: swagger
-swagger:
-
+## serve-swagger: open the api documentation
 .PHONY:serve-swagger
 serve-swagger: swagger.yaml check-swagger
 	swagger serve -F=swagger swagger.yaml
+
+install-deps:
+	@echo "installing golangci-lint..."
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
+	@echo "golangci installed!"
+	@echo "installing errcheck..."
+	go get -u github.com/kisielk/errcheck
+	@echo "errcheck installed!"
+	@echo "installing swagger..."
+	go get -u github.com/go-swagger/go-swagger/cmd/swagger
+	@echo "swagger installed!"
+	@echo "installing goose..."
+	go get -u github.com/pressly/goose/v3/cmd/goose
+	@echo "goose installed!"
+
 
 check-lint:
 ifeq (, $(shell which golangci-lint))
