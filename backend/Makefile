@@ -4,7 +4,7 @@ E2ETEST_DEPS=./e2etests/node_modules
 .DEFAULT_GOAL := help
 
 define install_goose
-	go get -u github.com/pressly/goose/v3/cmd/goose
+	go install github.com/pressly/goose/v3/cmd/goose@latest
 endef
 
 
@@ -124,7 +124,7 @@ stop-postgres:
 
 .PHONY:check-swagger
 check-swagger:
-	which swagger || (go get -u github.com/go-swagger/go-swagger/cmd/swagger)
+	which swagger || (go install github.com/go-swagger/go-swagger/cmd/swagger@latest)
 
 swagger.yaml: check-swagger
 	swagger generate spec -o ./swagger.yaml
@@ -140,11 +140,14 @@ install-deps:
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
 	@echo "golangci installed!"
 	@echo "installing errcheck..."
-	go get -u github.com/kisielk/errcheck
+	go install github.com/kisielk/errcheck@latest
 	@echo "errcheck installed!"
 	@echo "installing goose..."
-	go get -u github.com/pressly/goose/v3/cmd/goose
+	go install github.com/pressly/goose/v3/cmd/goose@latest
 	@echo "goose installed!"
+	@echo "installing swagger..."
+	go install github.com/go-swagger/go-swagger/cmd/swagger@latest
+	@echo "swagger installed!"
 
 
 check-lint:
@@ -152,7 +155,7 @@ ifeq (, $(shell which golangci-lint))
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
 endif
 ifeq (, $(shell which errcheck))
-	go get -u github.com/kisielk/errcheck
+	go install github.com/kisielk/errcheck@latest
 endif
 
 ## lint: run linters over the entire code base
