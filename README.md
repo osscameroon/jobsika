@@ -13,9 +13,10 @@ The platform includes the functionnalities bellow:
 #### Dependencies
 To run locally, this api require few dependencies
 
-- Golang version 1.16 or later
+- Golang version 1.16
 - GNU make
 - docker with docker-compose
+- [swagger](https://goswagger.io/install.html)
 
 #### How to run
 Once you have installed the required depencies, you can now run the application

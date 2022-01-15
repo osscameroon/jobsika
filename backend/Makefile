@@ -142,9 +142,6 @@ install-deps:
 	@echo "installing errcheck..."
 	go get -u github.com/kisielk/errcheck
 	@echo "errcheck installed!"
-	@echo "installing swagger..."
-	go get -u github.com/go-swagger/go-swagger/cmd/swagger
-	@echo "swagger installed!"
 	@echo "installing goose..."
 	go get -u github.com/pressly/goose/v3/cmd/goose
 	@echo "goose installed!"
