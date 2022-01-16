@@ -26,6 +26,51 @@ definitions:
         x-go-name: UpdatedAt
     type: object
     x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+  Rating:
+    description: |-
+      Rating defines the rating structure
+      This structure combines a salary and a company rating entry
+    properties:
+      city:
+        type: string
+        x-go-name: City
+      comment:
+        type: string
+        x-go-name: Comment
+      company_id:
+        format: int64
+        type: integer
+        x-go-name: CompanyID
+      company_name:
+        type: string
+        x-go-name: CompanyName
+      company_rating_id:
+        format: int64
+        type: integer
+        x-go-name: CompanyRatingID
+      country:
+        type: string
+        x-go-name: Country
+      job_title:
+        type: string
+        x-go-name: JobTitle
+      rating:
+        format: int64
+        type: integer
+        x-go-name: Rating
+      salary:
+        format: int64
+        type: integer
+        x-go-name: Salary
+      salary_id:
+        format: int64
+        type: integer
+        x-go-name: SalaryID
+      seniority:
+        type: string
+        x-go-name: Seniority
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
   Salary:
     description: Salary defines the salary structure
     properties:
@@ -36,6 +81,13 @@ definitions:
         format: int64
         type: integer
         x-go-name: CompanyID
+      company_rating_id:
+        format: int64
+        type: integer
+        x-go-name: CompanyRatingID
+      country:
+        type: string
+        x-go-name: Country
       createdat:
         format: date-time
         type: string
@@ -151,6 +203,39 @@ paths:
           $ref: '#/responses/healthResponse'
       tags:
       - health
+  /ratings:
+    get:
+      description: Ratings returns the list of ratings
+      operationId: idOfRatingWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/ratingsResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - ratings
+  /ratings/{id}:
+    get:
+      description: Ratings returns the list of ratings
+      operationId: idOfRating
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/ratingsResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - ratings
   /salaries:
     get:
       description: Salaries returns the list of salaries
@@ -235,6 +320,12 @@ responses:
           type: string
           x-go-name: Error
       type: object
+  ratingsResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/Rating'
+      type: array
   salariesResponse:
     description: This text will appear as description of your response body.
     schema:

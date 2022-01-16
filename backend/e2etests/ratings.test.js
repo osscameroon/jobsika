@@ -16,7 +16,7 @@ describe(`${endpoint}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body[0])).equal(
-            ''
+            '{"salary_id":1,"company_id":994,"company_rating_id":569,"rating":2,"salary":1624669,"company_name":"Realbridge","seniority":"Seniority","comment":"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","job_title":"Recruiting Manager","country":"Country","city":"Livefish"}'
           );
         });
     });
@@ -28,7 +28,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).to.equal('');
+          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":994,"company_rating_id":569,"rating":2,"salary":1624669,"company_name":"Realbridge","seniority":"Seniority","comment":"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","job_title":"Recruiting Manager","country":"Country","city":"Livefish"}');
         });
     });
 
