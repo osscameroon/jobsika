@@ -706,7 +706,7 @@ insert into salaries (id, salary, city, country, title, seniority, company_id, c
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (706, 120205, 'Thoughtworks', 'Country', 'Web Developer IV', 'Seniority', 131, 254);
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (707, 1434401, 'Podcat', 'Country', 'Computer Systems Analyst I', 'Seniority', 487, 569);
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (708, 623266, 'Voomm', 'Country', 'Staff Accountant I', 'Seniority', 579, 966);
-insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (709, 578906, oe', ''Country', Lazzy', 'Quality Engineer', 'Seniority', 360, 371);
+insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (709, 578906, 'Lazzy', 'Country', 'Quality Engineer', 'Seniority', 360, 371);
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (710, 3995687, 'Talane', 'Country', 'Account Executive', 'Seniority', 624, 834);
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (711, 2815378, 'Dynazzy', 'Country', 'Tax Accountant', 'Seniority', 617, 44);
 insert into salaries (id, salary, city, country, title, seniority, company_id, company_rating_id) values (712, 4856774, 'Quimm', 'Country', 'Dental Hygienist', 'Seniority', 371, 603);
