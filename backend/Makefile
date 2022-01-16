@@ -34,6 +34,11 @@ run:
 ## e2etest: run end to end tests against local api
 .PHONY: e2etest
 e2etest: $(E2ETEST_DEPS)
+	cd ./e2etests/ && API_HOST="http://localhost:7000/" npm test
+
+## e2etest-compose: run end to end tests in the docker-compose.test.yaml
+.PHONY: e2etest-compose
+e2etest-compose: $(E2ETEST_DEPS)
 	cd ./e2etests/ && npm test
 
 $(E2ETEST_DEPS):
