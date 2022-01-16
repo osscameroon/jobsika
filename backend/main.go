@@ -33,6 +33,10 @@ func main() {
 	router.GET("/company-ratings", handlers.GetCompanyRatings)
 	router.GET("/company-ratings/:id", handlers.GetCompanyRatingsByID)
 
+	//Ratings
+	router.GET("/ratings", handlers.GetRatings)
+	router.GET("/ratings/:id", handlers.GetRatingByID)
+
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)
 

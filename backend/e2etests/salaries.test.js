@@ -16,7 +16,7 @@ describe(`${endpoint}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body[0])).equal(
-            '{"id":1,"title":"Recruiting Manager","salary":1624669,"seniority":"Seniority","city":"Livefish","company_id":994,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
+            '{"id":1,"title":"Recruiting Manager","salary":1624669,"seniority":"Seniority","city":"Livefish","country":"Country","company_id":994,"company_rating_id":569,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
           );
         });
     });
@@ -28,7 +28,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).to.equal('{"id":1,"title":"Recruiting Manager","salary":1624669,"seniority":"Seniority","city":"Livefish","company_id":994,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body)).to.equal('{"id":1,"title":"Recruiting Manager","salary":1624669,"seniority":"Seniority","city":"Livefish","country":"Country","company_id":994,"company_rating_id":569,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
         });
     });
 

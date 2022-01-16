@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgres:
-    image: postgres
+    image: postgres:14.1-alpine
     env_file:
       - ./.docker-env
     ports:
@@ -29,10 +29,7 @@ services:
     depends_on:
       - api
     image: node:14-stretch
-    command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest
-    env_file:
-      - ./.docker-env
-      - ./.api-env
+    command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest-compose
     environment:
       API_HOST: "http://api:7000/"
     volumes:
