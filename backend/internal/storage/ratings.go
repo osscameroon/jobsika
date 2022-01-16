@@ -28,7 +28,7 @@ func (db DB) queryRatings() *gorm.DB {
 func (db DB) GetRatings() ([]v1beta.Rating, error) {
 	ratings := []v1beta.Rating{}
 
-	rows, err := db.queryRatings().Rows()
+	rows, err := db.queryRatings().Order("salary_id").Rows()
 	if err != nil {
 		return ratings, err
 	}
