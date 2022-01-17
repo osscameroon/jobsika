@@ -12,6 +12,8 @@ services:
       - ./postgres-data:/var/lib/postgresql/data
 
   start-postgres:
+    extra_hosts:
+      - host.docker.internal:host-gateway
     depends_on:
       - postgres
     #replace this with an image that contains dependencies required by setup-postgres.sh
