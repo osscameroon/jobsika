@@ -4,7 +4,7 @@
     class="
       site__btn
       cursor-pointer
-      px-4
+      px-
       py-2
       text-white text-sm
       rounded-sm
@@ -13,7 +13,6 @@
       items-center
       justify-center
     "
-    @click="changeClick"
   >
     <img :src="plusIcon" class="w-5 h-5 mr-1" />
     {{ name }}
@@ -26,11 +25,6 @@ export default Vue.extend({
   props: {
     name: String,
     myStyle: String,
-  },
-  methods: {
-    changeClick() {
-      console.log('Hello click')
-    },
   },
   data() {
     return {
