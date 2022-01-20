@@ -21,12 +21,12 @@
                     px-6
                     py-3
                     text-left text-xs
-                    font-semibold
+                    font-bold
                     text-gray-500
                     uppercase
                     tracking-wider
                   "
-                  style="color: #b1b1b1"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Position
                 </th>
@@ -41,7 +41,7 @@
                     uppercase
                     tracking-wider
                   "
-                  style="color: #b1b1b1"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Company Name
                 </th>
@@ -51,12 +51,12 @@
                     px-6
                     py-3
                     text-left text-xs
-                    font-medium
+                    font-bold
                     text-gray-500
                     uppercase
                     tracking-wider
                   "
-                  style="color: #b1b1b1"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Jobs title
                 </th>
@@ -66,12 +66,12 @@
                     px-6
                     py-3
                     text-left text-xs
-                    font-medium
+                    font-bold
                     text-gray-500
                     uppercase
                     tracking-wider
                   "
-                  style="color: #b1b1b1"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Salary
                 </th>
@@ -81,12 +81,12 @@
                     px-6
                     py-3
                     text-left text-xs
-                    font-medium
+                    font-bold
                     text-gray-500
                     uppercase
                     tracking-wider
                   "
-                  style="color: #b1b1b1"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Rating
                 </th>
@@ -104,29 +104,45 @@
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
-                      <div class="text-sm font-medium text-gray-900">
+                      <div
+                        class="text-sm font-medium text-gray-900"
+                        style="color: #000000; font-family: 'Inter', sans-serif"
+                      >
                         {{ company.salary_id }}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">
+                  <div
+                    class="text-sm text-gray-900"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                  >
                     {{ company.company_name }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="text-sm text-gray-900">
+                  <div
+                    class="text-sm text-gray-900"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                  >
                     {{ company.job_title }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  <div class="text-sm text-gray-900">
+                  <div
+                    class="text-sm text-gray-900"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                  >
                     {{ company.salary }} FCFA
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                  <div class="text-sm text-gray-900">{{ company.rating }}</div>
+                <td
+                  class="px-6 py-4 whitespace-nowrap text-sm font-medium flex"
+                >
+                  <div class="flex" v-for="item in company.rating" :key="item">
+                    <img class="w-4 h-4 mr-1" :src="startPicture" />
+                  </div>
                 </td>
                 <td
                   class="
@@ -140,6 +156,7 @@
                   <a
                     @click="toggleAccordion()"
                     class="flex items-center space-x-3 cursor-pointer"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
                     :aria-expanded="isOpen"
                     :aria-controls="`collapse${_uid}`"
                     >Details</a
@@ -164,16 +181,18 @@
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
+import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'CompanyComponent',
   data() {
     return {
       companies: [],
       isOpen: false,
+      startPicture: require('../assets/star.png'),
     }
   },
   mounted() {
-    axios.get('http://localhost:7000/ratings').then((response) => {
+    axios.get(BASE_URL + '/ratings').then((response) => {
       this.companies = response.data
     })
   },

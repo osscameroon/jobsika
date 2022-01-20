@@ -35,7 +35,7 @@
           {{ subTitle }}
         </h4>
       </div>
-      <div class="site__title-btn pt-4 lg:pt-0">
+      <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-1/6">
         <Button name="Contribute" />
       </div>
     </div>

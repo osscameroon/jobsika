@@ -1,7 +1,7 @@
 <template>
   <div class="site" style="background: #e5e5e5">
     <Header name="Search..." />
-    <main class="site__main pt-20">
+    <main class="site__main pt-10 lg:pt-4">
       <div class="container mx-auto w-9/12">
         <Title
           title="100% Anonymous"
@@ -15,12 +15,13 @@
             <Select />
           </div>
         </div>
-        <div class="site__main-company pt-2">
-          <Company v-s />
+        <div class="site__main-company">
+          <Company />
+          <Pagination />
         </div>
       </div>
     </main>
-    <footer class="site__footer py-16">
+    <footer class="site__footer pb-16">
       <div class="container mx-auto w-9/12">
         <Title
           title="Let's change the narative"
@@ -36,6 +37,7 @@ import Header from '../components/Header.vue'
 import Title from '../components/Title.vue'
 import Select from '../components/Select.vue'
 import Company from '../components/Company.vue'
+import Pagination from '../components/Pagination.vue'
 export default {
   name: 'IndexPage',
   components: {
@@ -43,11 +45,7 @@ export default {
     Title,
     Select,
     Company,
-  },
-  data() {
-    return {
-      selectOne: ['Un', 'Deux', 'Trois'],
-    }
+    Pagination,
   },
 }
 </script>

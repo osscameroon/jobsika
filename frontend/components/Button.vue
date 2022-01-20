@@ -11,6 +11,7 @@
       font-bold
       flex
       items-center
+      justify-center
     "
     @click="changeClick"
   >
