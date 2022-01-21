@@ -1,0 +1,34 @@
+<template>
+  <header
+    style="box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.14); height: 67px"
+    class="site__header left-0 top-0 bg-white w-full sticky z-50"
+  >
+    <div class="container mx-auto w-11/12 h-full">
+      <div class="flex items-center py-4">
+        <img class="w-6 h-6" :src="searchPicture" />
+        <input
+          type="text"
+          name="name"
+          :placeholder="name"
+          class="w-full border-none text-gray-600 font-medium"
+          style="font-size: 18px; font-family: 'Inter', sans-serif"
+        />
+      </div>
+    </div>
+  </header>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  name: 'HeaderComponent',
+  props: {
+    name: String,
+  },
+  data() {
+    return {
+      searchPicture: require('../assets/search.png'),
+    }
+  },
+})
+</script>
