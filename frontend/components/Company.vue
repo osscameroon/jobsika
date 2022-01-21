@@ -96,9 +96,9 @@
               </tr>
             </thead>
             <tbody
-              class="bg-white divide-y divide-white"
               v-for="company in companies.slice(0, 4)"
-              :key="company"
+              :key="company.id"
+              class="bg-white divide-y divide-white"
             >
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
@@ -140,7 +140,7 @@
                 <td
                   class="px-6 py-4 whitespace-nowrap text-sm font-medium flex"
                 >
-                  <div class="flex" v-for="item in company.rating" :key="item">
+                  <div v-for="item in company.rating" :key="item" class="flex">
                     <img class="w-4 h-4 mr-1" :src="startPicture" />
                   </div>
                 </td>
@@ -154,21 +154,20 @@
                   "
                 >
                   <a
-                    @click="toggleAccordion()"
                     class="flex items-center space-x-3 cursor-pointer"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                     :aria-expanded="isOpen"
                     :aria-controls="`collapse${_uid}`"
+                    @click="toggleAccordion()"
                     >Details</a
                   >
                 </td>
               </tr>
               <div
                 v-show="isOpen"
-                class="w-10/12 bg-red-500"
                 :id="`collapse${_uid}`"
+                class="w-10/12 bg-red-500"
               >
-                <!-- <slot name="{{company.comment}}" /> -->
                 <p class="w-full bg-yellow-600">{{ company.comment }}</p>
               </div>
             </tbody>
@@ -191,10 +190,12 @@ export default Vue.extend({
       startPicture: require('../assets/star.png'),
     }
   },
-  mounted() {
-    axios.get(BASE_URL + '/ratings').then((response) => {
-      this.companies = response.data
-    })
+  async created() {
+    try {
+      this.companies = (await axios.get(BASE_URL + '/ratings')).data
+    } catch (e) {
+      console.log(e)
+    }
   },
   methods: {
     toggleAccordion() {

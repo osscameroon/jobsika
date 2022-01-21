@@ -72,7 +72,7 @@
         <option
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
-          :key="link"
+          :key="link.salary_id"
           value="1"
         >
           {{ link.name }}
@@ -102,11 +102,12 @@ export default Vue.extend({
       ],
     }
   },
-  mounted() {
-    axios.get(BASE_URL + '/companies').then((response) => {
-      this.companies = response.data
-      console.log('Companies:::::', this.companies[0].name)
-    })
+  async created() {
+    try {
+      this.companies = (await axios.get(BASE_URL + '/companies')).data
+    } catch (e) {
+      console.log(e)
+    }
   },
 })
 </script>
