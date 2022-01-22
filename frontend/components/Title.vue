@@ -13,29 +13,21 @@
       "
     >
       <div class="site__title-text text-center lg:text-left">
-        <h2 style="font-size: 32px" class="font-bold leading-10">
+        <h2 class="font-bold text-3xl md:text-4xl">
           {{ title }}
         </h2>
         <h4
           v-if="fontSize === 'header'"
-          style="
-            color: #235365;
-            font-size: 32px;
-            font-family: 'Inter', sans-serif;
-          "
-          class="pt-3 font-semibold"
+          style="color: #235365; font-family: 'Inter', sans-serif"
+          class="pt-3 font-bold text-2xl md:text-3xl"
         >
           {{ subTitle }}
         </h4>
-        <h4
-          v-else
-          style="color: #235365; font-size: 16px"
-          class="pt-3 font-semibold"
-        >
+        <h4 v-else style="color: #235365" class="pt-3 font-bold text-base">
           {{ subTitle }}
         </h4>
       </div>
-      <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-1/6">
+      <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
         <Button name="Contribute" />
       </div>
     </div>

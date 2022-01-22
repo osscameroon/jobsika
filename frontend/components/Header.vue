@@ -10,8 +10,15 @@
           type="text"
           name="name"
           :placeholder="name"
-          class="w-full border-none text-gray-600 font-medium"
-          style="font-size: 18px; font-family: 'Inter', sans-serif"
+          class="
+            w-full
+            border-none
+            text-gray-600
+            font-medium
+            text-sm
+            md:text-base
+          "
+          style="font-family: 'Inter', sans-serif"
         />
       </div>
     </div>

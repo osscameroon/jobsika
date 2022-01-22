@@ -1,8 +1,8 @@
 <template>
-  <div class="site" style="background: #e5e5e5">
+  <div class="site" style="background: #f1f5f9">
     <Header name="Search..." />
     <main class="site__main pt-10 lg:pt-4">
-      <div class="container mx-auto w-9/12">
+      <div class="container mx-auto w-10/12">
         <Title
           title="100% Anonymous"
           subTitle="Company rating and salaries in Cameroon"
@@ -15,7 +15,7 @@
             <Select />
           </div>
         </div>
-        <div class="site__main-company">
+        <div class="site__main-company py-2 md:py-8">
           <Company />
           <Pagination />
         </div>

@@ -1,18 +1,17 @@
 <template>
-  <div class="flex flex-col w-full">
-    <div class="-my-2 overflow-x-auto">
-      <div class="py-2 align-middle inline-block min-w-full">
+  <div class="flex flex-col">
+    <div class="-my-2">
+      <div class="py-2 align-middle inline-block min-w-full w-16">
         <div
           class="
             overflow-hidden
-            border-b
             rounded-xl
             border-gray-200
             sm:rounded-lg
             w-full
           "
         >
-          <table class="min-w-full divide-y divide-gray-200">
+          <table class="min-w-full divide-y-8 divide-primary">
             <thead style="backgound: #e5e5e5">
               <tr>
                 <th
@@ -21,9 +20,8 @@
                     px-6
                     py-3
                     text-left text-xs
+                    md:text-sm
                     font-bold
-                    text-gray-500
-                    uppercase
                     tracking-wider
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
@@ -36,14 +34,13 @@
                     px-6
                     py-3
                     text-left text-xs
-                    font-medium
-                    text-gray-500
-                    uppercase
+                    md:text-sm
+                    font-bold
                     tracking-wider
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
-                  Company Name
+                  Company
                 </th>
                 <th
                   scope="col"
@@ -51,9 +48,8 @@
                     px-6
                     py-3
                     text-left text-xs
+                    md:text-sm
                     font-bold
-                    text-gray-500
-                    uppercase
                     tracking-wider
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
@@ -66,9 +62,8 @@
                     px-6
                     py-3
                     text-left text-xs
+                    md:text-sm
                     font-bold
-                    text-gray-500
-                    uppercase
                     tracking-wider
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
@@ -81,16 +76,15 @@
                     px-6
                     py-3
                     text-left text-xs
+                    md:text-sm
                     font-bold
-                    text-gray-500
-                    uppercase
                     tracking-wider
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Rating
                 </th>
-                <th scope="col" class="relative px-6 py-3">
+                <th scope="col" class="relative px-6 py-3 flex">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
@@ -98,14 +92,14 @@
             <tbody
               v-for="company in companies.slice(0, 4)"
               :key="company.id"
-              class="bg-white divide-y divide-white"
+              class="bg-white shadow-md divide-y divide-white"
             >
               <tr>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div class="flex items-center">
                     <div class="ml-4">
                       <div
-                        class="text-sm font-medium text-gray-900"
+                        class="text-xs md:text-sm font-medium text-gray-900"
                         style="color: #000000; font-family: 'Inter', sans-serif"
                       >
                         {{ company.salary_id }}
@@ -115,7 +109,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div
-                    class="text-sm text-gray-900"
+                    class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.company_name }}
@@ -123,7 +117,7 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div
-                    class="text-sm text-gray-900"
+                    class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.job_title }}
@@ -131,17 +125,21 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   <div
-                    class="text-sm text-gray-900"
+                    class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.salary }} FCFA
                   </div>
                 </td>
-                <td
-                  class="px-6 py-4 whitespace-nowrap text-sm font-medium flex"
-                >
-                  <div v-for="item in company.rating" :key="item" class="flex">
-                    <img class="w-4 h-4 mr-1" :src="startPicture" />
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                  <div class="flex">
+                    <div
+                      v-for="item in company.rating"
+                      :key="item"
+                      class="flex"
+                    >
+                      <img class="w-4 h-4 mr-1" :src="startPicture" />
+                    </div>
                   </div>
                 </td>
                 <td
@@ -154,7 +152,14 @@
                   "
                 >
                   <a
-                    class="flex items-center space-x-3 cursor-pointer"
+                    class="
+                      text-xs
+                      md:text-sm
+                      flex
+                      items-center
+                      space-x-3
+                      cursor-pointer
+                    "
                     style="color: #000000; font-family: 'Inter', sans-serif"
                     :aria-expanded="isOpen"
                     :aria-controls="`collapse${_uid}`"
