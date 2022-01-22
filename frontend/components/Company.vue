@@ -4,7 +4,7 @@
       <div class="py-2 align-middle inline-block min-w-full w-16">
         <div
           class="
-            overflow-hidden
+            overflow-x-auto
             rounded-xl
             border-gray-200
             sm:rounded-lg
