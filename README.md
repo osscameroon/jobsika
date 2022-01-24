@@ -45,3 +45,21 @@ Then run the api:
 
 #### How to run the api with the DB
 `make start-api`
+
+#### Frontend
+
+To run the frontend you should jump to the ./frontend folder using the command cd ./frontend
+
+First install the frontend's dependencies:
+
+`npm install`
+
+Then build the frontend app:
+
+`npm run build`
+
+And then run the app:
+
+`npm run start`
+
+Now that the application is running, you can access it through http://localhost:3000/
