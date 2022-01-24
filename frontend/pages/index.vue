@@ -17,6 +17,7 @@
         </div>
         <div class="site__main-company py-2 md:py-8">
           <Company />
+          <Average title="Average" salary="150 000 FCFA" />
           <Pagination />
         </div>
       </div>
@@ -37,6 +38,7 @@ import Header from '../components/Header.vue'
 import Title from '../components/Title.vue'
 import Select from '../components/Select.vue'
 import Company from '../components/Company.vue'
+import Average from '../components/Average.vue'
 import Pagination from '../components/Pagination.vue'
 export default {
   name: 'IndexPage',
@@ -45,6 +47,7 @@ export default {
     Title,
     Select,
     Company,
+    Average,
     Pagination,
   },
 }

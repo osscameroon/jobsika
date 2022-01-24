@@ -138,7 +138,7 @@
                       :key="item"
                       class="flex"
                     >
-                      <img class="w-4 h-4 mr-1" :src="startPicture" />
+                      <img class="w-4 h-4 mr-1" :src="starsPicture" />
                     </div>
                   </div>
                 </td>
@@ -192,7 +192,7 @@ export default Vue.extend({
     return {
       companies: [],
       isOpen: false,
-      startPicture: require('../assets/star.png'),
+      starsPicture: require('../assets/star.png'),
     }
   },
   async created() {
