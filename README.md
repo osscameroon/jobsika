@@ -52,14 +52,17 @@ To run the frontend you should jump to the ./frontend folder using the command c
 
 First install the frontend's dependencies:
 
-`npm install`
+`npm install` or
+`yarn install`
 
 Then build the frontend app:
 
-`npm run build`
+`npm run build` or
+`yarn run build`
 
 And then run the app:
 
-`npm run start`
+`npm run start` or
+`yarn run start`
 
 Now that the application is running, you can access it through http://localhost:3000/
