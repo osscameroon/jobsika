@@ -1,6 +1,6 @@
 <template>
   <div
-    style="background: #235365; font-family: 'Inter', sans-serif"
+    :style="myStyle"
     class="
       site__btn
       cursor-pointer
@@ -15,7 +15,8 @@
       md:text-sm
     "
   >
-    <img :src="plusIcon" class="w-5 h-5 mr-1" />
+    <div v-if="showPicture === 'nothing'" />
+    <img v-else :src="plusIcon" class="w-5 h-5 mr-1" />
     {{ name }}
   </div>
 </template>
@@ -26,6 +27,7 @@ export default Vue.extend({
   props: {
     name: String,
     myStyle: String,
+    showPicture: String,
   },
   data() {
     return {
