@@ -90,8 +90,8 @@
               </tr>
             </thead>
             <tbody
-              v-for="company in companies.slice(0, 4)"
-              :key="company.id"
+              v-for="(company, myIndex) in companies.slice(0, 4)"
+              :key="myIndex + 1"
               class="bg-white shadow-md divide-y divide-white"
             >
               <tr>
@@ -150,6 +150,8 @@
                     text-right text-sm
                     font-medium
                   "
+                  @click="toggle(company.salary_id)"
+                  :class="{ opened: opened.includes(company.salary_id) }"
                 >
                   <a
                     class="
@@ -161,20 +163,30 @@
                       cursor-pointer
                     "
                     style="color: #000000; font-family: 'Inter', sans-serif"
-                    :aria-expanded="isOpen"
-                    :aria-controls="`collapse${_uid}`"
-                    @click="toggleAccordion()"
                     >Details</a
                   >
                 </td>
               </tr>
-              <div
-                v-show="isOpen"
-                :id="`collapse${_uid}`"
-                class="w-10/12 bg-red-500"
+              <td
+                v-if="opened.includes(company.salary_id)"
+                colspan="6"
+                class="w-10/12 bg-primary"
               >
-                <p class="w-full bg-yellow-600">{{ company.comment }}</p>
-              </div>
+                <div class="bg-white w-full p-4 my-3 shadow-sm rounded-sm">
+                  <p
+                    class="py-2 text-xs md:text-sm"
+                    style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                  >
+                    22/03/2022 12:34
+                  </p>
+                  <p
+                    class="text-xs md:text-sm"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                  >
+                    {{ company.comment }}
+                  </p>
+                </div>
+              </td>
             </tbody>
           </table>
         </div>
@@ -193,6 +205,7 @@ export default Vue.extend({
       companies: [],
       isOpen: false,
       starsPicture: require('../assets/star.png'),
+      opened: [],
     }
   },
   async created() {
@@ -203,8 +216,13 @@ export default Vue.extend({
     }
   },
   methods: {
-    toggleAccordion() {
-      this.isOpen = !this.isOpen
+    toggle(id) {
+      const index = this.opened.indexOf(id)
+      if (index > -1) {
+        this.opened.splice(index, 1)
+      } else {
+        this.opened.push(id)
+      }
     },
   },
 })
