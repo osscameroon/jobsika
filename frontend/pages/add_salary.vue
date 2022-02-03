@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="site__main pt-5 lg:pt-0 mb-10 md:mb-20">
+    <main class="site__main pt-5 lg:pt-0 pb-10 md:pb-20">
       <div class="container mx-auto w-10/12">
         <Title title="100% Anonymous" fontSize="header" onlyTitle="onlyTitle" />
         <Title
@@ -75,18 +75,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import Vue from 'vue'
+<script>
 import Button from '../components/Button.vue'
-export default Vue.extend({
+export default {
   name: 'AddSalary',
   components: {
     Button,
   },
+  layout: 'app',
   data() {
     return {
       starsPicture: require('../assets/star.png'),
     }
   },
-})
+}
 </script>
