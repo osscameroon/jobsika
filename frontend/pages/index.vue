@@ -48,6 +48,7 @@ export default {
     Average,
     Pagination,
   },
+  layout: 'app',
 }
 </script>
 <style>
