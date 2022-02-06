@@ -48,21 +48,9 @@ Then run the api:
 
 #### Frontend
 
-To run the frontend you should jump to the ./frontend folder using the command cd ./frontend
+To run the frontend you should jump to the ./frontend folder using the command cd ./frontend and run the following command:
 
-First install the frontend's dependencies:
-
-`npm install` or
-`yarn install`
-
-Then build the frontend app:
-
-`npm run build` or
-`yarn run build`
-
-And then run the app:
-
-`npm run start` or
-`yarn run start`
+`npm run dev` or
+`yarn dev`
 
 Now that the application is running, you can access it through http://localhost:3000/
