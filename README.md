@@ -45,3 +45,15 @@ Then run the api:
 
 #### How to run the api with the DB
 `make start-api`
+
+#### Frontend
+
+To run the frontend you should jump to the ./frontend folder using the command cd ./frontend and run the following commands:
+
+`npm install` or
+`yarn install` to install the dependencies.
+
+`npm run dev` or
+`yarn dev` to run the app.
+
+Now that the application is running, you can access it through http://localhost:3000/
