@@ -11,7 +11,7 @@ import (
 //   400: badRequestResponse
 //   404: notFoundResponse
 
-// swagger:route GET /ratings/{id} ratings idOfRating
+// swagger:route GET /ratings/{salaryID} ratings idOfRating
 // Ratings returns the list of ratings
 // responses:
 //   200: ratingsResponse

@@ -255,7 +255,7 @@ paths:
           $ref: '#/responses/notFoundResponse'
       tags:
       - ratings
-  /ratings/{id}:
+  /ratings/{salaryID}:
     get:
       description: Ratings returns the list of ratings
       operationId: idOfRating
