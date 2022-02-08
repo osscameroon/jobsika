@@ -61,3 +61,25 @@ func GetRatingByID(c *gin.Context) {
 
 	c.JSON(http.StatusOK, rating)
 }
+
+//GetAverageRating handles /average-rating GET endpoint
+func GetAverageRating(c *gin.Context) {
+	//Initialize db client
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find ratings"})
+		return
+	}
+
+	rating, err := db.GetAverageRating()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find average rating"})
+		return
+	}
+
+	c.JSON(http.StatusOK, rating)
+}
