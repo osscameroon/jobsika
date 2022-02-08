@@ -203,6 +203,19 @@ paths:
           $ref: '#/responses/healthResponse'
       tags:
       - health
+  /jobtitles:
+    get:
+      description: Companies returns the list of jobtitles
+      operationId: idOfCompanyWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/jobtitlesResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - jobtitles
   /ratings:
     get:
       description: Ratings returns the list of ratings
@@ -311,6 +324,12 @@ responses:
           type: string
           x-go-name: Message
       type: object
+  jobtitlesResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        type: string
+      type: array
   notFoundResponse:
     description: ""
     schema:
