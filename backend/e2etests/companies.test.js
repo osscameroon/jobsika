@@ -16,7 +16,7 @@ describe(`${endpoint}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body[0])).equal(
-            '{"id":1,"name":"Brainverse","rating":2,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
+            '{"id":724,"name":"Abata","rating":5,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
           );
         });
     });
