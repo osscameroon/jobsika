@@ -45,3 +45,21 @@ describe(`${endpoint}`, function () {
 
   });
 });
+
+const endpoint2 = `average-rating`
+describe(`${endpoint2}`, function () {
+  describe("GET", function () {
+    it("return a list of ratings", async function () {
+      return request(apiHost)
+        .get(endpoint2)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal(
+            '{"rating":3,"salary":2543437}'
+          );
+        });
+    });
+  });
+});
