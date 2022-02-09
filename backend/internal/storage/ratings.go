@@ -2,6 +2,8 @@ package storage
 
 import (
 	"errors"
+	"math"
+	"strconv"
 
 	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	"gorm.io/gorm"
@@ -55,6 +57,29 @@ func (db DB) GetRatingByID(id int64) (v1beta.Rating, error) {
 
 	if rating.SalaryID == 0 {
 		return rating, errors.New("record not found")
+	}
+
+	return rating, nil
+}
+
+//GetAverageRating get average rating
+func (db DB) GetAverageRating() (v1beta.AverageRating, error) {
+	r := struct {
+		AVGRating string `gorm:"column:rating"`
+		AVGSalary string `gorm:"column:salary"`
+	}{}
+
+	ret := db.queryRatings().Select("AVG(s.salary) as salary, AVG(r.rating) as rating").Find(&r)
+	if ret.Error != nil {
+		return v1beta.AverageRating{}, ret.Error
+	}
+
+	vr, _ := strconv.ParseFloat(r.AVGRating, 64)
+	vs, _ := strconv.ParseFloat(r.AVGSalary, 64)
+
+	rating := v1beta.AverageRating{
+		Rating: int64(math.Round(vr)),
+		Salary: int64(math.Round(vs)),
 	}
 
 	return rating, nil

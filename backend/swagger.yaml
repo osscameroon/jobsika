@@ -2,6 +2,19 @@ basePath: /
 consumes:
 - application/json; charset=utf-8
 definitions:
+  AverageRating:
+    description: AverageRating defines the average rating structure
+    properties:
+      rating:
+        format: int64
+        type: integer
+        x-go-name: Rating
+      salary:
+        format: int64
+        type: integer
+        x-go-name: Salary
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
   Company:
     description: Company defines the company structure
     properties:
@@ -121,6 +134,19 @@ info:
   title: Camerdevs API.
   version: 1.0.0
 paths:
+  /average-rating:
+    get:
+      description: Ratings returns the list of ratings
+      operationId: idOfRatingWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/averageRatingResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - ratings
   /companies:
     get:
       description: Companies returns the list of companies
@@ -294,6 +320,12 @@ paths:
 produces:
 - application/json
 responses:
+  averageRatingResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        $ref: '#/definitions/AverageRating'
+      type: array
   badRequestResponse:
     description: ""
     schema:

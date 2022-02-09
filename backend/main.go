@@ -39,6 +39,7 @@ func main() {
 	//Ratings
 	router.GET("/ratings", handlers.GetRatings)
 	router.GET("/ratings/:id", handlers.GetRatingByID)
+	router.GET("/average-rating", handlers.GetAverageRating)
 
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)

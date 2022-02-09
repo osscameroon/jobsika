@@ -18,11 +18,25 @@ import (
 //   400: badRequestResponse
 //   404: notFoundResponse
 
+// swagger:route GET /average-rating ratings idOfRatingWithoutID
+// Ratings returns the list of ratings
+// responses:
+//   200: averageRatingResponse
+//   400: badRequestResponse
+//   404: notFoundResponse
+
 // This text will appear as description of your response body.
 // swagger:response ratingsResponse
 type RatingsResponseWrapper struct {
 	// in:body
 	Body []v1beta.Rating
+}
+
+// This text will appear as description of your response body.
+// swagger:response averageRatingResponse
+type AverageRatingResponseWrapper struct {
+	// in:body
+	Body []v1beta.AverageRating
 }
 
 // swagger:response badRequestResponse

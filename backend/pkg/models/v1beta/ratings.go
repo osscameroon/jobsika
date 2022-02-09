@@ -20,3 +20,9 @@ type Rating struct {
 	Country         string `json:"country" gorm:"column:country"`
 	City            string `json:"city" gorm:"column:city"`
 }
+
+//AverageRating defines the average rating structure
+type AverageRating struct {
+	Rating int64 `json:"rating" gorm:"column:rating"`
+	Salary int64 `json:"salary" gorm:"column:salary"`
+}
