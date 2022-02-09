@@ -35,8 +35,8 @@
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          v-for="(link, index) in jobtitles"
-          :key="index"
+          v-for="link in jobtitles"
+          :key="link"
           value="1"
           class="text-xs md:text-sm"
         >
