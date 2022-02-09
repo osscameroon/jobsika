@@ -27,18 +27,20 @@
         aria-label="Default select example"
       >
         <option
+          class="text-xs md:text-sm"
           selected
           style="font-family: 'Inter', sans-serif"
-          class="text-black font-medium"
         >
-          Job Title
+          Job title
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          class="text-blackfont-medium"
-          value="1"
+          v-for="(link, index) in jobtitles"
+          :key="index"
+          :value="link"
+          class="text-xs md:text-sm"
         >
-          Kiroo
+          {{ link }}
         </option>
       </select>
     </div>
@@ -78,8 +80,8 @@
         <option
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
-          :key="link.salary_id"
-          value="1"
+          :key="link.id"
+          :value="link.id"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
@@ -98,6 +100,7 @@ export default Vue.extend({
   data() {
     return {
       companies: [],
+      jobtitles: [],
       content: [
         {
           name: 'Job Title',
@@ -112,6 +115,7 @@ export default Vue.extend({
   async created() {
     try {
       this.companies = (await axios.get(BASE_URL + '/companies')).data
+      this.jobtitles = (await axios.get(BASE_URL + '/jobtitles')).data
     } catch (e) {
       console.log(e)
     }
