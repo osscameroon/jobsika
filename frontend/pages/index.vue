@@ -17,7 +17,7 @@
         </div>
         <div class="site__main-company py-2 md:py-8">
           <Company />
-          <Average title="Average" salary="150 000 FCFA" />
+          <Average title="Average" />
           <Pagination />
         </div>
       </div>
