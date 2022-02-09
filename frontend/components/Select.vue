@@ -80,8 +80,8 @@
         <option
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
-          :key="link.salary_id"
-          :value="link"
+          :key="link.id"
+          :value="link.id"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
