@@ -21,7 +21,8 @@ func (db DB) queryRatings() *gorm.DB {
 		c.name as company_name,
 		r.id as company_rating_id,
 		r.comment,
-		r.rating`).
+		r.rating,
+		r.createdat`).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
 }
