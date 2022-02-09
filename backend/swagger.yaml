@@ -64,6 +64,10 @@ definitions:
       country:
         type: string
         x-go-name: Country
+      createdat:
+        format: date-time
+        type: string
+        x-go-name: CreatedAt
       job_title:
         type: string
         x-go-name: JobTitle
