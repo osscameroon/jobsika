@@ -71,7 +71,6 @@ export default Vue.extend({
     return {
       starsPicture: require('../assets/star.png'),
       salaryRating: '',
-      loading: true,
       errored: false,
     }
   },
