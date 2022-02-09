@@ -35,9 +35,9 @@
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          v-for="link in jobtitles"
-          :key="link"
-          value="1"
+          v-for="(link, index) in jobtitles"
+          :key="index"
+          :value="link"
           class="text-xs md:text-sm"
         >
           {{ link }}
@@ -81,7 +81,7 @@
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
           :key="link.salary_id"
-          value="1"
+          :value="link"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
