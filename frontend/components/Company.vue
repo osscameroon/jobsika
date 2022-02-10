@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col">
     <div v-if="errored" class="flex flex-col items-center justify-center">
-      <img :src="wrongPicture" alt="wrong" class="w-12 h-12" />
       <header>
         <h1
           style="color: #bb321f; font-family: 'Inter', sans-serif"
@@ -225,7 +224,6 @@ export default Vue.extend({
       companies: [],
       isOpen: false,
       starsPicture: require('../assets/star.png'),
-      wrongPicture: require('../assets/cross.png'),
       opened: [],
       errored: false,
     }
