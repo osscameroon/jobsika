@@ -18,7 +18,7 @@ import (
 //   400: badRequestResponse
 //   404: notFoundResponse
 
-// swagger:route GET /average-rating ratings idOfRatingWithoutID
+// swagger:route GET /average-rating ratings
 // Ratings returns the list of ratings
 // responses:
 //   200: averageRatingResponse
@@ -29,14 +29,14 @@ import (
 // swagger:response ratingsResponse
 type RatingsResponseWrapper struct {
 	// in:body
-	Body []v1beta.Rating
+	Body v1beta.RatingResponse
 }
 
 // This text will appear as description of your response body.
 // swagger:response averageRatingResponse
 type AverageRatingResponseWrapper struct {
 	// in:body
-	Body []v1beta.AverageRating
+	Body v1beta.AverageRating
 }
 
 // swagger:response badRequestResponse
@@ -62,4 +62,15 @@ type RatingParam struct {
 	//in:path
 	//example: 1
 	ID string `json:"id"`
+}
+
+// swagger:parameters idOfRatingWithoutID
+type RatingsParam struct {
+	//in:query
+	//example: 1
+	Page string `json:"page"`
+
+	//in:query
+	//example: 20
+	Limit string `json:"limit"`
 }
