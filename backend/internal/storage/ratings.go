@@ -9,6 +9,23 @@ import (
 	"gorm.io/gorm"
 )
 
+//Paginate returns a query scoped to a certain page
+func Paginate(pageStr, limitStr string) (offset, limit int) {
+	page, _ := strconv.Atoi(pageStr)
+	if page == 0 {
+		page = 1
+	}
+
+	limit, _ = strconv.Atoi(limitStr)
+	switch {
+	case limit <= 0:
+		limit = 20
+	}
+
+	offset = (page - 1) * limit
+	return offset, limit
+}
+
 func (db DB) queryRatings() *gorm.DB {
 	return db.c.Table("salaries as s").Select(`
 		s.id as salary_id,
@@ -28,24 +45,33 @@ func (db DB) queryRatings() *gorm.DB {
 }
 
 //GetRatings get ratings
-func (db DB) GetRatings() ([]v1beta.Rating, error) {
-	ratings := []v1beta.Rating{}
+func (db DB) GetRatings(page, limit string) (v1beta.RatingResponse, error) {
 
-	rows, err := db.queryRatings().Order("salary_id").Rows()
+	offset, limitInt := Paginate(page, limit)
+	var nbHits int64
+	rows, err := db.queryRatings().Order("salary_id").Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
 	if err != nil {
-		return ratings, err
+		return v1beta.RatingResponse{}, err
 	}
 
+	ratings := []v1beta.Rating{}
 	for rows.Next() {
 		r := v1beta.Rating{}
 		err := db.c.ScanRows(rows, &r)
 		if err != nil {
-			return nil, err
+			return v1beta.RatingResponse{}, err
 		}
 		ratings = append(ratings, r)
 	}
 
-	return ratings, nil
+	resp := v1beta.RatingResponse{
+		Hits:   ratings,
+		NBHits: nbHits,
+		Offset: int64(offset),
+		Limit:  int64(limitInt),
+	}
+
+	return resp, nil
 }
 
 //GetRatingByID get rating by `id`
