@@ -88,6 +88,27 @@ definitions:
         x-go-name: Seniority
     type: object
     x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+  RatingResponse:
+    properties:
+      hits:
+        items:
+          $ref: '#/definitions/Rating'
+        type: array
+        x-go-name: Hits
+      limit:
+        format: int64
+        type: integer
+        x-go-name: Limit
+      nbHits:
+        format: int64
+        type: integer
+        x-go-name: NBHits
+      offset:
+        format: int64
+        type: integer
+        x-go-name: Offset
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
   Salary:
     description: Salary defines the salary structure
     properties:
@@ -141,7 +162,7 @@ paths:
   /average-rating:
     get:
       description: Ratings returns the list of ratings
-      operationId: idOfRatingWithoutID
+      operationId: ratings
       responses:
         "200":
           $ref: '#/responses/averageRatingResponse'
@@ -149,8 +170,6 @@ paths:
           $ref: '#/responses/badRequestResponse'
         "404":
           $ref: '#/responses/notFoundResponse'
-      tags:
-      - ratings
   /companies:
     get:
       description: Companies returns the list of companies
@@ -250,6 +269,17 @@ paths:
     get:
       description: Ratings returns the list of ratings
       operationId: idOfRatingWithoutID
+      parameters:
+      - example: "1"
+        in: query
+        name: page
+        type: string
+        x-go-name: Page
+      - example: "20"
+        in: query
+        name: limit
+        type: string
+        x-go-name: Limit
       responses:
         "200":
           $ref: '#/responses/ratingsResponse'
@@ -327,9 +357,7 @@ responses:
   averageRatingResponse:
     description: This text will appear as description of your response body.
     schema:
-      items:
-        $ref: '#/definitions/AverageRating'
-      type: array
+      $ref: '#/definitions/AverageRating'
   badRequestResponse:
     description: ""
     schema:
@@ -378,9 +406,7 @@ responses:
   ratingsResponse:
     description: This text will appear as description of your response body.
     schema:
-      items:
-        $ref: '#/definitions/Rating'
-      type: array
+      $ref: '#/definitions/RatingResponse'
   salariesResponse:
     description: This text will appear as description of your response body.
     schema:

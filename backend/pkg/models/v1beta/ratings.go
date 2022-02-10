@@ -24,6 +24,13 @@ type Rating struct {
 	CreatedAt       time.Time `json:"createdat" gorm:"column:createdat"`
 }
 
+type RatingResponse struct {
+	Hits   []Rating `json:"hits"`
+	Limit  int64    `json:"limit"`
+	NBHits int64    `json:"nbHits"`
+	Offset int64    `json:"offset"`
+}
+
 //AverageRating defines the average rating structure
 type AverageRating struct {
 	Rating int64 `json:"rating" gorm:"column:rating"`

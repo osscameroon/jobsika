@@ -8,16 +8,29 @@ const endpoint = "ratings";
 
 describe(`${endpoint}`, function () {
   describe("GET", function () {
-    it("return a list of ratings", async function () {
+    it("return a list of ratings with page=1 & limit=2", async function () {
       return request(apiHost)
-        .get(endpoint)
+        .get(`${endpoint}?page=1&limit=2`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body[0])).equal(
-            '{"salary_id":1,"company_id":994,"company_rating_id":569,"rating":2,"salary":1624669,"company_name":"Realbridge","seniority":"Seniority","comment":"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","job_title":"Recruiting Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}'
-          );
+          const body = JSON.stringify(res.body)
+          expect(body).contains('"hits":');
+          expect(body).contains('"limit":2,"nbHits":1000,"offset":0');
+        });
+    });
+
+    it("return a list of ratings with page=3", async function () {
+      return request(apiHost)
+        .get(`${endpoint}?page=3`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          const body = JSON.stringify(res.body)
+          expect(body).contains('"hits":');
+          expect(body).contains(',"limit":20,"nbHits":1000,"offset":40}');
         });
     });
 
