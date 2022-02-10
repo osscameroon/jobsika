@@ -46,7 +46,6 @@ func (db DB) queryRatings() *gorm.DB {
 
 //GetRatings get ratings
 func (db DB) GetRatings(page, limit string) (v1beta.RatingResponse, error) {
-
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
 	rows, err := db.queryRatings().Order("salary_id").Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
