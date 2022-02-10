@@ -1,11 +1,6 @@
 <template>
   <div>
-    <div class="text-center py-4 md:py-10 font-bold text-sm" v-if="errored">
-      <p class="text-red-500">
-        We're sorry, we're not able to retrieve this information at the moment,
-        please try back later
-      </p>
-    </div>
+    <div class="text-center py-4 md:py-10 font-bold text-sm" v-if="errored" />
     <div
       v-else
       style="background: #235365; font-family: 'Inter', sans-serif"
