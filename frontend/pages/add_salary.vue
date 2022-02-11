@@ -48,11 +48,9 @@
           </div>
           <div class="site__main-rowTwo w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <MyInput
+              <JobTitleAutoCompletion
                 title="Job title"
                 myStyle="height: 61px;"
-                content="subtitle"
-                myInput="input"
               />
               <MyInput
                 title="City"
