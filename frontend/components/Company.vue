@@ -72,6 +72,20 @@
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
+                  Seniority
+                </th>
+                <th
+                  scope="col"
+                  class="
+                    px-6
+                    py-3
+                    text-left text-xs
+                    md:text-sm
+                    font-bold
+                    tracking-wider
+                  "
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                >
                   Salary
                 </th>
                 <th
@@ -113,6 +127,14 @@
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.job_title }}
+                  </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div
+                    class="text-xs md:text-sm text-gray-900"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                  >
+                    {{ company.seniority }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
