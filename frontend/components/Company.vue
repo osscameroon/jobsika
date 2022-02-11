@@ -248,7 +248,7 @@ export default Vue.extend({
   },
   async created() {
     try {
-      this.companies = (await axios.get(BASE_URL + '/ratings')).data
+      this.companies = (await axios.get(BASE_URL + '/ratings')).data.hits
     } catch (err) {
       console.log(err)
       this.errored = true
