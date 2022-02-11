@@ -18,7 +18,6 @@
         <div class="site__main-company py-2 md:py-8">
           <Company />
           <Average title="Average" />
-          <Pagination />
         </div>
       </div>
     </main>
@@ -38,7 +37,6 @@ import Title from '../components/Title.vue'
 import Select from '../components/Select.vue'
 import Company from '../components/Company.vue'
 import Average from '../components/Average.vue'
-import Pagination from '../components/Pagination.vue'
 export default {
   name: 'IndexPage',
   components: {
@@ -46,7 +44,6 @@ export default {
     Select,
     Company,
     Average,
-    Pagination,
   },
   layout: 'app',
 }

@@ -1,6 +1,24 @@
 <template>
   <div class="flex flex-col">
-    <div class="-my-2">
+    <div v-if="errored" class="flex flex-col items-center justify-center">
+      <header>
+        <h1
+          style="color: #bb321f; font-family: 'Inter', sans-serif"
+          class="py-3 text-lg font-bold"
+        >
+          Oops! Something went wrong
+        </h1>
+      </header>
+      <main>
+        <p
+          style="color: #000; font-family: 'Inter', sans-serif"
+          class="text-sm text-center leading-6 mx-auto"
+        >
+          Unable to connect to the internet
+        </p>
+      </main>
+    </div>
+    <div v-else class="-my-2">
       <div class="py-2 align-middle inline-block min-w-full w-16">
         <div
           class="
@@ -191,6 +209,7 @@
           </table>
         </div>
       </div>
+      <Pagination />
     </div>
   </div>
 </template>
@@ -206,13 +225,15 @@ export default Vue.extend({
       isOpen: false,
       starsPicture: require('../assets/star.png'),
       opened: [],
+      errored: false,
     }
   },
   async created() {
     try {
       this.companies = (await axios.get(BASE_URL + '/ratings')).data
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
+      this.errored = true
     }
   },
   methods: {
