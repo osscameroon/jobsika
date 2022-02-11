@@ -44,20 +44,6 @@
                   "
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
-                  Position
-                </th>
-                <th
-                  scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
                   Company
                 </th>
                 <th
@@ -113,18 +99,6 @@
               class="bg-white shadow-md divide-y divide-white"
             >
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
-                  <div class="flex items-center">
-                    <div class="ml-4">
-                      <div
-                        class="text-xs md:text-sm font-medium text-gray-900"
-                        style="color: #000000; font-family: 'Inter', sans-serif"
-                      >
-                        {{ company.salary_id }}
-                      </div>
-                    </div>
-                  </div>
-                </td>
                 <td class="px-6 py-4 whitespace-nowrap">
                   <div
                     class="text-xs md:text-sm text-gray-900"
