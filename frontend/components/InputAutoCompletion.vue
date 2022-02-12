@@ -38,8 +38,8 @@
       </li>
       <li
         :v-if="endPoint === 'companies'"
-        v-for="(company, index) in filterCompanyByName"
-        :key="index"
+        v-for="company in filterCompanyByName"
+        :key="company.id"
         @click="setResult(company.name)"
         class="shadow-sm py-2 px-4"
       >
