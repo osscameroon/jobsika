@@ -44,6 +44,9 @@ func main() {
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)
 
+	//Cities
+	router.GET("/cities", handlers.GetCities)
+
 	if err := router.Run(":7000"); err != nil {
 		return
 	}
