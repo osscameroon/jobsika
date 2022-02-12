@@ -73,4 +73,12 @@ type RatingsParam struct {
 	//in:query
 	//example: 20
 	Limit string `json:"limit"`
+
+	//in:query
+	//example: Realbridge
+	Company string `json:"company"`
+
+	//in:query
+	//example: Recruiting Manager
+	JobTitle string `json:"jobtitle"`
 }

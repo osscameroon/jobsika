@@ -280,6 +280,16 @@ paths:
         name: limit
         type: string
         x-go-name: Limit
+      - example: Realbridge
+        in: query
+        name: company
+        type: string
+        x-go-name: Company
+      - example: Recruiting Manager
+        in: query
+        name: jobtitle
+        type: string
+        x-go-name: JobTitle
       responses:
         "200":
           $ref: '#/responses/ratingsResponse'
