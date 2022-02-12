@@ -9,16 +9,7 @@
     <input
       v-model="name"
       type="text"
-      class="
-        site__input-field
-        border-none
-        mt-2
-        md:mt-3
-        w-full
-        rounded-md
-        mb-4
-        md:mb-16
-      "
+      class="site__input-field border-none mt-3 w-full rounded-md mb-8 md:mb-16"
       :style="myStyle"
       @change="onChange"
     />
@@ -37,12 +28,22 @@
       v-show="isOpen"
     >
       <li
+        :v-if="endPoint === 'jobtitles'"
         v-for="(job, index) in filterJobByName"
         :key="index"
         @click="setResult(job)"
         class="shadow-sm py-2 px-4"
       >
         {{ job }}
+      </li>
+      <li
+        :v-if="endPoint === 'companies'"
+        v-for="(company, index) in filterCompanyByName"
+        :key="index"
+        @click="setResult(company.name)"
+        class="shadow-sm py-2 px-4"
+      >
+        {{ company.name }}
       </li>
     </ul>
   </div>
@@ -53,22 +54,33 @@ import axios from 'axios'
 import { BASE_URL } from '../constants/api'
 export default {
   name: 'JobTitleAutoCompletion',
-  props: ['title', 'myStyle'],
+  props: ['title', 'myStyle', 'endPoint'],
   data() {
     return {
       name: '',
       isOpen: false,
       jobtitles: [],
+      companies: [],
     }
   },
   computed: {
     filterJobByName() {
       return this.jobtitles.filter((job) => !job.indexOf(this.name))
     },
+    filterCompanyByName() {
+      return this.companies.filter(
+        (company) => !company.name.indexOf(this.name)
+      )
+    },
   },
   async created() {
     try {
-      this.jobtitles = (await axios.get(BASE_URL + '/jobtitles')).data
+      if (this.endPoint === 'companies') {
+        this.companies = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+      }
+      if (this.endPoint === 'jobtitles') {
+        this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+      }
     } catch (e) {
       console.log(e)
     }
@@ -77,6 +89,7 @@ export default {
     onChange() {
       if (this.name === '') {
         this.jobtitles = []
+        this.companies = []
       } else {
         this.$emit('input', this.name)
         this.isOpen = true
