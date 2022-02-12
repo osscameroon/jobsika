@@ -12,11 +12,16 @@
         <div class="site__main-row flex flex-col-reverse md:flex-row">
           <div class="site__main-rowOne w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <MyInput
+              <!-- <MyInput
                 title="Company Name"
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
+              /> -->
+              <InputAutoCompletion
+                title="Company Name"
+                myStyle="height: 61px;"
+                endPoint="companies"
               />
               <MyInput
                 title="Salary"
@@ -48,17 +53,21 @@
           </div>
           <div class="site__main-rowTwo w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <MyInput
+              <InputAutoCompletion
                 title="Job title"
                 myStyle="height: 61px;"
-                content="subtitle"
-                myInput="input"
+                endPoint="jobtitles"
               />
               <MyInput
                 title="City"
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
+              />
+              <InputAutoCompletion
+                title="Seniority"
+                myStyle="height: 61px;"
+                endPoint="seniority"
               />
               <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
                 <p
