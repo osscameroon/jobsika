@@ -6,7 +6,6 @@
           title="100% Anonymous"
           subTitle="Company rating and salaries in Cameroon"
           fontSize="header"
-          myLink="/add_salary"
         />
         <div
           class="site__main-select flex flex-col lg:flex-row justify-end pt-20"
