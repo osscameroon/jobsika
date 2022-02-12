@@ -186,8 +186,8 @@
                     text-right text-sm
                     font-medium
                   "
-                  @click="toggle(company.salary_id)"
                   :class="{ opened: opened.includes(company.salary_id) }"
+                  @click="toggle(company.salary_id)"
                 >
                   <a
                     class="
@@ -248,7 +248,16 @@ export default Vue.extend({
   },
   async created() {
     try {
-      this.companies = (await axios.get(BASE_URL + '/ratings')).data.hits
+      const params = {
+        page: 10,
+        limit:20
+      }
+      this.companies = (await axios.get(
+        BASE_URL + '/ratings',
+        {
+          params: {...params}
+        }
+      )).data.hits
     } catch (err) {
       console.log(err)
       this.errored = true
