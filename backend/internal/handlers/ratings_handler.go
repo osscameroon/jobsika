@@ -79,7 +79,11 @@ func GetAverageRating(c *gin.Context) {
 		return
 	}
 
-	rating, err := db.GetAverageRating()
+	//Get parameters
+	jobtitle := c.Query("jobtitle")
+	company := c.Query("company")
+
+	rating, err := db.GetAverageRating(jobtitle, company)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,

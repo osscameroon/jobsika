@@ -18,7 +18,7 @@ import (
 //   400: badRequestResponse
 //   404: notFoundResponse
 
-// swagger:route GET /average-rating ratings
+// swagger:route GET /average-rating ratings idOfAverageRating
 // Ratings returns the list of ratings
 // responses:
 //   200: averageRatingResponse
@@ -73,4 +73,23 @@ type RatingsParam struct {
 	//in:query
 	//example: 20
 	Limit string `json:"limit"`
+
+	//in:query
+	//example: Realbridge
+	Company string `json:"company"`
+
+	//in:query
+	//example: Recruiting Manager
+	JobTitle string `json:"jobtitle"`
+}
+
+// swagger:parameters idOfAverageRating
+type AverageRatingParam struct {
+	//in:query
+	//example: Realbridge
+	Company string `json:"company"`
+
+	//in:query
+	//example: Recruiting Manager
+	JobTitle string `json:"jobtitle"`
 }

@@ -113,5 +113,45 @@ describe(`${endpoint2}`, function () {
           );
         });
     });
+
+    it("return a list of ratings with jobtitle=Recruiting Manager", async function () {
+      return request(apiHost)
+        .get(`${endpoint2}?jobtitle=Recruiting Manager`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal(
+            '{"rating":4,"salary":2464858}'
+          );
+        });
+    });
+
+    it("return a list of ratings with company=Realbridge", async function () {
+      return request(apiHost)
+        .get(`${endpoint2}?company=Realbridge`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal(
+            '{"rating":3,"salary":1954815}'
+          );
+        });
+    });
+
+    it("return a list of ratings with company=Realbridge and jobtitle=Recruiting Manager", async function () {
+      return request(apiHost)
+        .get(`${endpoint2}?company=Realbridge&jobtitle=Recruiting Manager`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal(
+            '{"rating":2,"salary":1624669}'
+          );
+        });
+    });
+
   });
 });
