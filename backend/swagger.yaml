@@ -183,6 +183,15 @@ paths:
           $ref: '#/responses/notFoundResponse'
       tags:
       - ratings
+  /cities:
+    get:
+      description: Companies returns cities endpoint
+      operationId: idOfCities
+      responses:
+        "200":
+          $ref: '#/responses/citiesResponse'
+      tags:
+      - cities
   /companies:
     get:
       description: Companies returns the list of companies
@@ -390,6 +399,12 @@ responses:
           type: string
           x-go-name: Error
       type: object
+  citiesResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      items:
+        type: string
+      type: array
   companiesResponse:
     description: This text will appear as description of your response body.
     schema:
