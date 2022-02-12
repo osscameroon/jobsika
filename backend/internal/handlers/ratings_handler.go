@@ -1,10 +1,12 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/elhmn/camerdevs/internal/server"
+	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
@@ -92,4 +94,23 @@ func GetAverageRating(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, rating)
+}
+
+//PostRatings handles /ratings POST endpoint
+func PostRatings(c *gin.Context) {
+	if c.Request.Header.Get("Content-Type") != "application/json" {
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": "could not post rating"})
+		return
+	}
+
+	query := v1beta.RatingPostQuery{}
+	if err := c.ShouldBind(&query); err != nil {
+		log.Error(err)
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": "could not post rating"})
+	}
+
+	fmt.Printf("query: %+v\n", query) // Debug
+	c.JSON(http.StatusCreated, "ok")
 }

@@ -40,6 +40,7 @@ func main() {
 	router.GET("/ratings", handlers.GetRatings)
 	router.GET("/ratings/:id", handlers.GetRatingByID)
 	router.GET("/average-rating", handlers.GetAverageRating)
+	router.POST("/ratings", handlers.PostRatings)
 
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)
