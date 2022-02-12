@@ -34,6 +34,45 @@ describe(`${endpoint}`, function () {
         });
     });
 
+    it("return a list of ratings with jobtitle=Recruiting Manager", async function () {
+      return request(apiHost)
+        .get(`${endpoint}?jobtitle=Recruiting Manager`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          const body = JSON.stringify(res.body)
+          expect(body).contains('"hits":');
+          expect(body).contains('"limit":20,"nbHits":10,"offset":0');
+        });
+    });
+
+    it("return a list of ratings with company=Realbridge and jobtitle=Recruiting Manager", async function () {
+      return request(apiHost)
+        .get(`${endpoint}?company=Realbridge&jobtitle=Recruiting Manager`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          const body = JSON.stringify(res.body)
+          expect(body).contains('"hits":');
+          expect(body).contains('"limit":20,"nbHits":1,"offset":0');
+        });
+    });
+
+    it("return a list of ratings with company=Realbridge", async function () {
+      return request(apiHost)
+        .get(`${endpoint}?company=Realbridge`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          const body = JSON.stringify(res.body)
+          expect(body).contains('"hits":');
+          expect(body).contains('"limit":20,"nbHits":5,"offset":0');
+        });
+    });
+
     it("return a rating of id == 1", async function () {
       return request(apiHost)
         .get(`${endpoint}/1`)

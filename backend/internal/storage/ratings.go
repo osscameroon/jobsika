@@ -45,10 +45,19 @@ func (db DB) queryRatings() *gorm.DB {
 }
 
 //GetRatings get ratings
-func (db DB) GetRatings(page, limit string) (v1beta.RatingResponse, error) {
+func (db DB) GetRatings(page, limit, jobtitle, company string) (v1beta.RatingResponse, error) {
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
-	rows, err := db.queryRatings().Order("salary_id").Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
+
+	query := db.queryRatings().Order("salary_id")
+	if company != "" {
+		query = query.Where("c.name = ?", company)
+	}
+	if jobtitle != "" {
+		query = query.Where("s.title = ?", jobtitle)
+	}
+
+	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
 	if err != nil {
 		return v1beta.RatingResponse{}, err
 	}
