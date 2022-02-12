@@ -67,7 +67,7 @@
               <InputAutoCompletion
                 title="Seniority"
                 myStyle="height: 61px;"
-                endPoint="jobtitles"
+                endPoint="seniority"
               />
               <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
                 <p

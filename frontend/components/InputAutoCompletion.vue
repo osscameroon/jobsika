@@ -16,7 +16,8 @@
     <ul
       style="background: white"
       class="
-        h-44
+        h-20
+        md:h-32
         overflow-y-scroll
         rounded-lg
         -mt-3
@@ -35,6 +36,15 @@
         class="shadow-sm py-2 px-4"
       >
         {{ job }}
+      </li>
+      <li
+        :v-if="endPoint === 'seniority'"
+        v-for="(seniority, index) in filterSeniorityByName"
+        :key="index"
+        @click="setResult(seniority)"
+        class="shadow-sm py-1 px-4"
+      >
+        {{ seniority }}
       </li>
       <li
         :v-if="endPoint === 'companies'"
@@ -61,11 +71,17 @@ export default {
       isOpen: false,
       jobtitles: [],
       companies: [],
+      seniorities: [],
     }
   },
   computed: {
     filterJobByName() {
       return this.jobtitles.filter((job) => !job.indexOf(this.name))
+    },
+    filterSeniorityByName() {
+      return this.seniorities.filter(
+        (seniority) => !seniority.indexOf(this.name)
+      )
     },
     filterCompanyByName() {
       return this.companies.filter(
@@ -81,6 +97,9 @@ export default {
       if (this.endPoint === 'jobtitles') {
         this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
       }
+      if (this.endPoint === 'seniority') {
+        this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+      }
     } catch (e) {
       console.log(e)
     }
@@ -90,6 +109,7 @@ export default {
       if (this.name === '') {
         this.jobtitles = []
         this.companies = []
+        this.seniorities = []
       } else {
         this.$emit('input', this.name)
         this.isOpen = true
