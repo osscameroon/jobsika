@@ -54,6 +54,12 @@
                 content="subtitle"
                 myInput="input"
               />
+              <MyInput
+                title="City"
+                myStyle="height: 61px;"
+                content="subtitle"
+                myInput="input"
+              />
               <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
                 <p
                   class="text-xs md:text-sm font-bold"
