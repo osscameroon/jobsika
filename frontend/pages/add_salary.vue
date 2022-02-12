@@ -12,12 +12,6 @@
         <div class="site__main-row flex flex-col-reverse md:flex-row">
           <div class="site__main-rowOne w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <!-- <MyInput
-                title="Company Name"
-                myStyle="height: 61px;"
-                content="subtitle"
-                myInput="input"
-              /> -->
               <InputAutoCompletion
                 title="Company Name"
                 myStyle="height: 61px;"
@@ -58,11 +52,10 @@
                 myStyle="height: 61px;"
                 endPoint="jobtitles"
               />
-              <MyInput
+              <InputAutoCompletion
                 title="City"
                 myStyle="height: 61px;"
-                content="subtitle"
-                myInput="input"
+                endPoint="cities"
               />
               <InputAutoCompletion
                 title="Seniority"

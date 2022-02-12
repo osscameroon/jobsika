@@ -29,6 +29,15 @@
       v-show="isOpen"
     >
       <li
+        :v-if="endPoint === 'cities'"
+        v-for="(city, index) in filterCityByName"
+        :key="index"
+        @click="setResult(city)"
+        class="shadow-sm py-2 px-4"
+      >
+        {{ city }}
+      </li>
+      <li
         :v-if="endPoint === 'jobtitles'"
         v-for="(job, index) in filterJobByName"
         :key="index"
@@ -72,11 +81,15 @@ export default {
       jobtitles: [],
       companies: [],
       seniorities: [],
+      cities: [],
     }
   },
   computed: {
     filterJobByName() {
       return this.jobtitles.filter((job) => !job.indexOf(this.name))
+    },
+    filterCityByName() {
+      return this.cities.filter((city) => !city.indexOf(this.name))
     },
     filterSeniorityByName() {
       return this.seniorities.filter(
@@ -94,11 +107,16 @@ export default {
       if (this.endPoint === 'companies') {
         this.companies = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
       }
+      if (this.endPoint === 'cities') {
+        this.cities = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+      }
       if (this.endPoint === 'jobtitles') {
         this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
       }
       if (this.endPoint === 'seniority') {
-        this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+        this.seniorities = (
+          await axios.get(BASE_URL + `/${this.endPoint}`)
+        ).data
       }
     } catch (e) {
       console.log(e)
@@ -110,6 +128,7 @@ export default {
         this.jobtitles = []
         this.companies = []
         this.seniorities = []
+        this.cities = []
       } else {
         this.$emit('input', this.name)
         this.isOpen = true
