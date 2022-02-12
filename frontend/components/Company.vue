@@ -205,7 +205,7 @@
               </tr>
               <td
                 v-if="opened.includes(company.salary_id)"
-                colspan="6"
+                colspan="10"
                 class="w-10/12 bg-primary"
               >
                 <div class="bg-white w-full p-4 my-3 shadow-sm rounded-sm">
@@ -213,7 +213,7 @@
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    22/03/2022 12:34
+                    {{ company.createdat }}
                   </p>
                   <p
                     class="text-xs md:text-sm"
