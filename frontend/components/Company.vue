@@ -234,6 +234,7 @@
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
+import { mapMutations } from 'vuex'
 import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'CompanyComponent',
@@ -246,11 +247,19 @@ export default Vue.extend({
       errored: false,
     }
   },
+  computed: {
+    page(){
+      return this.$store.state.ratings.page
+    },
+    limit(){
+      return this.$store.state.ratings.limit
+    }
+  },
   async created() {
     try {
       const params = {
-        page: 10,
-        limit:20
+        page: this.page,
+        limit: this.limit
       }
       this.companies = (await axios.get(
         BASE_URL + '/ratings',
@@ -264,6 +273,10 @@ export default Vue.extend({
     }
   },
   methods: {
+    ...mapMutations({
+      setpage: 'ratings/SETPAGE',
+      setlimit: 'ratings/SETLIMIT',
+    }),
     toggle(id) {
       const index = this.opened.indexOf(id)
       if (index > -1) {
