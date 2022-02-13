@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text-center py-4 md:py-10 font-bold text-sm" v-if="errored" />
+    <div v-if="errored" class="text-center py-4 md:py-10 font-bold text-sm" />
     <div
       v-else
       style="background: #235365; font-family: 'Inter', sans-serif"
@@ -55,13 +55,20 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
 import { BASE_URL } from '../constants/api'
+
 export default Vue.extend({
   name: 'AverageComponent',
-  props: ['title'],
+  props: {
+    title:{
+      type: String,
+      required: true
+    }
+  },
   data() {
     return {
       starsPicture: require('../assets/star.png'),

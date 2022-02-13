@@ -186,8 +186,8 @@
                     text-right text-sm
                     font-medium
                   "
-                  @click="toggle(company.salary_id)"
                   :class="{ opened: opened.includes(company.salary_id) }"
+                  @click="toggle(company.salary_id)"
                 >
                   <a
                     class="
@@ -234,6 +234,7 @@
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
+import { mapMutations } from 'vuex'
 import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'CompanyComponent',
@@ -246,15 +247,36 @@ export default Vue.extend({
       errored: false,
     }
   },
+  computed: {
+    page(){
+      return this.$store.state.ratings.page
+    },
+    limit(){
+      return this.$store.state.ratings.limit
+    }
+  },
   async created() {
     try {
-      this.companies = (await axios.get(BASE_URL + '/ratings')).data.hits
+      const params = {
+        page: this.page,
+        limit: this.limit
+      }
+      this.companies = (await axios.get(
+        BASE_URL + '/ratings',
+        {
+          params: {...params}
+        }
+      )).data.hits
     } catch (err) {
       console.log(err)
       this.errored = true
     }
   },
   methods: {
+    ...mapMutations({
+      setpage: 'ratings/SETPAGE',
+      setlimit: 'ratings/SETLIMIT',
+    }),
     toggle(id) {
       const index = this.opened.indexOf(id)
       if (index > -1) {
