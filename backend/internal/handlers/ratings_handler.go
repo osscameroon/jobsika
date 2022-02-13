@@ -1,10 +1,13 @@
 package handlers
 
 import (
+	"errors"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/elhmn/camerdevs/internal/server"
+	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )
@@ -92,4 +95,41 @@ func GetAverageRating(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, rating)
+}
+
+//PostRatings handles /ratings POST endpoint
+func PostRatings(c *gin.Context) {
+	contentType := c.Request.Header.Get("Content-Type")
+	if !strings.Contains(contentType, "application/json") {
+		log.Error(errors.New("Wrong contentType"))
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": "could not post rating"})
+		return
+	}
+
+	query := v1beta.RatingPostQuery{}
+	if err := c.ShouldBind(&query); err != nil {
+		log.Error(err)
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": "could not post rating"})
+	}
+
+	//Initialize db client
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find ratings"})
+		return
+	}
+
+	err = db.PostRatings(query)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find average rating"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"message": "created"})
 }

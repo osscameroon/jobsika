@@ -3,7 +3,7 @@ package main
 import (
 	_ "github.com/elhmn/camerdevs/docs"
 	"github.com/elhmn/camerdevs/internal/handlers"
-	"github.com/gin-gonic/contrib/cors"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -12,9 +12,9 @@ func main() {
 
 	router.Use(cors.New(cors.Config{
 		AllowAllOrigins:  true,
-		AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowedHeaders:   []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
-		ExposedHeaders:   []string{},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{},
 		AllowCredentials: true,
 	}))
 
@@ -40,6 +40,7 @@ func main() {
 	router.GET("/ratings", handlers.GetRatings)
 	router.GET("/ratings/:id", handlers.GetRatingByID)
 	router.GET("/average-rating", handlers.GetAverageRating)
+	router.POST("/ratings", handlers.PostRatings)
 
 	//Seniority
 	router.GET("/seniority", handlers.GetSeniority)

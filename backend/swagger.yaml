@@ -88,6 +88,36 @@ definitions:
         x-go-name: Seniority
     type: object
     x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
+  RatingPostQuery:
+    description: |-
+      RatingPostQuery defines the body object used to
+      create a new query
+    properties:
+      city:
+        type: string
+        x-go-name: City
+      comment:
+        type: string
+        x-go-name: Comment
+      company_name:
+        type: string
+        x-go-name: CompanyName
+      job_title:
+        type: string
+        x-go-name: JobTitle
+      rating:
+        format: int64
+        type: integer
+        x-go-name: Rating
+      salary:
+        format: int64
+        type: integer
+        x-go-name: Salary
+      seniority:
+        type: string
+        x-go-name: Seniority
+    type: object
+    x-go-package: github.com/elhmn/camerdevs/pkg/models/v1beta
   RatingResponse:
     properties:
       hits:
@@ -164,7 +194,7 @@ paths:
       description: Ratings returns the list of ratings
       operationId: idOfAverageRating
       parameters:
-      - example: Realbridge
+      - example: Jaxbean
         in: query
         name: company
         type: string
@@ -302,7 +332,7 @@ paths:
         name: limit
         type: string
         x-go-name: Limit
-      - example: Realbridge
+      - example: Jaxbean
         in: query
         name: company
         type: string
@@ -319,6 +349,22 @@ paths:
           $ref: '#/responses/badRequestResponse'
         "404":
           $ref: '#/responses/notFoundResponse'
+      tags:
+      - ratings
+    post:
+      description: Ratings create a new rating item
+      operationId: idOfRatingPost
+      parameters:
+      - description: desc
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/RatingPostQuery'
+      responses:
+        "201":
+          $ref: '#/responses/postRatingsResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
       tags:
       - ratings
   /ratings/{salaryID}:
@@ -441,6 +487,8 @@ responses:
           type: string
           x-go-name: Error
       type: object
+  postRatingsResponse:
+    description: This text will appear as description of your response body.
   ratingsResponse:
     description: This text will appear as description of your response body.
     schema:

@@ -1,10 +1,12 @@
+
 {
   "name": "e2etests",
   "version": "1.0.0",
   "description": "api testing",
   "main": "index.js",
+  "_comment": "the *.post.test are run after normal types of test to avoid breaking them",
   "scripts": {
-    "test": "./node_modules/.bin/mocha *.test.js --exit --timeout 10000"
+    "test": "./node_modules/.bin/mocha *.test.js *.test.after.js --exit --timeout 10000"
   },
   "author": "",
   "license": "ISC",
