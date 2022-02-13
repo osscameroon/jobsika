@@ -17,7 +17,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":2,"nbHits":1000,"offset":0');
+          expect(body).contains('"limit":2,"nbHits":100,"offset":0}');
         });
     });
 
@@ -30,7 +30,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains(',"limit":20,"nbHits":1000,"offset":40}');
+          expect(body).contains('"limit":20,"nbHits":100,"offset":40}');
         });
     });
 
@@ -43,33 +43,33 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":10,"offset":0');
+          expect(body).contains('"limit":20,"nbHits":2,"offset":0}');
         });
     });
 
-    it("return a list of ratings with company=Realbridge and jobtitle=Recruiting Manager", async function () {
+    it("return a list of ratings with company=Jaxbean and jobtitle=Recruiting Manager", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company=Realbridge&jobtitle=Recruiting Manager`)
+        .get(`${endpoint}?company=Jaxbean&jobtitle=Recruiting Manager`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":1,"offset":0');
+          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
         });
     });
 
-    it("return a list of ratings with company=Realbridge", async function () {
+    it("return a list of ratings with company=Jaxbean", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company=Realbridge`)
+        .get(`${endpoint}?company=Jaxbean`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":5,"offset":0');
+          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
         });
     });
 
@@ -80,7 +80,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":994,"company_rating_id":569,"rating":2,"salary":1624669,"company_name":"Realbridge","seniority":"Seniority","comment":"Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","job_title":"Recruiting Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":99,"company_rating_id":0,"rating":0,"salary":1624669,"company_name":"Jaxbean","seniority":"Seniority","comment":"","job_title":"Recruiting Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
         });
     });
 
@@ -94,14 +94,14 @@ describe(`${endpoint}`, function () {
           expect(JSON.stringify(res.body)).contains('could not find rating');
         });
     });
-
   });
+
 });
 
 const endpoint2 = `average-rating`
 describe(`${endpoint2}`, function () {
   describe("GET", function () {
-    it("return a list of ratings", async function () {
+    it("return the average of ratings", async function () {
       return request(apiHost)
         .get(endpoint2)
         .send()
@@ -109,12 +109,12 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":3,"salary":2543437}'
+            '{"rating":4,"salary":2494171}'
           );
         });
     });
 
-    it("return a list of ratings with jobtitle=Recruiting Manager", async function () {
+    it("return the average of ratings with jobtitle=Recruiting Manager", async function () {
       return request(apiHost)
         .get(`${endpoint2}?jobtitle=Recruiting Manager`)
         .send()
@@ -122,33 +122,33 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":4,"salary":2464858}'
+            '{"rating":0,"salary":2892390}'
           );
         });
     });
 
-    it("return a list of ratings with company=Realbridge", async function () {
+    it("return the average of ratings with company=Jaxbean", async function () {
       return request(apiHost)
-        .get(`${endpoint2}?company=Realbridge`)
+        .get(`${endpoint2}?company=Jaxbean`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":3,"salary":1954815}'
+            '{"rating":0,"salary":1624669}'
           );
         });
     });
 
-    it("return a list of ratings with company=Realbridge and jobtitle=Recruiting Manager", async function () {
+    it("return a list of ratings with company=Jaxbean and jobtitle=Recruiting Manager", async function () {
       return request(apiHost)
-        .get(`${endpoint2}?company=Realbridge&jobtitle=Recruiting Manager`)
+        .get(`${endpoint2}?company=Jaxbean&jobtitle=Recruiting Manager`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":2,"salary":1624669}'
+            '{"rating":0,"salary":1624669}'
           );
         });
     });

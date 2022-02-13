@@ -75,7 +75,7 @@ type RatingsParam struct {
 	Limit string `json:"limit"`
 
 	//in:query
-	//example: Realbridge
+	//example: Jaxbean
 	Company string `json:"company"`
 
 	//in:query
@@ -86,7 +86,7 @@ type RatingsParam struct {
 // swagger:parameters idOfAverageRating
 type AverageRatingParam struct {
 	//in:query
-	//example: Realbridge
+	//example: Jaxbean
 	Company string `json:"company"`
 
 	//in:query

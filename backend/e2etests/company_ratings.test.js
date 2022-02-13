@@ -15,7 +15,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body[0])).equal('{"id":1,"company_id":761,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body[0])).equal('{"id":1,"company_id":76,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
         });
     });
 
@@ -26,7 +26,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).equal('{"id":1,"company_id":761,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body)).equal('{"id":1,"company_id":76,"rating":4,"comment":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin risus. Praesent lectus.","createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}');
         });
     });
 
@@ -41,9 +41,9 @@ describe(`${endpoint}`, function () {
         });
     });
 
-    it("return a company-ratings of company id == 763", async function () {
+    it("return a company-ratings of company id == 61", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company_id=763`)
+        .get(`${endpoint}?company_id=61`)
         .send()
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
