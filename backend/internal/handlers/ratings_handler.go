@@ -1,8 +1,10 @@
 package handlers
 
 import (
+	"errors"
 	"net/http"
 	"strconv"
+	"strings"
 
 	"github.com/elhmn/camerdevs/internal/server"
 	"github.com/elhmn/camerdevs/pkg/models/v1beta"
@@ -97,7 +99,9 @@ func GetAverageRating(c *gin.Context) {
 
 //PostRatings handles /ratings POST endpoint
 func PostRatings(c *gin.Context) {
-	if c.Request.Header.Get("Content-Type") != "application/json" {
+	contentType := c.Request.Header.Get("Content-Type")
+	if !strings.Contains(contentType, "application/json") {
+		log.Error(errors.New("Wrong contentType"))
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "could not post rating"})
 		return
@@ -127,5 +131,5 @@ func PostRatings(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, "created")
+	c.JSON(http.StatusCreated, gin.H{"message": "created"})
 }

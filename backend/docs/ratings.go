@@ -11,6 +11,12 @@ import (
 //   400: badRequestResponse
 //   404: notFoundResponse
 
+// swagger:route POST /ratings ratings idOfRatingPost
+// Ratings create a new rating item
+// responses:
+//   201: postRatingsResponse
+//   400: badRequestResponse
+
 // swagger:route GET /ratings/{salaryID} ratings idOfRating
 // Ratings returns the list of ratings
 // responses:
@@ -81,6 +87,20 @@ type RatingsParam struct {
 	//in:query
 	//example: Recruiting Manager
 	JobTitle string `json:"jobtitle"`
+}
+
+// This text will appear as description of your response body.
+// swagger:response postRatingsResponse
+type PostRatingsResponseWrapper struct {
+	// in:body
+	Message string
+}
+
+// swagger:parameters idOfRatingPost
+type PostRatingsParam struct {
+	//desc
+	//in:body
+	Body v1beta.RatingPostQuery `json:",inline"`
 }
 
 // swagger:parameters idOfAverageRating
