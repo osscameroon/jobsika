@@ -62,12 +62,12 @@
         </h4>
       </div>
       <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
-        <a :href="myLink">
+        <NuxtLink to="/add_salary">
           <Button
             myStyle="background: #235365; font-family: 'Inter', sans-serif"
             name="Contribute"
           />
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </div>
@@ -83,7 +83,6 @@ export default Vue.extend({
     subTitle: String,
     fontSize: String,
     onlyTitle: String,
-    myLink: String,
     content: String,
     myStyle: String,
   },

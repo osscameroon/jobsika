@@ -30,11 +30,14 @@
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
-                  <Button
-                    showPicture="nothing"
-                    name="Cancel"
-                    myStyle="background: white; color: #000000"
-                  />
+                    <NuxtLink to="/">
+                    <Button
+                      showPicture="nothing"
+                      name="Cancel"
+                      myStyle="background: white; color: #000000"
+                    />
+                    </NuxtLink>
+                  </a>
                 </div>
                 <div class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6">
                   <Button
@@ -95,6 +98,12 @@ export default {
     return {
       starsPicture: require('../assets/star.png'),
     }
+  },
+  methods: {
+    goToList() {
+      console.log('Hello Tap', this.$router.push('/'))
+      this.$router.push('/')
+    },
   },
 }
 </script>
