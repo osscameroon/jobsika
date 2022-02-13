@@ -284,5 +284,30 @@
 <script>
 export default {
   name: 'Pagination_Number',
+  computed: {
+    page(){
+      return this.$store.state.ratings.page;
+    },
+    limit(){
+      return this.$store.state.ratings.limit;
+    },
+    numberPage(){
+      const nhits = this.$store.state.ratings.nbHits;
+      return nhits / this.limit;
+    }
+    
+  },
+  methods: {
+    async fetchCompanies(){
+      await this.$store.dispatch("getCompanies", {
+        page: this.page,
+        limit: this.limit
+      });
+    }
+  },
+  created(){
+    this.fetchCompanies();
+    console.log(this.numberPage);
+  }
 }
 </script>
