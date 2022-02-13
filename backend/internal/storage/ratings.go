@@ -6,6 +6,7 @@ import (
 	"strconv"
 
 	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
 
@@ -126,4 +127,61 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 	}
 
 	return rating, nil
+}
+
+//PostRatings post new rating
+func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
+	return db.c.Transaction(func(tx *gorm.DB) error {
+		company := v1beta.Company{}
+
+		//Check if the company already exist
+		ret := tx.Table("companies").Where("name = ?", query.CompanyName).Find(&company)
+		if ret.Error != nil {
+			log.Error(ret.Error)
+			return ret.Error
+		}
+
+		if company.Name == "" {
+			//if we did not find the company, we create a new company entry
+			company = v1beta.Company{
+				Name:   query.CompanyName,
+				Rating: query.Rating,
+			}
+			ret := tx.Create(&company)
+			if ret.Error != nil {
+				log.Error(ret.Error)
+				return ret.Error
+			}
+		}
+
+		//Create company_rating
+		companyRating := v1beta.CompanyRating{
+			CompanyID: company.ID,
+			Rating:    query.Rating,
+			Comment:   query.Comment,
+		}
+		ret = tx.Create(&companyRating)
+		if ret.Error != nil {
+			log.Error(ret.Error)
+			return ret.Error
+		}
+
+		//Create a salary
+		salary := v1beta.Salary{
+			Title:           query.JobTitle,
+			Salary:          query.Salary,
+			Seniority:       query.Seniority,
+			City:            query.City,
+			Country:         "Cameroon",
+			CompanyID:       company.ID,
+			CompanyRatingID: companyRating.ID,
+		}
+		ret = tx.Create(&salary)
+		if ret.Error != nil {
+			log.Error(ret.Error)
+			return ret.Error
+		}
+
+		return nil
+	})
 }

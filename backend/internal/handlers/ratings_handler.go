@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 	"strconv"
 
@@ -111,6 +110,22 @@ func PostRatings(c *gin.Context) {
 			gin.H{"error": "could not post rating"})
 	}
 
-	fmt.Printf("query: %+v\n", query) // Debug
-	c.JSON(http.StatusCreated, "ok")
+	//Initialize db client
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find ratings"})
+		return
+	}
+
+	err = db.PostRatings(query)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find average rating"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, "created")
 }
