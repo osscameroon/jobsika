@@ -70,6 +70,7 @@
           aria-label="Pagination"
         >
           <a
+            @click="previewpage()"
             href="#"
             class="
               relative
@@ -102,147 +103,35 @@
               />
             </svg>
           </a>
-          <a
-            href="#"
-            aria-current="page"
-            class="
-              z-10
-              bg-indigo-50
-              border-indigo-500
-              text-indigo-600
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
+          <div
+            v-for="(page, index) in numberPage"
+            :key="index"
+            @click="changepage(page)"
           >
-            1
-          </a>
+            <a
+              href="#"
+              aria-current="page"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ page }}
+            </a>
+          </div>
           <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            2
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              hidden
-              md:inline-flex
-              relative
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            3
-          </a>
-          <span
-            class="
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-gray-300
-              bg-white
-              text-xs
-              md:text-sm
-              font-medium
-              text-gray-700
-            "
-          >
-            ...
-          </span>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              hidden
-              md:inline-flex
-              relative
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            8
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            9
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            10
-          </a>
-          <a
+            @click="nextpage()"
             href="#"
             class="
               relative
@@ -305,6 +194,23 @@ export default {
         page: this.page,
         limit: this.limit
       });
+    },
+    async setpage(value){
+      await this.$store.commit("ratings/SETPAGE", value);
+    },
+    changepage(value){
+      this.setpage(value);
+      this.fetchCompanies();
+    },
+    nexpage(){
+      if((this.page + 1)<= this.numberPage){
+        this.changepage(this.page + 1);
+      }
+    },
+    previewpage(){
+      if((this.page - 1) > 0){
+        this.changepage(this.page - 1);
+      }
     }
   },
   async created(){
