@@ -1,7 +1,7 @@
 
 export const state = () => ({
     page: 1,
-    limit: 5,
+    limit: 20,
     nbHits: 0,
     companies: []
 })
@@ -9,7 +9,7 @@ export const state = () => ({
 export const getters = {
     page: (state) => state.page,
     limit: (state) => state.limit,
-    nbHits: (state) => state.limit,
+    nbHits: (state) => state.nbHits,
     companies: (state) => state.companies
 }
   

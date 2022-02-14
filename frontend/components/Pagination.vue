@@ -291,9 +291,11 @@ export default {
     limit(){
       return this.$store.state.ratings.limit;
     },
+    nbHits(){
+      return this.$store.state.ratings.nbHits;
+    },
     numberPage(){
-      const nhits = this.$store.state.ratings.nbHits;
-      return nhits / this.limit;
+      return this.nbHits / this.limit;
     }
     
   },
@@ -305,9 +307,9 @@ export default {
       });
     }
   },
-  created(){
-    this.fetchCompanies();
-    console.log(this.numberPage);
+  async created(){
+    await this.fetchCompanies();
+    console.log("number of page", this.numberPage);
   }
 }
 </script>
