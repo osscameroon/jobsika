@@ -30,14 +30,13 @@
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
-                    <NuxtLink to="/">
+                  <NuxtLink to="/">
                     <Button
                       showPicture="nothing"
                       name="Cancel"
                       myStyle="background: white; color: #000000"
                     />
-                    </NuxtLink>
-                  </a>
+                  </NuxtLink>
                 </div>
                 <div class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6">
                   <Button
@@ -60,11 +59,52 @@
                 myStyle="height: 61px;"
                 endPoint="cities"
               />
-              <InputAutoCompletion
-                title="Seniority"
-                myStyle="height: 61px;"
-                endPoint="seniority"
-              />
+              <div class="site__input w-full">
+                <p
+                  class="text-xs md:text-sm font-bold"
+                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                >
+                  Seniority
+                </p>
+                <select
+                  class="
+                    mt-2
+                    mb-4
+                    md:mb-8 md:mt-3
+                    form-select
+                    appearance-none
+                    block
+                    w-full
+                    px-3
+                    py-1.5
+                    text-gray-700
+                    bg-white bg-clip-padding bg-no-repeat
+                    border-none
+                    rounded
+                    transition
+                    ease-in-out
+                    focus:text-gray-700
+                    focus:bg-white
+                    focus:border-blue-600
+                    focus:outline-none
+                    text-xs
+                    md:text-sm
+                    font-bold
+                  "
+                  style="height: 61px; font-family: 'Inter', sans-serif"
+                  aria-label="Default select example"
+                >
+                  <option
+                    style="font-family: 'Inter', sans-serif"
+                    v-for="seniority in seniorities"
+                    :key="seniority"
+                    :value="seniority"
+                    class="text-xs md:text-sm"
+                  >
+                    {{ seniority }}
+                  </option>
+                </select>
+              </div>
               <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
                 <p
                   class="text-xs md:text-sm font-bold"
@@ -87,7 +127,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 import Button from '../components/Button.vue'
+import { BASE_URL } from '../constants/api'
 export default {
   name: 'AddSalary',
   components: {
@@ -97,6 +139,14 @@ export default {
   data() {
     return {
       starsPicture: require('../assets/star.png'),
+      seniorities: [],
+    }
+  },
+  async created() {
+    try {
+      this.seniorities = (await axios.get(BASE_URL + '/seniority')).data
+    } catch (e) {
+      console.log(e)
     }
   },
   methods: {
