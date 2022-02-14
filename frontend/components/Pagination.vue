@@ -56,11 +56,11 @@
           class="text-xs md:text-sm text-gray-700"
         >
           Showing
-          <span class="font-medium">1</span>
+          <span class="font-medium">{{ ((page - 1) * limit) + 1 }}</span>
           to
-          <span class="font-medium">5</span>
+          <span class="font-medium">{{ limit * page }}</span>
           of
-          <span class="font-medium">10</span>
+          <span class="font-medium">{{ nbHits }}</span>
           results
         </p>
       </div>
@@ -104,13 +104,34 @@
             </svg>
           </a>
           <div
-            v-for="(page, index) in numberPage"
-            :key="index"
-            @click="changepage(page)"
+            v-for="current1 in leftSide"
+            :key="current1"
+            @click="changepage(current1)"
           >
             <a
               href="#"
-              aria-current="page"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ current1 }}
+            </a>
+          </div> 
+          <div>
+            <a
+              href="#"
               class="
                 z-10
                 bg-indigo-50
@@ -128,6 +149,32 @@
               "
             >
               {{ page }}
+            </a>
+          </div>
+          <div
+            v-for="current in rightSide"
+            :key="current"
+            @click="changepage(current)"
+          >
+            <a
+              href="#"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ current }}
             </a>
           </div>
           <a
@@ -185,8 +232,25 @@ export default {
     },
     numberPage(){
       return this.nbHits / this.limit;
+    },
+    leftSide(){
+      const result = [];
+      for(let i=5; i>=1; i--){
+        if((this.page - i) > 0){
+          result.push(this.page - i);
+        }
+      }
+      return result
+    },
+    rightSide(){
+      const result = [];
+      for(let i=1; i<=5; i++){
+        if((this.page+i) < this.numberPage){
+          result.push(this.page + i);
+        }
+      }
+      return result
     }
-    
   },
   methods: {
     async fetchCompanies(){
@@ -202,7 +266,7 @@ export default {
       this.setpage(value);
       this.fetchCompanies();
     },
-    nexpage(){
+    nextpage(){
       if((this.page + 1)<= this.numberPage){
         this.changepage(this.page + 1);
       }
