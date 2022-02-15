@@ -56,7 +56,7 @@
           class="text-xs md:text-sm text-gray-700"
         >
           Showing
-          <span class="font-medium">{{ ((page - 1) * limit) + 1 }}</span>
+          <span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
           to
           <span class="font-medium">{{ limit * page }}</span>
           of
@@ -69,9 +69,8 @@
           class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
           aria-label="Pagination"
         >
-          <a
+          <span
             @click="previewpage()"
-            href="#"
             class="
               relative
               inline-flex
@@ -86,6 +85,7 @@
               font-medium
               text-gray-500
               hover:bg-gray-50
+              cursor-pointer
             "
           >
             <span class="sr-only">Previous</span>
@@ -102,16 +102,14 @@
                 clip-rule="evenodd"
               />
             </svg>
-          </a>
+          </span>
           <div
             v-for="current1 in leftSide"
             :key="current1"
             @click="changepage(current1)"
           >
-            <a
-              href="#"
-              class="
-                z-10
+            <span
+              :class="`z-10
                 bg-indigo-50
                 border-indigo-500
                 text-indigo-600
@@ -124,14 +122,15 @@
                 text-xs
                 md:text-sm
                 font-medium
-              "
+                cursor-pointer
+                ${page === current1 ? 'bg-blue' : 'bg-white'}
+                `"
             >
               {{ current1 }}
-            </a>
-          </div> 
+            </span>
+          </div>
           <div>
-            <a
-              href="#"
+            <span
               class="
                 z-10
                 bg-indigo-50
@@ -146,19 +145,19 @@
                 text-xs
                 md:text-sm
                 font-medium
+                cursor-pointer
               "
             >
               {{ page }}
-            </a>
+            </span>
           </div>
           <div
             v-for="current in rightSide"
             :key="current"
             @click="changepage(current)"
           >
-            <a
-              href="#"
-              class="
+            <span
+              :class="`
                 z-10
                 bg-indigo-50
                 border-indigo-500
@@ -172,14 +171,15 @@
                 text-xs
                 md:text-sm
                 font-medium
-              "
+                cursor-pointer
+                ${page === current1 ? 'bg-blue' : 'bg-white'}
+              `"
             >
               {{ current }}
-            </a>
+            </span>
           </div>
-          <a
+          <span
             @click="nextpage()"
-            href="#"
             class="
               relative
               inline-flex
@@ -194,6 +194,7 @@
               font-medium
               text-gray-500
               hover:bg-gray-50
+              cursor-pointer
             "
           >
             <span class="sr-only">Next</span>
@@ -210,7 +211,7 @@
                 clip-rule="evenodd"
               />
             </svg>
-          </a>
+          </span>
         </nav>
       </div>
     </div>
@@ -221,65 +222,65 @@
 export default {
   name: 'Pagination_Number',
   computed: {
-    page(){
-      return this.$store.state.ratings.page;
+    page() {
+      return this.$store.state.ratings.page
     },
-    limit(){
-      return this.$store.state.ratings.limit;
+    limit() {
+      return this.$store.state.ratings.limit
     },
-    nbHits(){
-      return this.$store.state.ratings.nbHits;
+    nbHits() {
+      return this.$store.state.ratings.nbHits
     },
-    numberPage(){
-      return this.nbHits / this.limit;
+    numberPage() {
+      return this.nbHits / this.limit
     },
-    leftSide(){
-      const result = [];
-      for(let i=5; i>=1; i--){
-        if((this.page - i) > 0){
-          result.push(this.page - i);
+    leftSide() {
+      const result = []
+      for (let i = 5; i >= 1; i--) {
+        if (this.page - i > 0) {
+          result.push(this.page - i)
         }
       }
       return result
     },
-    rightSide(){
-      const result = [];
-      for(let i=1; i<=5; i++){
-        if((this.page+i) < this.numberPage){
-          result.push(this.page + i);
+    rightSide() {
+      const result = []
+      for (let i = 1; i <= 5; i++) {
+        if (this.page + i < this.numberPage) {
+          result.push(this.page + i)
         }
       }
       return result
-    }
+    },
   },
   methods: {
-    async fetchCompanies(){
-      await this.$store.dispatch("getCompanies", {
+    async fetchCompanies() {
+      await this.$store.dispatch('getCompanies', {
         page: this.page,
-        limit: this.limit
-      });
+        limit: this.limit,
+      })
     },
-    async setpage(value){
-      await this.$store.commit("ratings/SETPAGE", value);
+    async setpage(value) {
+      await this.$store.commit('ratings/SETPAGE', value)
     },
-    changepage(value){
-      this.setpage(value);
-      this.fetchCompanies();
+    changepage(value) {
+      this.setpage(value)
+      this.fetchCompanies()
     },
-    nextpage(){
-      if((this.page + 1)<= this.numberPage){
-        this.changepage(this.page + 1);
+    nextpage() {
+      if (this.page + 1 <= this.numberPage) {
+        this.changepage(this.page + 1)
       }
     },
-    previewpage(){
-      if((this.page - 1) > 0){
-        this.changepage(this.page - 1);
+    previewpage() {
+      if (this.page - 1 > 0) {
+        this.changepage(this.page - 1)
       }
-    }
+    },
   },
-  async created(){
-    await this.fetchCompanies();
-    console.log("number of page", this.numberPage);
-  }
+  async created() {
+    await this.fetchCompanies()
+    console.log('number of page', this.numberPage)
+  },
 }
 </script>
