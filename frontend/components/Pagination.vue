@@ -58,7 +58,7 @@
           Showing
           <span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
           to
-          <span class="font-medium">{{ limit * page }}</span>
+          <span class="font-medium">{{ limit * (page - 1) + nbOfItems }}</span>
           of
           <span class="font-medium">{{ nbHits }}</span>
           results
@@ -275,6 +275,9 @@ export default {
     },
     nbHits() {
       return this.$store.state.ratings.nbHits
+    },
+    nbOfItems() {
+      return this.$store.state.ratings.companies.length
     },
     numberPage() {
       return Math.ceil(this.nbHits / this.limit)
