@@ -326,7 +326,7 @@ export default {
       this.changepage(1)
     },
     limitpage() {
-      this.changepage(this.limit)
+      this.changepage(this.numberPage)
     },
   },
   async created() {
