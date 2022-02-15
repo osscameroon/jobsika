@@ -133,7 +133,7 @@
             <span
               class="
                 z-10
-                bg-indigo-50
+                bg-blue
                 border-indigo-500
                 text-indigo-600
                 relative
