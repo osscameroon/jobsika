@@ -1,19 +1,17 @@
-// import axios from "axios";
-// import { BASE_URL } from "../constants/api";
 
 export const state = () => ({
     page: 1,
-    limit: 20
+    limit: 10,
+    nbHits: 0,
+    companies: []
 })
 
-export const getters = () => ({
+export const getters = {
     page: (state) => state.page,
-    limit: (state) => state.limit
-})
-
-export const actions = () => ({
-
-})
+    limit: (state) => state.limit,
+    nbHits: (state) => state.nbHits,
+    companies: (state) => state.companies
+}
   
 export const mutations = {
     SETPAGE(state, value) {
@@ -21,5 +19,11 @@ export const mutations = {
     },
     SETLIMIT(state, value) {
         state.limit = value;
+    },
+    SETNBHITS(state, value) {
+        state.nbHits = value;
+    },
+    SETCOMPANIES(state, payload) {
+        state.companies = [].concat(payload);
     },
 }

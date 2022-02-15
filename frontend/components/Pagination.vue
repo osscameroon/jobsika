@@ -56,11 +56,11 @@
           class="text-xs md:text-sm text-gray-700"
         >
           Showing
-          <span class="font-medium">1</span>
+          <span class="font-medium">{{ ((page - 1) * limit) + 1 }}</span>
           to
-          <span class="font-medium">5</span>
+          <span class="font-medium">{{ limit * page }}</span>
           of
-          <span class="font-medium">10</span>
+          <span class="font-medium">{{ nbHits }}</span>
           results
         </p>
       </div>
@@ -70,6 +70,7 @@
           aria-label="Pagination"
         >
           <a
+            @click="previewpage()"
             href="#"
             class="
               relative
@@ -102,147 +103,82 @@
               />
             </svg>
           </a>
-          <a
-            href="#"
-            aria-current="page"
-            class="
-              z-10
-              bg-indigo-50
-              border-indigo-500
-              text-indigo-600
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
+          <div
+            v-for="current1 in leftSide"
+            :key="current1"
+            @click="changepage(current1)"
           >
-            1
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
+            <a
+              href="#"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ current1 }}
+            </a>
+          </div> 
+          <div>
+            <a
+              href="#"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ page }}
+            </a>
+          </div>
+          <div
+            v-for="current in rightSide"
+            :key="current"
+            @click="changepage(current)"
           >
-            2
-          </a>
+            <a
+              href="#"
+              class="
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-4
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+              "
+            >
+              {{ current }}
+            </a>
+          </div>
           <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              hidden
-              md:inline-flex
-              relative
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            3
-          </a>
-          <span
-            class="
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border border-gray-300
-              bg-white
-              text-xs
-              md:text-sm
-              font-medium
-              text-gray-700
-            "
-          >
-            ...
-          </span>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              hidden
-              md:inline-flex
-              relative
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            8
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            9
-          </a>
-          <a
-            href="#"
-            class="
-              bg-white
-              border-gray-300
-              text-gray-500
-              hover:bg-gray-50
-              relative
-              inline-flex
-              items-center
-              px-4
-              py-2
-              border
-              text-xs
-              md:text-sm
-              font-medium
-            "
-          >
-            10
-          </a>
-          <a
+            @click="nextpage()"
             href="#"
             class="
               relative
@@ -284,5 +220,66 @@
 <script>
 export default {
   name: 'Pagination_Number',
+  computed: {
+    page(){
+      return this.$store.state.ratings.page;
+    },
+    limit(){
+      return this.$store.state.ratings.limit;
+    },
+    nbHits(){
+      return this.$store.state.ratings.nbHits;
+    },
+    numberPage(){
+      return this.nbHits / this.limit;
+    },
+    leftSide(){
+      const result = [];
+      for(let i=5; i>=1; i--){
+        if((this.page - i) > 0){
+          result.push(this.page - i);
+        }
+      }
+      return result
+    },
+    rightSide(){
+      const result = [];
+      for(let i=1; i<=5; i++){
+        if((this.page+i) < this.numberPage){
+          result.push(this.page + i);
+        }
+      }
+      return result
+    }
+  },
+  methods: {
+    async fetchCompanies(){
+      await this.$store.dispatch("getCompanies", {
+        page: this.page,
+        limit: this.limit
+      });
+    },
+    async setpage(value){
+      await this.$store.commit("ratings/SETPAGE", value);
+    },
+    changepage(value){
+      this.setpage(value);
+      this.fetchCompanies();
+    },
+    nextpage(){
+      if((this.page + 1)<= this.numberPage){
+        this.changepage(this.page + 1);
+      }
+    },
+    previewpage(){
+      if((this.page - 1) > 0){
+        this.changepage(this.page - 1);
+      }
+    }
+  },
+  async created(){
+    await this.fetchCompanies();
+    console.log("number of page", this.numberPage);
+  }
 }
 </script>

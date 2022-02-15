@@ -122,7 +122,7 @@
               </tr>
             </thead>
             <tbody
-              v-for="(company, myIndex) in companies.slice(0, 4)"
+              v-for="(company, myIndex) in companies"
               :key="myIndex + 1"
               class="bg-white shadow-md divide-y divide-white"
             >
@@ -232,15 +232,12 @@
   </div>
 </template>
 <script lang="ts">
-import axios from 'axios'
 import Vue from 'vue'
 import { mapMutations } from 'vuex'
-import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'CompanyComponent',
   data() {
     return {
-      companies: [],
       isOpen: false,
       starsPicture: require('../assets/star.png'),
       opened: [],
@@ -253,24 +250,13 @@ export default Vue.extend({
     },
     limit(){
       return this.$store.state.ratings.limit
-    }
+    },
+    companies(){
+      return this.$store.state.ratings.companies
+    },
   },
   async created() {
-    try {
-      const params = {
-        page: this.page,
-        limit: this.limit
-      }
-      this.companies = (await axios.get(
-        BASE_URL + '/ratings',
-        {
-          params: {...params}
-        }
-      )).data.hits
-    } catch (err) {
-      console.log(err)
-      this.errored = true
-    }
+
   },
   methods: {
     ...mapMutations({
