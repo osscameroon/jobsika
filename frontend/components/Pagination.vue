@@ -88,7 +88,7 @@
               cursor-pointer
             "
           >
-            <span class="font-bold">&#8676;</span>
+            <span class="font-bold">&laquo;</span>
           </span>
           <div @click="previewpage()">
             <span
@@ -255,7 +255,7 @@
               cursor-pointer
             "
           >
-            <span class="font-bold">&#8677;</span>
+            <span class="font-bold">&raquo;</span>
           </span>
         </nav>
       </div>
