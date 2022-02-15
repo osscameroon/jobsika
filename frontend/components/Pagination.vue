@@ -70,12 +70,12 @@
           aria-label="Pagination"
         >
           <span
-            @click="previewpage()"
+            @click="startpage()"
             class="
               relative
               inline-flex
               items-center
-              px-2
+              px-4
               py-2
               rounded-l-md
               border border-gray-300
@@ -88,21 +88,43 @@
               cursor-pointer
             "
           >
-            <span class="sr-only">Previous</span>
-            <svg
-              class="h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            <span class="font-bold">&#8676;</span>
           </span>
+          <div @click="previewpage()">
+            <span
+              :class="`z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-2
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+                cursor-pointer
+                ${page === current1 ? 'bg-blue' : 'bg-white'}
+                `"
+            >
+              <span class="sr-only">Previous</span>
+              <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
           <div
             v-for="current1 in leftSide"
             :key="current1"
@@ -178,13 +200,49 @@
               {{ current }}
             </span>
           </div>
+          <div @click="nextpage(current)">
+            <span
+              :class="`
+                z-10
+                bg-indigo-50
+                border-indigo-500
+                text-indigo-600
+                relative
+                inline-flex
+                items-center
+                px-2
+                py-2
+                border
+                text-xs
+                md:text-sm
+                font-medium
+                cursor-pointer
+                ${page === current1 ? 'bg-blue' : 'bg-white'}
+              `"
+            >
+              <span class="sr-only">Next</span>
+              <svg
+                class="h-5 w-5"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
           <span
-            @click="nextpage()"
+            @click="limitpage()"
             class="
               relative
               inline-flex
               items-center
-              px-2
+              px-4
               py-2
               rounded-r-md
               border border-gray-300
@@ -197,20 +255,7 @@
               cursor-pointer
             "
           >
-            <span class="sr-only">Next</span>
-            <svg
-              class="h-5 w-5"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                clip-rule="evenodd"
-              />
-            </svg>
+            <span class="font-bold">&#8677;</span>
           </span>
         </nav>
       </div>
@@ -276,6 +321,12 @@ export default {
       if (this.page - 1 > 0) {
         this.changepage(this.page - 1)
       }
+    },
+    startpage() {
+      this.changepage(1)
+    },
+    limitpage() {
+      this.changepage(this.limit)
     },
   },
   async created() {
