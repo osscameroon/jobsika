@@ -277,7 +277,7 @@ export default {
       return this.$store.state.ratings.nbHits
     },
     numberPage() {
-      return this.nbHits / this.limit
+      return Math.ceil(this.nbHits / this.limit)
     },
     leftSide() {
       const result = []
