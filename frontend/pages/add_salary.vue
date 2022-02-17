@@ -22,11 +22,13 @@
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
+                :myModelInput="newRating.salary"
               />
               <MyInput
                 title="Comments"
                 myStyle="height: 120px;"
                 content="subtitle"
+                :myModelInput="newRating.comment"
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
@@ -38,7 +40,10 @@
                     />
                   </NuxtLink>
                 </div>
-                <div class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6">
+                <div
+                  @click="addRating"
+                  class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6"
+                >
                   <Button
                     myStyle="background: #235365; font-family: 'Inter', sans-serif"
                     name="Add"
@@ -93,6 +98,7 @@
                   "
                   style="height: 61px; font-family: 'Inter', sans-serif"
                   aria-label="Default select example"
+                  :v-model="newRating.seniority"
                 >
                   <option
                     style="font-family: 'Inter', sans-serif"
@@ -140,6 +146,15 @@ export default {
     return {
       starsPicture: require('../assets/star.png'),
       seniorities: [],
+      newRating: {
+        company_name: 'Kiroo',
+        job_title: 'AP',
+        salary: 0,
+        city: 'Yaounde',
+        seniority: '',
+        rating: 4,
+        comment: '',
+      },
     }
   },
   async created() {
@@ -151,8 +166,13 @@ export default {
   },
   methods: {
     goToList() {
-      console.log('Hello Tap', this.$router.push('/'))
       this.$router.push('/')
+    },
+    addRating() {
+      if (this.newRating) {
+        this.$store.dispatch('postCompany', this.newRating)
+        this.$router.push('/')
+      }
     },
   },
 }

@@ -8,6 +8,7 @@
     </p>
     <input
       v-if="myInput === 'input'"
+      :v-model="myModelInput"
       type="text"
       class="
         site__input-field
@@ -23,11 +24,12 @@
     />
 
     <textarea
-      class="resize rounded-md w-full h-full mt-2 md:mt-3 border-none"
       v-else
+      :v-model="myModelTextArea"
+      class="resize rounded-md w-full h-full mt-2 md:mt-3 border-none"
       name="story"
       rows="5"
-    ></textarea>
+    />
   </div>
 </template>
 
@@ -35,6 +37,6 @@
 import Vue from 'vue'
 export default Vue.extend({
   name: 'MyInputComponent',
-  props: ['title', 'myStyle', 'myInput'],
+  props: ['title', 'myStyle', 'myInput', 'myModelInput', 'myModelTextArea'],
 })
-</script>
+</script>e
