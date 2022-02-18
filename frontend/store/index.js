@@ -21,17 +21,33 @@ export const actions = {
   },
   async postCompany({ commit }, payload) {
     const data = {
-      companyname: payload.company_name,
+      company_name: payload.company_name,
       salary: payload.salary,
       city: payload.city,
       seniority: payload.seniority,
       rating: payload.rating,
-      comment: payload.comment
+      comment: payload.comment,
+      job_title: payload.job_title
     }
     const resp = await axios.post(BASE_URL + '/ratings', data)
     console.log("resp", resp.data);
     if (resp) {
       commit("ratings/ADDCOMPANY", resp.data)
     }
-  }
+  },
+  selectValueCompany({ commit }, payload) {
+    commit('ratings/SELECTVALUECOMPANY', payload)
+  },
+  selectValueJob({ commit }, payload) {
+    commit('ratings/SELECTVALUEJOB', payload)
+  },
+  selectValueCity({ commit }, payload) {
+    commit('ratings/SELECTVALUECITY', payload)
+  },
+  selectValueSalary({ commit }, payload) {
+    commit('ratings/SELECTVALUESALARY', payload)
+  },
+  selectValueComment({ commit }, payload) {
+    commit('ratings/SELECTVALUECOMMENT', payload)
+  },
 }

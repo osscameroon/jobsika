@@ -3,14 +3,24 @@ export const state = () => ({
   page: 1,
   limit: 10,
   nbHits: 0,
-  companies: []
+  companies: [],
+  selectvaluecompany: '',
+  selectvaluejob: '',
+  selectvaluecity: '',
+  selectvaluesalary: 0,
+  selectvaluecomment: '',
 })
 
 export const getters = {
   page: (state) => state.page,
   limit: (state) => state.limit,
   nbHits: (state) => state.nbHits,
-  companies: (state) => state.companies
+  companies: (state) => state.companies,
+  selectvaluecompany: (state) => state.selectvaluecompany,
+  selectvaluejob: (state) => state.selectvaluejob,
+  selectvaluecity: (state) => state.selectvaluecity,
+  selectvaluesalary: (state) => state.selectvaluesalary,
+  selectvaluecomment: (state) => state.selectvaluecomment,
 }
 
 export const mutations = {
@@ -28,5 +38,20 @@ export const mutations = {
   },
   ADDCOMPANY(state, payload) {
     state.companies = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.companies]
-  }
+  },
+  SELECTVALUECOMPANY(state, value) {
+    state.selectvaluecompany = value
+  },
+  SELECTVALUEJOB(state, value) {
+    state.selectvaluejob = value
+  },
+  SELECTVALUECITY(state, value) {
+    state.selectvaluecity = value
+  },
+  SELECTVALUESALARY(state, value) {
+    state.selectvaluesalary = value
+  },
+  SELECTVALUECOMMENT(state, value) {
+    state.selectvaluecomment = value
+  },
 }

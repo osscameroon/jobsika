@@ -22,13 +22,11 @@
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
-                :myModelInput="newRating.salary"
               />
               <MyInput
                 title="Comments"
                 myStyle="height: 120px;"
                 content="subtitle"
-                :myModelInput="newRating.comment"
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
@@ -97,14 +95,14 @@
                     font-bold
                   "
                   style="height: 61px; font-family: 'Inter', sans-serif"
+                  v-model="newRating.seniority"
                   aria-label="Default select example"
-                  :v-model="newRating.seniority"
                 >
                   <option
-                    style="font-family: 'Inter', sans-serif"
                     v-for="seniority in seniorities"
                     :key="seniority"
                     :value="seniority"
+                    style="font-family: 'Inter', sans-serif"
                     class="text-xs md:text-sm"
                   >
                     {{ seniority }}
@@ -147,21 +145,41 @@ export default {
       starsPicture: require('../assets/star.png'),
       seniorities: [],
       newRating: {
-        company_name: 'Kiroo',
-        job_title: 'AP',
+        company_name: '',
         salary: 0,
-        city: 'Yaounde',
-        seniority: '',
+        city: '',
+        seniority: 'Senior',
         rating: 4,
         comment: '',
+        job_title: '',
       },
     }
+  },
+  computed: {
+    selectvaluecompany() {
+      return this.$store.state.ratings.selectvaluecompany
+    },
+    selectvaluejob() {
+      return this.$store.state.ratings.selectvaluejob
+    },
+    selectvaluecity() {
+      return this.$store.state.ratings.selectvaluecity
+    },
+    selectvalueseniority() {
+      return this.newRating.seniority
+    },
+    selectvaluesalary() {
+      return parseInt(this.$store.state.ratings.selectvaluesalary)
+    },
+    selectvaluecomment() {
+      return this.$store.state.ratings.selectvaluecomment
+    },
   },
   async created() {
     try {
       this.seniorities = (await axios.get(BASE_URL + '/seniority')).data
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {
@@ -170,7 +188,15 @@ export default {
     },
     addRating() {
       if (this.newRating) {
-        this.$store.dispatch('postCompany', this.newRating)
+        this.$store.dispatch('postCompany', {
+          company_name: this.selectvaluecompany,
+          salary: this.selectvaluesalary,
+          city: this.selectvaluecity,
+          seniority: this.selectvalueseniority,
+          rating: 3,
+          comment: this.selectvaluecomment,
+          job_title: this.selectvaluejob,
+        })
         this.$router.push('/')
       }
     },
