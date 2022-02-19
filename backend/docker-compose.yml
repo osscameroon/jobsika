@@ -30,7 +30,7 @@ services:
     image: golang:buster
     command: ["/bin/bash", "-c", "cd /api/ && make run"]
     env_file:
-      - ./.postgres-env
+      - ./.docker-env
       - ./.api-env
     volumes:
       - .:/api
