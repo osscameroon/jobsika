@@ -48,11 +48,9 @@ export default Vue.extend({
   },
   methods: {
     onChangeInput() {
-      console.log('Ma console input', this.nameInput)
       this.$store.dispatch('selectValueSalary', this.nameInput)
     },
     onChangeTextArea() {
-      console.log('Ma console textarea', this.nameTextArea)
       this.$store.dispatch('selectValueComment', this.nameTextArea)
     },
   },
