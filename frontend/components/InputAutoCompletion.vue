@@ -137,6 +137,15 @@ export default {
     setResult(result) {
       this.name = result
       this.isOpen = false
+      if (this.endPoint === 'companies') {
+        this.$store.dispatch('selectValueCompany', this.name)
+      }
+      if (this.endPoint === 'jobtitles') {
+        this.$store.dispatch('selectValueJob', this.name)
+      }
+      if (this.endPoint === 'cities') {
+        this.$store.dispatch('selectValueCity', this.name)
+      }
     },
   },
 }

@@ -38,7 +38,10 @@
                     />
                   </NuxtLink>
                 </div>
-                <div class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6">
+                <div
+                  @click="addRating"
+                  class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6"
+                >
                   <Button
                     myStyle="background: #235365; font-family: 'Inter', sans-serif"
                     name="Add"
@@ -92,13 +95,14 @@
                     font-bold
                   "
                   style="height: 61px; font-family: 'Inter', sans-serif"
+                  v-model="newRating.seniority"
                   aria-label="Default select example"
                 >
                   <option
-                    style="font-family: 'Inter', sans-serif"
                     v-for="seniority in seniorities"
                     :key="seniority"
                     :value="seniority"
+                    style="font-family: 'Inter', sans-serif"
                     class="text-xs md:text-sm"
                   >
                     {{ seniority }}
@@ -140,19 +144,61 @@ export default {
     return {
       starsPicture: require('../assets/star.png'),
       seniorities: [],
+      newRating: {
+        company_name: '',
+        salary: 0,
+        city: '',
+        seniority: 'Senior',
+        rating: 4,
+        comment: '',
+        job_title: '',
+      },
     }
+  },
+  computed: {
+    selectvaluecompany() {
+      return this.$store.state.ratings.selectvaluecompany
+    },
+    selectvaluejob() {
+      return this.$store.state.ratings.selectvaluejob
+    },
+    selectvaluecity() {
+      return this.$store.state.ratings.selectvaluecity
+    },
+    selectvalueseniority() {
+      return this.newRating.seniority
+    },
+    selectvaluesalary() {
+      return parseInt(this.$store.state.ratings.selectvaluesalary)
+    },
+    selectvaluecomment() {
+      return this.$store.state.ratings.selectvaluecomment
+    },
   },
   async created() {
     try {
       this.seniorities = (await axios.get(BASE_URL + '/seniority')).data
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {
     goToList() {
-      console.log('Hello Tap', this.$router.push('/'))
       this.$router.push('/')
+    },
+    addRating() {
+      if (this.newRating) {
+        this.$store.dispatch('postCompany', {
+          company_name: this.selectvaluecompany,
+          salary: this.selectvaluesalary,
+          city: this.selectvaluecity,
+          seniority: this.selectvalueseniority,
+          rating: 3,
+          comment: this.selectvaluecomment,
+          job_title: this.selectvaluejob,
+        })
+        this.$router.push('/')
+      }
     },
   },
 }

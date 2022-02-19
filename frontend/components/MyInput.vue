@@ -8,6 +8,7 @@
     </p>
     <input
       v-if="myInput === 'input'"
+      v-model="nameInput"
       type="text"
       class="
         site__input-field
@@ -20,14 +21,17 @@
         md:mb-16
       "
       :style="myStyle"
+      @change="onChangeInput"
     />
 
     <textarea
-      class="resize rounded-md w-full h-full mt-2 md:mt-3 border-none"
       v-else
+      v-model="nameTextArea"
+      class="resize rounded-md w-full h-full mt-2 md:mt-3 border-none"
       name="story"
       rows="5"
-    ></textarea>
+      @change="onChangeTextArea"
+    />
   </div>
 </template>
 
@@ -36,5 +40,19 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'MyInputComponent',
   props: ['title', 'myStyle', 'myInput'],
+  data() {
+    return {
+      nameInput: '',
+      nameTextArea: '',
+    }
+  },
+  methods: {
+    onChangeInput() {
+      this.$store.dispatch('selectValueSalary', this.nameInput)
+    },
+    onChangeTextArea() {
+      this.$store.dispatch('selectValueComment', this.nameTextArea)
+    },
+  },
 })
 </script>
