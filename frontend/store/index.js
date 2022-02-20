@@ -19,6 +19,12 @@ export const actions = {
     if (resp) {
       commit("ratings/SETNBHITS", resp.data.nbHits);
       commit("ratings/SETCOMPANIES", resp.data.hits);
+      commit("ratings/SETAVERAGE", resp.data)
+      let average = 0;
+      for (let item = 0; item < resp.data.hits.length; item++) {
+        average += resp.data.hits[item].salary
+        commit("ratings/SETAVERAGE", average / resp.data.hits.length);
+      }
     }
   },
   async postCompany({ commit }, payload) {
@@ -57,5 +63,13 @@ export const actions = {
   },
   filterCompany({ commit }, payload) {
     commit('ratings/SETFILTERCOMPANY', payload)
+  },
+  async fetchAverage({ commit }, payload) {
+    const resp = await axios.get(
+      BASE_URL + '/average-rating',
+    )
+    if (resp) {
+      commit("ratings/SETAVERAGE", resp.data)
+    }
   }
 }
