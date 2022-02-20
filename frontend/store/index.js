@@ -5,15 +5,17 @@ export const actions = {
   async getCompanies({ commit }, payload) {
     const params = {
       page: payload.page,
-      limit: payload.limit
+      limit: payload.limit,
+      company: payload.company ? payload.company : "",
+      jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
       BASE_URL + '/ratings',
       {
         params: { ...params }
       }
-    );
-    console.log("resp", resp);
+    )
+    console.log("resp", resp.data.hits.length);
     if (resp) {
       commit("ratings/SETNBHITS", resp.data.nbHits);
       commit("ratings/SETCOMPANIES", resp.data.hits);
@@ -50,4 +52,10 @@ export const actions = {
   selectValueComment({ commit }, payload) {
     commit('ratings/SELECTVALUECOMMENT', payload)
   },
+  filterJob({ commit }, payload) {
+    commit('ratings/SETFILTERJOB', payload)
+  },
+  filterCompany({ commit }, payload) {
+    commit('ratings/SETFILTERCOMPANY', payload)
+  }
 }

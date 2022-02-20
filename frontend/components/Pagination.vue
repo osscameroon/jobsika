@@ -52,6 +52,14 @@
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
         <p
+          v-if="nbOfItems == 0"
+          style="font-family: 'Inter', sans-serif"
+          class="text-xs md:text-sm text-gray-700"
+        >
+          No items found
+        </p>
+        <p
+          v-else
           style="font-family: 'Inter', sans-serif"
           class="text-xs md:text-sm text-gray-700"
         >
@@ -300,12 +308,20 @@ export default {
       }
       return result
     },
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
   },
   methods: {
     async fetchCompanies() {
       await this.$store.dispatch('getCompanies', {
         page: this.page,
         limit: this.limit,
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
       })
     },
     async setpage(value) {

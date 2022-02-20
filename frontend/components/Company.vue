@@ -1,22 +1,10 @@
 <template>
   <div class="flex flex-col">
     <div v-if="errored" class="flex flex-col items-center justify-center">
-      <header>
-        <h1
-          style="color: #bb321f; font-family: 'Inter', sans-serif"
-          class="py-3 text-lg font-bold"
-        >
-          Oops! Something went wrong
-        </h1>
-      </header>
-      <main>
-        <p
-          style="color: #000; font-family: 'Inter', sans-serif"
-          class="text-sm text-center leading-6 mx-auto"
-        >
-          Unable to connect to the internet
-        </p>
-      </main>
+      <Error
+        title="  Oops! Something went wrong"
+        content="Unable to connect to the internet"
+      />
     </div>
     <div v-else class="-my-2">
       <div class="py-2 align-middle inline-block min-w-full w-16">
@@ -245,19 +233,24 @@ export default Vue.extend({
     }
   },
   computed: {
-    page(){
+    page() {
       return this.$store.state.ratings.page
     },
-    limit(){
+    limit() {
       return this.$store.state.ratings.limit
     },
-    companies(){
+    companies() {
       return this.$store.state.ratings.companies
     },
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
   },
-  async created() {
 
-  },
+  async created() {},
   methods: {
     ...mapMutations({
       setpage: 'ratings/SETPAGE',

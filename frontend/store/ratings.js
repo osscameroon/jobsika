@@ -9,6 +9,8 @@ export const state = () => ({
   selectvaluecity: '',
   selectvaluesalary: 0,
   selectvaluecomment: '',
+  filterjob: '',
+  filtercompany: ''
 })
 
 export const getters = {
@@ -21,6 +23,8 @@ export const getters = {
   selectvaluecity: (state) => state.selectvaluecity,
   selectvaluesalary: (state) => state.selectvaluesalary,
   selectvaluecomment: (state) => state.selectvaluecomment,
+  filterjob: (state) => state.filterjob,
+  filtercompany: (state) => state.filtercompany
 }
 
 export const mutations = {
@@ -54,4 +58,10 @@ export const mutations = {
   SELECTVALUECOMMENT(state, value) {
     state.selectvaluecomment = value
   },
+  SETFILTERJOB(state, value) {
+    state.filterjob = value
+  },
+  SETFILTERCOMPANY(state, value) {
+    state.filtercompany = value
+  }
 }
