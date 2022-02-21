@@ -34,7 +34,7 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          Job title
+          any
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -81,7 +81,7 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          Company
+          any
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -107,8 +107,8 @@ export default Vue.extend({
     return {
       companies: [],
       jobtitles: [],
-      myfilterjob: 'Job title',
-      myfiltercompany: 'Company',
+      myfilterjob: 'any',
+      myfiltercompany: 'any',
     }
   },
   computed: {
