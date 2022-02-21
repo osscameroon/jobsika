@@ -50,4 +50,7 @@ export const actions = {
   selectValueComment({ commit }, payload) {
     commit('ratings/SELECTVALUECOMMENT', payload)
   },
+  selectValueStars({ commit }, payload) {
+    commit('ratings/SELECTVALUESTARS', payload)
+  },
 }

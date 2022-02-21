@@ -9,6 +9,7 @@ export const state = () => ({
   selectvaluecity: '',
   selectvaluesalary: 0,
   selectvaluecomment: '',
+  selectvaluestars: 0
 })
 
 export const getters = {
@@ -21,6 +22,7 @@ export const getters = {
   selectvaluecity: (state) => state.selectvaluecity,
   selectvaluesalary: (state) => state.selectvaluesalary,
   selectvaluecomment: (state) => state.selectvaluecomment,
+  selectvaluestars: (state) => state.selectvaluestars
 }
 
 export const mutations = {
@@ -53,5 +55,8 @@ export const mutations = {
   },
   SELECTVALUECOMMENT(state, value) {
     state.selectvaluecomment = value
+  },
+  SELECTVALUESTARS(state, value) {
+    state.selectvaluestars = value
   },
 }
