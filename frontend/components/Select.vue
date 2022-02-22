@@ -30,8 +30,7 @@
       >
         <option
           class="text-xs md:text-sm"
-          selected="selected"
-          disabled
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
           any
@@ -77,8 +76,7 @@
       >
         <option
           class="text-xs md:text-sm"
-          selected="selected"
-          disabled
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
           any
@@ -107,8 +105,8 @@ export default Vue.extend({
     return {
       companies: [],
       jobtitles: [],
-      myfilterjob: 'any',
-      myfiltercompany: 'any',
+      myfilterjob: '',
+      myfiltercompany: '',
     }
   },
   computed: {
