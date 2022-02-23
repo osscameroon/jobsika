@@ -18,10 +18,11 @@
                 endPoint="companies"
               />
               <MyInput
-                title="Salary"
+                title="Salary  (FCFA)"
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
+                typeInput="number"
               />
               <MyInput
                 title="Comments"
