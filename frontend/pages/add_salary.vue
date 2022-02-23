@@ -116,11 +116,11 @@
                 >
                   Rate
                 </p>
-                <div class="flex mt-0 ml-6">
-                  <div v-for="item in 5" :key="item" class="flex">
-                    <img class="w-4 h-4 mr-1" :src="starsPicture" />
-                  </div>
-                </div>
+                <StarRating
+                  :grade="selectvaluestars"
+                  :maxStars="5"
+                  :hasCounter="true"
+                />
               </div>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default {
         salary: 0,
         city: '',
         seniority: 'Senior',
-        rating: 4,
+        rating: 3,
         comment: '',
         job_title: '',
       },
@@ -174,6 +174,9 @@ export default {
     selectvaluecomment() {
       return this.$store.state.ratings.selectvaluecomment
     },
+    selectvaluestars() {
+      return this.$store.state.ratings.selectvaluestars
+    },
   },
   async created() {
     try {
@@ -193,7 +196,7 @@ export default {
           salary: this.selectvaluesalary,
           city: this.selectvaluecity,
           seniority: this.selectvalueseniority,
-          rating: 3,
+          rating: this.selectvaluestars,
           comment: this.selectvaluecomment,
           job_title: this.selectvaluejob,
         })
