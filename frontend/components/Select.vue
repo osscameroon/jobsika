@@ -40,6 +40,7 @@
           v-for="(link, index) in jobtitles"
           :key="index"
           :value="link"
+          v-show="link !== ''"
           class="text-xs md:text-sm"
         >
           {{ link }}
@@ -86,6 +87,7 @@
           v-for="link in companies"
           :key="link.id"
           :value="link.name"
+          v-show="link.name !== ''"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
