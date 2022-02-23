@@ -25,10 +25,13 @@
           font-bold
         "
         aria-label="Default select example"
+        v-model="myfilterjob"
+        @change="onChangeJobTitle"
       >
         <option
           class="text-xs md:text-sm"
-          selected
+          selected="selected"
+          disabled
           style="font-family: 'Inter', sans-serif"
         >
           Job title
@@ -69,10 +72,13 @@
           font-bold
         "
         aria-label="Default select example"
+        v-model="myfiltercompany"
+        @change="onChangeCompany"
       >
         <option
           class="text-xs md:text-sm"
-          selected
+          selected="selected"
+          disabled
           style="font-family: 'Inter', sans-serif"
         >
           Company
@@ -81,7 +87,7 @@
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
           :key="link.id"
-          :value="link.id"
+          :value="link.name"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
@@ -101,16 +107,23 @@ export default Vue.extend({
     return {
       companies: [],
       jobtitles: [],
-      content: [
-        {
-          name: 'Job Title',
-        },
-
-        {
-          name: 'Company',
-        },
-      ],
+      myfilterjob: 'Job title',
+      myfiltercompany: 'Company',
     }
+  },
+  computed: {
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
+    page() {
+      return this.$store.state.ratings.page
+    },
+    limit() {
+      return this.$store.state.ratings.limit
+    },
   },
   async created() {
     try {
@@ -119,6 +132,34 @@ export default Vue.extend({
     } catch (e) {
       console.log(e)
     }
+  },
+  methods: {
+    onChangeJobTitle() {
+      this.$store.dispatch('filterJob', this.myfilterjob)
+      this.$store.dispatch('getCompanies', {
+        page: this.page,
+        limit: this.limit,
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+    },
+    onChangeCompany() {
+      this.$store.dispatch('filterCompany', this.myfiltercompany)
+      this.$store.dispatch('getCompanies', {
+        page: this.page,
+        limit: this.limit,
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+    },
   },
 })
 </script>

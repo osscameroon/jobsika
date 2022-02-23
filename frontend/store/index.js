@@ -5,15 +5,16 @@ export const actions = {
   async getCompanies({ commit }, payload) {
     const params = {
       page: payload.page,
-      limit: payload.limit
+      limit: payload.limit,
+      company: payload.company ? payload.company : "",
+      jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
       BASE_URL + '/ratings',
       {
         params: { ...params }
       }
-    );
-    console.log("resp", resp);
+    )
     if (resp) {
       commit("ratings/SETNBHITS", resp.data.nbHits);
       commit("ratings/SETCOMPANIES", resp.data.hits);
@@ -30,7 +31,6 @@ export const actions = {
       job_title: payload.job_title
     }
     const resp = await axios.post(BASE_URL + '/ratings', data)
-    console.log("resp", resp.data);
     if (resp) {
       commit("ratings/ADDCOMPANY", resp.data)
     }
@@ -50,7 +50,29 @@ export const actions = {
   selectValueComment({ commit }, payload) {
     commit('ratings/SELECTVALUECOMMENT', payload)
   },
+  filterJob({ commit }, payload) {
+    commit('ratings/SETFILTERJOB', payload)
+  },
+  filterCompany({ commit }, payload) {
+    commit('ratings/SETFILTERCOMPANY', payload)
+  },
   selectValueStars({ commit }, payload) {
     commit('ratings/SELECTVALUESTARS', payload)
+  },
+  async fetchAverage({ commit }, payload) {
+    const params = {
+      company: payload.company ? payload.company : "",
+      jobtitle: payload.jobtitle ? payload.jobtitle : ""
+    }
+    const resp = await axios.get(
+      BASE_URL + '/average-rating',
+      {
+        params: { ...params }
+      }
+    )
+    if (resp) {
+      commit("ratings/SETAVERAGE", resp.data.salary)
+      commit("ratings/SELECTVALUESTARS", resp.data.rating)
+    }
   },
 }

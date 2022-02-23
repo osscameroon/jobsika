@@ -39,14 +39,10 @@
             "
             style="font-family: 'Inter', sans-serif"
           >
-            {{ salaryRating.salary }} FCFA
+            {{ average }} FCFA
           </p>
           <div class="flex pt-1 md:pt-0 ml-0 md:ml-24 md:mr-10">
-            <div
-              v-for="(item, index) in salaryRating.rating"
-              :key="index"
-              class="flex"
-            >
+            <div v-for="(item, index) in stars" :key="index" class="flex">
               <img class="w-4 h-4 mr-1" :src="starsPicture" />
             </div>
           </div>
@@ -57,17 +53,15 @@
 </template>
 
 <script lang="ts">
-import axios from 'axios'
 import Vue from 'vue'
-import { BASE_URL } from '../constants/api'
 
 export default Vue.extend({
   name: 'AverageComponent',
   props: {
-    title:{
+    title: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -76,13 +70,30 @@ export default Vue.extend({
       errored: false,
     }
   },
+  computed: {
+    average() {
+      return this.$store.state.ratings.average
+    },
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
+    stars() {
+      return this.$store.state.ratings.selectvaluestars
+    },
+  },
   async created() {
-    try {
-      this.salaryRating = (await axios.get(BASE_URL + '/average-rating')).data
-    } catch (err) {
-      console.log(err)
-      this.errored = true
-    }
+    await this.fetchAverage()
+  },
+  methods: {
+    async fetchAverage() {
+      await this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+    },
   },
 })
 </script>
