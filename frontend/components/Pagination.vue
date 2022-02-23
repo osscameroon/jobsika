@@ -274,6 +274,11 @@
 <script>
 export default {
   name: 'Pagination_Number',
+  data() {
+    return {
+      current1: '',
+    }
+  },
   computed: {
     page() {
       return this.$store.state.ratings.page

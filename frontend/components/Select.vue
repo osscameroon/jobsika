@@ -30,17 +30,17 @@
       >
         <option
           class="text-xs md:text-sm"
-          selected="selected"
-          disabled
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
-          Job title
+          any
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
           v-for="(link, index) in jobtitles"
           :key="index"
           :value="link"
+          v-show="link !== ''"
           class="text-xs md:text-sm"
         >
           {{ link }}
@@ -77,17 +77,17 @@
       >
         <option
           class="text-xs md:text-sm"
-          selected="selected"
-          disabled
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
-          Company
+          any
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
           :key="link.id"
           :value="link.name"
+          v-show="link.name !== ''"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
@@ -107,8 +107,8 @@ export default Vue.extend({
     return {
       companies: [],
       jobtitles: [],
-      myfilterjob: 'Job title',
-      myfiltercompany: 'Company',
+      myfilterjob: '',
+      myfiltercompany: '',
     }
   },
   computed: {
