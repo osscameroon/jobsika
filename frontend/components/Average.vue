@@ -39,14 +39,10 @@
             "
             style="font-family: 'Inter', sans-serif"
           >
-            {{ typeof average !== 'number' ? average.salary : average }} FCFA
+            {{ average }} FCFA
           </p>
           <div class="flex pt-1 md:pt-0 ml-0 md:ml-24 md:mr-10">
-            <div
-              v-for="(item, index) in average.rating"
-              :key="index"
-              class="flex"
-            >
+            <div v-for="(item, index) in stars" :key="index" class="flex">
               <img class="w-4 h-4 mr-1" :src="starsPicture" />
             </div>
           </div>
@@ -78,13 +74,25 @@ export default Vue.extend({
     average() {
       return this.$store.state.ratings.average
     },
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
+    stars() {
+      return this.$store.state.ratings.selectvaluestars
+    },
   },
   async created() {
     await this.fetchAverage()
   },
   methods: {
     async fetchAverage() {
-      await this.$store.dispatch('fetchAverage')
+      await this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
     },
   },
 })

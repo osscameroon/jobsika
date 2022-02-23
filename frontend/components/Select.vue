@@ -142,12 +142,20 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
       this.$store.dispatch('getCompanies', {
         page: this.page,
         limit: this.limit,
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+      })
+      this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
