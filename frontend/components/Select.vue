@@ -146,6 +146,7 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.commit('ratings/SETPAGE', 1)
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
