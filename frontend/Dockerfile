@@ -1,4 +1,8 @@
 FROM node:12.22.9-buster-slim
+
+ARG baseURL="http://localhost:7000"
+ENV BASE_URL=$baseURL
+
 WORKDIR /usr/src/app
 COPY . /usr/src/app
 RUN npm install && npm run generate

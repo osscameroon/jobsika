@@ -42,6 +42,9 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./frontend
+          build-args: |
+            baseURL=https://api.jobsika.stage.osscameroon.com
+
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
