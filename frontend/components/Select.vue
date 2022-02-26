@@ -99,7 +99,6 @@
 <script lang="ts">
 import axios from 'axios'
 import Vue from 'vue'
-import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'SelectComponent',
   props: {},
@@ -127,8 +126,8 @@ export default Vue.extend({
   },
   async created() {
     try {
-      this.companies = (await axios.get(BASE_URL + '/companies')).data
-      this.jobtitles = (await axios.get(BASE_URL + '/jobtitles')).data
+      this.companies = (await axios.get(this.$config.baseURL + '/companies')).data
+      this.jobtitles = (await axios.get(this.$config.baseURL + '/jobtitles')).data
     } catch (e) {
       console.log(e)
     }
