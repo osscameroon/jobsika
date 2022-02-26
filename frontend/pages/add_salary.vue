@@ -18,7 +18,7 @@
                 endPoint="companies"
               />
               <MyInput
-                title="Salary  (FCFA)"
+                title="Monthly Salary  (FCFA)"
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"

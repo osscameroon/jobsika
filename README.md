@@ -2,9 +2,9 @@
 Camerdevs, is dev cameroonian developer platform.
 
 ### Features
-The platform includes the functionnalities bellow:
+The platform includes the functionalities bellow:
 - A Catalogue cameroonian developers
-- Their availabilies
+- Their availabilities
 - The developers salaries broken down by companies
 - And later some job offers
 
@@ -19,7 +19,7 @@ To run locally, this api require few dependencies
 - [swagger](https://goswagger.io/install.html)
 
 #### How to run
-Once you have installed the required depencies, you can now run the application
+Once you have installed the required dependencies, you can now run the application
 following the patterns bellow
 
 #### Backend
