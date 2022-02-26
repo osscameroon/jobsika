@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BASE_URL } from "../constants/api";
 
 export const actions = {
   async getCompanies({ commit }, payload) {
@@ -10,7 +9,7 @@ export const actions = {
       jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
-      BASE_URL + '/ratings',
+      this.$config.baseURL + '/ratings',
       {
         params: { ...params }
       }
@@ -30,7 +29,7 @@ export const actions = {
       comment: payload.comment,
       job_title: payload.job_title
     }
-    const resp = await axios.post(BASE_URL + '/ratings', data)
+    const resp = await axios.post(this.$config.baseURL + '/ratings', data)
     if (resp) {
       commit("ratings/ADDCOMPANY", resp.data)
     }
@@ -65,7 +64,7 @@ export const actions = {
       jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
-      BASE_URL + '/average-rating',
+      this.$config.baseURL + '/average-rating',
       {
         params: { ...params }
       }

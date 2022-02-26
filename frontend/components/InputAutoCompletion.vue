@@ -70,7 +70,6 @@
 
 <script>
 import axios from 'axios'
-import { BASE_URL } from '../constants/api'
 export default {
   name: 'JobTitleAutoCompletion',
   props: ['title', 'myStyle', 'endPoint'],
@@ -105,17 +104,17 @@ export default {
   async created() {
     try {
       if (this.endPoint === 'companies') {
-        this.companies = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+        this.companies = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
       }
       if (this.endPoint === 'cities') {
-        this.cities = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+        this.cities = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
       }
       if (this.endPoint === 'jobtitles') {
-        this.jobtitles = (await axios.get(BASE_URL + `/${this.endPoint}`)).data
+        this.jobtitles = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
       }
       if (this.endPoint === 'seniority') {
         this.seniorities = (
-          await axios.get(BASE_URL + `/${this.endPoint}`)
+          await axios.get(this.$config.baseURL + `/${this.endPoint}`)
         ).data
       }
     } catch (e) {
