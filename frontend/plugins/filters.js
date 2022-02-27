@@ -1,5 +1,5 @@
 import Vue from "vue"
 
 Vue.filter('price', (value) => {
-  return value.toString().replace(/(?<=\d)(?=(\d{3})+(?!\d))/g, ',') + " FCFA"
+  return new Intl.NumberFormat('fr-CM', {style: 'currency', currency: 'XAF'}).format(value);
 })
