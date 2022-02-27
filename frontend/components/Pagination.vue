@@ -3,8 +3,7 @@
     class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6"
   >
     <div class="flex-1 flex justify-between sm:hidden">
-      <a
-        href="#"
+      <span
         style="font-family: 'Inter', sans-serif"
         class="
           relative
@@ -21,12 +20,13 @@
           text-gray-700
           bg-white
           hover:bg-gray-50
+          cursor-pointer
         "
+        @click="previewpage()"
       >
         Previous
-      </a>
-      <a
-        href="#"
+      </span>
+      <span
         style="font-family: 'Inter', sans-serif"
         class="
           ml-3
@@ -44,10 +44,12 @@
           text-gray-700
           bg-white
           hover:bg-gray-50
+          cursor-pointer
         "
+        @click="nextpage()"
       >
         Next
-      </a>
+      </span>
     </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
