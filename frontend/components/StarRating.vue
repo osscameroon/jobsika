@@ -19,7 +19,7 @@ export default {
   props: ['grade', 'maxStars', 'hasCounter'],
   data() {
     return {
-      stars: this.grade,
+      stars: this.grade === 1,
       staru: require('../assets/staru.png'),
       starc: require('../assets/starc.png'),
     }
