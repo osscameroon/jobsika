@@ -2,10 +2,34 @@
   <div
     class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6"
   >
-    <div class="flex-1 flex justify-between sm:hidden">
+    <div class="flex-1 flex justify-center sm:hidden">
+      <span
+        @click="startpage()"
+        style="border-color: #919191"
+        class="
+          relative
+          inline-flex
+          items-center
+          px-3
+          py-2
+          rounded-md
+          border
+          bg-white
+          text-xs
+          md:text-sm
+          font-medium
+          text-gray-500
+          hover:bg-gray-50
+          cursor-pointer
+          mx-2
+        "
+      >
+        <span style="color: #919191" class="font-bold">&laquo;</span>
+      </span>
+
       <span
         style="font-family: 'Inter', sans-serif"
-        class="
+        :class="`
           relative
           inline-flex
           items-center
@@ -18,17 +42,20 @@
           font-medium
           rounded-md
           text-gray-700
-          bg-white
-          hover:bg-gray-50
           cursor-pointer
-        "
+          ${
+            page === 1
+              ? 'bg-blue text-white border-none'
+              : 'bg-blueDark text-white border-none'
+          }
+          `"
         @click="previewpage()"
       >
         Previous
       </span>
       <span
         style="font-family: 'Inter', sans-serif"
-        class="
+        :class="`
           ml-3
           relative
           inline-flex
@@ -36,19 +63,43 @@
           px-4
           py-1
           md:py-2
-          border border-gray-300
           text-xs
           md:text-sm
           font-medium
           rounded-md
-          text-gray-700
-          bg-white
-          hover:bg-gray-50
           cursor-pointer
-        "
+          ${
+            page === numberPage
+              ? 'bg-blue text-white border-none'
+              : 'bg-blueDark text-white border-none'
+          }
+          `"
         @click="nextpage()"
       >
         Next
+      </span>
+      <span
+        @click="limitpage()"
+        style="border-color: #919191"
+        class="
+          relative
+          inline-flex
+          items-center
+          px-3
+          py-2
+          rounded-md
+          border
+          bg-white
+          text-xs
+          md:text-sm
+          font-medium
+          text-gray-500
+          hover:bg-gray-50
+          cursor-pointer
+          mx-2
+        "
+      >
+        <span style="color: #919191" class="font-bold">&raquo;</span>
       </span>
     </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
