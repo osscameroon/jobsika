@@ -39,7 +39,7 @@
             "
             style="font-family: 'Inter', sans-serif"
           >
-            {{ average }} FCFA
+            {{ average | price }}
           </p>
           <div class="flex pt-1 md:pt-0 ml-0 md:ml-24 md:mr-10">
             <div v-for="(item, index) in stars" :key="index" class="flex">

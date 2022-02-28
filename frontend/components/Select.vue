@@ -31,6 +31,14 @@
         <option
           class="text-xs md:text-sm"
           value=""
+          disabled
+          style="font-family: 'Inter', sans-serif"
+        >
+          Job title
+        </option>
+        <option
+          class="text-xs md:text-sm"
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
           any
@@ -75,6 +83,14 @@
         v-model="myfiltercompany"
         @change="onChangeCompany"
       >
+        <option
+          class="text-xs md:text-sm"
+          value=""
+          disabled
+          style="font-family: 'Inter', sans-serif"
+        >
+          Company
+        </option>
         <option
           class="text-xs md:text-sm"
           value=""
@@ -137,6 +153,7 @@ export default Vue.extend({
       this.$store.dispatch('getRatings', {
         page: this.page,
         limit: this.limit,
+
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
@@ -144,12 +161,14 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.commit('ratings/SETPAGE', 1)
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
       this.$store.dispatch('getRatings', {
         page: this.page,
         limit: this.limit,
+
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { BASE_URL } from "../constants/api";
 
 export const actions = {
   async getRatings({ commit }, payload) {
@@ -10,7 +9,7 @@ export const actions = {
       jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
-      BASE_URL + '/ratings',
+      this.$config.baseURL + '/ratings',
       {
         params: { ...params }
       }
@@ -22,35 +21,35 @@ export const actions = {
   },
   async getCompanies({ commit }) {
     const resp = await axios.get(
-      BASE_URL + '/companies')
+      this.$config.baseURL+ '/companies')
     if(resp){
       commit("companies/SETCOMPANIES", resp.data);
     }
   },
   async getJobtitles({ commit }) {
     const resp = await axios.get(
-      BASE_URL + '/jobtitles')
+      this.$config.baseURL + '/jobtitles')
     if(resp){
       commit("jobtitles/SETJOBTITLES", resp.data);
     }
   },
   async getCities({ commit }) {
     const resp = await axios.get(
-      BASE_URL + '/cities')
+      this.$config.baseURL + '/cities')
     if(resp){
       commit("cities/SETCITIES", resp.data);
     }
   },
   async getSeniorities({ commit }) {
     const resp = await axios.get(
-      BASE_URL + '/seniority')
+      this.$config.baseURL + '/seniority')
     if(resp){
       commit("seniorities/SETSENIORITIES", resp.data);
     }
   },
   async postRating({ commit }, data) {
     data.salary = parseInt(data.salary);
-    const resp = await axios.post(BASE_URL + '/ratings', data)
+    const resp = await axios.post(this.$config.baseURL + '/ratings', data)
     if(resp) {
       commit("ratings/ADDRATING", data)
     }
@@ -61,7 +60,7 @@ export const actions = {
       jobtitle: payload.jobtitle ? payload.jobtitle : ""
     }
     const resp = await axios.get(
-      BASE_URL + '/average-rating',
+      this.$config.baseURL + '/average-rating',
       {
         params: { ...params }
       }

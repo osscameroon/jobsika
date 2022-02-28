@@ -78,6 +78,7 @@ export default {
     },
     opened(){
       return this.filteredData.length > 0;
+
     }
   },
   created() {

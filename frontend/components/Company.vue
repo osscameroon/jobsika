@@ -152,7 +152,7 @@
                     class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.salary }} FCFA
+                    {{ company.salary | price }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
