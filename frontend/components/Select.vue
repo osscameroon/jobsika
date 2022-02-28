@@ -136,8 +136,6 @@ export default Vue.extend({
     onChangeJobTitle() {
       this.$store.dispatch('filterJob', this.myfilterjob)
       this.$store.dispatch('getCompanies', {
-        page: this.page,
-        limit: this.limit,
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
@@ -145,12 +143,11 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.commit('ratings/SETPAGE', 1)
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
       this.$store.dispatch('getCompanies', {
-        page: this.page,
-        limit: this.limit,
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
