@@ -25,37 +25,13 @@ export const mutations = {
   SETNBHITS(state, value) {
     state.nbHits = value;
   },
-  SETCOMPANIES(state, payload) {
-    state.companies = [].concat(payload);
+  SETRATINGS(state, payload) {
+    state.ratings = [].concat(payload);
   },
-  ADDCOMPANY(state, payload) {
-    state.companies = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.companies]
+  ADDRATING(state, payload) {
+    state.ratings = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.companies]
   },
-  SELECTVALUECOMPANY(state, value) {
-    state.selectvaluecompany = value
-  },
-  SELECTVALUEJOB(state, value) {
-    state.selectvaluejob = value
-  },
-  SELECTVALUECITY(state, value) {
-    state.selectvaluecity = value
-  },
-  SELECTVALUESALARY(state, value) {
-    state.selectvaluesalary = value
-  },
-  SELECTVALUECOMMENT(state, value) {
-    state.selectvaluecomment = value
-  },
-  SETFILTERJOB(state, value) {
-    state.filterjob = value
-  },
-  SETFILTERCOMPANY(state, value) {
-    state.filtercompany = value
-  },
-  SETAVERAGE(state, value) {
-    state.average = value
-  },
-  SELECTVALUESTARS(state, value) {
-    state.selectvaluestars = value
-  },
+  SETAVERAGE(state, value){
+    state.average = value;
+  }
 }

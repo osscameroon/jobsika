@@ -17,47 +17,43 @@ export const actions = {
     )
     if (resp) {
       commit("ratings/SETNBHITS", resp.data.nbHits);
-      commit("ratings/SETCOMPANIES", resp.data.hits);
+      commit("ratings/SETRATINGS", resp.data.hits);
     }
   },
-  async postCompany({ commit }, payload) {
-    const data = {
-      company_name: payload.company_name,
-      salary: payload.salary,
-      city: payload.city,
-      seniority: payload.seniority,
-      rating: payload.rating,
-      comment: payload.comment,
-      job_title: payload.job_title
+  async getCompanies({ commit }) {
+    const resp = await axios.get(
+      BASE_URL + '/companies')
+    if(resp){
+      commit("companies/SETCOMPANIES", resp.data);
     }
+  },
+  async getJobtitles({ commit }) {
+    const resp = await axios.get(
+      BASE_URL + '/jobtitles')
+    if(resp){
+      commit("jobtitles/SETJOBTITLES", resp.data);
+    }
+  },
+  async getCities({ commit }) {
+    const resp = await axios.get(
+      BASE_URL + '/cities')
+    if(resp){
+      commit("cities/SETCITIES", resp.data);
+    }
+  },
+  async getSeniorities({ commit }) {
+    const resp = await axios.get(
+      BASE_URL + '/seniority')
+    if(resp){
+      commit("seniorities/SETSENIORITIES", resp.data);
+    }
+  },
+  async postRating({ commit }, data) {
+    data.salary = parseInt(data.salary);
     const resp = await axios.post(BASE_URL + '/ratings', data)
     if (resp) {
       commit("ratings/ADDCOMPANY", resp.data)
     }
-  },
-  selectValueCompany({ commit }, payload) {
-    commit('ratings/SELECTVALUECOMPANY', payload)
-  },
-  selectValueJob({ commit }, payload) {
-    commit('ratings/SELECTVALUEJOB', payload)
-  },
-  selectValueCity({ commit }, payload) {
-    commit('ratings/SELECTVALUECITY', payload)
-  },
-  selectValueSalary({ commit }, payload) {
-    commit('ratings/SELECTVALUESALARY', payload)
-  },
-  selectValueComment({ commit }, payload) {
-    commit('ratings/SELECTVALUECOMMENT', payload)
-  },
-  filterJob({ commit }, payload) {
-    commit('ratings/SETFILTERJOB', payload)
-  },
-  filterCompany({ commit }, payload) {
-    commit('ratings/SETFILTERCOMPANY', payload)
-  },
-  selectValueStars({ commit }, payload) {
-    commit('ratings/SELECTVALUESTARS', payload)
   },
   async fetchAverage({ commit }, payload) {
     const params = {
@@ -72,7 +68,13 @@ export const actions = {
     )
     if (resp) {
       commit("ratings/SETAVERAGE", resp.data.salary)
-      commit("ratings/SELECTVALUESTARS", resp.data.rating)
+      // commit("ratings/SELECTVALUESTARS", resp.data.rating)
     }
+  },
+  filterJob({ commit }, value){
+    commit("jobtitles/SETFILTERJOB", value)
+  },
+  filterCompany({ commit }, value){
+    commit("companies/SETFILTERCOMPANY", value)
   },
 }

@@ -12,22 +12,92 @@
         <div class="site__main-row flex flex-col-reverse md:flex-row">
           <div class="site__main-rowOne w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <InputAutoCompletion
-                title="Company Name"
-                myStyle="height: 61px;"
-                endPoint="companies"
+              <p
+                class="text-xs md:text-sm font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                Company name
+              </p>
+              <input
+                v-model="newRating.company_name"
+                type="text"
+                class="
+                  site__input-field
+                  border-none
+                  mt-2
+                  md:mt-3
+                  w-full
+                  rounded-md
+                  mb-4
+                  md:mb-16
+                  height: 61px;
+                "
               />
-              <MyInput
-                title="Salary  (FCFA)"
-                myStyle="height: 61px;"
-                content="subtitle"
-                myInput="input"
-                typeInput="number"
+              <ul
+                style="background: white"
+                class="
+                  h-20
+                  md:h-32
+                  overflow-y-scroll
+                  rounded-lg
+                  -mt-3
+                  md:-mt-14
+                  mb-2
+                  md:mb-4
+                  cursor-pointer
+                "
+                v-if="companyComplation"
+              >
+                <li
+                  v-for="(name, index) in filteredCompanyNames"
+                  :key="index"
+                  class="shadow-sm py-2 px-4"
+                  @click="setCompanyName(name)"
+                >
+                  {{ name }}
+                </li>
+              </ul>
+              <p
+                class="text-xs md:text-sm font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                Salary  (FCFA)
+              </p>
+              <input
+                v-model="newRating.salary"
+                type="number"
+                class="
+                  site__input-field
+                  border-none
+                  mt-2
+                  md:mt-3
+                  w-full
+                  rounded-md
+                  mb-4
+                  md:mb-16
+                  height: 61px;
+                "
               />
-              <MyInput
-                title="Comments"
-                myStyle="height: 120px;"
-                content="subtitle"
+              <p
+                class="text-xs md:text-sm font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                Comments
+              </p>
+              <input
+                v-model="newRating.comment"
+                type="textarea"
+                class="
+                  site__input-field
+                  border-none
+                  mt-2
+                  md:mt-3
+                  w-full
+                  rounded-md
+                  mb-4
+                  md:mb-16
+                  height: 120px;
+                "
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
@@ -53,16 +123,96 @@
           </div>
           <div class="site__main-rowTwo w-full md:w-1/2">
             <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <InputAutoCompletion
-                title="Job title"
-                myStyle="height: 61px;"
-                endPoint="jobtitles"
+              <p
+                class="text-xs md:text-sm font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                Job Title
+              </p>
+              <input
+                v-model="newRating.job_title"
+                type="text"
+                class="
+                  site__input-field
+                  border-none
+                  mt-2
+                  md:mt-3
+                  w-full
+                  rounded-md
+                  mb-4
+                  md:mb-16
+                  height: 61px;
+                "
               />
-              <InputAutoCompletion
-                title="City"
-                myStyle="height: 61px;"
-                endPoint="cities"
+              <ul
+                style="background: white"
+                class="
+                  h-20
+                  md:h-32
+                  overflow-y-scroll
+                  rounded-lg
+                  -mt-3
+                  md:-mt-14
+                  mb-2
+                  md:mb-4
+                  cursor-pointer
+                "
+                v-if="jobTitleComplation"
+              >
+                <li
+                  v-for="(job, index) in filteredJobTitles"
+                  :key="index"
+                  class="shadow-sm py-2 px-4"
+                  @click="setJobTitle(job)"
+                >
+                  {{ job }}
+                </li>
+              </ul>
+              <p
+                class="text-xs md:text-sm font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                City
+              </p>
+              <input
+                v-model="newRating.city"
+                type="text"
+                class="
+                  site__input-field
+                  border-none
+                  mt-2
+                  md:mt-3
+                  w-full
+                  rounded-md
+                  mb-4
+                  md:mb-16
+                  height: 61px;
+                "
               />
+              <ul
+                style="background: white"
+                class="
+                  h-20
+                  md:h-32
+                  overflow-y-scroll
+                  rounded-lg
+                  -mt-3
+                  md:-mt-14
+                  mb-2
+                  md:mb-4
+                  cursor-pointer
+                "
+                v-if="cityComplation"
+              >
+                <li
+                  v-for="(city, index) in filteredCities"
+                  :key="index"
+                  class="shadow-sm py-2 px-4"
+                  @click="setCity(city)"
+                >
+                  {{ city }}
+                </li>
+              </ul>
               <div class="site__input w-full">
                 <p
                   class="text-xs md:text-sm font-bold"
