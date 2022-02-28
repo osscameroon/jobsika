@@ -133,9 +133,7 @@
 </template>
 
 <script>
-import axios from 'axios'
 import Button from '../components/Button.vue'
-import { BASE_URL } from '../constants/api'
 export default {
   name: 'AddSalary',
   components: {
@@ -145,7 +143,6 @@ export default {
   data() {
     return {
       starsPicture: require('../assets/star.png'),
-      seniorities: [],
       newRating: {
         company_name: '',
         salary: 0,

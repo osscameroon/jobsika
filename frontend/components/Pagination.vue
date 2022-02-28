@@ -208,7 +208,7 @@
               {{ current }}
             </span>
           </div>
-          <div @click="nextpage(current)">
+          <div @click="nextpage()">
             <span
               :class="`
                 z-10
