@@ -22,7 +22,6 @@
                 myStyle="height: 61px;"
                 content="subtitle"
                 myInput="input"
-                typeInput="number"
               />
               <MyInput
                 title="Comments"
@@ -180,7 +179,9 @@ export default {
   },
   async created() {
     try {
-      this.seniorities = (await axios.get(this.$config.baseURL + '/seniority')).data
+      this.seniorities = (
+        await axios.get(this.$config.baseURL + '/seniority')
+      ).data
     } catch (err) {
       console.log(err)
     }
