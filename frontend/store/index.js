@@ -2,7 +2,7 @@ import axios from "axios";
 import { BASE_URL } from "../constants/api";
 
 export const actions = {
-  async getCompanies({ commit }, payload) {
+  async getRatings({ commit }, payload) {
     const params = {
       page: payload.page,
       limit: payload.limit,

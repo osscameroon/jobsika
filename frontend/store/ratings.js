@@ -3,32 +3,16 @@ export const state = () => ({
   page: 1,
   limit: 10,
   nbHits: 0,
-  companies: [],
-  selectvaluecompany: '',
-  selectvaluejob: '',
-  selectvaluecity: '',
-  selectvaluesalary: 0,
-  selectvaluecomment: '',
-  filterjob: '',
-  filtercompany: '',
+  ratings: [],
   average: 0,
-  selectvaluestars: 0
 })
 
 export const getters = {
   page: (state) => state.page,
   limit: (state) => state.limit,
   nbHits: (state) => state.nbHits,
-  companies: (state) => state.companies,
-  selectvaluecompany: (state) => state.selectvaluecompany,
-  selectvaluejob: (state) => state.selectvaluejob,
-  selectvaluecity: (state) => state.selectvaluecity,
-  selectvaluesalary: (state) => state.selectvaluesalary,
-  selectvaluecomment: (state) => state.selectvaluecomment,
-  filterjob: (state) => state.filterjob,
-  filtercompany: (state) => state.filtercompany,
+  ratings: (state) => state.ratings,
   average: (state) => state.average,
-  selectvaluestars: (state) => state.selectvaluestars
 }
 
 export const mutations = {

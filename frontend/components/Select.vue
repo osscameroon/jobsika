@@ -149,7 +149,7 @@ export default Vue.extend({
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
-      this.$store.dispatch('getCompanies', {
+      this.$store.dispatch('getRatings', {
         page: this.page,
         limit: this.limit,
         company: this.filtercompany,

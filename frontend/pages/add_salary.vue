@@ -118,9 +118,10 @@
                   Rate
                 </p>
                 <StarRating
-                  :grade="selectvaluestars"
+                  :grade="newRating.rating"
                   :maxStars="5"
                   :hasCounter="true"
+                  @changeGrade="setGrade"
                 />
               </div>
             </div>

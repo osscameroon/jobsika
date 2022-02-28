@@ -290,7 +290,7 @@ export default {
       return this.$store.state.ratings.nbHits
     },
     nbOfItems() {
-      return this.$store.state.ratings.companies.length
+      return this.$store.state.ratings.ratings.length
     },
     numberPage() {
       return Math.ceil(this.nbHits / this.limit)
@@ -321,8 +321,8 @@ export default {
     },
   },
   methods: {
-    async fetchCompanies() {
-      await this.$store.dispatch('getCompanies', {
+    async fetchRatings() {
+      await this.$store.dispatch('getRatings', {
         page: this.page,
         limit: this.limit,
         company: this.filtercompany,
@@ -334,7 +334,7 @@ export default {
     },
     changepage(value) {
       this.setpage(value)
-      this.fetchCompanies()
+      this.fetchRatings()
     },
     nextpage() {
       if (this.page + 1 <= this.numberPage) {
@@ -354,8 +354,8 @@ export default {
     },
   },
   async created() {
-    await this.fetchCompanies()
-    console.log('number of page', this.numberPage)
+    await this.fetchRatings();
+    console.log('number of page', this.numberPage);
   },
 }
 </script>
