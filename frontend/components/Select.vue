@@ -97,26 +97,28 @@
   </div>
 </template>
 <script lang="ts">
-import axios from 'axios'
 import Vue from 'vue'
-import { BASE_URL } from '../constants/api'
 export default Vue.extend({
   name: 'SelectComponent',
   props: {},
   data() {
     return {
-      companies: [],
-      jobtitles: [],
       myfilterjob: '',
       myfiltercompany: '',
     }
   },
   computed: {
+    companies(){
+      return this.$store.state.companies.companies
+    },
+    jobtitles(){
+      return this.$store.state.jobtitles.jobtitles
+    },
     filterjob() {
-      return this.$store.state.ratings.filterjob
+      return this.$store.state.jobtitles.filterjob
     },
     filtercompany() {
-      return this.$store.state.ratings.filtercompany
+      return this.$store.state.companies.filtercompany
     },
     page() {
       return this.$store.state.ratings.page
@@ -126,17 +128,13 @@ export default Vue.extend({
     },
   },
   async created() {
-    try {
-      this.companies = (await axios.get(BASE_URL + '/companies')).data
-      this.jobtitles = (await axios.get(BASE_URL + '/jobtitles')).data
-    } catch (e) {
-      console.log(e)
-    }
+    await this.fetchCompanies();
+    await this.fetchJobtitles();
   },
   methods: {
     onChangeJobTitle() {
-      this.$store.dispatch('filterJob', this.myfilterjob)
-      this.$store.dispatch('getCompanies', {
+      this.$store.dispatch('filterJob', this.myfilterjob);
+      this.$store.dispatch('getRatings', {
         page: this.page,
         limit: this.limit,
         company: this.filtercompany,
@@ -159,6 +157,12 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+    },
+    async fetchCompanies() {
+      await this.$store.dispatch('getCompanies');
+    },
+    async fetchJobtitles() {
+      await this.$store.dispatch('getJobtitles');
     },
   },
 })

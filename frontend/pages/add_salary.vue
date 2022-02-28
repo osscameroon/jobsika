@@ -155,34 +155,77 @@ export default {
         comment: '',
         job_title: '',
       },
+      isCompanyNameSetted: false,
+      isJobTitleSetted: false,
+      isCitySetted: false,
     }
   },
   computed: {
-    selectvaluecompany() {
-      return this.$store.state.ratings.selectvaluecompany
+    companies(){
+      return this.$store.state.companies.companies
     },
-    selectvaluejob() {
-      return this.$store.state.ratings.selectvaluejob
+    jobtitles(){
+      return this.$store.state.jobtitles.jobtitles
     },
-    selectvaluecity() {
-      return this.$store.state.ratings.selectvaluecity
+    cities(){
+      return this.$store.state.cities.cities
     },
-    selectvalueseniority() {
-      return this.newRating.seniority
+    seniorities(){
+      return this.$store.state.seniorities.seniorities
     },
-    selectvaluesalary() {
-      return parseInt(this.$store.state.ratings.selectvaluesalary)
+    companyNames(){
+      return this.companies.map(elem => elem.name);
     },
-    selectvaluecomment() {
-      return this.$store.state.ratings.selectvaluecomment
+    filteredCompanyNames(){
+      if(this.newRating.company_name === ''){
+        return []
+      }else{
+        return this.companyNames.filter(
+          elem => {
+            return !elem.toLowerCase().indexOf(this.newRating.company_name.toLowerCase())
+          }
+        );
+      }
     },
-    selectvaluestars() {
-      return this.$store.state.ratings.selectvaluestars
+    filteredJobTitles(){
+      if(this.newRating.job_title === ''){
+        return []
+      }else{
+        return this.jobtitles.filter(
+          elem => {
+            return !elem.toLowerCase().indexOf(this.newRating.job_title.toLowerCase())
+          }
+        );
+      }
     },
+    filteredCities(){
+      if(this.newRating.city === ''){
+        return []
+      }else{
+        return this.cities.filter(
+          elem => {
+            return !elem.toLowerCase().indexOf(this.newRating.city.toLowerCase())
+          }
+        );
+      }
+    },
+    companyComplation(){
+      return this.filteredCompanyNames.length > 0 && !this.isCompanyNameSetted
+    },
+    jobTitleComplation(){
+      return this.filteredJobTitles.length > 0 && !this.isJobTitleSetted
+    },
+    cityComplation(){
+      return this.filteredCities.length > 0 && !this.isCitySetted
+    }
   },
   async created() {
     try {
-      this.seniorities = (await axios.get(BASE_URL + '/seniority')).data
+      await this.fetchCompanies();
+      await this.fetchJobtitles();
+      await this.fetchCities();
+      await this.fetchSeniorities();
+
     } catch (err) {
       console.log(err)
     }
@@ -191,17 +234,38 @@ export default {
     goToList() {
       this.$router.push('/')
     },
-    addRating() {
-      if (this.newRating) {
-        this.$store.dispatch('postCompany', {
-          company_name: this.selectvaluecompany,
-          salary: this.selectvaluesalary,
-          city: this.selectvaluecity,
-          seniority: this.selectvalueseniority,
-          rating: this.selectvaluestars,
-          comment: this.selectvaluecomment,
-          job_title: this.selectvaluejob,
-        })
+    setCompanyName(name){
+      this.newRating.company_name = name;
+      this.isCompanyNameSetted = true
+    },
+    setJobTitle(job){
+      this.newRating.job_title = job;
+      this.isJobTitleSetted = true
+    },
+    setCity(city){
+      this.newRating.city = city;
+      this.isCitySetted = true
+    },
+    async fetchCompanies() {
+      await this.$store.dispatch('getCompanies');
+    },
+    async fetchJobtitles() {
+      await this.$store.dispatch('getJobtitles');
+    },
+    async fetchCities() {
+      await this.$store.dispatch('getCities');
+    },
+    async fetchSeniorities() {
+      await this.$store.dispatch('getSeniorities');
+    },
+    setGrade(value){
+      console.log("call star with", value);
+      this.newRating.rating = value;
+    },
+    addRating(){
+      console.log("new :", this.newRating);
+      if (this.newRating){
+        this.$store.dispatch('postRating', this.newRating)
         this.$router.push('/')
       }
     },
