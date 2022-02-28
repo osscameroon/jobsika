@@ -51,8 +51,8 @@ export const actions = {
   async postRating({ commit }, data) {
     data.salary = parseInt(data.salary);
     const resp = await axios.post(BASE_URL + '/ratings', data)
-    if (resp) {
-      commit("ratings/ADDCOMPANY", resp.data)
+    if(resp) {
+      commit("ratings/ADDRATING", data)
     }
   },
   async fetchAverage({ commit }, payload) {
@@ -68,7 +68,6 @@ export const actions = {
     )
     if (resp) {
       commit("ratings/SETAVERAGE", resp.data.salary)
-      // commit("ratings/SELECTVALUESTARS", resp.data.rating)
     }
   },
   filterJob({ commit }, value){

@@ -29,7 +29,7 @@ export const mutations = {
     state.ratings = [].concat(payload);
   },
   ADDRATING(state, payload) {
-    state.ratings = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.companies]
+    state.ratings = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.ratings]
   },
   SETAVERAGE(state, value){
     state.average = value;
