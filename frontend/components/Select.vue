@@ -31,6 +31,14 @@
         <option
           class="text-xs md:text-sm"
           value=""
+          disabled
+          style="font-family: 'Inter', sans-serif"
+        >
+          Job title
+        </option>
+        <option
+          class="text-xs md:text-sm"
+          value=""
           style="font-family: 'Inter', sans-serif"
         >
           any
@@ -75,6 +83,14 @@
         v-model="myfiltercompany"
         @change="onChangeCompany"
       >
+        <option
+          class="text-xs md:text-sm"
+          value=""
+          disabled
+          style="font-family: 'Inter', sans-serif"
+        >
+          Company
+        </option>
         <option
           class="text-xs md:text-sm"
           value=""
@@ -126,8 +142,12 @@ export default Vue.extend({
   },
   async created() {
     try {
-      this.companies = (await axios.get(this.$config.baseURL + '/companies')).data
-      this.jobtitles = (await axios.get(this.$config.baseURL + '/jobtitles')).data
+      this.companies = (
+        await axios.get(this.$config.baseURL + '/companies')
+      ).data
+      this.jobtitles = (
+        await axios.get(this.$config.baseURL + '/jobtitles')
+      ).data
     } catch (e) {
       console.log(e)
     }
@@ -136,8 +156,6 @@ export default Vue.extend({
     onChangeJobTitle() {
       this.$store.dispatch('filterJob', this.myfilterjob)
       this.$store.dispatch('getCompanies', {
-        page: this.page,
-        limit: this.limit,
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
@@ -145,12 +163,11 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.commit('ratings/SETPAGE', 1)
     },
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
       this.$store.dispatch('getCompanies', {
-        page: this.page,
-        limit: this.limit,
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })

@@ -4,7 +4,7 @@
       <div class="container mx-auto w-10/12">
         <Title
           title="100% Anonymous"
-          subTitle="Company rating and salaries in Cameroon"
+          subTitle="Company ratings and salaries in Cameroon"
           fontSize="header"
         />
         <div
