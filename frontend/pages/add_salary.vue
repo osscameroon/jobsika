@@ -406,11 +406,9 @@ export default {
       await this.$store.dispatch('getSeniorities');
     },
     setGrade(value){
-      console.log("call star with", value);
       this.newRating.rating = value;
     },
     addRating(){
-      console.log("new :", this.newRating);
       if (this.newRating){
         this.$store.dispatch('postRating', this.newRating)
         this.$router.push('/')
