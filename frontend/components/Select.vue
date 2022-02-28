@@ -124,10 +124,10 @@ export default Vue.extend({
     }
   },
   computed: {
-    companies(){
+    companies() {
       return this.$store.state.companies.companies
     },
-    jobtitles(){
+    jobtitles() {
       return this.$store.state.jobtitles.jobtitles
     },
     filterjob() {
@@ -144,16 +144,13 @@ export default Vue.extend({
     },
   },
   async created() {
-    await this.fetchCompanies();
-    await this.fetchJobtitles();
+    await this.fetchCompanies()
+    await this.fetchJobtitles()
   },
   methods: {
     onChangeJobTitle() {
-      this.$store.dispatch('filterJob', this.myfilterjob);
+      this.$store.dispatch('filterJob', this.myfilterjob)
       this.$store.dispatch('getRatings', {
-        page: this.page,
-        limit: this.limit,
-
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
@@ -166,9 +163,6 @@ export default Vue.extend({
     onChangeCompany() {
       this.$store.dispatch('filterCompany', this.myfiltercompany)
       this.$store.dispatch('getRatings', {
-        page: this.page,
-        limit: this.limit,
-
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
@@ -178,10 +172,10 @@ export default Vue.extend({
       })
     },
     async fetchCompanies() {
-      await this.$store.dispatch('getCompanies');
+      await this.$store.dispatch('getCompanies')
     },
     async fetchJobtitles() {
-      await this.$store.dispatch('getJobtitles');
+      await this.$store.dispatch('getJobtitles')
     },
   },
 })
