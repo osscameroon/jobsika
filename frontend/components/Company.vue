@@ -110,7 +110,7 @@
               </tr>
             </thead>
             <tbody
-              v-for="(company, myIndex) in companies"
+              v-for="(company, myIndex) in ratings"
               :key="myIndex + 1"
               class="bg-white shadow-md divide-y divide-white"
             >
@@ -239,8 +239,8 @@ export default Vue.extend({
     limit() {
       return this.$store.state.ratings.limit
     },
-    companies() {
-      return this.$store.state.ratings.companies
+    ratings() {
+      return this.$store.state.ratings.ratings
     },
     filterjob() {
       return this.$store.state.ratings.filterjob

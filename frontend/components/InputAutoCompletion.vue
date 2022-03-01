@@ -11,7 +11,6 @@
       type="text"
       class="site__input-field border-none mt-3 w-full rounded-md mb-8 md:mb-16"
       :style="myStyle"
-      @change="onChange"
     />
     <ul
       style="background: white"
@@ -26,125 +25,69 @@
         md:mb-4
         cursor-pointer
       "
-      v-show="isOpen"
+      v-if="opened"
     >
       <li
-        :v-if="endPoint === 'cities'"
-        v-for="(city, index) in filterCityByName"
+        v-for="(elem, index) in filteredData"
         :key="index"
-        @click="setResult(city)"
+        @click="setResult(elem)"
         class="shadow-sm py-2 px-4"
       >
-        {{ city }}
-      </li>
-      <li
-        :v-if="endPoint === 'jobtitles'"
-        v-for="(job, index) in filterJobByName"
-        :key="index"
-        @click="setResult(job)"
-        class="shadow-sm py-2 px-4"
-      >
-        {{ job }}
-      </li>
-      <li
-        :v-if="endPoint === 'seniority'"
-        v-for="(seniority, index) in filterSeniorityByName"
-        :key="index"
-        @click="setResult(seniority)"
-        class="shadow-sm py-1 px-4"
-      >
-        {{ seniority }}
-      </li>
-      <li
-        :v-if="endPoint === 'companies'"
-        v-for="company in filterCompanyByName"
-        :key="company.id"
-        @click="setResult(company.name)"
-        class="shadow-sm py-2 px-4"
-      >
-        {{ company.name }}
+        {{ elem }}
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
-  name: 'JobTitleAutoCompletion',
-  props: ['title', 'myStyle', 'endPoint'],
+  name: 'AutoCompletion',
+  props: {
+    title: {
+      required: true,
+      type: String
+    },
+    /* name: {
+      required: true,
+      type: String
+    }, */
+    myStyle: {
+      required: true,
+      type: String
+    },
+    datas: {
+      required: true,
+      type: [Array]
+    }
+  },
   data() {
     return {
-      name: '',
+      name: "",
       isOpen: false,
-      jobtitles: [],
-      companies: [],
-      seniorities: [],
-      cities: [],
     }
   },
   computed: {
-    filterJobByName() {
-      return this.jobtitles.filter((job) => !job.indexOf(this.name))
-    },
-    filterCityByName() {
-      return this.cities.filter((city) => !city.indexOf(this.name))
-    },
-    filterSeniorityByName() {
-      return this.seniorities.filter(
-        (seniority) => !seniority.indexOf(this.name)
-      )
-    },
-    filterCompanyByName() {
-      return this.companies.filter(
-        (company) => !company.name.indexOf(this.name)
-      )
-    },
-  },
-  async created() {
-    try {
-      if (this.endPoint === 'companies') {
-        this.companies = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
+    filteredData(){
+      if(this.name === ""){
+        return []
+      }else{
+        return this.datas.map(elem => elem.toLowerCase()).filter(
+          (elem) => !elem.indexOf(this.name.toLowerCase())
+        )
       }
-      if (this.endPoint === 'cities') {
-        this.cities = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
-      }
-      if (this.endPoint === 'jobtitles') {
-        this.jobtitles = (await axios.get(this.$config.baseURL + `/${this.endPoint}`)).data
-      }
-      if (this.endPoint === 'seniority') {
-        this.seniorities = (
-          await axios.get(this.$config.baseURL + `/${this.endPoint}`)
-        ).data
-      }
-    } catch (e) {
-      console.log(e)
+    },
+    opened(){
+      return this.filteredData.length > 0;
+
     }
   },
+  created() {
+    
+  },
   methods: {
-    onChange() {
-      if (this.name === '') {
-        this.jobtitles = []
-        this.companies = []
-        this.seniorities = []
-        this.cities = []
-      } else {
-        this.$emit('input', this.name)
-        this.isOpen = true
-      }
-    },
     setResult(result) {
-      this.name = result
-      this.isOpen = false
-      if (this.endPoint === 'companies') {
-        this.$store.dispatch('selectValueCompany', this.name)
-      }
-      if (this.endPoint === 'jobtitles') {
-        this.$store.dispatch('selectValueJob', this.name)
-      }
-      if (this.endPoint === 'cities') {
-        this.$store.dispatch('selectValueCity', this.name)
-      }
+      this.name = result;
+      this.isOpen = false;
     },
   },
 }
