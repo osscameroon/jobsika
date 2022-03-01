@@ -16,11 +16,12 @@
                 class="text-xs md:text-sm font-bold"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
-                Company name
+                Company Name
               </p>
               <input
                 v-model="newRating.company_name"
                 type="text"
+                style="height: 61px"
                 class="
                   site__input-field
                   border-none
@@ -30,7 +31,6 @@
                   rounded-md
                   mb-4
                   md:mb-16
-                  height: 61px;
                 "
               />
               <ul
@@ -61,11 +61,11 @@
                 class="text-xs md:text-sm font-bold"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
-                Salary  (FCFA)
+                Monthly Salary (FCFA)
               </p>
               <input
                 v-model="newRating.salary"
-                type="number"
+                style="height: 61px"
                 class="
                   site__input-field
                   border-none
@@ -75,7 +75,6 @@
                   rounded-md
                   mb-4
                   md:mb-16
-                  height: 61px;
                 "
               />
               <p
@@ -87,6 +86,7 @@
               <input
                 v-model="newRating.comment"
                 type="textarea"
+                style="height: 120px"
                 class="
                   site__input-field
                   border-none
@@ -96,7 +96,6 @@
                   rounded-md
                   mb-4
                   md:mb-16
-                  height: 120px;
                 "
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
@@ -132,6 +131,7 @@
               <input
                 v-model="newRating.job_title"
                 type="text"
+                style="height: 61px"
                 class="
                   site__input-field
                   border-none
@@ -141,7 +141,6 @@
                   rounded-md
                   mb-4
                   md:mb-16
-                  height: 61px;
                 "
               />
               <ul
@@ -177,6 +176,7 @@
               <input
                 v-model="newRating.city"
                 type="text"
+                style="height: 61px"
                 class="
                   site__input-field
                   border-none
@@ -186,7 +186,6 @@
                   rounded-md
                   mb-4
                   md:mb-16
-                  height: 61px;
                 "
               />
               <ul
@@ -295,10 +294,10 @@ export default {
       starsPicture: require('../assets/star.png'),
       newRating: {
         company_name: '',
-        salary: 0,
+        salary: '',
         city: '',
         seniority: 'Senior',
-        rating: 3,
+        rating: 0,
         comment: '',
         job_title: '',
       },
@@ -308,71 +307,68 @@ export default {
     }
   },
   computed: {
-    companies(){
+    companies() {
       return this.$store.state.companies.companies
     },
-    jobtitles(){
+    jobtitles() {
       return this.$store.state.jobtitles.jobtitles
     },
-    cities(){
+    cities() {
       return this.$store.state.cities.cities
     },
-    seniorities(){
+    seniorities() {
       return this.$store.state.seniorities.seniorities
     },
-    companyNames(){
-      return this.companies.map(elem => elem.name);
+    companyNames() {
+      return this.companies.map((elem) => elem.name)
     },
-    filteredCompanyNames(){
-      if(this.newRating.company_name === ''){
+    filteredCompanyNames() {
+      if (this.newRating.company_name === '') {
         return []
-      }else{
-        return this.companyNames.filter(
-          elem => {
-            return !elem.toLowerCase().indexOf(this.newRating.company_name.toLowerCase())
-          }
-        );
+      } else {
+        return this.companyNames.filter((elem) => {
+          return !elem
+            .toLowerCase()
+            .indexOf(this.newRating.company_name.toLowerCase())
+        })
       }
     },
-    filteredJobTitles(){
-      if(this.newRating.job_title === ''){
+    filteredJobTitles() {
+      if (this.newRating.job_title === '') {
         return []
-      }else{
-        return this.jobtitles.filter(
-          elem => {
-            return !elem.toLowerCase().indexOf(this.newRating.job_title.toLowerCase())
-          }
-        );
+      } else {
+        return this.jobtitles.filter((elem) => {
+          return !elem
+            .toLowerCase()
+            .indexOf(this.newRating.job_title.toLowerCase())
+        })
       }
     },
-    filteredCities(){
-      if(this.newRating.city === ''){
+    filteredCities() {
+      if (this.newRating.city === '') {
         return []
-      }else{
-        return this.cities.filter(
-          elem => {
-            return !elem.toLowerCase().indexOf(this.newRating.city.toLowerCase())
-          }
-        );
+      } else {
+        return this.cities.filter((elem) => {
+          return !elem.toLowerCase().indexOf(this.newRating.city.toLowerCase())
+        })
       }
     },
-    companyComplation(){
+    companyComplation() {
       return this.filteredCompanyNames.length > 0 && !this.isCompanyNameSetted
     },
-    jobTitleComplation(){
+    jobTitleComplation() {
       return this.filteredJobTitles.length > 0 && !this.isJobTitleSetted
     },
-    cityComplation(){
+    cityComplation() {
       return this.filteredCities.length > 0 && !this.isCitySetted
-    }
+    },
   },
   async created() {
     try {
-      await this.fetchCompanies();
-      await this.fetchJobtitles();
-      await this.fetchCities();
-      await this.fetchSeniorities();
-
+      await this.fetchCompanies()
+      await this.fetchJobtitles()
+      await this.fetchCities()
+      await this.fetchSeniorities()
     } catch (err) {
       console.log(err)
     }
@@ -381,35 +377,35 @@ export default {
     goToList() {
       this.$router.push('/')
     },
-    setCompanyName(name){
-      this.newRating.company_name = name;
+    setCompanyName(name) {
+      this.newRating.company_name = name
       this.isCompanyNameSetted = true
     },
-    setJobTitle(job){
-      this.newRating.job_title = job;
+    setJobTitle(job) {
+      this.newRating.job_title = job
       this.isJobTitleSetted = true
     },
-    setCity(city){
-      this.newRating.city = city;
+    setCity(city) {
+      this.newRating.city = city
       this.isCitySetted = true
     },
     async fetchCompanies() {
-      await this.$store.dispatch('getCompanies');
+      await this.$store.dispatch('getCompanies')
     },
     async fetchJobtitles() {
-      await this.$store.dispatch('getJobtitles');
+      await this.$store.dispatch('getJobtitles')
     },
     async fetchCities() {
-      await this.$store.dispatch('getCities');
+      await this.$store.dispatch('getCities')
     },
     async fetchSeniorities() {
-      await this.$store.dispatch('getSeniorities');
+      await this.$store.dispatch('getSeniorities')
     },
-    setGrade(value){
-      this.newRating.rating = value;
+    setGrade(value) {
+      this.newRating.rating = value
     },
-    addRating(){
-      if (this.newRating){
+    addRating() {
+      if (this.newRating) {
         this.$store.dispatch('postRating', this.newRating)
         this.$router.push('/')
       }
