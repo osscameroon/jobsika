@@ -65,6 +65,7 @@
               </p>
               <input
                 v-model="newRating.salary"
+                type="text"
                 style="height: 61px"
                 class="
                   site__input-field
@@ -83,20 +84,12 @@
               >
                 Comments
               </p>
-              <input
+              <textarea
                 v-model="newRating.comment"
                 type="textarea"
+                rows="5"
                 style="height: 120px"
-                class="
-                  site__input-field
-                  border-none
-                  mt-2
-                  md:mt-3
-                  w-full
-                  rounded-md
-                  mb-4
-                  md:mb-16
-                "
+                class="resize rounded-md w-full h-full mt-2 md:mt-3 border-none"
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
