@@ -5,6 +5,7 @@ export const state = () => ({
   nbHits: 0,
   ratings: [],
   average: 0,
+  averageStars: 0,
 })
 
 export const getters = {
@@ -13,6 +14,7 @@ export const getters = {
   nbHits: (state) => state.nbHits,
   ratings: (state) => state.ratings,
   average: (state) => state.average,
+  averageStars: (state) => state.averageStars,
 }
 
 export const mutations = {
@@ -33,5 +35,8 @@ export const mutations = {
   },
   SETAVERAGE(state, value){
     state.average = value;
+  },
+  SETAVERAGESTARS(state, value){
+    state.averageStars = value;
   }
 }

@@ -67,6 +67,7 @@ export const actions = {
     )
     if (resp) {
       commit("ratings/SETAVERAGE", resp.data.salary)
+      commit("ratings/SETAVERAGESTARS", resp.data.rating)
     }
   },
   filterJob({ commit }, value){
