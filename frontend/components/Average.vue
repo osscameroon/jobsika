@@ -81,7 +81,7 @@ export default Vue.extend({
       return this.$store.state.ratings.filtercompany
     },
     stars() {
-      return this.$store.state.ratings.selectvaluestars
+      return this.$store.state.ratings.averageStars
     },
   },
   async created() {
