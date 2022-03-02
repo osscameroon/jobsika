@@ -17,6 +17,7 @@
         <div class="site__main-company py-2 md:py-8">
           <Company />
           <Average title="Average" />
+          <Pagination />
         </div>
       </div>
     </main>
