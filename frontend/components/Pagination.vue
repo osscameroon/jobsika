@@ -400,15 +400,23 @@ export default {
       }
     },
     startpage() {
-      this.changepage(1)
+      if (this.page === 1) {
+        return null
+      } else {
+        this.changepage(1)
+      }
     },
     limitpage() {
-      this.changepage(this.numberPage)
+      if (this.numberPage === 1) {
+        return null
+      } else {
+        this.changepage(this.numberPage)
+      }
     },
   },
   async created() {
-    await this.fetchRatings();
-    console.log('number of page', this.numberPage);
+    await this.fetchRatings()
+    console.log('number of page', this.numberPage)
   },
 }
 </script>
