@@ -170,6 +170,7 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
       })
+      this.$store.commit('ratings/SETPAGE', 1)
     },
     async fetchCompanies() {
       await this.$store.dispatch('getCompanies')
