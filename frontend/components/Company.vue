@@ -215,7 +215,6 @@
           </table>
         </div>
       </div>
-      <Pagination />
     </div>
   </div>
 </template>
