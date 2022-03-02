@@ -22,6 +22,7 @@
                 v-model="newRating.company_name"
                 type="text"
                 style="height: 61px"
+                @focus="nameFocus()"
                 class="
                   site__input-field
                   border-none
@@ -67,6 +68,7 @@
                 v-model="newRating.salary"
                 type="text"
                 style="height: 61px"
+                @focus="blurAll()"
                 class="
                   site__input-field
                   border-none
@@ -86,6 +88,7 @@
               </p>
               <textarea
                 v-model="newRating.comment"
+                @focus="blurAll()"
                 type="textarea"
                 rows="5"
                 style="height: 120px"
@@ -124,6 +127,7 @@
               <input
                 v-model="newRating.job_title"
                 type="text"
+                @focus="jobTitleFocus()"
                 style="height: 61px"
                 class="
                   site__input-field
@@ -170,6 +174,7 @@
                 v-model="newRating.city"
                 type="text"
                 style="height: 61px"
+                @focus="cityFocus()"
                 class="
                   site__input-field
                   border-none
@@ -213,6 +218,7 @@
                   Seniority
                 </p>
                 <select
+                  @focus="blurAll()"
                   class="
                     mt-2
                     mb-4
@@ -264,6 +270,7 @@
                   :maxStars="5"
                   :hasCounter="true"
                   @changeGrade="setGrade"
+                  @blurall="blurAll()"
                 />
               </div>
             </div>
@@ -294,9 +301,9 @@ export default {
         comment: '',
         job_title: '',
       },
-      isCompanyNameSetted: false,
-      isJobTitleSetted: false,
-      isCitySetted: false,
+      isCompanyNameFocus: false,
+      isJobTitleFocus: false,
+      isCityFocus: false,
     }
   },
   computed: {
@@ -347,13 +354,13 @@ export default {
       }
     },
     companyComplation() {
-      return this.filteredCompanyNames.length > 0 && !this.isCompanyNameSetted
+      return this.filteredCompanyNames.length > 0 && this.isCompanyNameFocus
     },
     jobTitleComplation() {
-      return this.filteredJobTitles.length > 0 && !this.isJobTitleSetted
+      return this.filteredJobTitles.length > 0 && this.isJobTitleFocus
     },
     cityComplation() {
-      return this.filteredCities.length > 0 && !this.isCitySetted
+      return this.filteredCities.length > 0 && this.isCityFocus
     },
   },
   async created() {
@@ -372,15 +379,15 @@ export default {
     },
     setCompanyName(name) {
       this.newRating.company_name = name
-      this.isCompanyNameSetted = true
+      this.isCompanyNameFocus = false
     },
     setJobTitle(job) {
       this.newRating.job_title = job
-      this.isJobTitleSetted = true
+      this.isJobTitleFocus = false
     },
     setCity(city) {
       this.newRating.city = city
-      this.isCitySetted = true
+      this.isCityFocus = false
     },
     async fetchCompanies() {
       await this.$store.dispatch('getCompanies')
@@ -396,6 +403,23 @@ export default {
     },
     setGrade(value) {
       this.newRating.rating = value
+    },
+    blurAll(){
+      this.isJobTitleFocus = false
+      this.isCompanyNameFocus = false
+      this.isCityFocus = false
+    },
+    nameFocus(){
+      this.blurAll()
+      this.isCompanyNameFocus = true
+    },
+    jobTitleFocus(){
+      this.blurAll()
+      this.isJobTitleFocus = true
+    },
+    cityFocus(){
+      this.blurAll()
+      this.isCityFocus = true
     },
     addRating() {
       if (this.newRating) {
