@@ -19,7 +19,10 @@
                 Company Name
               </p>
               <input
-                v-model="newRating.company_name"
+                :value="newRating.company_name"
+                @input="
+                  (event) => (newRating.company_name = event.target.value)
+                "
                 type="text"
                 style="height: 61px"
                 @focus="nameFocus()"
@@ -125,7 +128,8 @@
                 Job Title
               </p>
               <input
-                v-model="newRating.job_title"
+                :value="newRating.job_title"
+                @input="(event) => (newRating.job_title = event.target.value)"
                 type="text"
                 @focus="jobTitleFocus()"
                 style="height: 61px"
@@ -171,7 +175,8 @@
                 City
               </p>
               <input
-                v-model="newRating.city"
+                :value="newRating.city"
+                @input="(event) => (newRating.city = event.target.value)"
                 type="text"
                 style="height: 61px"
                 @focus="cityFocus()"
@@ -404,20 +409,20 @@ export default {
     setGrade(value) {
       this.newRating.rating = value
     },
-    blurAll(){
+    blurAll() {
       this.isJobTitleFocus = false
       this.isCompanyNameFocus = false
       this.isCityFocus = false
     },
-    nameFocus(){
+    nameFocus() {
       this.blurAll()
       this.isCompanyNameFocus = true
     },
-    jobTitleFocus(){
+    jobTitleFocus() {
       this.blurAll()
       this.isJobTitleFocus = true
     },
-    cityFocus(){
+    cityFocus() {
       this.blurAll()
       this.isCityFocus = true
     },
