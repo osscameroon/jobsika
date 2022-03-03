@@ -69,6 +69,7 @@
               </p>
               <input
                 v-model="newRating.salary"
+                @keypress="onlyNumber"
                 type="text"
                 style="height: 61px"
                 @focus="blurAll()"
@@ -430,6 +431,12 @@ export default {
       if (this.newRating) {
         this.$store.dispatch('postRating', this.newRating)
         this.$router.push('/')
+      }
+    },
+    onlyNumber($event) {
+      const keyCode = $event.keyCode ? $event.keyCode : $event.which
+      if ((keyCode < 48 || keyCode > 57) && keyCode !== 46) {
+        $event.preventDefault()
       }
     },
   },
