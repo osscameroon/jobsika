@@ -3,10 +3,10 @@
     <header
       class="
         site__logo
-        bg-blueDark
         flex
-        justify-center
+        bg-blueDark
         items-center
+        justify-center
         md:justify-start
         py-3
         md:py-2
@@ -18,11 +18,13 @@
       "
     >
       <div class="md:container md:mx-auto md:w-10/12">
-        <img
-          :src="logo"
-          alt="logo"
-          class="site__logo-pic w-32 h-12 md:w-36 md:h-14"
-        />
+        <nuxt-link to="/" class="cursor-pointer">
+          <img
+            :src="logoWeb"
+            alt="logo"
+            :class="`site__logo-pic w-32 h-12 md:w-36 md:h-14`"
+          />
+        </nuxt-link>
       </div>
     </header>
     <Nuxt />
@@ -33,7 +35,9 @@
 export default {
   data() {
     return {
-      logo: require('../assets/logo_trans.svg'),
+      logoMobile: require('../assets/logo_bg.svg'),
+      logoWeb: require('../assets/logo_trans.svg'),
+      mobile: true,
     }
   },
 }
