@@ -47,7 +47,9 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    vendor: ['aframe']
+  },
 
   publicRuntimeConfig: {
     baseURL: process.env.BASE_URL

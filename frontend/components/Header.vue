@@ -32,10 +32,5 @@ export default Vue.extend({
   props: {
     name: String,
   },
-  data() {
-    return {
-      searchPicture: require('../assets/search.png'),
-    }
-  },
 })
 </script>

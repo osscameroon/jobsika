@@ -294,7 +294,7 @@ export default {
   components: {
     Button,
   },
-  layout: 'app',
+  layout: 'addSalary',
   data() {
     return {
       starsPicture: require('../assets/star.png'),
