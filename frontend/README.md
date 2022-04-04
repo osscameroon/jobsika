@@ -21,7 +21,7 @@ For detailed explanation on how things work, check out the [documentation](https
 
 ## To launch the frontend 
 
-To launch the frontend, create an .env file and point the frontend towards the back. Like this: 
+To launch the frontend, create a `.env` file, copy the contents of `.env.example` and put in `.env`. Like this: 
 `BASE_URL=https://api.jobsika.stage.osscameroon.com`
 
 ## Special Directories
