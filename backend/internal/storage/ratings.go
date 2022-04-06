@@ -132,9 +132,9 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 
 //PostRatings post new rating
 func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
-	// Format the CompanyName and JobTitle to follow the format given in issue https://github.com/osscameroon/camerdevs/issues/88
 	query.CompanyName = strings.Title(strings.ToLower(query.CompanyName))
 	query.JobTitle = strings.Title(strings.ToLower(query.JobTitle))
+	query.City = strings.Title(strings.ToLower(query.City))
 
 	return db.c.Transaction(func(tx *gorm.DB) error {
 		company := v1beta.Company{}
