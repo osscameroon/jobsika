@@ -4,6 +4,7 @@ import (
 	"errors"
 	"math"
 	"strconv"
+	"strings"
 
 	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
@@ -131,6 +132,10 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 
 //PostRatings post new rating
 func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
+	query.CompanyName = strings.Title(strings.ToLower(query.CompanyName))
+	query.JobTitle = strings.Title(strings.ToLower(query.JobTitle))
+	query.City = strings.Title(strings.ToLower(query.City))
+
 	return db.c.Transaction(func(tx *gorm.DB) error {
 		company := v1beta.Company{}
 
