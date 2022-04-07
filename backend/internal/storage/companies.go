@@ -9,14 +9,10 @@ import (
 //GetCompanies get companies
 func (db DB) GetCompanies() ([]v1beta.Company, error) {
 	companies := []v1beta.Company{}
-	ret := db.c.Table("companies").Order("name").Find(&companies)
-	if ret.Error != nil {
-		return companies, ret.Error
-	}
 
 	//Check if the first cameroonian company already exists
 	cameroonianCompany := v1beta.Company{}
-	ret = db.c.Table("companies").Where("name = ?", CameroonianCompanies[0]).Find(&cameroonianCompany)
+	ret := db.c.Table("companies").Where("name = ?", CameroonianCompanies[0]).Find(&cameroonianCompany)
 	if ret.Error != nil {
 		return companies, ret.Error
 	}
@@ -30,20 +26,26 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 		}
 
 		for _, c := range tmpCameroonianCompanies {
+			tmpCompany := v1beta.Company{}
+
+			//I the company exists we don't create it
+			ret := db.c.Table("companies").Where("name = ?", c).Find(&tmpCompany)
+			if tmpCompany.Name != "" || ret.Error != nil {
+				continue
+			}
+
 			company := v1beta.Company{
 				Name: c,
 			}
-			ret := db.c.Create(&company)
-			if ret.Error != nil {
-				return companies, ret.Error
-			}
-		}
 
-		//Get the list of companies again
-		ret := db.c.Table("companies").Order("name").Find(&companies)
-		if ret.Error != nil {
-			return companies, ret.Error
+			db.c.Table("companies").Create(&company)
 		}
+	}
+
+	//Get the list of companies again
+	ret = db.c.Table("companies").Order("name").Find(&companies)
+	if ret.Error != nil {
+		return companies, ret.Error
 	}
 
 	return companies, nil
