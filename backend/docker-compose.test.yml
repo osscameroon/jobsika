@@ -18,6 +18,8 @@ services:
     command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres-and-run-api.sh
     env_file:
       - ./.docker-env
+    environment:
+      - ENVIRONMENT=test
     volumes:
       - .:/api
     ports:

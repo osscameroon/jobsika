@@ -32,7 +32,7 @@ func (db DB) queryRatings() *gorm.DB {
 	return db.c.Table("salaries as s").Select(`
 		s.id as salary_id,
 		s.seniority,
-		s.title as job_title,
+		j.title as job_title,
 		s.salary,
 		s.city,
 		s.country,
@@ -43,6 +43,7 @@ func (db DB) queryRatings() *gorm.DB {
 		r.rating,
 		r.createdat`).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
+		Joins("LEFT JOIN jobtitles j ON s.title_id = j.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
 }
 
@@ -56,7 +57,7 @@ func (db DB) GetRatings(page, limit, jobtitle, company string) (v1beta.RatingRes
 		query = query.Where("c.name = ?", company)
 	}
 	if jobtitle != "" {
-		query = query.Where("s.title = ?", jobtitle)
+		query = query.Where("j.title = ?", jobtitle)
 	}
 
 	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
@@ -111,7 +112,7 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 		query = query.Where("c.name = ?", company)
 	}
 	if jobtitle != "" {
-		query = query.Where("s.title = ?", jobtitle)
+		query = query.Where("j.title = ?", jobtitle)
 	}
 
 	ret := query.Select("AVG(s.salary) as salary, AVG(r.rating) as rating").Find(&r)
@@ -137,26 +138,16 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 	query.City = strings.Title(strings.ToLower(query.City))
 
 	return db.c.Transaction(func(tx *gorm.DB) error {
-		company := v1beta.Company{}
-
-		//Check if the company already exist
-		ret := tx.Table("companies").Where("name = ?", query.CompanyName).Find(&company)
-		if ret.Error != nil {
-			log.Error(ret.Error)
-			return ret.Error
+		company, err := postCompany(tx, query)
+		if err != nil {
+			log.Error(err)
+			return err
 		}
 
-		if company.Name == "" {
-			//if we did not find the company, we create a new company entry
-			company = v1beta.Company{
-				Name:   query.CompanyName,
-				Rating: query.Rating,
-			}
-			ret := tx.Create(&company)
-			if ret.Error != nil {
-				log.Error(ret.Error)
-				return ret.Error
-			}
+		jobTitle, err := postJobTitle(tx, query)
+		if err != nil {
+			log.Error(err)
+			return err
 		}
 
 		//Create company_rating
@@ -165,7 +156,7 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 			Rating:    query.Rating,
 			Comment:   query.Comment,
 		}
-		ret = tx.Create(&companyRating)
+		ret := tx.Create(&companyRating)
 		if ret.Error != nil {
 			log.Error(ret.Error)
 			return ret.Error
@@ -173,7 +164,7 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 
 		//Create a salary
 		salary := v1beta.Salary{
-			Title:           query.JobTitle,
+			TitleID:         jobTitle.ID,
 			Salary:          query.Salary,
 			Seniority:       query.Seniority,
 			City:            query.City,
@@ -189,4 +180,51 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 
 		return nil
 	})
+}
+
+func postCompany(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.Company, error) {
+	company := v1beta.Company{}
+
+	//Check if the company already exist
+	ret := tx.Table("companies").Where("name = ?", query.CompanyName).Find(&company)
+	if ret.Error != nil {
+		return company, ret.Error
+	}
+
+	if company.Name == "" {
+		//if we did not find the company, we create a new company entry
+		company = v1beta.Company{
+			Name:   query.CompanyName,
+			Rating: query.Rating,
+		}
+		ret := tx.Table("companies").Create(&company)
+		if ret.Error != nil {
+			return company, ret.Error
+		}
+	}
+
+	return company, nil
+}
+
+func postJobTitle(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.JobTitle, error) {
+	jobTitle := v1beta.JobTitle{}
+
+	//Check if the jobTitle already exist
+	ret := tx.Table("jobtitles").Where("title = ?", query.JobTitle).Find(&jobTitle)
+	if ret.Error != nil {
+		return jobTitle, ret.Error
+	}
+
+	if jobTitle.Title == "" {
+		//if we did not find the jobTitle, we create a new jobTitle entry
+		jobTitle = v1beta.JobTitle{
+			Title: query.JobTitle,
+		}
+		ret := tx.Table("jobtitles").Create(&jobTitle)
+		if ret.Error != nil {
+			return jobTitle, ret.Error
+		}
+	}
+
+	return jobTitle, nil
 }

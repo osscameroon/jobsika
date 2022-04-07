@@ -34,22 +34,22 @@ describe(`${endpoint}`, function () {
         });
     });
 
-    it("return a list of ratings with jobtitle=Recruiting Manager", async function () {
+    it("return a list of ratings with jobtitle=Statistician II", async function () {
       return request(apiHost)
-        .get(`${endpoint}?jobtitle=Recruiting Manager`)
+        .get(`${endpoint}?jobtitle=Statistician II`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":2,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":16,"offset":0}');
         });
     });
 
-    it("return a list of ratings with company=Jaxbean and jobtitle=Recruiting Manager", async function () {
+    it("return a list of ratings with company=Fliptune and jobtitle=Statistician II", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company=Jaxbean&jobtitle=Recruiting Manager`)
+        .get(`${endpoint}?company=Fliptune&jobtitle=Statistician II`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
@@ -80,7 +80,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":99,"company_rating_id":0,"rating":0,"salary":1624669,"company_name":"Jaxbean","seniority":"Seniority","comment":"","job_title":"Recruiting Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":99,"company_rating_id":0,"rating":0,"salary":1624669,"company_name":"Jaxbean","seniority":"Seniority","comment":"","job_title":"Assistant Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
         });
     });
 
@@ -114,15 +114,15 @@ describe(`${endpoint2}`, function () {
         });
     });
 
-    it("return the average of ratings with jobtitle=Recruiting Manager", async function () {
+    it("return the average of ratings with jobtitle=Statistician II", async function () {
       return request(apiHost)
-        .get(`${endpoint2}?jobtitle=Recruiting Manager`)
+        .get(`${endpoint2}?jobtitle=Statistician II`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":0,"salary":2892390}'
+            '{"rating":4,"salary":2824939}'
           );
         });
     });
@@ -140,15 +140,15 @@ describe(`${endpoint2}`, function () {
         });
     });
 
-    it("return a list of ratings with company=Jaxbean and jobtitle=Recruiting Manager", async function () {
+    it("return a list of ratings with company=Fliptune and jobtitle=Statistician II", async function () {
       return request(apiHost)
-        .get(`${endpoint2}?company=Jaxbean&jobtitle=Recruiting Manager`)
+        .get(`${endpoint2}?company=Fliptune&jobtitle=Statistician II`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":0,"salary":1624669}'
+            '{"rating":0,"salary":841396}'
           );
         });
     });

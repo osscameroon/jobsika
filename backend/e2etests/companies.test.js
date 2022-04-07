@@ -16,7 +16,7 @@ describe(`${endpoint}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body[0])).equal(
-            '{"id":102,"name":"ADC","rating":0,"createdat":"2022-04-06T00:00:00Z","updatedat":"2022-04-06T00:00:00Z"}'
+            '{"id":72,"name":"Aibox","rating":2,"createdat":"0001-01-01T00:00:00Z","updatedat":"0001-01-01T00:00:00Z"}'
           );
         });
     });
@@ -28,7 +28,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).contains("Fonds national");
+          expect(JSON.stringify(res.body)).contains("Tester");
         });
     });
   });

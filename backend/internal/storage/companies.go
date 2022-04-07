@@ -1,6 +1,8 @@
 package storage
 
 import (
+	"os"
+
 	"github.com/elhmn/camerdevs/pkg/models/v1beta"
 )
 
@@ -21,7 +23,13 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 
 	//If we did not find the first cameroonian company, we create every cameroonian companies
 	if cameroonianCompany.Name == "" {
-		for _, c := range CameroonianCompanies {
+		tmpCameroonianCompanies := CameroonianCompanies
+		//If we are running tests we use a short list of companies
+		if os.Getenv("ENVIRONMENT") == "test" {
+			tmpCameroonianCompanies = []string{"Tester"}
+		}
+
+		for _, c := range tmpCameroonianCompanies {
 			company := v1beta.Company{
 				Name: c,
 			}

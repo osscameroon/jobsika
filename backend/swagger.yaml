@@ -175,8 +175,9 @@ definitions:
         type: string
         x-go-name: Seniority
       title:
-        type: string
-        x-go-name: Title
+        format: int64
+        type: integer
+        x-go-name: TitleID
       updatedat:
         format: date-time
         type: string
