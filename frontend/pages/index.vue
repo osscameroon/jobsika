@@ -6,6 +6,8 @@
           title="100% Anonymous"
           subTitle="Company ratings and salaries in Cameroon"
           fontSize="header"
+          onlyTitle="header"
+          header="header"
         />
         <div
           class="site__main-select flex flex-col lg:flex-row justify-end pt-20"
@@ -26,6 +28,7 @@
         <Title
           title="Let's change the narative"
           subTitle="When no one shares their salary, employers have the upper hand. We can change this."
+          content="subtitle"
         />
       </div>
     </footer>

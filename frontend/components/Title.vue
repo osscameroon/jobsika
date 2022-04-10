@@ -20,8 +20,9 @@
       </div>
     </div>
   </div>
+
   <div class="site__title" v-else>
-    <div class="pt-2 md:pt-8 lg:pt-14">
+    <div v-if="header === 'header'" class="pt-2 md:pt-8 lg:pt-14">
       <div class="site__title-text">
         <div class="flex justify-center md:justify-start">
           <h2
@@ -30,9 +31,9 @@
           >
             {{ title }}
           </h2>
-          <div class="-mt-2">
+          <div class="flex items-center -mb-1">
             <span
-              class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
+              class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
               :class="{ opened: opened.includes(tooltips[0].id) }"
               @click="toggle(tooltips[0].id)"
             >
@@ -93,6 +94,46 @@
         </div>
       </div>
     </div>
+    <div v-else class="pt-2 md:pt-8 lg:pt-14">
+      <div class="site__title-text">
+        <div class="flex justify-center md:justify-start">
+          <h2
+            style="color: #000000; font-family: 'Inter', sans-serif"
+            class="font-bold text-3xl md:text-4xl"
+          >
+            {{ title }}
+          </h2>
+        </div>
+        <div class="flex justify-between lg:items-end lg:flex-row flex-col">
+          <div
+            v-if="fontSize === 'header'"
+            class="flex justify-center md:justify-start"
+          >
+            <h4
+              style="color: #235365; font-family: 'Inter', sans-serif"
+              class="pt-3 font-bold text-2xl md:text-3xl text-center"
+            >
+              {{ subTitle }}
+            </h4>
+          </div>
+          <h4
+            v-else
+            style="color: #235365; font-family: 'Inter', sans-serif"
+            class="pt-3 font-bold text-base"
+          >
+            {{ subTitle }}
+          </h4>
+          <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
+            <NuxtLink to="/add_salary">
+              <Button
+                myStyle="background: #235365; font-family: 'Inter', sans-serif"
+                name="Contribute"
+              />
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -108,6 +149,7 @@ export default Vue.extend({
     onlyTitle: String,
     content: String,
     myStyle: String,
+    header: String,
   },
   components: {
     Button,
