@@ -9,97 +9,49 @@
     <div v-else class="-my-2">
       <div class="py-2 align-middle inline-block min-w-full w-16">
         <div
-          class="
-            overflow-x-auto
-            rounded-xl
-            border-gray-200
-            sm:rounded-lg
-            w-full
-          "
+          class="overflow-x-auto rounded-xl border-gray-200 sm:rounded-lg w-full"
         >
           <table class="min-w-full divide-y-8 divide-primary">
             <thead style="backgound: #e5e5e5">
               <tr>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Company
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Jobs title
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Seniority
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   City
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Salary
                 </th>
                 <th
                   scope="col"
-                  class="
-                    px-6
-                    py-3
-                    text-left text-xs
-                    md:text-sm
-                    font-bold
-                    tracking-wider
-                  "
+                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Rating
@@ -167,32 +119,34 @@
                   </div>
                 </td>
                 <td
-                  class="
-                    px-6
-                    py-4
-                    whitespace-nowrap
-                    text-right text-sm
-                    font-medium
-                  "
+                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
                   :class="{ opened: opened.includes(company.salary_id) }"
                   @click="toggle(company.salary_id)"
                 >
-                  <a
-                    class="
-                      text-xs
-                      md:text-sm
-                      flex
-                      items-center
-                      space-x-3
-                      cursor-pointer
-                    "
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                    >Details</a
+                  <button
+                    v-if="String(company.comment).length === 0"
+                    disable
+                    class="text-grayC text-xs md:text-sm flex items-center space-x-3 cursor-text"
+                    style="font-family: 'Inter', sans-serif"
+                    type="button"
                   >
+                    Details
+                  </button>
+                  <button
+                    v-else
+                    class="text-xs md:text-sm flex items-center space-x-3 cursor-pointer"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
+                    type="button"
+                  >
+                    Details
+                  </button>
                 </td>
               </tr>
               <td
-                v-if="opened.includes(company.salary_id)"
+                v-if="
+                  opened.includes(company.salary_id) &&
+                  String(company.comment).length !== 0
+                "
                 colspan="10"
                 class="w-10/12 bg-primary"
               >
@@ -211,6 +165,7 @@
                   </p>
                 </div>
               </td>
+              <div v-else />
             </tbody>
           </table>
         </div>
