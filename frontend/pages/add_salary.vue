@@ -21,16 +21,7 @@
                 </p>
                 <div class="-mt-2">
                   <span
-                    class="
-                      cursor-pointer
-                      px-1
-                      ml-2
-                      -mb-5
-                      text-grayC
-                      rounded-full
-                      border border-grayC
-                      text-xs
-                    "
+                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[0].id)"
                   >
@@ -63,30 +54,11 @@
                 type="text"
                 style="height: 61px"
                 @focus="nameFocus()"
-                class="
-                  site__input-field
-                  border border-grayC
-                  mt-2
-                  md:mt-3
-                  w-full
-                  rounded-md
-                  mb-4
-                  md:mb-16
-                "
+                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
               />
               <ul
                 style="background: white"
-                class="
-                  h-20
-                  md:h-32
-                  overflow-y-scroll
-                  rounded-lg
-                  -mt-3
-                  md:-mt-14
-                  mb-2
-                  md:mb-4
-                  cursor-pointer
-                "
+                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
                 v-if="companyComplation"
               >
                 <li
@@ -107,15 +79,7 @@
                 </p>
                 <div class="-mt-2">
                   <span
-                    class="
-                      cursor-pointer
-                      ml-2
-                      px-1
-                      text-grayC
-                      rounded-full
-                      border border-grayC
-                      text-xs
-                    "
+                    class="cursor-pointer ml-2 px-1 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[1].id) }"
                     @click="toggle(tooltips[1].id)"
                   >
@@ -144,16 +108,7 @@
                 type="text"
                 style="height: 61px"
                 @focus="blurAll()"
-                class="
-                  site__input-field
-                  border border-grayC
-                  mt-2
-                  md:mt-3
-                  w-full
-                  rounded-md
-                  mb-4
-                  md:mb-16
-                "
+                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
               />
               <div class="flex">
                 <p
@@ -164,16 +119,7 @@
                 </p>
                 <div class="-mt-2">
                   <span
-                    class="
-                      cursor-pointer
-                      px-1
-                      ml-2
-                      -mb-5
-                      text-grayC
-                      rounded-full
-                      border border-grayC
-                      text-xs
-                    "
+                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[2].id) }"
                     @click="toggle(tooltips[2].id)"
                   >
@@ -202,15 +148,7 @@
                 type="textarea"
                 rows="5"
                 style="height: 120px"
-                class="
-                  resize
-                  rounded-md
-                  w-full
-                  h-full
-                  mt-2
-                  md:mt-3
-                  border border-grayC
-                "
+                class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC"
               />
               <div class="site__input-btn mt-10 flex flex-col md:flex-row">
                 <div class="w-full md:w-1/4">
@@ -245,16 +183,7 @@
                 </p>
                 <div class="-mt-2">
                   <span
-                    class="
-                      cursor-pointer
-                      px-1
-                      ml-2
-                      -mb-5
-                      text-grayC
-                      rounded-full
-                      border border-grayC
-                      text-xs
-                    "
+                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[3].id) }"
                     @click="toggle(tooltips[3].id)"
                   >
@@ -283,30 +212,11 @@
                 type="text"
                 @focus="jobTitleFocus()"
                 style="height: 61px"
-                class="
-                  site__input-field
-                  border border-grayC
-                  mt-2
-                  md:mt-3
-                  w-full
-                  rounded-md
-                  mb-4
-                  md:mb-16
-                "
+                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
               />
               <ul
                 style="background: white"
-                class="
-                  h-20
-                  md:h-32
-                  overflow-y-scroll
-                  rounded-lg
-                  -mt-3
-                  md:-mt-14
-                  mb-2
-                  md:mb-4
-                  cursor-pointer
-                "
+                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
                 v-if="jobTitleComplation"
               >
                 <li
@@ -327,16 +237,7 @@
                 </p>
                 <div class="-mt-2">
                   <span
-                    class="
-                      cursor-pointer
-                      px-1
-                      ml-2
-                      -mb-5
-                      text-grayC
-                      rounded-full
-                      border border-grayC
-                      text-xs
-                    "
+                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[4].id) }"
                     @click="toggle(tooltips[4].id)"
                   >
@@ -366,30 +267,11 @@
                 type="text"
                 style="height: 61px"
                 @focus="cityFocus()"
-                class="
-                  site__input-field
-                  border border-grayC
-                  mt-2
-                  md:mt-3
-                  w-full
-                  rounded-md
-                  mb-4
-                  md:mb-16
-                "
+                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
               />
               <ul
                 style="background: white"
-                class="
-                  h-20
-                  md:h-32
-                  overflow-y-scroll
-                  rounded-lg
-                  -mt-3
-                  md:-mt-14
-                  mb-2
-                  md:mb-4
-                  cursor-pointer
-                "
+                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
                 v-if="cityComplation"
               >
                 <li
@@ -411,16 +293,7 @@
                   </p>
                   <div class="-mt-2">
                     <span
-                      class="
-                        cursor-pointer
-                        px-1
-                        ml-2
-                        -mb-5
-                        text-grayC
-                        rounded-full
-                        border border-grayC
-                        text-xs
-                      "
+                      class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                       :class="{ opened: opened.includes(tooltips[5].id) }"
                       @click="toggle(tooltips[5].id)"
                     >
@@ -445,30 +318,7 @@
                 </div>
                 <select
                   @focus="blurAll()"
-                  class="
-                    mt-2
-                    mb-4
-                    md:mb-8 md:mt-3
-                    form-select
-                    appearance-none
-                    block
-                    w-full
-                    px-3
-                    py-1.5
-                    text-gray-700
-                    bg-white bg-clip-padding bg-no-repeat
-                    border border-grayC
-                    rounded
-                    transition
-                    ease-in-out
-                    focus:text-gray-700
-                    focus:bg-white
-                    focus:border-blue-600
-                    focus:outline-none
-                    text-xs
-                    md:text-sm
-                    font-bold
-                  "
+                  class="mt-2 mb-4 md:mb-8 md:mt-3 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px; font-family: 'Inter', sans-serif"
                   v-model="newRating.seniority"
                   aria-label="Default select example"
@@ -494,16 +344,7 @@
                   </p>
                   <div class="-mt-2">
                     <span
-                      class="
-                        cursor-pointer
-                        px-1
-                        ml-2
-                        -mb-5
-                        text-grayC
-                        rounded-full
-                        border border-grayC
-                        text-xs
-                      "
+                      class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
                       :class="{ opened: opened.includes(tooltips[6].id) }"
                       @click="toggle(tooltips[6].id)"
                     >
