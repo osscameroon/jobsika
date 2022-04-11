@@ -19,9 +19,9 @@
                 >
                   Company Name
                 </p>
-                <div class="-mt-2">
+                <div class="flex items-center-mt-2">
                   <span
-                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[0].id)"
                   >
@@ -77,10 +77,10 @@
                 >
                   Monthly Salary (FCFA)
                 </p>
-                <div class="-mt-2">
+                <div class="flex items-center-mt-2">
                   <span
-                    class="cursor-pointer ml-2 px-1 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[1].id) }"
+                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[1].id)"
                   >
                     !
@@ -117,10 +117,10 @@
                 >
                   Comments
                 </p>
-                <div class="-mt-2">
+                <div class="flex items-center-mt-2">
                   <span
-                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[2].id) }"
+                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[2].id)"
                   >
                     !
@@ -181,10 +181,10 @@
                 >
                   Job Title
                 </p>
-                <div class="-mt-2">
+                <div class="flex items-center-mt-2">
                   <span
-                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[3].id) }"
+                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[3].id)"
                   >
                     !
@@ -235,10 +235,10 @@
                 >
                   City
                 </p>
-                <div class="-mt-2">
+                <div class="flex items-center-mt-2">
                   <span
-                    class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[4].id) }"
+                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[4].id)"
                   >
                     !
@@ -291,10 +291,10 @@
                   >
                     Seniority
                   </p>
-                  <div class="-mt-2">
+                  <div class="flex items-center-mt-2">
                     <span
-                      class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
-                      :class="{ opened: opened.includes(tooltips[5].id) }"
+                      class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                      :class="{ opened: opened.includes(tooltips[0].id) }"
                       @click="toggle(tooltips[5].id)"
                     >
                       !
@@ -342,10 +342,10 @@
                   >
                     Rate
                   </p>
-                  <div class="-mt-2">
+                  <div class="flex items-center-mt-2">
                     <span
-                      class="cursor-pointer px-1 ml-2 -mb-5 text-grayC rounded-full border border-grayC text-xs"
-                      :class="{ opened: opened.includes(tooltips[6].id) }"
+                      class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                      :class="{ opened: opened.includes(tooltips[0].id) }"
                       @click="toggle(tooltips[6].id)"
                     >
                       !
