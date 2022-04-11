@@ -40,27 +40,31 @@ func (db DB) queryRatings() *gorm.DB {
 		r.createdat,
 		case
            when (
-                    Select count(cc.company_id)
-                    from company_ratings cc
-                    where cc.company_id = c.id) < 5 then ''
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then ''
            else comment end as comment,
 		case
            when (
-                    Select count(cc.company_id)
-                    from company_ratings cc
-                    where cc.company_id = c.id) < 5 then ''
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then ''
            else c.name end as company_name,
 		case
            when (
-                    Select count(cc.company_id)
-                    from company_ratings cc
-                    where cc.company_id = c.id) < 5 then 0
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then 0
            else c.id end as company_id,
 		case
            when (
-                    Select count(cc.company_id)
-                    from company_ratings cc
-                    where cc.company_id = c.id) < 5 then 0
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then 0
            else r.rating end as rating
 		`).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
