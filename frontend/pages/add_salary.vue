@@ -2,307 +2,41 @@
   <div>
     <main class="site__main pt-5 lg:pt-0 pb-10 md:pb-20">
       <div class="container mx-auto w-10/12">
-        <Title title="100% Anonymous" fontSize="header" onlyTitle="onlyTitle" />
+        <Title
+          title="100% Anonymous"
+          font-size="header"
+          only-title="onlyTitle"
+        />
         <Title
           title="Add a company to the list"
-          onlyTitle="onlyTitle"
+          only-title="onlyTitle"
           content="subtitle"
-          myStyle="margin-top: 20px; font-family: 'Inter',sans-serif"
+          my-style="margin-top: 20px; font-family: 'Inter',sans-serif"
         />
-        <div class="site__main-row flex flex-col-reverse md:flex-row">
-          <div class="site__main-rowOne w-full md:w-1/2">
-            <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <div class="flex">
-                <p
-                  class="text-xs md:text-sm font-bold"
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
-                  Company Name
-                </p>
-                <div class="flex items-center-mt-2">
-                  <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[0].id) }"
-                    @click="toggle(tooltips[0].id)"
-                  >
-                    !
-                  </span>
-                </div>
-              </div>
-
-              <div
-                v-if="opened.includes(tooltips[0].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                  <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                  >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
-                  </p>
-                </div>
-              </div>
-
-              <input
-                :value="newRating.company_name"
-                @input="
-                  (event) => (newRating.company_name = event.target.value)
-                "
-                type="text"
-                style="height: 61px"
-                @focus="nameFocus()"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
-              />
-              <ul
-                style="background: white"
-                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
-                v-if="companyComplation"
-              >
-                <li
-                  v-for="(name, index) in filteredCompanyNames"
-                  :key="index"
-                  class="shadow-sm py-2 px-4"
-                  @click="setCompanyName(name)"
-                >
-                  {{ name }}
-                </li>
-              </ul>
-              <div class="flex">
-                <p
-                  class="text-xs md:text-sm font-bold"
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
-                  Monthly Salary (FCFA)
-                </p>
-                <div class="flex items-center-mt-2">
-                  <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[0].id) }"
-                    @click="toggle(tooltips[1].id)"
-                  >
-                    !
-                  </span>
-                </div>
-              </div>
-              <div
-                v-if="opened.includes(tooltips[1].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                  <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                  >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
-                  </p>
-                </div>
-              </div>
-              <input
-                v-model="newRating.salary"
-                @keypress="onlyNumber"
-                type="text"
-                style="height: 61px"
-                @focus="blurAll()"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
-              />
-              <div class="flex">
-                <p
-                  class="text-xs md:text-sm font-bold"
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
-                  Comments
-                </p>
-                <div class="flex items-center-mt-2">
-                  <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[0].id) }"
-                    @click="toggle(tooltips[2].id)"
-                  >
-                    !
-                  </span>
-                </div>
-              </div>
-              <div
-                v-if="opened.includes(tooltips[2].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                  <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                  >
-                    This field requires you to enter monthly salary you earned
-                    in FCFA
-                  </p>
-                </div>
-              </div>
-
-              <textarea
-                v-model="newRating.comment"
-                @focus="blurAll()"
-                type="textarea"
-                rows="5"
-                style="height: 120px"
-                class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC"
-              />
-              <div class="site__input-btn mt-10 flex flex-col md:flex-row">
-                <div class="w-full md:w-1/4">
-                  <NuxtLink to="/">
-                    <Button
-                      showPicture="nothing"
-                      name="Cancel"
-                      myStyle="background: white; color: #000000"
-                    />
-                  </NuxtLink>
-                </div>
-                <div
-                  @click="addRating"
-                  class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6"
-                >
-                  <Button
-                    myStyle="background: #235365; font-family: 'Inter', sans-serif"
-                    name="Add"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="site__main-rowTwo w-full md:w-1/2">
-            <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
-              <div class="flex">
-                <p
-                  class="text-xs md:text-sm font-bold"
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
-                  Job Title
-                </p>
-                <div class="flex items-center-mt-2">
-                  <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[0].id) }"
-                    @click="toggle(tooltips[3].id)"
-                  >
-                    !
-                  </span>
-                </div>
-              </div>
-              <div
-                v-if="opened.includes(tooltips[3].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                  <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                  >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
-                  </p>
-                </div>
-              </div>
-              <input
-                :value="newRating.job_title"
-                @input="(event) => (newRating.job_title = event.target.value)"
-                type="text"
-                @focus="jobTitleFocus()"
-                style="height: 61px"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
-              />
-              <ul
-                style="background: white"
-                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
-                v-if="jobTitleComplation"
-              >
-                <li
-                  v-for="(job, index) in filteredJobTitles"
-                  :key="index"
-                  class="shadow-sm py-2 px-4"
-                  @click="setJobTitle(job)"
-                >
-                  {{ job }}
-                </li>
-              </ul>
-              <div class="flex">
-                <p
-                  class="text-xs md:text-sm font-bold"
-                  style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                >
-                  City
-                </p>
-                <div class="flex items-center-mt-2">
-                  <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                    :class="{ opened: opened.includes(tooltips[0].id) }"
-                    @click="toggle(tooltips[4].id)"
-                  >
-                    !
-                  </span>
-                </div>
-              </div>
-              <div
-                v-if="opened.includes(tooltips[4].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                  <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
-                  >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
-                  </p>
-                </div>
-              </div>
-
-              <input
-                :value="newRating.city"
-                @input="(event) => (newRating.city = event.target.value)"
-                type="text"
-                style="height: 61px"
-                @focus="cityFocus()"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
-              />
-              <ul
-                style="background: white"
-                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
-                v-if="cityComplation"
-              >
-                <li
-                  v-for="(city, index) in filteredCities"
-                  :key="index"
-                  class="shadow-sm py-2 px-4"
-                  @click="setCity(city)"
-                >
-                  {{ city }}
-                </li>
-              </ul>
-              <div class="site__input w-full">
+        <form @submit.prevent="addRating">
+          <div class="site__main-row flex flex-col-reverse md:flex-row">
+            <div class="site__main-rowOne w-full md:w-1/2">
+              <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
                 <div class="flex">
                   <p
                     class="text-xs md:text-sm font-bold"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    Seniority
+                    Company Name
                   </p>
                   <div class="flex items-center-mt-2">
                     <span
                       class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
                       :class="{ opened: opened.includes(tooltips[0].id) }"
-                      @click="toggle(tooltips[5].id)"
+                      @click="toggle(tooltips[0].id)"
                     >
                       !
                     </span>
                   </div>
                 </div>
+
                 <div
-                  v-if="opened.includes(tooltips[5].id)"
+                  v-if="opened.includes(tooltips[0].id)"
                   class="w-full bg-primary"
                 >
                   <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
@@ -316,68 +50,343 @@
                     </p>
                   </div>
                 </div>
-                <select
-                  @focus="blurAll()"
-                  class="mt-2 mb-4 md:mb-8 md:mt-3 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
-                  style="height: 61px; font-family: 'Inter', sans-serif"
-                  v-model="newRating.seniority"
-                  aria-label="Default select example"
+
+                <input
+                  :value="newRating.company_name"
+                  type="text"
+                  style="height: 61px"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  @input="
+                    (event) => (newRating.company_name = event.target.value)
+                  "
+                  @focus="nameFocus()"
+                />
+                <ul
+                  v-if="companyComplation"
+                  style="background: white"
+                  class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
                 >
-                  <option
-                    v-for="seniority in seniorities"
-                    :key="seniority"
-                    :value="seniority"
-                    style="font-family: 'Inter', sans-serif"
-                    class="text-xs md:text-sm"
+                  <li
+                    v-for="(name, index) in filteredCompanyNames"
+                    :key="index"
+                    class="shadow-sm py-2 px-4"
+                    @click="setCompanyName(name)"
                   >
-                    {{ seniority }}
-                  </option>
-                </select>
-              </div>
-              <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
+                    {{ name }}
+                  </li>
+                </ul>
                 <div class="flex">
                   <p
                     class="text-xs md:text-sm font-bold"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    Rate
+                    Monthly Salary (FCFA)
                   </p>
                   <div class="flex items-center-mt-2">
                     <span
                       class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
                       :class="{ opened: opened.includes(tooltips[0].id) }"
-                      @click="toggle(tooltips[6].id)"
+                      @click="toggle(tooltips[1].id)"
                     >
                       !
                     </span>
                   </div>
                 </div>
-                <StarRating
-                  :grade="newRating.rating"
-                  :maxStars="5"
-                  :hasCounter="true"
-                  @changeGrade="setGrade"
-                  @blurall="blurAll()"
+                <div
+                  v-if="opened.includes(tooltips[1].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to enter the job tittle as stated
+                      in your contract. To help you, we have listed some job
+                      tittles in the proposition field.
+                    </p>
+                  </div>
+                </div>
+                <input
+                  v-model="newRating.salary"
+                  type="text"
+                  style="height: 61px"
+                  required
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  @keypress="onlyNumber"
+                  @focus="blurAll()"
                 />
-              </div>
-              <div
-                v-if="opened.includes(tooltips[6].id)"
-                class="w-full bg-primary"
-              >
-                <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                <div class="flex">
                   <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
+                    class="text-xs md:text-sm font-bold"
+                    style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
+                    Comments
                   </p>
+                  <div class="flex items-center-mt-2">
+                    <span
+                      class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                      :class="{ opened: opened.includes(tooltips[0].id) }"
+                      @click="toggle(tooltips[2].id)"
+                    >
+                      !
+                    </span>
+                  </div>
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[2].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to enter monthly salary you earned
+                      in FCFA
+                    </p>
+                  </div>
+                </div>
+
+                <textarea
+                  v-model="newRating.comment"
+                  type="textarea"
+                  rows="5"
+                  style="height: 120px"
+                  class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC"
+                  @focus="blurAll()"
+                />
+                <div class="site__input-btn mt-10 flex flex-col md:flex-row">
+                  <div class="w-full md:w-1/4">
+                    <NuxtLink to="/">
+                      <Button
+                        show-picture="nothing"
+                        name="Cancel"
+                        my-style="background: white; color: #000000"
+                      />
+                    </NuxtLink>
+                  </div>
+                  <button
+                    class="w-full md:w-1/4 ml-0 pt-6 md:pt-0 md:ml-6"
+                    type="submit"
+                  >
+                    <Button
+                      my-style="background: #235365; font-family: 'Inter', sans-serif"
+                      name="Add"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="site__main-rowTwo w-full md:w-1/2">
+              <div class="site__main-input mt-3 md:mt-10 md:w-11/12">
+                <div class="flex">
+                  <p
+                    class="text-xs md:text-sm font-bold"
+                    style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                  >
+                    Job Title
+                  </p>
+                  <div class="flex items-center-mt-2">
+                    <span
+                      class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                      :class="{ opened: opened.includes(tooltips[0].id) }"
+                      @click="toggle(tooltips[3].id)"
+                    >
+                      !
+                    </span>
+                  </div>
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[3].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to enter the job tittle as stated
+                      in your contract. To help you, we have listed some job
+                      tittles in the proposition field.
+                    </p>
+                  </div>
+                </div>
+                <input
+                  :value="newRating.job_title"
+                  type="text"
+                  required
+                  style="height: 61px"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  @input="(event) => (newRating.job_title = event.target.value)"
+                  @focus="jobTitleFocus()"
+                />
+                <ul
+                  v-if="jobTitleComplation"
+                  style="background: white"
+                  class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
+                >
+                  <li
+                    v-for="(job, index) in filteredJobTitles"
+                    :key="index"
+                    class="shadow-sm py-2 px-4"
+                    @click="setJobTitle(job)"
+                  >
+                    {{ job }}
+                  </li>
+                </ul>
+                <div class="flex">
+                  <p
+                    class="text-xs md:text-sm font-bold"
+                    style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                  >
+                    City
+                  </p>
+                  <div class="flex items-center-mt-2">
+                    <span
+                      class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                      :class="{ opened: opened.includes(tooltips[0].id) }"
+                      @click="toggle(tooltips[4].id)"
+                    >
+                      !
+                    </span>
+                  </div>
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[4].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to enter the job tittle as stated
+                      in your contract. To help you, we have listed some job
+                      tittles in the proposition field.
+                    </p>
+                  </div>
+                </div>
+
+                <input
+                  :value="newRating.city"
+                  type="text"
+                  required
+                  style="height: 61px"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  @input="(event) => (newRating.city = event.target.value)"
+                  @focus="cityFocus()"
+                />
+                <ul
+                  v-if="cityComplation"
+                  style="background: white"
+                  class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
+                >
+                  <li
+                    v-for="(city, index) in filteredCities"
+                    :key="index"
+                    class="shadow-sm py-2 px-4"
+                    @click="setCity(city)"
+                  >
+                    {{ city }}
+                  </li>
+                </ul>
+                <div class="site__input w-full">
+                  <div class="flex">
+                    <p
+                      class="text-xs md:text-sm font-bold"
+                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                    >
+                      Seniority
+                    </p>
+                    <div class="flex items-center-mt-2">
+                      <span
+                        class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                        :class="{ opened: opened.includes(tooltips[0].id) }"
+                        @click="toggle(tooltips[5].id)"
+                      >
+                        !
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    v-if="opened.includes(tooltips[5].id)"
+                    class="w-full bg-primary"
+                  >
+                    <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                      <p
+                        class="text-xs md:text-sm"
+                        style="color: #000000; font-family: 'Inter', sans-serif"
+                      >
+                        This field requires you to enter the job tittle as
+                        stated in your contract. To help you, we have listed
+                        some job tittles in the proposition field.
+                      </p>
+                    </div>
+                  </div>
+                  <select
+                    v-model="newRating.seniority"
+                    class="mt-2 mb-4 md:mb-8 md:mt-3 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                    style="height: 61px; font-family: 'Inter', sans-serif"
+                    aria-label="Default select example"
+                    @focus="blurAll()"
+                  >
+                    <option
+                      v-for="seniority in seniorities"
+                      :key="seniority"
+                      :value="seniority"
+                      style="font-family: 'Inter', sans-serif"
+                      class="text-xs md:text-sm"
+                    >
+                      {{ seniority }}
+                    </option>
+                  </select>
+                </div>
+                <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
+                  <div class="flex">
+                    <p
+                      class="text-xs md:text-sm font-bold"
+                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                    >
+                      Rate
+                    </p>
+                    <div class="flex items-center-mt-2">
+                      <span
+                        class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                        :class="{ opened: opened.includes(tooltips[0].id) }"
+                        @click="toggle(tooltips[6].id)"
+                      >
+                        !
+                      </span>
+                    </div>
+                  </div>
+                  <StarRating
+                    :grade="newRating.rating"
+                    :max-stars="5"
+                    :has-counter="true"
+                    @changeGrade="setGrade"
+                    @blurall="blurAll()"
+                  />
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[6].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to enter the job tittle as stated
+                      in your contract. To help you, we have listed some job
+                      tittles in the proposition field.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </main>
   </div>
