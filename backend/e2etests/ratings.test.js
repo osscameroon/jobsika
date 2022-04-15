@@ -80,7 +80,7 @@ describe(`${endpoint}`, function () {
         .expect(200)
         .expect("content-type", "application/json; charset=utf-8")
         .then((res) => {
-          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":99,"company_rating_id":0,"rating":0,"salary":1624669,"company_name":"Jaxbean","seniority":"Seniority","comment":"","job_title":"Assistant Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
+          expect(JSON.stringify(res.body)).to.equal('{"salary_id":1,"company_id":0,"company_rating_id":0,"rating":0,"salary":1624669,"company_name":"","seniority":"Seniority","comment":"","job_title":"Assistant Manager","country":"Country","city":"Livefish","createdat":"0001-01-01T00:00:00Z"}');
         });
     });
 

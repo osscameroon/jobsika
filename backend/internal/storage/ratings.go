@@ -36,12 +36,37 @@ func (db DB) queryRatings() *gorm.DB {
 		s.salary,
 		s.city,
 		s.country,
-		c.id as company_id,
-		c.name as company_name,
 		r.id as company_rating_id,
-		r.comment,
-		r.rating,
-		r.createdat`).
+		r.createdat,
+		case
+           when (
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then ''
+           else comment end as comment,
+		case
+           when (
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then ''
+           else c.name end as company_name,
+		case
+           when (
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then 0
+           else c.id end as company_id,
+		case
+           when (
+                    Select count(ss.id)
+                    from salaries ss
+                    where ss.company_id = s.company_id
+						and ss.title_id = s.title_id) < 5 then 0
+           else r.rating end as rating
+		`).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
 		Joins("LEFT JOIN jobtitles j ON s.title_id = j.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
