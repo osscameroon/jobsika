@@ -72,7 +72,11 @@
                     class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.company_name }}
+                    {{
+                      company.company_name !== ''
+                        ? company.company_name
+                        : 'A local company'
+                    }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
