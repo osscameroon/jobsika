@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     rate(star) {
-      this.$emit("blurall");
+      this.$emit('blurall')
       if (typeof star === 'number' && star <= this.maxStars && star >= 0) {
         this.stars = this.stars === star ? star - 1 : star
-        this.$emit("changeGrade", this.stars);
+        this.$emit('changeGrade', this.stars)
       }
     },
   },
