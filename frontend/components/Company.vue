@@ -84,7 +84,11 @@
                     class="text-xs md:text-sm text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.job_title }}
+                    {{
+                      company.job_title !== ''
+                        ? company.job_title
+                        : 'A job title'
+                    }}
                   </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap">
