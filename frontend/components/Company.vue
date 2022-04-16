@@ -75,7 +75,7 @@
                     {{
                       company.company_name !== ''
                         ? company.company_name
-                        : '  A local company'
+                        : 'A local company'
                     }}
                   </div>
                 </td>
