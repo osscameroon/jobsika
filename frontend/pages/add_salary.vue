@@ -109,13 +109,15 @@
                 </div>
                 <input
                   v-model="newRating.salary"
-                  type="text"
+                  type="number"
                   style="height: 61px"
-                  required
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @keypress="onlyNumber"
                   @focus="blurAll()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorSalary" />
+                </div>
                 <div class="flex">
                   <p
                     class="text-xs md:text-sm font-bold"
@@ -215,12 +217,14 @@
                 <input
                   :value="newRating.job_title"
                   type="text"
-                  required
                   style="height: 61px"
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @input="(event) => (newRating.job_title = event.target.value)"
                   @focus="jobTitleFocus()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorJobtitle" />
+                </div>
                 <ul
                   v-if="jobTitleComplation"
                   style="background: white"
@@ -271,12 +275,14 @@
                 <input
                   :value="newRating.city"
                   type="text"
-                  required
                   style="height: 61px"
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @input="(event) => (newRating.city = event.target.value)"
                   @focus="cityFocus()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorCity" />
+                </div>
                 <ul
                   v-if="cityComplation"
                   style="background: white"
@@ -343,7 +349,6 @@
                   </select>
                 </div>
                 <div class="my-3 md:my-0 md:mt-12">
-                  <notification :message="error" />
                   <div class="flex site__input w-full">
                     <div class="flex">
                       <p
@@ -370,6 +375,7 @@
                       @blurall="blurAll()"
                     />
                   </div>
+                  <notification :message="errorRating" />
                   <div
                     v-if="opened.includes(tooltips[6].id)"
                     class="w-full bg-primary"
@@ -408,16 +414,12 @@ export default {
   data() {
     return {
       isOpen: false,
-      error: '',
+      errorRating: '',
+      errorSalary: '',
+      errorJobtitle: '',
+      errorCity: '',
       opened: [],
       starsPicture: require('../assets/star.png'),
-      showModal0: false,
-      showModal1: false,
-      showModal2: false,
-      showModal3: false,
-      showModal4: false,
-      showModal5: false,
-      showModal6: false,
       newRating: {
         company_name: '',
         salary: '',
@@ -579,8 +581,20 @@ export default {
     },
     addRating() {
       if (this.newRating) {
+        if (String(this.newRating.salary).length === 0) {
+          this.errorSalary = 'This field cannot be empty'
+          return
+        }
+        if (String(this.newRating.job_title).length === 0) {
+          this.errorJobtitle = 'This field cannot be empty'
+          return
+        }
+        if (String(this.newRating.city).length === 0) {
+          this.errorCity = 'This field cannot be empty'
+          return
+        }
         if (this.newRating.rating === 0) {
-          this.error = 'Please rate this company.'
+          this.errorRating = 'This field cannot be empty'
         } else {
           this.$store.dispatch('postRating', this.newRating)
           this.$router.push('/')
