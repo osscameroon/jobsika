@@ -81,6 +81,7 @@
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
                     Monthly Salary (FCFA)
+                    <span style="color: red">&#42;</span>
                   </p>
                   <div class="flex items-center-mt-2">
                     <span
@@ -188,6 +189,7 @@
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
                     Job Title
+                    <span style="color: red">&#42;</span>
                   </p>
                   <div class="flex items-center-mt-2">
                     <span
@@ -245,6 +247,7 @@
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
                     City
+                    <span style="color: red">&#42;</span>
                   </p>
                   <div class="flex items-center-mt-2">
                     <span
@@ -356,6 +359,7 @@
                         style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                       >
                         Rate
+                        <span style="color: red">&#42;</span>
                       </p>
                       <div class="flex items-center-mt-2">
                         <span
