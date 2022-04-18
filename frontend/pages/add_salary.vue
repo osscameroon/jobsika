@@ -109,13 +109,15 @@
                 </div>
                 <input
                   v-model="newRating.salary"
-                  type="text"
+                  type="number"
                   style="height: 61px"
-                  required
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @keypress="onlyNumber"
                   @focus="blurAll()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorSalary" />
+                </div>
                 <div class="flex">
                   <p
                     class="text-xs md:text-sm font-bold"
@@ -215,12 +217,14 @@
                 <input
                   :value="newRating.job_title"
                   type="text"
-                  required
                   style="height: 61px"
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @input="(event) => (newRating.job_title = event.target.value)"
                   @focus="jobTitleFocus()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorJobtitle" />
+                </div>
                 <ul
                   v-if="jobTitleComplation"
                   style="background: white"
@@ -271,12 +275,14 @@
                 <input
                   :value="newRating.city"
                   type="text"
-                  required
                   style="height: 61px"
-                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                  class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
                   @input="(event) => (newRating.city = event.target.value)"
                   @focus="cityFocus()"
                 />
+                <div class="mb-4 md:mb-16">
+                  <notification :message="errorCity" />
+                </div>
                 <ul
                   v-if="cityComplation"
                   style="background: white"
@@ -342,45 +348,48 @@
                     </option>
                   </select>
                 </div>
-                <div class="site__input w-full flex my-3 md:my-0 md:mt-12">
-                  <div class="flex">
-                    <p
-                      class="text-xs md:text-sm font-bold"
-                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                    >
-                      Rate
-                    </p>
-                    <div class="flex items-center-mt-2">
-                      <span
-                        class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                        :class="{ opened: opened.includes(tooltips[0].id) }"
-                        @click="toggle(tooltips[6].id)"
+                <div class="my-3 md:my-0 md:mt-12">
+                  <div class="flex site__input w-full">
+                    <div class="flex">
+                      <p
+                        class="text-xs md:text-sm font-bold"
+                        style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                       >
-                        !
-                      </span>
+                        Rate
+                      </p>
+                      <div class="flex items-center-mt-2">
+                        <span
+                          class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                          :class="{ opened: opened.includes(tooltips[0].id) }"
+                          @click="toggle(tooltips[6].id)"
+                        >
+                          !
+                        </span>
+                      </div>
                     </div>
+                    <StarRating
+                      :grade="newRating.rating"
+                      :max-stars="5"
+                      :has-counter="true"
+                      @changeGrade="setGrade"
+                      @blurall="blurAll()"
+                    />
                   </div>
-                  <StarRating
-                    :grade="newRating.rating"
-                    :max-stars="5"
-                    :has-counter="true"
-                    @changeGrade="setGrade"
-                    @blurall="blurAll()"
-                  />
-                </div>
-                <div
-                  v-if="opened.includes(tooltips[6].id)"
-                  class="w-full bg-primary"
-                >
-                  <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                    <p
-                      class="text-xs md:text-sm"
-                      style="color: #000000; font-family: 'Inter', sans-serif"
-                    >
-                      This field requires you to enter the job tittle as stated
-                      in your contract. To help you, we have listed some job
-                      tittles in the proposition field.
-                    </p>
+                  <notification :message="errorRating" />
+                  <div
+                    v-if="opened.includes(tooltips[6].id)"
+                    class="w-full bg-primary"
+                  >
+                    <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
+                      <p
+                        class="text-xs md:text-sm"
+                        style="color: #000000; font-family: 'Inter', sans-serif"
+                      >
+                        This field requires you to enter the job tittle as
+                        stated in your contract. To help you, we have listed
+                        some job tittles in the proposition field.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -394,24 +403,23 @@
 
 <script>
 import Button from '../components/Button.vue'
+import Notification from '~/components/notification.vue'
 export default {
   name: 'AddSalary',
   components: {
     Button,
+    Notification,
   },
   layout: 'addSalary',
   data() {
     return {
       isOpen: false,
+      errorRating: '',
+      errorSalary: '',
+      errorJobtitle: '',
+      errorCity: '',
       opened: [],
       starsPicture: require('../assets/star.png'),
-      showModal0: false,
-      showModal1: false,
-      showModal2: false,
-      showModal3: false,
-      showModal4: false,
-      showModal5: false,
-      showModal6: false,
       newRating: {
         company_name: '',
         salary: '',
@@ -573,8 +581,24 @@ export default {
     },
     addRating() {
       if (this.newRating) {
-        this.$store.dispatch('postRating', this.newRating)
-        this.$router.push('/')
+        if (String(this.newRating.salary).length === 0) {
+          this.errorSalary = 'This field cannot be empty'
+          return
+        }
+        if (String(this.newRating.job_title).length === 0) {
+          this.errorJobtitle = 'This field cannot be empty'
+          return
+        }
+        if (String(this.newRating.city).length === 0) {
+          this.errorCity = 'This field cannot be empty'
+          return
+        }
+        if (this.newRating.rating === 0) {
+          this.errorRating = 'This field cannot be empty'
+        } else {
+          this.$store.dispatch('postRating', this.newRating)
+          this.$router.push('/')
+        }
       }
     },
     onlyNumber($event) {
