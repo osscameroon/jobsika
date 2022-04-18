@@ -1,6 +1,10 @@
 package v1beta
 
-import "time"
+import (
+	"errors"
+	"strings"
+	"time"
+)
 
 //RatingQuery is a Rating query structure
 type RatingQuery struct {
@@ -47,4 +51,21 @@ type RatingPostQuery struct {
 	Comment     string `json:"comment"`
 	Seniority   string `json:"seniority"`
 	Rating      int64  `json:"rating"`
+}
+
+// Validate check if the mandatory fields are filled
+func (r RatingPostQuery) Validate() error {
+	if strings.TrimSpace(r.CompanyName) == "" {
+		return errors.New("company name is mandatory")
+	}
+
+	if strings.TrimSpace(r.JobTitle) == "" {
+		return errors.New("job title is mandatory")
+	}
+
+	if r.Rating <= 0 {
+		return errors.New("rating is mandatory")
+	}
+
+	return nil
 }
