@@ -55,16 +55,12 @@ type RatingPostQuery struct {
 
 // Validate check if the mandatory fields are filled
 func (r RatingPostQuery) Validate() error {
-	if strings.TrimSpace(r.CompanyName) == "" {
-		return errors.New("company name is mandatory")
-	}
-
 	if strings.TrimSpace(r.JobTitle) == "" {
 		return errors.New("job title is mandatory")
 	}
 
-	if r.Rating <= 0 {
-		return errors.New("rating is mandatory")
+	if strings.TrimSpace(r.City) == "" {
+		return errors.New("city is mandatory")
 	}
 
 	return nil
