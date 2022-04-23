@@ -1,6 +1,6 @@
 <template>
-  <div class="site__rating ml-6">
-    <ul class="site__rating-list flex">
+  <div class="site__rating w-5/12 mx-auto">
+    <ul class="site__rating-list flex items-center justify-between">
       <li
         v-for="star in maxStars"
         @click="rate(star)"
@@ -8,7 +8,7 @@
         :key="star.stars"
         class="star"
       >
-        <img class="w-4 h-4 mr-1" :src="star <= stars ? starc : staru" />
+        <img class="w-7 h-7" :src="star <= stars ? starc : staru" />
       </li>
     </ul>
   </div>
