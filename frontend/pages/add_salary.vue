@@ -359,7 +359,6 @@
                         style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                       >
                         Rate
-                        <span style="color: red">&#42;</span>
                       </p>
                       <div class="flex items-center-mt-2">
                         <span
@@ -418,7 +417,6 @@ export default {
   data() {
     return {
       isOpen: false,
-      errorRating: '',
       errorSalary: '',
       errorJobtitle: '',
       errorCity: '',
@@ -595,10 +593,6 @@ export default {
         }
         if (String(this.newRating.city).length === 0) {
           this.errorCity = 'This field cannot be empty'
-          return
-        }
-        if (this.newRating.rating === 0) {
-          this.errorRating = 'This field cannot be empty'
         } else {
           this.$store.dispatch('postRating', this.newRating)
           this.$router.push('/')
