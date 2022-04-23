@@ -334,7 +334,6 @@
                       style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                     >
                       Rate
-                      <span style="color: red">&#42;</span>
                     </p>
                     <div class="flex items-center-mt-2">
                       <span
@@ -354,7 +353,6 @@
                     @blurall="blurAll()"
                   />
                 </div>
-                <notification :message="errorRating" />
                 <div
                   v-if="opened.includes(tooltips[6].id)"
                   class="w-full bg-primary"
@@ -368,55 +366,76 @@
                       in your contract. To help you, we have listed some job
                       tittles in the proposition field.
                     </p>
-                      {{ seniority }}
-                    </option>
-                  </select>
-                </div>
-                <div class="my-3 md:my-0 md:mt-12">
-                  <div class="flex site__input w-full">
-                    <div class="flex">
-                      <p
-                        class="text-xs md:text-sm font-bold"
-                        style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                    <select
+                      v-model="newRating.seniority"
+                      class="mt-2 mb-4 md:mb-8 md:mt-3 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                      style="height: 61px; font-family: 'Inter', sans-serif"
+                      aria-label="Default select example"
+                      @focus="blurAll()"
+                    >
+                      <option
+                        v-for="seniority in seniorities"
+                        :key="seniority"
+                        :value="seniority"
+                        style="font-family: 'Inter', sans-serif"
+                        class="text-xs md:text-sm"
                       >
-                        Rate
-                      </p>
-                      <div class="flex items-center-mt-2">
-                        <span
-                          class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                          :class="{ opened: opened.includes(tooltips[0].id) }"
-                          @click="toggle(tooltips[6].id)"
+                        {{ seniority }}
+                      </option>
+                    </select>
+                  </div>
+                  <div class="my-3 md:my-0 md:mt-12">
+                    <div class="flex site__input w-full">
+                      <div class="flex">
+                        <p
+                          class="text-xs md:text-sm font-bold"
+                          style="
+                            color: #b1b1b1;
+                            font-family: 'Inter', sans-serif;
+                          "
                         >
-                          !
-                        </span>
+                          Rate
+                        </p>
+                        <div class="flex items-center-mt-2">
+                          <span
+                            class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                            :class="{ opened: opened.includes(tooltips[0].id) }"
+                            @click="toggle(tooltips[6].id)"
+                          >
+                            !
+                          </span>
+                        </div>
+                      </div>
+                      <StarRating
+                        :grade="newRating.rating"
+                        :max-stars="5"
+                        :has-counter="true"
+                        @changeGrade="setGrade"
+                        @blurall="blurAll()"
+                      />
+                    </div>
+                    <div
+                      v-if="opened.includes(tooltips[6].id)"
+                      class="w-full bg-primary"
+                    >
+                      <div
+                        class="bg-white w-full p-2 my-3 shadow-sm rounded-sm"
+                      >
+                        <p
+                          class="text-xs md:text-sm"
+                          style="
+                            color: #000000;
+                            font-family: 'Inter', sans-serif;
+                          "
+                        >
+                          This field requires you to enter the job tittle as
+                          stated in your contract. To help you, we have listed
+                          some job tittles in the proposition field.
+                        </p>
                       </div>
                     </div>
-                    <StarRating
-                      :grade="newRating.rating"
-                      :max-stars="5"
-                      :has-counter="true"
-                      @changeGrade="setGrade"
-                      @blurall="blurAll()"
-                    />
-                  </div>
-                  <notification :message="errorRating" />
-                  <div
-                    v-if="opened.includes(tooltips[6].id)"
-                    class="w-full bg-primary"
-                  >
-                    <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                      <p
-                        class="text-xs md:text-sm"
-                        style="color: #000000; font-family: 'Inter', sans-serif"
-                      >
-                        This field requires you to enter the job tittle as
-                        stated in your contract. To help you, we have listed
-                        some job tittles in the proposition field.
-                      </p>
-                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
             <div
