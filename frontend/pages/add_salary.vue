@@ -417,6 +417,7 @@
                   </div>
                 </div>
               </div>
+              </div>
             </div>
             <div
               class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center"
