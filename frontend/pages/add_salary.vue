@@ -285,7 +285,55 @@
               @keypress="onlyNumber"
               @focus="blurAll()"
             />
-            <div class="mb-4 md:mb-16">
+            <div class="site__input w-full">
+              <div class="my-3 md:my-0 md:mt-12">
+                <div class="flex site__input w-full items-center">
+                  <div class="flex">
+                    <p
+                      class="text-xs md:text-lg font-bold"
+                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                    >
+                      Rate
+                    </p>
+                    <div class="flex items-center">
+                      <span
+                        class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                        :class="{ opened: opened.includes(tooltips[0].id) }"
+                        @click="toggle(tooltips[6].id)"
+                      >
+                        !
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <StarRating
+                  :grade="newRating.rating"
+                  :max-stars="5"
+                  :has-counter="true"
+                  @changeGrade="setGrade"
+                  @blurall="blurAll()"
+                />
+                <div
+                  v-if="opened.includes(tooltips[6].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="w-full p-2 my-3">
+                    <p
+                      class="text-xs md:text-sm"
+                      style="color: #000000; font-family: 'Inter', sans-serif"
+                    >
+                      This field requires you to rate your overall experience
+                      with the company. For example, 1 star could mean you will
+                      not recommend anybody to work with that company or five
+                      stars could mean your overall experience with the company
+                      was excellent and you will gladly recommend anyone to work
+                      with them.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4 md:mb-8">
               <notification :message="errorSalary" />
             </div>
             <div class="flex">
@@ -327,57 +375,10 @@
               type="textarea"
               rows="5"
               style="height: 120px"
-              class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC"
+              class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC mb-4"
               @focus="blurAll()"
             />
-            <div class="site__input w-full">
-              <div class="my-3 md:my-0 md:mt-12">
-                <div class="flex site__input w-full items-center">
-                  <div class="flex">
-                    <p
-                      class="text-xs md:text-lg font-bold"
-                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                    >
-                      Rate
-                    </p>
-                    <div class="flex items-center">
-                      <span
-                        class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                        :class="{ opened: opened.includes(tooltips[0].id) }"
-                        @click="toggle(tooltips[6].id)"
-                      >
-                        !
-                      </span>
-                    </div>
-                  </div>
-                  <StarRating
-                    :grade="newRating.rating"
-                    :max-stars="5"
-                    :has-counter="true"
-                    @changeGrade="setGrade"
-                    @blurall="blurAll()"
-                  />
-                </div>
-                <div
-                  v-if="opened.includes(tooltips[6].id)"
-                  class="w-full bg-primary"
-                >
-                  <div class="w-full p-2 my-3">
-                    <p
-                      class="text-xs md:text-sm"
-                      style="color: #000000; font-family: 'Inter', sans-serif"
-                    >
-                      This field requires you to rate your overall experience
-                      with the company. For example, 1 star could mean you will
-                      not recommend anybody to work with that company or five
-                      stars could mean your overall experience with the company
-                      was excellent and you will gladly recommend anyone to work
-                      with them.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+
             <div
               class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center md:justify-end"
             >
