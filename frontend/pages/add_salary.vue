@@ -15,7 +15,7 @@
           and honest.
         </p>
         <form @submit.prevent="addRating">
-          <div class="site__main-row flex flex-col">
+          <div class="site__main-row flex flex-col md:w-7/12 mx-auto">
             <div class="site__main-row w-full mt-5 md:mt-16">
               <div class="flex">
                 <p
@@ -379,7 +379,7 @@
               </div>
             </div>
             <div
-              class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center"
+              class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center md:justify-end"
             >
               <div class="w-full md:w-1/5">
                 <NuxtLink to="/">
