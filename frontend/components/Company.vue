@@ -64,12 +64,12 @@
             <tbody
               v-for="(company, myIndex) in ratings"
               :key="myIndex + 1"
-              class="bg-white shadow-md divide-y divide-white"
+              class="bg-white shadow-lg divide-y rounded rounded-full divide-white"
             >
               <tr>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap">
                   <div
-                    class="text-xs md:text-sm text-gray-900"
+                    class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{
@@ -79,9 +79,9 @@
                     }}
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap">
                   <div
-                    class="text-xs md:text-sm text-gray-900"
+                    class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{
@@ -91,31 +91,31 @@
                     }}
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap">
                   <div
-                    class="text-xs md:text-sm text-gray-900"
+                    class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.seniority }}
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap">
                   <div
-                    class="text-xs md:text-sm text-gray-900"
+                    class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.city }}
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
                   <div
-                    class="text-xs md:text-sm text-gray-900"
+                    class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     {{ company.salary | price }}
                   </div>
                 </td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <td class="px-4 py-3 whitespace-nowrap text-sm font-medium">
                   <div class="flex">
                     <div
                       v-for="item in company.rating"
@@ -127,14 +127,14 @@
                   </div>
                 </td>
                 <td
-                  class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium"
+                  class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium"
                   :class="{ opened: opened.includes(company.salary_id) }"
                   @click="toggle(company.salary_id)"
                 >
                   <button
                     v-if="String(company.comment).length === 0"
                     disable
-                    class="text-grayC text-xs md:text-sm flex items-center space-x-3 cursor-text"
+                    class="text-grayC text-xs flex items-center space-x-3 cursor-text"
                     style="font-family: 'Inter', sans-serif"
                     type="button"
                   >
@@ -142,7 +142,7 @@
                   </button>
                   <button
                     v-else
-                    class="text-xs md:text-sm flex items-center space-x-3 cursor-pointer"
+                    class="text-xs flex items-center space-x-3 cursor-pointer"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                     type="button"
                   >

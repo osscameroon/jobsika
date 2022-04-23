@@ -30,6 +30,7 @@
           subTitle="When no one shares their salary, employers have the upper hand. We can change this."
           content="subtitle"
         />
+        <Footer />
       </div>
     </footer>
   </div>
@@ -40,6 +41,7 @@ import Title from '../components/Title.vue'
 import Select from '../components/Select.vue'
 import Company from '../components/Company.vue'
 import Average from '../components/Average.vue'
+import Footer from '~/components/Footer.vue'
 export default {
   name: 'IndexPage',
   components: {
@@ -47,6 +49,7 @@ export default {
     Select,
     Company,
     Average,
+    Footer,
   },
   layout: 'app',
 }
