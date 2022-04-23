@@ -15,7 +15,7 @@
           and honest.
         </p>
         <form @submit.prevent="addRating">
-          <div class="site__main-row flex flex-col">
+          <div class="site__main-row flex flex-col md:w-7/12 mx-auto">
             <div class="site__main-row w-full mt-5 md:mt-16">
               <div class="flex">
                 <p
@@ -43,9 +43,11 @@
                     class="text-xs md:text-sm"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
+                    You are required to enter the name of the company. We
+                    understand you might not want to share the name of the
+                    company despite the field being anonymized- please enter a
+                    description of the company (e.g. "local startup",
+                    "well-known bank" or legacy company, etc)
                   </p>
                 </div>
               </div>
@@ -101,9 +103,9 @@
                     class="text-xs md:text-sm"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
+                    This field requires you to enter the title of the position
+                    and/or specialization (if applicable). E.g.
+                    "Accountant(Audit)"
                   </p>
                 </div>
               </div>
@@ -158,9 +160,10 @@
                     class="text-xs md:text-sm"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    This field requires you to enter the job tittle as stated in
-                    your contract. To help you, we have listed some job tittles
-                    in the proposition field.
+                    This field requires you to enter the seniority of the job
+                    title you have/had at the company. Seniority is nothing but
+                    the length of time you have served in a specific job role or
+                    with a particular company.
                   </p>
                 </div>
               </div>
@@ -209,9 +212,9 @@
                   class="text-xs md:text-sm"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
-                  This field requires you to enter the job tittle as stated in
-                  your contract. To help you, we have listed some job tittles in
-                  the proposition field.
+                  This field requires you to enter the town you are/were
+                  employed in. For remote workers, please enter the town you
+                  are/were based in.
                 </p>
               </div>
             </div>
@@ -268,9 +271,9 @@
                   class="text-xs md:text-sm"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
-                  This field requires you to enter the job tittle as stated in
-                  your contract. To help you, we have listed some job tittles in
-                  the proposition field.
+                  This field requires you to enter the pre-tax/gross salary you
+                  get, vacation money included. You can find this amount in your
+                  contract or on your paycheck.
                 </p>
               </div>
             </div>
@@ -311,8 +314,10 @@
                   class="text-xs md:text-sm"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
-                  This field requires you to enter monthly salary you earned in
-                  FCFA
+                  This field requires you to tell us more about your experience
+                  in the company. Please share more details about your
+                  contribution. Any bad or good things that happened that you
+                  want to share with us?
                 </p>
               </div>
             </div>
@@ -334,7 +339,6 @@
                       style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                     >
                       Rate
-                      <span style="color: red">&#42;</span>
                     </p>
                     <div class="flex items-center-mt-2">
                       <span
@@ -354,7 +358,6 @@
                     @blurall="blurAll()"
                   />
                 </div>
-                <notification :message="errorRating" />
                 <div
                   v-if="opened.includes(tooltips[6].id)"
                   class="w-full bg-primary"
@@ -364,63 +367,19 @@
                       class="text-xs md:text-sm"
                       style="color: #000000; font-family: 'Inter', sans-serif"
                     >
-                      This field requires you to enter the job tittle as stated
-                      in your contract. To help you, we have listed some job
-                      tittles in the proposition field.
+                      This field requires you to rate your overall experience
+                      with the company. For example, 1 star could mean you will
+                      not recommend anybody to work with that company or five
+                      stars could mean your overall experience with the company
+                      was excellent and you will gladly recommend anyone to work
+                      with them.
                     </p>
-                      {{ seniority }}
-                    </option>
-                  </select>
-                </div>
-                <div class="my-3 md:my-0 md:mt-12">
-                  <div class="flex site__input w-full">
-                    <div class="flex">
-                      <p
-                        class="text-xs md:text-sm font-bold"
-                        style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                      >
-                        Rate
-                      </p>
-                      <div class="flex items-center-mt-2">
-                        <span
-                          class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                          :class="{ opened: opened.includes(tooltips[0].id) }"
-                          @click="toggle(tooltips[6].id)"
-                        >
-                          !
-                        </span>
-                      </div>
-                    </div>
-                    <StarRating
-                      :grade="newRating.rating"
-                      :max-stars="5"
-                      :has-counter="true"
-                      @changeGrade="setGrade"
-                      @blurall="blurAll()"
-                    />
-                  </div>
-                  <notification :message="errorRating" />
-                  <div
-                    v-if="opened.includes(tooltips[6].id)"
-                    class="w-full bg-primary"
-                  >
-                    <div class="bg-white w-full p-2 my-3 shadow-sm rounded-sm">
-                      <p
-                        class="text-xs md:text-sm"
-                        style="color: #000000; font-family: 'Inter', sans-serif"
-                      >
-                        This field requires you to enter the job tittle as
-                        stated in your contract. To help you, we have listed
-                        some job tittles in the proposition field.
-                      </p>
-                    </div>
                   </div>
                 </div>
-              </div>
               </div>
             </div>
             <div
-              class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center"
+              class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center md:justify-end"
             >
               <div class="w-full md:w-1/5">
                 <NuxtLink to="/">
