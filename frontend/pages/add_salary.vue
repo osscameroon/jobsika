@@ -19,14 +19,14 @@
             <div class="site__main-row w-full mt-5 md:mt-16">
               <div class="flex">
                 <p
-                  class="text-xs md:text-sm font-bold"
+                  class="text-xs font-bold md:text-lg"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Company Name
                 </p>
-                <div class="flex items-center-mt-2">
+                <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[0].id)"
                   >
@@ -78,15 +78,15 @@
               </ul>
               <div class="flex">
                 <p
-                  class="text-xs md:text-sm font-bold"
+                  class="text-xs md:text-lg font-bold"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Job Title
                   <span style="color: red">&#42;</span>
                 </p>
-                <div class="flex items-center-mt-2">
+                <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[3].id)"
                   >
@@ -136,14 +136,14 @@
               </ul>
               <div class="flex">
                 <p
-                  class="text-xs md:text-sm font-bold"
+                  class="text-xs md:text-lg font-bold"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Seniority
                 </p>
-                <div class="flex items-center-mt-2">
+                <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[5].id)"
                   >
@@ -187,15 +187,15 @@
             </div>
             <div class="flex">
               <p
-                class="text-xs md:text-sm font-bold"
+                class="text-xs md:text-lg font-bold"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 City
                 <span style="color: red">&#42;</span>
               </p>
-              <div class="flex items-center-mt-2">
+              <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[4].id)"
                 >
@@ -246,15 +246,15 @@
             </ul>
             <div class="flex">
               <p
-                class="text-xs md:text-sm font-bold"
+                class="text-xs md:text-lg font-bold"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 Monthly Salary (FCFA)
                 <span style="color: red">&#42;</span>
               </p>
-              <div class="flex items-center-mt-2">
+              <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[1].id)"
                 >
@@ -290,14 +290,14 @@
             </div>
             <div class="flex">
               <p
-                class="text-xs md:text-sm font-bold"
+                class="text-xs md:text-lg font-bold"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 Comments
               </p>
-              <div class="flex items-center-mt-2">
+              <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[2].id)"
                 >
@@ -332,17 +332,17 @@
             />
             <div class="site__input w-full">
               <div class="my-3 md:my-0 md:mt-12">
-                <div class="flex site__input w-full">
+                <div class="flex site__input w-full items-center">
                   <div class="flex">
                     <p
-                      class="text-xs md:text-sm font-bold"
+                      class="text-xs md:text-lg font-bold"
                       style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                     >
                       Rate
                     </p>
-                    <div class="flex items-center-mt-2">
+                    <div class="flex items-center">
                       <span
-                        class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                        class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
                         :class="{ opened: opened.includes(tooltips[0].id) }"
                         @click="toggle(tooltips[6].id)"
                       >
