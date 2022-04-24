@@ -114,6 +114,14 @@ func PostRatings(c *gin.Context) {
 			gin.H{"error": "could not post rating"})
 	}
 
+	err := query.Validate()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusBadRequest,
+			gin.H{"error": err.Error()})
+		return
+	}
+
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
 	if err != nil {
