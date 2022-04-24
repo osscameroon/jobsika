@@ -40,13 +40,8 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light"
-                    style="
-                      color: #000000;
-                      font-family: 'Inter', sans-serif;
-                      font-size: 9px;
-                      line-height: 12px;
-                    "
+                    class="font-light text-xs leading-5"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     You are required to enter the name of the company. We
                     understand you might not want to share the name of the
@@ -105,13 +100,8 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light"
-                    style="
-                      color: #000000;
-                      font-family: 'Inter', sans-serif;
-                      font-size: 9px;
-                      line-height: 12px;
-                    "
+                    class="font-light text-xs leading-5"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This field requires you to enter the title of the position
                     and/or specialization (if applicable). E.g.
@@ -167,13 +157,8 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light"
-                    style="
-                      color: #000000;
-                      font-family: 'Inter', sans-serif;
-                      font-size: 9px;
-                      line-height: 12px;
-                    "
+                    class="font-light text-xs leading-5"
+                    style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This field requires you to enter the seniority of the job
                     title you have/had at the company. Seniority is nothing but
@@ -224,13 +209,8 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light"
-                  style="
-                    color: #000000;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 9px;
-                    line-height: 12px;
-                  "
+                  class="font-light text-xs leading-5"
+                  style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to enter the town you are/were
                   employed in. For remote workers, please enter the town you
@@ -288,13 +268,8 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light"
-                  style="
-                    color: #000000;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 9px;
-                    line-height: 12px;
-                  "
+                  class="font-light leading-5 text-xs"
+                  style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to enter the pre-tax/gross salary you
                   get, vacation money included. You can find this amount in your
@@ -343,13 +318,8 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light"
-                  style="
-                    color: #000000;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 9px;
-                    line-height: 12px;
-                  "
+                  class="font-light text-xs leading-5"
+                  style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to rate your overall experience with
                   the company. For example, 1 star could mean you will not
@@ -383,13 +353,8 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light"
-                  style="
-                    color: #000000;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 9px;
-                    line-height: 12px;
-                  "
+                  class="font-light text-xs leading-5"
+                  style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to tell us more about your experience
                   in the company. Please share more details about your
