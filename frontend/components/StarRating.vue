@@ -1,5 +1,5 @@
 <template>
-  <div class="site__rating w-5/12 mx-auto">
+  <div class="site__rating w-5/12 mx-auto mb-2 md:mb-8">
     <ul class="site__rating-list flex items-center justify-between">
       <li
         v-for="star in maxStars"
