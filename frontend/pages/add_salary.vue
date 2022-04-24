@@ -301,18 +301,11 @@
                 </span>
               </div>
             </div>
-            <StarRating
-              :grade="newRating.rating"
-              :max-stars="5"
-              :has-counter="true"
-              @changeGrade="setGrade"
-              @blurall="blurAll()"
-            />
             <div
               v-if="opened.includes(tooltips[6].id)"
               class="w-full bg-primary"
             >
-              <div class="w-full my-1">
+              <div class="w-full mt-1 mb-2">
                 <p
                   class="font-light text-xs leading-5"
                   style="color: #000000; font-family: 'Inter', sans-serif"
@@ -326,6 +319,13 @@
                 </p>
               </div>
             </div>
+            <StarRating
+              :grade="newRating.rating"
+              :max-stars="5"
+              :has-counter="true"
+              @changeGrade="setGrade"
+              @blurall="blurAll()"
+            />
             <div class="flex">
               <p
                 class="text-xs md:text-lg font-bold"
