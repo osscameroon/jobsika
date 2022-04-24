@@ -3,7 +3,7 @@
     <main class="site__main pt-6 md:pt-12 pb-10 md:pb-20">
       <div class="container mx-auto w-10/12">
         <Title
-          title="Add a company to the list"
+          title="Fill the form and submit your contribution"
           font-size="header"
           only-title="onlyTitle"
         />
