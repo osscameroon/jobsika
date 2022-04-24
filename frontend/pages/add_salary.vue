@@ -1,6 +1,6 @@
 <template>
   <div>
-    <main class="site__main pt-5 lg:pt-0 pb-10 md:pb-20">
+    <main class="site__main pt-6 md:pt-12 pb-10 md:pb-20">
       <div class="container mx-auto w-10/12">
         <Title
           title="Add a company to the list"
@@ -38,10 +38,15 @@
                 v-if="opened.includes(tooltips[0].id)"
                 class="w-full bg-primary"
               >
-                <div class="w-full p-2 my-3">
+                <div class="w-full my-1">
                   <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
+                    class="font-light"
+                    style="
+                      color: #000000;
+                      font-family: 'Inter', sans-serif;
+                      font-size: 9px;
+                      line-height: 12px;
+                    "
                   >
                     You are required to enter the name of the company. We
                     understand you might not want to share the name of the
@@ -56,7 +61,7 @@
                 :value="newRating.company_name"
                 type="text"
                 style="height: 61px"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
+                class="site__input-field border border-grayC mt-2 w-full rounded-md mb-4 md:mb-16"
                 @input="
                   (event) => (newRating.company_name = event.target.value)
                 "
@@ -98,10 +103,15 @@
                 v-if="opened.includes(tooltips[3].id)"
                 class="w-full bg-primary"
               >
-                <div class="w-full p-2 my-3">
+                <div class="w-full my-1">
                   <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
+                    class="font-light"
+                    style="
+                      color: #000000;
+                      font-family: 'Inter', sans-serif;
+                      font-size: 9px;
+                      line-height: 12px;
+                    "
                   >
                     This field requires you to enter the title of the position
                     and/or specialization (if applicable). E.g.
@@ -113,11 +123,11 @@
                 :value="newRating.job_title"
                 type="text"
                 style="height: 61px"
-                class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
+                class="site__input-field border border-grayC mt-2 w-full rounded-md"
                 @input="(event) => (newRating.job_title = event.target.value)"
                 @focus="jobTitleFocus()"
               />
-              <div class="mb-4 md:mb-16">
+              <div class="mb-4 md:mb-16 mt-2">
                 <notification :message="errorJobtitle" />
               </div>
               <ul
@@ -155,10 +165,15 @@
                 v-if="opened.includes(tooltips[5].id)"
                 class="w-full bg-primary"
               >
-                <div class="w-full p-2 my-3">
+                <div class="w-full my-1">
                   <p
-                    class="text-xs md:text-sm"
-                    style="color: #000000; font-family: 'Inter', sans-serif"
+                    class="font-light"
+                    style="
+                      color: #000000;
+                      font-family: 'Inter', sans-serif;
+                      font-size: 9px;
+                      line-height: 12px;
+                    "
                   >
                     This field requires you to enter the seniority of the job
                     title you have/had at the company. Seniority is nothing but
@@ -169,7 +184,7 @@
               </div>
               <select
                 v-model="newRating.seniority"
-                class="mt-2 mb-4 md:mb-16 md:mt-3 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                class="mt-2 mb-4 md:mb-16 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                 style="height: 61px; font-family: 'Inter', sans-serif"
                 aria-label="Default select example"
                 @focus="blurAll()"
@@ -207,10 +222,15 @@
               v-if="opened.includes(tooltips[4].id)"
               class="w-full bg-primary"
             >
-              <div class="w-full p-2 my-3">
+              <div class="w-full my-1">
                 <p
-                  class="text-xs md:text-sm"
-                  style="color: #000000; font-family: 'Inter', sans-serif"
+                  class="font-light"
+                  style="
+                    color: #000000;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 9px;
+                    line-height: 12px;
+                  "
                 >
                   This field requires you to enter the town you are/were
                   employed in. For remote workers, please enter the town you
@@ -223,11 +243,11 @@
               :value="newRating.city"
               type="text"
               style="height: 61px"
-              class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
+              class="site__input-field border border-grayC mt-2 w-full rounded-md"
               @input="(event) => (newRating.city = event.target.value)"
               @focus="cityFocus()"
             />
-            <div class="mb-4 md:mb-16">
+            <div class="mb-4 md:mb-8 mt-2">
               <notification :message="errorCity" />
             </div>
             <ul
@@ -266,10 +286,15 @@
               v-if="opened.includes(tooltips[1].id)"
               class="w-full bg-primary"
             >
-              <div class="w-full p-2 my-3">
+              <div class="w-full my-1">
                 <p
-                  class="text-xs md:text-sm"
-                  style="color: #000000; font-family: 'Inter', sans-serif"
+                  class="font-light"
+                  style="
+                    color: #000000;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 9px;
+                    line-height: 12px;
+                  "
                 >
                   This field requires you to enter the pre-tax/gross salary you
                   get, vacation money included. You can find this amount in your
@@ -281,60 +306,59 @@
               v-model="newRating.salary"
               type="number"
               style="height: 61px"
-              class="site__input-field border border-grayC mt-2 md:mt-3 w-full rounded-md"
+              class="site__input-field border border-grayC mt-2 w-full rounded-md"
               @keypress="onlyNumber"
               @focus="blurAll()"
             />
-            <div class="site__input w-full">
-              <div class="my-3 md:my-0 md:mt-12">
-                <div class="flex site__input w-full items-center">
-                  <div class="flex">
-                    <p
-                      class="text-xs md:text-lg font-bold"
-                      style="color: #b1b1b1; font-family: 'Inter', sans-serif"
-                    >
-                      Rate
-                    </p>
-                    <div class="flex items-center">
-                      <span
-                        class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
-                        :class="{ opened: opened.includes(tooltips[0].id) }"
-                        @click="toggle(tooltips[6].id)"
-                      >
-                        !
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                <StarRating
-                  :grade="newRating.rating"
-                  :max-stars="5"
-                  :has-counter="true"
-                  @changeGrade="setGrade"
-                  @blurall="blurAll()"
-                />
-                <div
-                  v-if="opened.includes(tooltips[6].id)"
-                  class="w-full bg-primary"
+            <div class="mb-2 md:mb-8 mt-2">
+              <notification :message="errorSalary" />
+            </div>
+            <div class="flex">
+              <p
+                class="text-xs md:text-lg font-bold"
+                style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+              >
+                Rate
+              </p>
+              <div class="flex items-center">
+                <span
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  :class="{ opened: opened.includes(tooltips[0].id) }"
+                  @click="toggle(tooltips[6].id)"
                 >
-                  <div class="w-full p-2 my-3">
-                    <p
-                      class="text-xs md:text-sm"
-                      style="color: #000000; font-family: 'Inter', sans-serif"
-                    >
-                      This field requires you to rate your overall experience
-                      with the company. For example, 1 star could mean you will
-                      not recommend anybody to work with that company or five
-                      stars could mean your overall experience with the company
-                      was excellent and you will gladly recommend anyone to work
-                      with them.
-                    </p>
-                  </div>
-                </div>
+                  !
+                </span>
               </div>
             </div>
-            <div class="mb-4 md:mb-8">
-              <notification :message="errorSalary" />
+            <StarRating
+              :grade="newRating.rating"
+              :max-stars="5"
+              :has-counter="true"
+              @changeGrade="setGrade"
+              @blurall="blurAll()"
+            />
+            <div
+              v-if="opened.includes(tooltips[6].id)"
+              class="w-full bg-primary"
+            >
+              <div class="w-full my-1">
+                <p
+                  class="font-light"
+                  style="
+                    color: #000000;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 9px;
+                    line-height: 12px;
+                  "
+                >
+                  This field requires you to rate your overall experience with
+                  the company. For example, 1 star could mean you will not
+                  recommend anybody to work with that company or five stars
+                  could mean your overall experience with the company was
+                  excellent and you will gladly recommend anyone to work with
+                  them.
+                </p>
+              </div>
             </div>
             <div class="flex">
               <p
@@ -357,10 +381,15 @@
               v-if="opened.includes(tooltips[2].id)"
               class="w-full bg-primary"
             >
-              <div class="w-full p-2 my-3">
+              <div class="w-full my-1">
                 <p
-                  class="text-xs md:text-sm"
-                  style="color: #000000; font-family: 'Inter', sans-serif"
+                  class="font-light"
+                  style="
+                    color: #000000;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 9px;
+                    line-height: 12px;
+                  "
                 >
                   This field requires you to tell us more about your experience
                   in the company. Please share more details about your
@@ -375,7 +404,7 @@
               type="textarea"
               rows="5"
               style="height: 120px"
-              class="resize rounded-md w-full h-full mt-2 md:mt-3 border border-grayC mb-4"
+              class="resize rounded-md w-full h-full mt-2 border border-grayC mb-4"
               @focus="blurAll()"
             />
 

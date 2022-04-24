@@ -1,7 +1,7 @@
 <template>
   <div
-    class="notification is-danger mb-2 font-medium text-xs md:text-sm"
-    style="color: #dc3545; font-family: 'Inter', sans-serif"
+    class="notification is-danger mb-3 md:mb-6 font-light"
+    style="color: #dc3545; font-family: 'Inter', sans-serif; font-size: 9px"
   >
     {{ message }}
   </div>
