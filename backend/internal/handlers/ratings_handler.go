@@ -112,7 +112,6 @@ func PostRatings(c *gin.Context) {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "could not post rating"})
-		return
 	}
 
 	err := query.Validate()
