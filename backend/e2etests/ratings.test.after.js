@@ -19,6 +19,7 @@ describe("POST", function () {
         //we set the rating to zero to avoid breaking the average-ratings tests
         //as the rating set -1 are not counted in the calculation of the average
         rating: 0,
+        job_title: "a job_title",
         comment: "my comment",
         seniority: "Seniority",
         city: "Maroua",
