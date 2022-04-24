@@ -69,7 +69,7 @@ func (db DB) queryRatings() *gorm.DB {
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < %[1]d then 0
+						and ss.title_id = s.title_id) < %[1]d then NULL
            else r.rating end as rating
 		`, maxEntryBeforeDisplay)).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
@@ -145,7 +145,7 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 		query = query.Where("j.title = ?", jobtitle)
 	}
 
-	ret := query.Select("AVG(s.salary) as salary, AVG(r.rating) as rating").Find(&r)
+	ret := query.Select("AVG(s.salary) as salary, AVG(NULLIF (r.rating, 0)) as rating").Find(&r)
 	if ret.Error != nil {
 		return v1beta.AverageRating{}, ret.Error
 	}
