@@ -140,6 +140,8 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 		query = query.Where("j.title = ?", jobtitle)
 	}
 
+	query = query.Where("r.rating <> 0")
+
 	ret := query.Select("AVG(s.salary) as salary, AVG(r.rating) as rating").Find(&r)
 	if ret.Error != nil {
 		return v1beta.AverageRating{}, ret.Error
