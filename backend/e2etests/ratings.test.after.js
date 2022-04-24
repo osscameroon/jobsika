@@ -91,7 +91,7 @@ describe("POST", function () {
         .expect(201)
         .expect("Content-Type", "application/json; charset=utf-8");
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       await sendRequest();
     }
     return request(apiHost)
@@ -147,19 +147,19 @@ describe("POST", function () {
       });
   });
 
-  it("POST add 5 new rating entry for one company, fields will not be hide", async function () {
-    // TODO: add this entry 5 times
+  it("POST add 3 new rating entry for one company, fields will not be hide", async function () {
+    // TODO: add this entry 3 times
     const sendRequest = () => request(apiHost)
-      .post(`${endpoint}?page=5`)
+      .post(`${endpoint}?page=3`)
       .set("Accept", "application/json")
       .send({
-        company_name: "Company5rating",
+        company_name: "Company3rating",
         //we set the salary to zero to avoid breaking the average-ratings tests
         //as the salary set -1 are not counted in the calculation of the average
         salary: 0,
         //we set the rating to zero to avoid breaking the average-ratings tests
         //as the rating set -1 are not counted in the calculation of the average
-        rating: 5,
+        rating: 3,
         comment: "my comment",
         seniority: "Seniority",
         city: "Maroua",
@@ -169,12 +169,12 @@ describe("POST", function () {
       .expect(201)
       .expect("Content-Type", "application/json; charset=utf-8");
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       await sendRequest();
     }
 
     return request(apiHost)
-      .get(`${endpoint}?page=1&limit=10&company=Company5rating`)
+      .get(`${endpoint}?page=1&limit=10&company=Company3rating`)
       .set("Accept", "application/json")
       .send()
       .expect(200)
@@ -182,10 +182,10 @@ describe("POST", function () {
       .then((res) => {
         const lastElem = res.body.hits.length - 1;
         const rating = res.body.hits[lastElem];
-        expect(rating.company_name).equal("Company5rating");
+        expect(rating.company_name).equal("Company3rating");
         expect(rating.comment).equal("my comment");
         expect(rating.company_id !== 0).equal(true);
-        expect(rating.rating).equal(5);
+        expect(rating.rating).equal(3);
       });
   });
 });
