@@ -43,9 +43,8 @@
                     class="text-xs md:text-sm"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    You are required to enter the name of the company. We
-                    understand you might not want to share the name of the
-                    company despite the field being anonymized- please enter a
+                    We understand you might not want to share the name of the
+                    company despite the field being anonymized-please enter a
                     description of the company (e.g. "local startup",
                     "well-known bank" or legacy company, etc)
                   </p>
@@ -161,9 +160,7 @@
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This field requires you to enter the seniority of the job
-                    title you have/had at the company. Seniority is nothing but
-                    the length of time you have served in a specific job role or
-                    with a particular company.
+                    title you have/had at the company.
                   </p>
                 </div>
               </div>
