@@ -56,7 +56,7 @@
             <div class="ml-0 md:ml-8 my-1">
               <u class="no-underline">
                 <li>
-                  <p
+                  <span
                     class="text-xs md:text-sm mt-1 leading-5"
                     style="color: #808081"
                   >
@@ -64,27 +64,27 @@
                     displayed if at least 3 people in the same company with the
                     same job title contribute. Until then, a generic description
                     like "A local company" will be displayed.
-                  </p>
+                  </span>
                 </li>
                 <li>
-                  <p
+                  <span
                     class="text-xs md:text-sm mt-2 leading-5"
                     style="color: #808081"
                   >
                     <span class="font-bold">The comment</span> is only displayed
                     if at least 3 people in the same company with the same job
                     title contribute.
-                  </p>
+                  </span>
                 </li>
                 <li>
-                  <p
+                  <span
                     class="text-xs md:text-sm mt-2 leading-5"
                     style="color: #808081"
                   >
                     <span class="font-bold">The rating</span> is only displayed
                     if at least 3 people in the same company with the same job
                     title contribute.
-                  </p>
+                  </span>
                 </li>
               </u>
             </div>
