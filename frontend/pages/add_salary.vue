@@ -276,7 +276,6 @@
             </div>
             <input
               v-model="newRating.salary"
-              type="number"
               style="height: 61px"
               class="site__input-field border border-grayC mt-2 w-full rounded-md"
               @keypress="onlyNumber"
