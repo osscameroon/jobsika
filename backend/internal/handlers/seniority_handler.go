@@ -10,6 +10,7 @@ import (
 //GetSeniority returns a list of seniority levels
 func GetSeniority(c *gin.Context) {
 	seniority := []string{
+		v1beta.SeniorityIntern,
 		v1beta.SeniorityEntryLevel,
 		v1beta.SeniorityMidLevel,
 		v1beta.SenioritySenior,
