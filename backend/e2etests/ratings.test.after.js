@@ -29,6 +29,46 @@ describe("POST", function () {
       .expect("Content-Type", "application/json; charset=utf-8");
   });
 
+  it("POST, fail to add a new rating entry without job_title", async function () {
+    return request(apiHost)
+      .post(`${endpoint}?page=1&limit=2`)
+      .set("Accept", "application/json")
+      .send({
+        company_name: "La Mater",
+        //we set the salary to zero to avoid breaking the average-ratings tests
+        //as the salary set -1 are not counted in the calculation of the average
+        salary: 0,
+        //we set the rating to zero to avoid breaking the average-ratings tests
+        //as the rating set -1 are not counted in the calculation of the average
+        rating: 0,
+        comment: "my comment",
+        seniority: "Seniority",
+        city: "Maroua",
+      })
+      .expect(400)
+      .expect("Content-Type", "application/json; charset=utf-8");
+  });
+
+  it("POST, fail to add a new rating entry without city", async function () {
+    return request(apiHost)
+      .post(`${endpoint}?page=1&limit=2`)
+      .set("Accept", "application/json")
+      .send({
+        company_name: "La Mater",
+        //we set the salary to zero to avoid breaking the average-ratings tests
+        //as the salary set -1 are not counted in the calculation of the average
+        salary: 0,
+        //we set the rating to zero to avoid breaking the average-ratings tests
+        //as the rating set -1 are not counted in the calculation of the average
+        rating: 0,
+        job_title: "a job_title",
+        comment: "my comment",
+        seniority: "Seniority",
+      })
+      .expect(400)
+      .expect("Content-Type", "application/json; charset=utf-8");
+  });
+
   it("POST add a new rating entry with lowercase cities, company_name, and jobtitle", async function () {
     const sendRequest = () =>
       request(apiHost)
