@@ -42,43 +42,26 @@
           </div>
         </div>
         <div v-if="opened.includes(tooltips[0].id)" class="w-full bg-primary">
-          <div class="w-full my-3">
+          <div class="bg-white w-full px-2 py-4 my-3 shadow-sm rounded-sm">
             <p
-              class="text-xs md:text-base font-bold"
+              class="text-xs md:text-sm"
               style="
-                color: #235365;
+                color: #000000;
                 font-family: 'Inter', sans-serif;
                 line-height: 1.5rem;
               "
             >
-              ...But here is what you need to know:
+              Company name is only displayed if at least 3 people in the same
+              company contributes. Until then, a generic description like "Annon
+              company 001" will be displayed. The Job title you entered is only
+              displayed if at least 3 people in the same company, with the same
+              Job title, from the same company share compensation details. Until
+              then, a generic description like "Tier-level role, software
+              engineering" is displayed instead of e.g. "Senior Frontend
+              Engineer". Manual review happens before the data is published.
+              Information that might help pinpointing the person sharing the
+              compensation might be removed or changed during this review.
             </p>
-            <div class="ml-8 my-1">
-              <u class="no-underline">
-                <li>
-                  <p class="text-xs md:text-sm mt-1" style="color: #808081">
-                    <span class="font-bold">The company name</span> is only
-                    displayed if at least 3 people in the same company with the
-                    same job title contribute. Until then, a generic description
-                    like "A local company" will be displayed.
-                  </p>
-                </li>
-                <li>
-                  <p class="text-xs md:text-sm mt-2" style="color: #808081">
-                    <span class="font-bold">The comment</span> is only displayed
-                    if at least 3 people in the same company with the same job
-                    title contribute.
-                  </p>
-                </li>
-                <li>
-                  <p class="text-xs md:text-sm mt-2" style="color: #808081">
-                    <span class="font-bold">The rating</span> is only displayed
-                    if at least 3 people in the same company with the same job
-                    title contribute.
-                  </p>
-                </li>
-              </u>
-            </div>
           </div>
         </div>
         <div class="flex justify-between lg:items-end lg:flex-row flex-col">
