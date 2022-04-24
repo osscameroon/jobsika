@@ -2,6 +2,7 @@ package storage
 
 import (
 	"errors"
+	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -10,6 +11,10 @@ import (
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
+
+//maxEntryBeforeDisplay The maximum number of entries before we can display the
+//company name, and any other sensitive data
+const maxEntryBeforeDisplay = 3
 
 //Paginate returns a query scoped to a certain page
 func Paginate(pageStr, limitStr string) (offset, limit int) {
@@ -29,7 +34,7 @@ func Paginate(pageStr, limitStr string) (offset, limit int) {
 }
 
 func (db DB) queryRatings() *gorm.DB {
-	return db.c.Table("salaries as s").Select(`
+	return db.c.Table("salaries as s").Select(fmt.Sprintf(`
 		s.id as salary_id,
 		s.seniority,
 		j.title as job_title,
@@ -43,30 +48,30 @@ func (db DB) queryRatings() *gorm.DB {
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < 5 then ''
+						and ss.title_id = s.title_id) < %[1]d then ''
            else comment end as comment,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < 5 then ''
+						and ss.title_id = s.title_id) < %[1]d then ''
            else c.name end as company_name,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < 5 then 0
+						and ss.title_id = s.title_id) < %[1]d then 0
            else c.id end as company_id,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < 5 then 0
+						and ss.title_id = s.title_id) < %[1]d then 0
            else r.rating end as rating
-		`).
+		`, maxEntryBeforeDisplay)).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
 		Joins("LEFT JOIN jobtitles j ON s.title_id = j.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
