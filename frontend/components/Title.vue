@@ -42,7 +42,7 @@
           </div>
         </div>
         <div v-if="opened.includes(tooltips[0].id)" class="w-full bg-primary">
-          <div class="w-full my-3">
+          <div class="w-full my-3 ml-3 md:ml-0">
             <p
               class="text-xs md:text-base font-bold"
               style="
@@ -53,10 +53,13 @@
             >
               ...But here is what you need to know:
             </p>
-            <div class="ml-8 my-1">
+            <div class="ml-0 md:ml-8 my-1">
               <u class="no-underline">
                 <li>
-                  <p class="text-xs md:text-sm mt-1" style="color: #808081">
+                  <p
+                    class="text-xs md:text-sm mt-1 leading-5"
+                    style="color: #808081"
+                  >
                     <span class="font-bold">The company name</span> is only
                     displayed if at least 3 people in the same company with the
                     same job title contribute. Until then, a generic description
@@ -64,14 +67,20 @@
                   </p>
                 </li>
                 <li>
-                  <p class="text-xs md:text-sm mt-2" style="color: #808081">
+                  <p
+                    class="text-xs md:text-sm mt-2 leading-5"
+                    style="color: #808081"
+                  >
                     <span class="font-bold">The comment</span> is only displayed
                     if at least 3 people in the same company with the same job
                     title contribute.
                   </p>
                 </li>
                 <li>
-                  <p class="text-xs md:text-sm mt-2" style="color: #808081">
+                  <p
+                    class="text-xs md:text-sm mt-2 leading-5"
+                    style="color: #808081"
+                  >
                     <span class="font-bold">The rating</span> is only displayed
                     if at least 3 people in the same company with the same job
                     title contribute.
