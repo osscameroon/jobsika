@@ -393,37 +393,10 @@
             </div>
           </div>
         </form>
-        <div
-          class="site__warning mt-10 shadow-xl rounded-md py-4 md:py-8 px-10 md:mt-24 sm:mt-20 w-full bg-white"
-        >
-          <div class="flex flex-col md:flex-row md:items-center">
-            <img
-              :src="warning"
-              alt="img"
-              class="h-12 w-12 md:h-20 md:w-auto md:mr-5 mx-auto md:mx-0"
-            />
-            <p
-              class="text-xs sm:text-sm mt-4 md:mt-0"
-              style="
-                color: #000000;
-                font-family: 'Inter', sans-serif;
-                line-height: 28px;
-              "
-            >
-              We know that a lot of emplyers are uncomfortable sharing
-              information that can identify them especially when there is not
-              alot information from the company they work or if they are few
-              people with thier job tittles at the company. In our will to be as
-              anonymous as possible, your contributions on company name or job
-              title are only shown if multiple people from the same company or
-              same title share their compensation.
-            </p>
-          </div>
-        </div>
       </div>
     </main>
     <footer class="site__footer pb-16">
-      <div class="container mx-auto w-9/12">
+      <div class="container mx-auto w-9/12 -pt-7">
         <Footer />
       </div>
     </footer>
