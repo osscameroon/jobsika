@@ -116,7 +116,7 @@
                 @input="(event) => (newRating.job_title = event.target.value)"
                 @focus="jobTitleFocus()"
               />
-              <div class="mb-4 md:mb-16 mt-2">
+              <div id="myAlertJob" class="mb-4 md:mb-16 mt-2">
                 <notification :message="errorJobtitle" />
               </div>
               <ul
@@ -224,7 +224,7 @@
               @input="(event) => (newRating.city = event.target.value)"
               @focus="cityFocus()"
             />
-            <div class="mb-4 md:mb-8 mt-2">
+            <div id="myAlertCity" class="mb-4 md:mb-8 mt-2">
               <notification :message="errorCity" />
             </div>
             <ul
@@ -281,7 +281,7 @@
               @keypress="onlyNumber"
               @focus="blurAll()"
             />
-            <div class="mb-2 md:mb-8 mt-2">
+            <div id="myAlertSalary" class="mb-2 md:mb-8 mt-2">
               <notification :message="errorSalary" />
             </div>
             <div class="flex">
@@ -441,6 +441,7 @@ export default {
       errorSalary: '',
       errorJobtitle: '',
       errorCity: '',
+      errorAlert: '',
       opened: [],
       starsPicture: require('../assets/star.png'),
       warning: require('../assets/warning.png'),
@@ -607,14 +608,27 @@ export default {
       if (this.newRating) {
         if (String(this.newRating.job_title).length === 0) {
           this.errorJobtitle = 'This field cannot be empty'
+          document.getElementById('myAlertJob').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
           return
         }
         if (String(this.newRating.city).length === 0) {
           this.errorCity = 'This field cannot be empty'
+          document.getElementById('myAlertCity').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
           return
         }
         if (String(this.newRating.salary).length === 0) {
           this.errorSalary = 'This field cannot be empty'
+          this.errorAlert = 'please fill in the compulsory fields'
+          document.getElementById('myAlertSalary').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+          })
         } else {
           this.$store.dispatch('postRating', this.newRating)
           this.$router.push('/')
