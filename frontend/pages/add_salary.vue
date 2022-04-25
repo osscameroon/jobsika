@@ -422,6 +422,11 @@
         </div>
       </div>
     </main>
+    <footer class="site__footer pb-16">
+      <div class="container mx-auto w-9/12">
+        <Footer />
+      </div>
+    </footer>
   </div>
 </template>
 

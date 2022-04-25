@@ -64,10 +64,12 @@
             <tbody
               v-for="(company, myIndex) in ratings"
               :key="myIndex + 1"
-              class="bg-white shadow-lg divide-y rounded rounded-full divide-white"
+              class="divide-y divide-primary"
             >
               <tr>
-                <td class="px-4 py-3 whitespace-nowrap">
+                <td
+                  class="bg-white rounded-tl-xl rounded-bl-md px-4 py-3 whitespace-nowrap"
+                >
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -79,7 +81,7 @@
                     }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap bg-white">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -91,7 +93,7 @@
                     }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap bg-white">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -99,7 +101,7 @@
                     {{ company.seniority }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap">
+                <td class="px-4 py-3 whitespace-nowrap bg-white">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -107,7 +109,9 @@
                     {{ company.city }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-500">
+                <td
+                  class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 bg-white"
+                >
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -115,7 +119,9 @@
                     {{ company.salary | price }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap text-sm font-medium">
+                <td
+                  class="px-4 py-3 whitespace-nowrap text-sm font-medium bg-white"
+                >
                   <div class="flex">
                     <div
                       v-for="item in company.rating"
@@ -127,7 +133,7 @@
                   </div>
                 </td>
                 <td
-                  class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium"
+                  class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium bg-white rounded-tr-xl rounded-br-md"
                   :class="{ opened: opened.includes(company.salary_id) }"
                   @click="toggle(company.salary_id)"
                 >
