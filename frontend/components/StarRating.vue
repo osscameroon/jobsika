@@ -8,7 +8,10 @@
         :key="star.stars"
         class="star"
       >
-        <img class="w-7 h-7" :src="star <= stars ? starc : staru" />
+        <img
+          class="w-7 h-7 px-1 md:px-0"
+          :src="star <= stars ? starc : staru"
+        />
       </li>
     </ul>
   </div>
