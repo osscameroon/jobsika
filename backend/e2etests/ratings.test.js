@@ -191,11 +191,11 @@ describe(`${endpoint2}`, function () {
       });
 
     it("List only companies who hasn't salaries entries between 1 and maxEntryBeforeDisplay - 1", async function () {
-          return request(apiHost)
+        const sendRequest = () => request(apiHost)
               .post(endpoint)
               .set("Accept", "application/json")
               .send({
-                  company_name: "Not_max_entry",
+                  company_name: "Elhmnco",
                   //we set the salary to zero to avoid breaking the average-ratings tests
                   //as the salary set -1 are not counted in the calculation of the average
                   salary: 0,
@@ -208,17 +208,31 @@ describe(`${endpoint2}`, function () {
                   city: "Maroua",
               })
               .expect(201)
-              .expect("content-type", "application/json; charset=utf-8")
-              .then(async () => {
-                  return request(apiHost)
-                      .get("companies")
-                      .send()
-                      .expect(200)
-                      .expect("Content-Type", "application/json; charset=utf-8")
-                      .then((res) => {
-                          expect(JSON.stringify(res.body)).to.not.contains('"name":"Not_max_entry"');
-                      });
-              });
+              .expect("content-type", "application/json; charset=utf-8");
+
+        await sendRequest()
+
+        request(apiHost)
+            .get("companies")
+            .send()
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then((res) => {
+                expect(JSON.stringify(res.body)).to.not.contains('"name":"Elhmnco"');
+            });
+
+        for (let i = 0; i < 3; i++) {
+            await sendRequest();
+        }
+
+        return request(apiHost)
+            .get("companies")
+            .send()
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then((res) => {
+                expect(JSON.stringify(res.body)).contains('"name":"Elhmnco"');
+            });
       });
   });
 });
