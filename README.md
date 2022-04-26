@@ -46,6 +46,10 @@ Then run the api:
 #### How to run the api with the DB
 `make start-api`
 
+#### Others docs to check
+
+**How to create a new table:** [how-to-add-a-new-table.md](./docs/how-to-add-a-new-table.md)
+
 #### Frontend
 
 To run the frontend you should jump to the ./frontend folder using the command cd ./frontend and run the following commands:
