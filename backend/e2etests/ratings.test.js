@@ -189,5 +189,36 @@ describe(`${endpoint2}`, function () {
                   expect(averageRating).equal(5);
               });
       });
+
+    it("List only companies who hasn't salaries entries between 1 and maxEntryBeforeDisplay - 1", async function () {
+          return request(apiHost)
+              .post(endpoint)
+              .set("Accept", "application/json")
+              .send({
+                  company_name: "Not_max_entry",
+                  //we set the salary to zero to avoid breaking the average-ratings tests
+                  //as the salary set -1 are not counted in the calculation of the average
+                  salary: 0,
+                  //we set the rating to zero to avoid breaking the average-ratings tests
+                  //as the rating set -1 are not counted in the calculation of the average
+                  rating: 0,
+                  job_title: "A Job_title",
+                  comment: "my comment",
+                  seniority: "Seniority",
+                  city: "Maroua",
+              })
+              .expect(201)
+              .expect("content-type", "application/json; charset=utf-8")
+              .then(async () => {
+                  return request(apiHost)
+                      .get("companies")
+                      .send()
+                      .expect(200)
+                      .expect("Content-Type", "application/json; charset=utf-8")
+                      .then((res) => {
+                          expect(JSON.stringify(res.body)).to.not.contains('"name":"Not_max_entry"');
+                      });
+              });
+      });
   });
 });
