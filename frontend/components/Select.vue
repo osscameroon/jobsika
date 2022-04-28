@@ -10,8 +10,8 @@
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfilterjob"
-        @change="onChangeJobTitle"
+        v-model="myfilterseniority"
+        @change="onChangeSeniority"
       >
         <option
           class="text-xs md:text-sm"
@@ -30,13 +30,13 @@
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          v-for="(link, index) in jobtitles"
+          v-for="(seniority, index) in seniorities"
           :key="index"
-          :value="link"
-          v-show="link !== ''"
+          :value="seniority"
+          v-show="seniority !== ''"
           class="text-xs md:text-sm"
         >
-          {{ link }}
+          {{ seniority }}
         </option>
       </select>
     </div>
@@ -171,6 +171,7 @@ export default Vue.extend({
     return {
       myfilterjob: '',
       myfiltercompany: '',
+      myfilterseniority: ''
     }
   },
   computed: {
@@ -180,11 +181,17 @@ export default Vue.extend({
     jobtitles() {
       return this.$store.state.jobtitles.jobtitles
     },
+    seniorities() {
+      return this.$store.state.seniorities.seniorities
+    },
     filterjob() {
       return this.$store.state.jobtitles.filterjob
     },
     filtercompany() {
       return this.$store.state.companies.filtercompany
+    },
+    filterseniority() {
+      return this.$store.state.seniorities.filterseniority
     },
     page() {
       return this.$store.state.ratings.page
@@ -196,6 +203,7 @@ export default Vue.extend({
   async created() {
     await this.fetchCompanies()
     await this.fetchJobtitles()
+    await this.fetchSeniorities()
   },
   methods: {
     onChangeJobTitle() {
@@ -207,6 +215,20 @@ export default Vue.extend({
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+      })
+      this.$store.commit('ratings/SETPAGE', 1)
+    },
+    onChangeSeniority() {
+      this.$store.dispatch('filterSeniority', this.myfilterseniority)
+      this.$store.dispatch('getRatings', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+      })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        seniority: this.myfilterseniority,
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
@@ -227,6 +249,9 @@ export default Vue.extend({
     },
     async fetchJobtitles() {
       await this.$store.dispatch('getJobtitles')
+    },
+    async fetchSeniorities() {
+      await this.$store.dispatch('getSeniorities')
     },
   },
 })
