@@ -123,12 +123,17 @@
                   class="px-4 py-3 whitespace-nowrap text-sm font-medium bg-white"
                 >
                   <div class="flex">
-                    <div
-                      v-for="item in company.rating"
-                      :key="item"
-                      class="flex"
-                    >
-                      <img class="w-4 h-4 mr-1" :src="starsPicture" />
+                    <div class="flex">
+                      <div v-if="company.rating === 0" class="flex">
+                        <div
+                          v-for="item in 5"
+                          :key="item"
+                          class="flex flex-row"
+                        >
+                          <img class="w-4 h-4 mr-1" :src="starsPictureGray" />
+                        </div>
+                      </div>
+                      <img v-else class="w-4 h-4 mr-1" :src="starsPicture" />
                     </div>
                   </div>
                 </td>
@@ -196,6 +201,7 @@ export default Vue.extend({
     return {
       isOpen: false,
       starsPicture: require('../assets/star.png'),
+      starsPictureGray: require('../assets/stargray.png'),
       opened: [],
       errored: false,
     }
