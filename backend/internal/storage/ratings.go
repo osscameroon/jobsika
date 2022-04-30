@@ -39,7 +39,7 @@ func (db DB) queryRatings() *gorm.DB {
 		s.seniority,
 		j.title as job_title,
 		s.salary,
-		s.city,
+		ct.name as city,
 		s.country,
 		r.id as company_rating_id,
 		r.createdat,
@@ -74,6 +74,7 @@ func (db DB) queryRatings() *gorm.DB {
 		`, sql.Named("maxEntryBeforeDisplay", maxEntryBeforeDisplay)).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
 		Joins("LEFT JOIN jobtitles j ON s.title_id = j.id").
+		Joins("LEFT JOIN cities ct ON s.city_id = ct.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
 }
 
@@ -180,6 +181,12 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 			return err
 		}
 
+		city, err := postCity(tx, query)
+		if err != nil {
+			log.Error(err)
+			return err
+		}
+
 		//Create company_rating
 		companyRating := v1beta.CompanyRating{
 			CompanyID: company.ID,
@@ -197,7 +204,7 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 			TitleID:         jobTitle.ID,
 			Salary:          query.Salary,
 			Seniority:       query.Seniority,
-			City:            query.City,
+			CityID:          city.ID,
 			Country:         "Cameroon",
 			CompanyID:       company.ID,
 			CompanyRatingID: companyRating.ID,
@@ -257,4 +264,27 @@ func postJobTitle(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.JobTitle, e
 	}
 
 	return jobTitle, nil
+}
+
+func postCity(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.City, error) {
+	city := v1beta.City{}
+
+	//Check if the city already exist
+	ret := tx.Table("cities").Where("name = ?", query.City).Find(&city)
+	if ret.Error != nil {
+		return city, ret.Error
+	}
+
+	if city.Name == "" {
+		//if we did not find the jobTitle, we create a new jobTitle entry
+		city = v1beta.City{
+			Name: query.City,
+		}
+		ret := tx.Table("cities").Create(&city)
+		if ret.Error != nil {
+			return city, ret.Error
+		}
+	}
+
+	return city, nil
 }

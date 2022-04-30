@@ -3,7 +3,7 @@
 CREATE TABLE IF NOT EXISTS salaries (
   id BIGSERIAL NOT NULL PRIMARY KEY,
   title_id INTEGER NOT NULL,
-  city VARCHAR(255),
+  city_id INTEGER NOT NULL,
   country VARCHAR(255),
   company_id INTEGER NOT NULL,
   company_rating_id INTEGER,
@@ -37,6 +37,13 @@ CREATE TABLE IF NOT EXISTS company_ratings (
   updatedat DATE
 );
 
+CREATE TABLE IF NOT EXISTS cities (
+    id BIGSERIAL NOT NULL,
+    name VARCHAR(255) NOT NULL PRIMARY KEY,
+    createdat DATE,
+    updatedat DATE
+);
+
 
 -- +goose StatementEnd
 -- +goose Down
@@ -44,5 +51,6 @@ CREATE TABLE IF NOT EXISTS company_ratings (
 DROP TABLE IF EXISTS salaries;
 DROP TABLE IF EXISTS companies;
 DROP TABLE IF EXISTS jobtitles;
+DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS company_ratings;
 -- +goose StatementEnd
