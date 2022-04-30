@@ -191,7 +191,15 @@
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.createdat }}
+                    {{
+                      new Date(
+                        Date.parse(
+                          typeof company.createdat !== 'undefine'
+                            ? company.createdat
+                            : Date.now()
+                        )
+                      ).toDateString()
+                    }}
                   </p>
                   <p
                     class="text-xs md:text-sm"
