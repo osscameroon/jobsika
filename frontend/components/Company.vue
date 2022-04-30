@@ -133,7 +133,16 @@
                           <img class="w-4 h-4 mr-1" :src="starsPictureGray" />
                         </div>
                       </div>
-                      <img v-else class="w-4 h-4 mr-1" :src="starsPicture" />
+
+                      <div v-else class="flex">
+                        <div
+                          v-for="item in company.rating"
+                          :key="item"
+                          class="flex"
+                        >
+                          <img class="w-4 h-4 mr-1" :src="starsPicture" />
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </td>
