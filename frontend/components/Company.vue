@@ -149,7 +149,15 @@
                     style="font-family: 'Inter', sans-serif"
                     type="button"
                   >
-                    Details
+                    Comments
+                    <span class="flex items-center">
+                      <span
+                        class="cursor-pointer h-3 text-center w-3 ml-1 text-grayC rounded-full border border-grayC flex items-center justify-center"
+                        style="font-size: 8px"
+                      >
+                        !
+                      </span>
+                    </span>
                   </button>
                   <button
                     v-else
@@ -157,7 +165,7 @@
                     style="color: #000000; font-family: 'Inter', sans-serif"
                     type="button"
                   >
-                    Details
+                    Comments
                   </button>
                 </td>
               </tr>
@@ -184,7 +192,23 @@
                   </p>
                 </div>
               </td>
-              <div v-else />
+              <td
+                v-if="
+                  opened.includes(company.salary_id) &&
+                  String(company.comment).length === 0
+                "
+                colspan="10"
+                class="w-10/12 bg-primary"
+              >
+                <div class="bg-white w-full p-4 my-3 shadow-sm rounded-sm">
+                  <p
+                    class="py-2 text-xs md:text-sm"
+                    style="color: #b1b1b1; font-family: 'Inter', sans-serif"
+                  >
+                    Details will show up if there is more three enteries
+                  </p>
+                </div>
+              </td>
             </tbody>
           </table>
         </div>
