@@ -222,7 +222,7 @@
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    Details will show up if there is more three enteries
+                    Details will show up if there is more than three entries
                   </p>
                 </div>
               </td>
