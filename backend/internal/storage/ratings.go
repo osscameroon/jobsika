@@ -79,7 +79,7 @@ func (db DB) queryRatings() *gorm.DB {
 }
 
 //GetRatings get ratings
-func (db DB) GetRatings(page, limit, jobtitle, company, city string) (v1beta.RatingResponse, error) {
+func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) (v1beta.RatingResponse, error) {
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
 
@@ -92,6 +92,9 @@ func (db DB) GetRatings(page, limit, jobtitle, company, city string) (v1beta.Rat
 	}
 	if city != "" {
 		query = query.Where("ct.name = ?", city)
+	}
+	if seniority != "" {
+		query = query.Where("s.seniority = ?", seniority)
 	}
 
 	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
