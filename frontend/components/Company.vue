@@ -191,7 +191,7 @@
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.createdat }}
+                    {{ new Date(company.createdat).toUTCString().slice(0, 17) }}
                   </p>
                   <p
                     class="text-xs md:text-sm"
