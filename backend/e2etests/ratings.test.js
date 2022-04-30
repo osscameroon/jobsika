@@ -94,6 +94,18 @@ describe(`${endpoint}`, function () {
           expect(JSON.stringify(res.body)).contains('could not find rating');
         });
     });
+
+    it("List ratings of city = Maroua", async function () {
+          return request(apiHost)
+              .get(`${endpoint}?city=Maroua`)
+              .send()
+              .expect(200)
+              .expect("Content-Type", "application/json; charset=utf-8")
+              .then((res) => {
+                  const data = res.body.hits;
+                  expect(data.every(v => v.city === 'Maroua')).equal(true)
+              });
+      });
   });
 
 });
