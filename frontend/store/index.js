@@ -6,7 +6,9 @@ export const actions = {
       page: payload.page,
       limit: payload.limit,
       company: payload.company ? payload.company : "",
-      jobtitle: payload.jobtitle ? payload.jobtitle : ""
+      jobtitle: payload.jobtitle ? payload.jobtitle : "",
+      seniority: payload.seniority ? payload.seniority : "",
+      city: payload.city ? payload.city : ""
     }
     const resp = await axios.get(
       this.$config.baseURL + '/ratings',
@@ -57,7 +59,9 @@ export const actions = {
   async fetchAverage({ commit }, payload) {
     const params = {
       company: payload.company ? payload.company : "",
-      jobtitle: payload.jobtitle ? payload.jobtitle : ""
+      jobtitle: payload.jobtitle ? payload.jobtitle : "",
+      seniority: payload.seniority ? payload.seniority : "",
+      city: payload.city ? payload.city : ""
     }
     const resp = await axios.get(
       this.$config.baseURL + '/average-rating',
@@ -76,4 +80,10 @@ export const actions = {
   filterCompany({ commit }, value){
     commit("companies/SETFILTERCOMPANY", value)
   },
+  filterSeniority({ commit }, value){
+    commit("seniorities/SETFILTERSENIORITY", value)
+  },
+  filterCity({ commit }, value){
+    commit("cities/SETFILTERCITY", value)
+  }
 }

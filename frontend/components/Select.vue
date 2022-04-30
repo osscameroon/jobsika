@@ -10,8 +10,8 @@
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfilterjob"
-        @change="onChangeJobTitle"
+        v-model="myfilterseniority"
+        @change="onChangeSeniority"
       >
         <option
           class="text-xs md:text-sm"
@@ -30,13 +30,13 @@
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          v-for="(link, index) in jobtitles"
+          v-for="(seniority, index) in seniorities"
           :key="index"
-          :value="link"
-          v-show="link !== ''"
+          :value="seniority"
+          v-show="seniority !== ''"
           class="text-xs md:text-sm"
         >
-          {{ link }}
+          {{ seniority }}
         </option>
       </select>
     </div>
@@ -130,8 +130,8 @@
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfiltercompany"
-        @change="onChangeCompany"
+        v-model="myfiltercity"
+        @change="onChangeCity"
       >
         <option
           class="text-xs md:text-sm"
@@ -150,13 +150,13 @@
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
-          v-for="link in companies"
-          :key="link.id"
-          :value="link.name"
-          v-show="link.name !== ''"
+          v-for="(city, index) in cities"
+          :key="index"
+          :value="city"
+          v-show="city !== ''"
           class="text-xs md:text-sm"
         >
-          {{ link.name }}
+          {{ city }}
         </option>
       </select>
     </div>
@@ -171,20 +171,34 @@ export default Vue.extend({
     return {
       myfilterjob: '',
       myfiltercompany: '',
+      myfilterseniority: '',
+      myfiltercity: ''
     }
   },
   computed: {
     companies() {
       return this.$store.state.companies.companies
     },
+    cities() {
+      return this.$store.state.cities.cities
+    },
     jobtitles() {
       return this.$store.state.jobtitles.jobtitles
+    },
+    seniorities() {
+      return this.$store.state.seniorities.seniorities
     },
     filterjob() {
       return this.$store.state.jobtitles.filterjob
     },
     filtercompany() {
       return this.$store.state.companies.filtercompany
+    },
+    filterseniority() {
+      return this.$store.state.seniorities.filterseniority
+    },
+    filtercity() {
+      return this.$store.state.cities.filtercity
     },
     page() {
       return this.$store.state.ratings.page
@@ -195,7 +209,9 @@ export default Vue.extend({
   },
   async created() {
     await this.fetchCompanies()
+    await this.fetchCities()
     await this.fetchJobtitles()
+    await this.fetchSeniorities()
   },
   methods: {
     onChangeJobTitle() {
@@ -207,6 +223,20 @@ export default Vue.extend({
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+      })
+      this.$store.commit('ratings/SETPAGE', 1)
+    },
+    onChangeSeniority() {
+      this.$store.dispatch('filterSeniority', this.myfilterseniority)
+      this.$store.dispatch('getRatings', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+      })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        seniority: this.myfilterseniority,
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
@@ -222,11 +252,31 @@ export default Vue.extend({
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
+    onChangeCity() {
+      this.$store.dispatch('filterCity', this.myfiltercity)
+      this.$store.dispatch('getRatings', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        city: this.filtercity,
+      })
+      this.$store.dispatch('fetchAverage', {
+        company: this.filtercompany,
+        jobtitle: this.filterjob,
+        city: this.filtercity,
+      })
+      this.$store.commit('ratings/SETPAGE', 1)
+    },
     async fetchCompanies() {
       await this.$store.dispatch('getCompanies')
     },
+    async fetchCities() {
+      await this.$store.dispatch('getCities')
+    },
     async fetchJobtitles() {
       await this.$store.dispatch('getJobtitles')
+    },
+    async fetchSeniorities() {
+      await this.$store.dispatch('getSeniorities')
     },
   },
 })
