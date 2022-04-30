@@ -26,7 +26,7 @@
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[0].id)"
                   >
@@ -85,7 +85,7 @@
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[3].id)"
                   >
@@ -142,7 +142,7 @@
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[5].id)"
                   >
@@ -192,7 +192,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[4].id)"
                 >
@@ -251,7 +251,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[1].id)"
                 >
@@ -293,7 +293,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[6].id)"
                 >
@@ -335,7 +335,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs"
+                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[2].id)"
                 >

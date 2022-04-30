@@ -8,6 +8,7 @@ export const actions = {
       company: payload.company ? payload.company : "",
       jobtitle: payload.jobtitle ? payload.jobtitle : "",
       seniority: payload.seniority ? payload.seniority : "",
+      city: payload.city ? payload.city : ""
     }
     const resp = await axios.get(
       this.$config.baseURL + '/ratings',
@@ -60,6 +61,7 @@ export const actions = {
       company: payload.company ? payload.company : "",
       jobtitle: payload.jobtitle ? payload.jobtitle : "",
       seniority: payload.seniority ? payload.seniority : "",
+      city: payload.city ? payload.city : ""
     }
     const resp = await axios.get(
       this.$config.baseURL + '/average-rating',
@@ -81,4 +83,7 @@ export const actions = {
   filterSeniority({ commit }, value){
     commit("seniorities/SETFILTERSENIORITY", value)
   },
+  filterCity({ commit }, value){
+    commit("cities/SETFILTERCITY", value)
+  }
 }

@@ -1,8 +1,8 @@
 package storage
 
 import (
+	"database/sql"
 	"errors"
-	"fmt"
 	"math"
 	"strconv"
 	"strings"
@@ -34,7 +34,7 @@ func Paginate(pageStr, limitStr string) (offset, limit int) {
 }
 
 func (db DB) queryRatings() *gorm.DB {
-	return db.c.Table("salaries as s").Select(fmt.Sprintf(`
+	return db.c.Table("salaries as s").Select(`
 		s.id as salary_id,
 		s.seniority,
 		j.title as job_title,
@@ -48,30 +48,30 @@ func (db DB) queryRatings() *gorm.DB {
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < %[1]d then ''
+						and ss.title_id = s.title_id) < @maxEntryBeforeDisplay then ''
            else comment end as comment,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < %[1]d then ''
+						and ss.title_id = s.title_id) < @maxEntryBeforeDisplay then ''
            else c.name end as company_name,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < %[1]d then 0
+						and ss.title_id = s.title_id) < @maxEntryBeforeDisplay then 0
            else c.id end as company_id,
 		case
            when (
                     Select count(ss.id)
                     from salaries ss
                     where ss.company_id = s.company_id
-						and ss.title_id = s.title_id) < %[1]d then NULL
+						and ss.title_id = s.title_id) < @maxEntryBeforeDisplay then NULL
            else r.rating end as rating
-		`, maxEntryBeforeDisplay)).
+		`, sql.Named("maxEntryBeforeDisplay", maxEntryBeforeDisplay)).
 		Joins("LEFT JOIN companies c ON s.company_id = c.id").
 		Joins("LEFT JOIN jobtitles j ON s.title_id = j.id").
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
