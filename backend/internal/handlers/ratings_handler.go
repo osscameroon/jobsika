@@ -28,8 +28,9 @@ func GetRatings(c *gin.Context) {
 	limit := c.DefaultQuery("limit", "20")
 	jobtitle := c.Query("jobtitle")
 	company := c.Query("company")
+	city := c.Query("city")
 
-	ratings, err := db.GetRatings(page, limit, jobtitle, company)
+	ratings, err := db.GetRatings(page, limit, jobtitle, company, city)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
