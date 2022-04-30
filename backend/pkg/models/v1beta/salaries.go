@@ -19,7 +19,7 @@ type Salary struct {
 	//Seniority can be set to the values bellow
 	//Intern, Entry-level, Mid-level, Senior, Above Senior level, Executive
 	Seniority       string    `json:"seniority" gorm:"column:seniority"`
-	City            string    `json:"city" gorm:"column:city"`
+	CityID          int64     `json:"city_id" gorm:"column:city_id"`
 	Country         string    `json:"country" gorm:"column:country"`
 	CompanyID       int64     `json:"company_id" gorm:"column:company_id"`
 	CompanyRatingID int64     `json:"company_rating_id" gorm:"column:company_rating_id"`
