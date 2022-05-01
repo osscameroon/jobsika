@@ -566,7 +566,7 @@ export default {
       await this.fetchCities()
       await this.fetchSeniorities()
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   },
   methods: {
