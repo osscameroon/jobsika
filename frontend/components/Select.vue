@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center items-center flex-col sm:flex-row">
-    <div class="mb-3 w-full sm:w-1/3 lg:w-32 ml-0 lg:ml-6">
+    <div class="mb-3 w-full sm:w-1/3 lg:w-40 ml-0 lg:ml-6">
       <h4
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
@@ -19,7 +19,7 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          Intern
+          All Seniorities
         </option>
         <option
           class="text-xs md:text-sm"
@@ -40,7 +40,7 @@
         </option>
       </select>
     </div>
-    <div class="mb-3 w-full sm:w-1/3 lg:w-32 ml-0 lg:ml-6">
+    <div class="mb-3 w-full sm:w-1/3 lg:w-40 ml-0 lg:ml-6">
       <h4
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
@@ -120,7 +120,7 @@
         </option>
       </select>
     </div>
-    <div class="mb-3 w-full sm:w-1/3 lg:w-32 ml-0 sm:ml-6">
+    <div class="mb-3 w-full sm:w-1/3 lg:w-40 ml-0 sm:ml-6">
       <h4
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
