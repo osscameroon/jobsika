@@ -277,7 +277,7 @@
             <input
               v-model="newRating.salary"
               style="height: 61px"
-              class="site__input-field border border-grayC mt-2 w-full rounded-md"
+              class="site__input-field border border-grayC mt-2 w-full rounded-md cursor-text pl-2"
               @keypress="onlyNumber"
               @focus="blurAll()"
             />
