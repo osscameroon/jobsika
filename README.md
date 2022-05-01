@@ -1,12 +1,5 @@
-# camerdevs
-Camerdevs, is dev cameroonian developer platform.
-
-### Features
-The platform includes the functionalities bellow:
-- A Catalogue cameroonian developers
-- Their availabilities
-- The developers salaries broken down by companies
-- And later some job offers
+# Jobsika
+Jobsika, is Company ratings and salaries in Cameroon.
 
 ### Development
 
