@@ -478,7 +478,7 @@ export default {
         {
           hid: 'og:description',
           property: 'og:description',
-          content: 'Jobsika, is Company ratings and salaries in Cameroon.'
+          content: 'JobSika is a website employers and employees can search and find company ratings and salaries in Cameroon.'
         },
         {
           hid: 'og:type',
