@@ -138,7 +138,7 @@ func (db DB) GetRatingByID(id int64) (v1beta.Rating, error) {
 }
 
 //GetAverageRating get average rating
-func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRating, error) {
+func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta.AverageRating, error) {
 	r := struct {
 		AVGRating string `gorm:"column:rating"`
 		AVGSalary string `gorm:"column:salary"`
@@ -150,6 +150,12 @@ func (db DB) GetAverageRating(jobtitle string, company string) (v1beta.AverageRa
 	}
 	if jobtitle != "" {
 		query = query.Where("j.title = ?", jobtitle)
+	}
+	if city != "" {
+		query = query.Where("ct.name = ?", city)
+	}
+	if seniority != "" {
+		query = query.Where("s.seniority = ?", seniority)
 	}
 
 	ret := query.Select("AVG(s.salary) as salary, AVG(NULLIF (r.rating, 0)) as rating").Find(&r)

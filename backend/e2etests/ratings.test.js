@@ -177,6 +177,19 @@ describe(`${endpoint2}`, function () {
         });
     });
 
+    it("return a list of ratings with seniority=Seniority and city=Bogo", async function () {
+      return request(apiHost)
+        .get(`${endpoint2}?seniority=Seniority&city=Bogo`)
+        .send()
+        .expect(200)
+        .expect("Content-Type", "application/json; charset=utf-8")
+        .then((res) => {
+          expect(JSON.stringify(res.body)).equal(
+            '{"rating":5,"salary":460603}'
+          );
+        });
+    });
+
       it("add 2 rating entry for one company, one with rating set to 0 and another set to 5, the result should be 5 instead of 2", async function() {
           const sendRequest = (rating) =>
               request(apiHost)
