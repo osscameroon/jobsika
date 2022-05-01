@@ -59,7 +59,7 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All titles
+          All Titles
         </option>
         <option
           class="text-xs md:text-sm"
