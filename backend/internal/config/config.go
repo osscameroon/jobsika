@@ -3,7 +3,7 @@ package config
 import (
 	"os"
 
-	"github.com/elhmn/camerdevs/internal/storage"
+	"github.com/elhmn/jobsika/internal/storage"
 	"github.com/joho/godotenv"
 )
 

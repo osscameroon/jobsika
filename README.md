@@ -28,7 +28,7 @@ Then run the api:
 `make run`
 
 ##### Build and run
-`make run && ./camerdevs`
+`make run && ./jobsika`
 
 #### Build and run with docker
 `make docker-build && make docker-run`

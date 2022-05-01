@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/elhmn/camerdevs/internal/server"
+	"github.com/elhmn/jobsika/internal/server"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )

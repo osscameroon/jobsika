@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/elhmn/camerdevs/internal/config"
-	"github.com/elhmn/camerdevs/internal/storage"
+	"github.com/elhmn/jobsika/internal/config"
+	"github.com/elhmn/jobsika/internal/storage"
 )
 
 //Server defines the api server struct

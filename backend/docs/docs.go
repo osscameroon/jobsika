@@ -1,6 +1,6 @@
 // Package classification Camerdevs API.
 //
-// Documentation of our camerdevs API.
+// Documentation of our jobsika API.
 //
 //     Schemes: http, https
 //     BasePath: /
