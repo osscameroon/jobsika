@@ -16,42 +16,42 @@
               <tr>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Company
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Jobs title
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Seniority
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   City
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Salary
                 </th>
                 <th
                   scope="col"
-                  class="px-6 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Rating
