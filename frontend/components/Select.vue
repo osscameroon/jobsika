@@ -80,7 +80,7 @@
         </option>
       </select>
     </div>
-    <div class="mb-3 w-full sm:w-1/3 lg:w-32 ml-0 sm:ml-6">
+    <div class="mb-3 w-full sm:w-1/3 lg:w-40 ml-0 sm:ml-6">
       <h4
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
@@ -172,7 +172,7 @@ export default Vue.extend({
       myfilterjob: '',
       myfiltercompany: '',
       myfilterseniority: '',
-      myfiltercity: ''
+      myfiltercity: '',
     }
   },
   computed: {
