@@ -194,7 +194,7 @@
                     {{
                       new Date(
                         Date.parse(
-                          company.createdat !== 'undefined'
+                          company.createdat !== undefined
                             ? company.createdat
                             : Date.now()
                         )
