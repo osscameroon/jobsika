@@ -49,7 +49,7 @@ jobs:
       - name: Deploy on stage
         uses: osscameroon/sammy-actions@v1.3
         with:
-          service: jobsika
+          service: jobsika_backend
           type: compose
           patch-field: ".services.api.image"
           patch-value: ${{ steps.meta.outputs.tags }}
