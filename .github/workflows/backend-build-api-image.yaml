@@ -49,9 +49,9 @@ jobs:
       - name: Deploy on stage
         uses: osscameroon/sammy-actions@v1.3
         with:
-          service: camerdevs
+          service: jobsika
           type: compose
           patch-field: ".services.api.image"
           patch-value: ${{ steps.meta.outputs.tags }}
-          file: camerdevs-stack.yml
+          file: jobsika-be-stack.yml
           gh-token: ${{ secrets.GA_WORKFLOW_DEPLOYMENTS_TOKEN }}
