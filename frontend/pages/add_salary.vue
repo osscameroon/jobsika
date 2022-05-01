@@ -11,7 +11,7 @@
           class="text-center text-xs sm:text-base pt-2 md:pt-4 font-normal"
           style="color: #2e2e2e; font-family: 'Inter', sans-serif"
         >
-          NB: Your entery is anonymous. Please ensure that it is fair, accurate
+          Your entry is anonymous. Please ensure that it is fair, accurate
           and honest.
         </p>
         <form @submit.prevent="addRating">
@@ -43,8 +43,8 @@
                     class="font-light text-xs leading-5"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    We understand you might not want to share the name of the
-                    company despite the field being anonymized-please enter a
+                    We understand that you might not want to share the name of the
+                    company despite the field being anonymized, in this case please enter a
                     description of the company (e.g. "local startup",
                     "well-known bank" or legacy company, etc)
                   </p>
@@ -354,7 +354,8 @@
                 >
                   This field requires you to tell us more about your experience
                   in the company. Please share more details about your
-                  contribution. Any bad or good things that happened that you
+                  contribution. Don't enter informations that might identify you.
+                  Any bad or good things that happened that you
                   want to share with us?
                 </p>
               </div>
