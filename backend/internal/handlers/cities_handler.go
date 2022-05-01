@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"github.com/elhmn/camerdevs/internal/server"
+	"github.com/elhmn/jobsika/internal/server"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 

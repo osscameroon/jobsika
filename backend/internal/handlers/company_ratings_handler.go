@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/elhmn/camerdevs/internal/server"
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/internal/server"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	log "github.com/sirupsen/logrus"

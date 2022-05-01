@@ -1,6 +1,6 @@
 package storage
 
-import "github.com/elhmn/camerdevs/pkg/models/v1beta"
+import "github.com/elhmn/jobsika/pkg/models/v1beta"
 
 //GetSalaries get salaries
 func (db DB) GetSalaries() ([]v1beta.Salary, error) {

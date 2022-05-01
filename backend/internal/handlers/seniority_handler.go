@@ -3,7 +3,7 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 )
 

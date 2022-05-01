@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"os"
 
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 )
 
 //GetCompanies get companies

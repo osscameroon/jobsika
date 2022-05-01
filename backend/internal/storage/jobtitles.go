@@ -3,7 +3,7 @@ package storage
 import (
 	"os"
 
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 )
 
 //GetJobTitles get jobtitles

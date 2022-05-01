@@ -1,7 +1,7 @@
 package docs
 
 import (
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 )
 
 // swagger:route GET /companies companies idOfCompanyWithoutID

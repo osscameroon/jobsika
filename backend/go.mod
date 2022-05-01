@@ -1,4 +1,4 @@
-module github.com/elhmn/camerdevs
+module github.com/elhmn/jobsika
 
 go 1.16
 

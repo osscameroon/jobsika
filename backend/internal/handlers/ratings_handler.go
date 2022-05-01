@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/elhmn/camerdevs/internal/server"
-	"github.com/elhmn/camerdevs/pkg/models/v1beta"
+	"github.com/elhmn/jobsika/internal/server"
+	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
 )

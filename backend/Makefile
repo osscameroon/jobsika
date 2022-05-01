@@ -1,4 +1,4 @@
-APPNAME=camerdevs
+APPNAME=jobsika
 E2ETEST_DEPS=./e2etests/node_modules
 
 .DEFAULT_GOAL := help
@@ -58,12 +58,12 @@ docker-e2etest: $(E2ETEST_DEPS)
 ## docker-build: build the api docker image
 .PHONY: docker-build
 docker-build:
-	docker build -t camerdevs .
+	docker build -t jobsika .
 
 ## docker-run: run the api docker container
 .PHONY: docker-run
 docker-run:
-	docker run -p 7000:7000 --env-file .docker-env camerdevs
+	docker run -p 7000:7000 --env-file .docker-env jobsika
 
 .PHONY: install_goose
 install_goose:
