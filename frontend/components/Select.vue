@@ -219,10 +219,14 @@ export default Vue.extend({
       this.$store.dispatch('getRatings', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+        city: this.filtercity,
       })
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+        city: this.filtercity,
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
@@ -232,11 +236,13 @@ export default Vue.extend({
         company: this.filtercompany,
         jobtitle: this.filterjob,
         seniority: this.filterseniority,
+        city: this.filtercity,
       })
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
         seniority: this.myfilterseniority,
+        city: this.filtercity,
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
@@ -245,10 +251,14 @@ export default Vue.extend({
       this.$store.dispatch('getRatings', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+        city: this.filtercity,
       })
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
+        city: this.filtercity,
       })
       this.$store.commit('ratings/SETPAGE', 1)
     },
@@ -257,11 +267,13 @@ export default Vue.extend({
       this.$store.dispatch('getRatings', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
         city: this.filtercity,
       })
       this.$store.dispatch('fetchAverage', {
         company: this.filtercompany,
         jobtitle: this.filterjob,
+        seniority: this.filterseniority,
         city: this.filtercity,
       })
       this.$store.commit('ratings/SETPAGE', 1)
