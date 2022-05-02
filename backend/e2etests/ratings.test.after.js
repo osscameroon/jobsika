@@ -131,7 +131,7 @@ describe("POST", function () {
       .expect("Content-Type", "application/json; charset=utf-8")
       .then(async () => {
         return request(apiHost)
-          .get(`${endpoint}?page=1&limit=10&company=Company1rating`)
+          .get(`${endpoint}?page=1&limit=5000`)
           .set("Accept", "application/json")
           .send()
           .expect(200)

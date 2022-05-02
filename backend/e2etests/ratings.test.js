@@ -56,7 +56,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":0,"offset":0}');
         });
     });
 
@@ -69,7 +69,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":0,"offset":0}');
         });
     });
 
