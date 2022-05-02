@@ -33,7 +33,7 @@
           </h2>
           <div class="flex items-center -mb-1">
             <span
-              class="cursor-pointer h-5 text-center w-5 ml-2 text-grayC rounded-full border border-grayC text-xs"
+              class="cursor-pointer h-5 text-center w-5 ml-2 text-grayDark rounded-full border border-grayDark text-xs"
               :class="{ opened: opened.includes(tooltips[0].id) }"
               @click="toggle(tooltips[0].id)"
             >
