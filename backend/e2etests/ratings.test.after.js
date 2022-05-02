@@ -109,6 +109,45 @@ describe("POST", function () {
       });
   });
 
+  it("Only show ratings who has 3 entry with the same job title and company when company filter is apply", async function () {
+    const sendRequest = (jobtitle) =>
+      request(apiHost)
+        .post(`${endpoint}`)
+        .set("Accept", "application/json")
+        .send({
+          company_name: "Osstest",
+          job_title: jobtitle,
+          //we set the salary to zero to avoid breaking the average-ratings tests
+          //as the salary set -1 are not counted in the calculation of the average
+          salary: 0,
+          //we set the rating to zero to avoid breaking the average-ratings tests
+          //as the rating set -1 are not counted in the calculation of the average
+          rating: 0,
+          comment: "my comment",
+          seniority: "Seniority",
+          city: "maroua",
+          //the country field is omitted here as we always set it to Cameroon for now
+        })
+        .expect(201)
+        .expect("Content-Type", "application/json; charset=utf-8");
+
+    for (let i = 0; i < 1; i++) {
+      await sendRequest("Designer");
+    }
+    for (let i = 0; i < 5; i++) {
+      await sendRequest("Dev");
+    }
+    return request(apiHost)
+      .get(`${endpoint}?company=Osstest`)
+      .set("Accept", "application/json")
+      .send()
+      .expect(200)
+      .expect("Content-Type", "application/json; charset=utf-8")
+      .then((res) => {
+        expect(res.body.hits.every((r) => r.job_title === 'Dev')).equal(true)
+      });
+  });
+
   it("POST add a new rating entry for one company, fields will be hide", async function () {
     return request(apiHost)
       .post(endpoint)
