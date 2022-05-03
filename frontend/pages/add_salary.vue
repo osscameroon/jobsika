@@ -11,8 +11,8 @@
           class="text-center text-xs sm:text-base pt-2 md:pt-4 font-normal"
           style="color: #2e2e2e; font-family: 'Inter', sans-serif"
         >
-          Your entry is anonymous. Please ensure that it is fair, accurate
-          and honest.
+          Your entry is anonymous. Please ensure that it is fair, accurate and
+          honest.
         </p>
         <form @submit.prevent="addRating">
           <div class="site__main-row flex flex-col md:w-7/12 mx-auto">
@@ -43,10 +43,12 @@
                     class="font-light text-xs leading-5"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    We understand that you might not want to share the name of the
-                    company despite the field being anonymized, in this case please enter a
-                    description of the company (e.g. "local startup",
-                    "well-known bank" or legacy company, etc)
+                    This text requires you to enter the present or past company
+                    name you work(ed). Note that if you choose not to fill this
+                    field, a generic name like "A local company" will be used by
+                    default. If you choose to enter a company name, it will be
+                    displayed if it has at least three entries with the same job
+                    title and town.
                   </p>
                 </div>
               </div>
@@ -354,9 +356,9 @@
                 >
                   This field requires you to tell us more about your experience
                   in the company. Please share more details about your
-                  contribution. Don't enter informations that might identify you.
-                  Any bad or good things that happened that you
-                  want to share with us?
+                  contribution. Don't enter informations that might identify
+                  you. Any bad or good things that happened that you want to
+                  share with us?
                 </p>
               </div>
             </div>
