@@ -85,7 +85,12 @@ func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) 
 
 	query := db.queryRatings().Order("salary_id")
 	if company != "" {
-		query = query.Where("c.name = ?", company)
+		query = query.Where(`
+		c.name = ?
+  		and (Select count(ss.id)
+       		from salaries ss
+       		where ss.title_id = s.title_id and 
+			ss.company_id = s.company_id) >= ?`, company, maxEntryBeforeDisplay)
 	}
 	if jobtitle != "" {
 		query = query.Where("j.title = ?", jobtitle)

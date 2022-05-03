@@ -93,6 +93,8 @@ insert into salaries (salary, city_id, country, title_id, seniority, company_id,
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (2686050, 45, 'Country', 4, 'Seniority', 68, 41);
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (1057853, 1, 'Country', 9, 'Seniority', 6, 84);
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (841396, 43, 'Country', 4, 'Seniority', 4, 35);
+insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (841396, 43, 'Country', 4, 'Seniority', 4, 35);
+insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (841396, 43, 'Country', 4, 'Seniority', 4, 35);
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (2325542, 8, 'Country', 6, 'Seniority', 92, 92);
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (2408039, 36, 'Country', 4, 'Seniority', 83, 81);
 insert into salaries (salary, city_id, country, title_id, seniority, company_id, company_rating_id) values (4920603, 21, 'Country', 1, 'Seniority', 6, 74);

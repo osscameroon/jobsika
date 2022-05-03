@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"database/sql"
 	"os"
 
 	"github.com/elhmn/jobsika/pkg/models/v1beta"
@@ -44,16 +43,7 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 	}
 
 	//Get the list of companies again
-	ret = db.c.Table("companies").
-		Where(`
-		(Select count(s.id)
-       		from salaries s
-       		where s.company_id = companies.id) not between 1 and @maxEntryBeforeDisplay
-`, sql.Named("maxEntryBeforeDisplay", maxEntryBeforeDisplay-1)).
-		// we use not between to include companies with no salary entry and company with more than max allowed entries to display
-		// we subtract 1 to maxEntryBeforeDisplay because `not between` is inclusive
-		Order("name").
-		Find(&companies)
+	ret = db.c.Table("companies").Order("name").Find(&companies)
 	if ret.Error != nil {
 		return companies, ret.Error
 	}

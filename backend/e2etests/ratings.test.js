@@ -17,7 +17,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":2,"nbHits":100,"offset":0}');
+          expect(body).contains('"limit":2,"nbHits":102,"offset":0}');
         });
     });
 
@@ -30,7 +30,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":100,"offset":40}');
+          expect(body).contains('"limit":20,"nbHits":102,"offset":40}');
         });
     });
 
@@ -43,7 +43,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":16,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":18,"offset":0}');
         });
     });
 
@@ -56,20 +56,20 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":3,"offset":0}');
         });
     });
 
-    it("return a list of ratings with company=Jaxbean", async function () {
+    it("return a list of ratings with company=Fliptune", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company=Jaxbean`)
+        .get(`${endpoint}?company=Fliptune`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":1,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":3,"offset":0}');
         });
     });
 
@@ -133,7 +133,7 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":4,"salary":2494171}'
+            '{"rating":4,"salary":2461763}'
           );
         });
     });
@@ -146,7 +146,7 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":4,"salary":2824939}'
+            '{"rating":4,"salary":2604546}'
           );
         });
     });
@@ -225,51 +225,6 @@ describe(`${endpoint2}`, function () {
                   const averageRating = res.body.rating;
                   expect(averageRating).equal(5);
               });
-      });
-
-    it("List only companies who hasn't salaries entries between 1 and maxEntryBeforeDisplay - 1", async function () {
-        const sendRequest = () => request(apiHost)
-              .post(endpoint)
-              .set("Accept", "application/json")
-              .send({
-                  company_name: "Elhmnco",
-                  //we set the salary to zero to avoid breaking the average-ratings tests
-                  //as the salary set -1 are not counted in the calculation of the average
-                  salary: 0,
-                  //we set the rating to zero to avoid breaking the average-ratings tests
-                  //as the rating set -1 are not counted in the calculation of the average
-                  rating: 0,
-                  job_title: "A Job_title",
-                  comment: "my comment",
-                  seniority: "Seniority",
-                  city: "Maroua",
-              })
-              .expect(201)
-              .expect("content-type", "application/json; charset=utf-8");
-
-        await sendRequest()
-
-        request(apiHost)
-            .get("companies")
-            .send()
-            .expect(200)
-            .expect("Content-Type", "application/json; charset=utf-8")
-            .then((res) => {
-                expect(JSON.stringify(res.body)).to.not.contains('"name":"Elhmnco"');
-            });
-
-        for (let i = 0; i < 3; i++) {
-            await sendRequest();
-        }
-
-        return request(apiHost)
-            .get("companies")
-            .send()
-            .expect(200)
-            .expect("Content-Type", "application/json; charset=utf-8")
-            .then((res) => {
-                expect(JSON.stringify(res.body)).contains('"name":"Elhmnco"');
-            });
       });
   });
 });
