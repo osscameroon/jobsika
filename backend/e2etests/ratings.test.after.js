@@ -134,7 +134,7 @@ describe("POST", function () {
     for (let i = 0; i < 1; i++) {
       await sendRequest("Designer");
     }
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 3; i++) {
       await sendRequest("Dev");
     }
     return request(apiHost)

@@ -17,7 +17,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":2,"nbHits":100,"offset":0}');
+          expect(body).contains('"limit":2,"nbHits":102,"offset":0}');
         });
     });
 
@@ -30,7 +30,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":100,"offset":40}');
+          expect(body).contains('"limit":20,"nbHits":102,"offset":40}');
         });
     });
 
@@ -43,7 +43,7 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":16,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":18,"offset":0}');
         });
     });
 
@@ -56,20 +56,20 @@ describe(`${endpoint}`, function () {
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":0,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":3,"offset":0}');
         });
     });
 
-    it("return a list of ratings with company=Jaxbean", async function () {
+    it("return a list of ratings with company=Fliptune", async function () {
       return request(apiHost)
-        .get(`${endpoint}?company=Jaxbean`)
+        .get(`${endpoint}?company=Fliptune`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           const body = JSON.stringify(res.body)
           expect(body).contains('"hits":');
-          expect(body).contains('"limit":20,"nbHits":0,"offset":0}');
+          expect(body).contains('"limit":20,"nbHits":3,"offset":0}');
         });
     });
 
@@ -133,7 +133,7 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":4,"salary":2494171}'
+            '{"rating":4,"salary":2461763}'
           );
         });
     });
@@ -146,7 +146,7 @@ describe(`${endpoint2}`, function () {
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":4,"salary":2824939}'
+            '{"rating":4,"salary":2604546}'
           );
         });
     });
