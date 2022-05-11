@@ -26,7 +26,7 @@
     <footer class="site__footer pb-16">
       <div class="container mx-auto w-10/12 text-center">
         <Title
-          title="Let's change the narative"
+          title="Let's change the narrative"
           subTitle="When no one shares their salary, employers have the upper hand. We can change this."
           content="subtitle"
         />
