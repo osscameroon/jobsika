@@ -416,7 +416,6 @@ export default {
   },
   async created() {
     await this.fetchRatings()
-    console.log('number of page', this.numberPage)
   },
 }
 </script>
