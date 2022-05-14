@@ -151,15 +151,15 @@ describe(`${endpoint2}`, function () {
         });
     });
 
-    it("return the average of ratings with company=Jaxbean", async function () {
+    it("return the average of ratings with company=Fliptune", async function () {
       return request(apiHost)
-        .get(`${endpoint2}?company=Jaxbean`)
+        .get(`${endpoint2}?company=Fliptune`)
         .send()
         .expect(200)
         .expect("Content-Type", "application/json; charset=utf-8")
         .then((res) => {
           expect(JSON.stringify(res.body)).equal(
-            '{"rating":0,"salary":1624669}'
+            '{"rating":0,"salary":841396}'
           );
         });
     });
@@ -190,7 +190,7 @@ describe(`${endpoint2}`, function () {
         });
     });
 
-      it("add 2 rating entry for one company, one with rating set to 0 and another set to 5, the result should be 5 instead of 2", async function() {
+      it("add 3 rating entry for one company, one with rating set to 0 and another set to 5, the result should be 5 instead of 2", async function() {
           const sendRequest = (rating) =>
               request(apiHost)
                   .post(`${endpoint}`)
@@ -213,6 +213,7 @@ describe(`${endpoint2}`, function () {
                   .expect("Content-Type", "application/json; charset=utf-8");
 
           await sendRequest(0)
+          await sendRequest(0)
           await sendRequest(5)
 
           return request(apiHost)
@@ -224,6 +225,43 @@ describe(`${endpoint2}`, function () {
               .then((res) => {
                   const averageRating = res.body.rating;
                   expect(averageRating).equal(5);
+              });
+      });
+
+      it("add 2 rating entry for one company with rating set to 5, the result should be 0 instead of 5 due to maxEntryBeforeDisplay rules", async function() {
+          const sendRequest = (rating) =>
+              request(apiHost)
+                  .post(`${endpoint}`)
+                  .set("Accept", "application/json")
+                  .send({
+                      company_name: "Ossrating0",
+                      job_title: "technicien de surface",
+                      //we set the salary to zero to avoid breaking the average-ratings tests
+                      //as the salary set -1 are not counted in the calculation of the average
+                      salary: 0,
+                      //we set the rating to zero to avoid breaking the average-ratings tests
+                      //as the rating set -1 are not counted in the calculation of the average
+                      rating: rating,
+                      comment: "my comment",
+                      seniority: "Seniority",
+                      city: "maroua",
+                      //the country field is omitted here as we always set it to Cameroon for now
+                  })
+                  .expect(201)
+                  .expect("Content-Type", "application/json; charset=utf-8");
+
+          await sendRequest(5)
+          await sendRequest(5)
+
+          return request(apiHost)
+              .get(`${endpoint2}?company=Ossrating0`)
+              .set("Accept", "application/json")
+              .send()
+              .expect(200)
+              .expect("Content-Type", "application/json; charset=utf-8")
+              .then((res) => {
+                  const averageRating = res.body.rating;
+                  expect(averageRating).equal(0);
               });
       });
   });

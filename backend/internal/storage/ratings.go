@@ -151,7 +151,12 @@ func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta
 
 	query := db.queryRatings()
 	if company != "" {
-		query = query.Where("c.name = ?", company)
+		query = query.Where(`
+		c.name = ?
+  		and (Select count(ss.id)
+       		from salaries ss
+       		where ss.title_id = s.title_id and 
+			ss.company_id = s.company_id) >= ?`, company, maxEntryBeforeDisplay)
 	}
 	if jobtitle != "" {
 		query = query.Where("j.title = ?", jobtitle)
