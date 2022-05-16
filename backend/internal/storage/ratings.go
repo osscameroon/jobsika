@@ -42,7 +42,7 @@ func (db DB) queryRatings() *gorm.DB {
 		ct.name as city,
 		s.country,
 		r.id as company_rating_id,
-		r.createdat,
+		s.createdat,
 		case
            when (
                     Select count(ss.id)
@@ -83,7 +83,7 @@ func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) 
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
 
-	query := db.queryRatings().Order("salary_id")
+	query := db.queryRatings().Order("createdat DESC, salary_id DESC")
 	if company != "" {
 		query = query.Where(`
 		c.name = ?
