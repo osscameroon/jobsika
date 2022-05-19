@@ -642,10 +642,15 @@ export default {
       }
     },
     formatUSD(num) {
-      return '' + Number(num).toLocaleString()
+      return (
+        '' +
+        Number(num)
+          .toString()
+          .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ')
+      )
     },
     parseUSD(text) {
-      return Number(text.replace('', '').replace(/,/g, ''))
+      return Number(text.replace('$', '').replace(/ /g, ''))
     },
   },
 }
