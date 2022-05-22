@@ -101,8 +101,7 @@ describe("POST", function () {
       .expect(200)
       .expect("Content-Type", "application/json; charset=utf-8")
       .then((res) => {
-        const lastElem = res.body.hits.length - 1;
-        const rating = JSON.stringify(res.body.hits[lastElem]);
+        const rating = JSON.stringify(res.body.hits[0]);
         expect(rating).contains("La Mater");
         expect(rating).contains("Technicien De Surface");
         expect(rating).contains("Maroua");
@@ -227,4 +226,44 @@ describe("POST", function () {
         expect(rating.rating).equal(3);
       });
   });
+
+  it("POST add a new rating entry. Should be the first when returned when listing", async function () {
+        const sendRequest = () =>
+            request(apiHost)
+                .post(`${endpoint}?page=1&limit=2`)
+                .set("Accept", "application/json")
+                .send({
+                    company_name: "First Entry",
+                    job_title: "Entry man",
+                    //we set the salary to zero to avoid breaking the average-ratings tests
+                    //as the salary set -1 are not counted in the calculation of the average
+                    salary: 0,
+                    //we set the rating to zero to avoid breaking the average-ratings tests
+                    //as the rating set -1 are not counted in the calculation of the average
+                    rating: 0,
+                    comment: "my comment",
+                    seniority: "Seniority",
+                    city: "Njombe",
+                    //the country field is omitted here as we always set it to Cameroon for now
+                })
+                .expect(201)
+                .expect("Content-Type", "application/json; charset=utf-8");
+
+      for (let i = 0; i < 3; i++) {
+          await sendRequest();
+      }
+
+        return request(apiHost)
+            .get(`${endpoint}?limit=200`)
+            .set("Accept", "application/json")
+            .send()
+            .expect(200)
+            .expect("Content-Type", "application/json; charset=utf-8")
+            .then((res) => {
+                const rating = JSON.stringify(res.body.hits[0]);
+                expect(rating).contains("First Entry");
+                expect(rating).contains("Entry Man");
+                expect(rating).contains("Njombe");
+            });
+    });
 });
