@@ -277,7 +277,7 @@
               </div>
             </div>
             <input
-              v-model="newRating.salary"
+              v-model="fSalaryValue"
               style="height: 61px"
               class="site__input-field border border-grayC mt-2 w-full rounded-md cursor-text pl-2"
               @keypress="onlyNumber"
@@ -526,6 +526,17 @@ export default {
     cityComplation() {
       return this.filteredCities.length > 0 && this.isCityFocus
     },
+    fSalaryValue: {
+      // eslint-disable-next-line vue/return-in-computed-property
+      get() {
+        if (this.newRating.salary) {
+          return this.formatUSD(this.newRating.salary)
+        }
+      },
+      set(newValue) {
+        this.newRating.salary = this.parseUSD(newValue)
+      },
+    },
   },
   async created() {
     try {
@@ -629,6 +640,17 @@ export default {
       } else {
         this.opened.push(id)
       }
+    },
+    formatUSD(num) {
+      return (
+        '' +
+        Number(num)
+          .toString()
+          .replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1 ')
+      )
+    },
+    parseUSD(text) {
+      return Number(text.replace('$', '').replace(/ /g, ''))
     },
   },
 }
