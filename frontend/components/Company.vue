@@ -7,56 +7,56 @@
       />
     </div>
     <div v-else class="-my-2">
-      <div class="py-2 align-middle inline-block min-w-full w-16">
+      <div class="inline-block w-16 min-w-full py-2 align-middle">
         <div
-          class="overflow-x-auto rounded-xl border-gray-200 sm:rounded-lg w-full"
+          class="w-full overflow-x-auto border-gray-200 rounded-xl sm:rounded-lg"
         >
           <table class="min-w-full divide-y-8 divide-primary">
             <thead style="backgound: #e5e5e5">
               <tr>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Company
                 </th>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Jobs title
                 </th>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Seniority
                 </th>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   City
                 </th>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Salary
                 </th>
                 <th
                   scope="col"
-                  class="px-4 py-3 text-left text-xs md:text-sm font-bold tracking-wider"
+                  class="px-4 py-3 text-xs font-bold tracking-wider text-left md:text-sm"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Rating
                 </th>
-                <th scope="col" class="relative px-6 py-3 flex">
+                <th scope="col" class="relative flex px-6 py-3">
                   <span class="sr-only">Edit</span>
                 </th>
               </tr>
@@ -68,7 +68,7 @@
             >
               <tr>
                 <td
-                  class="bg-white rounded-tl-xl rounded-bl-md px-4 py-3 whitespace-nowrap"
+                  class="px-4 py-3 bg-white rounded-tl-xl rounded-bl-md whitespace-nowrap"
                 >
                   <div
                     class="text-xs text-gray-900"
@@ -81,7 +81,7 @@
                     }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap bg-white">
+                <td class="px-4 py-3 bg-white whitespace-nowrap">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -93,7 +93,7 @@
                     }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap bg-white">
+                <td class="px-4 py-3 bg-white whitespace-nowrap">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -101,7 +101,7 @@
                     {{ company.seniority }}
                   </div>
                 </td>
-                <td class="px-4 py-3 whitespace-nowrap bg-white">
+                <td class="px-4 py-3 bg-white whitespace-nowrap">
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
@@ -110,17 +110,21 @@
                   </div>
                 </td>
                 <td
-                  class="px-4 py-3 whitespace-nowrap text-sm text-gray-500 bg-white"
+                  class="px-4 py-3 text-sm text-gray-500 bg-white whitespace-nowrap"
                 >
                   <div
                     class="text-xs text-gray-900"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
-                    {{ company.salary | price }}
+                    {{
+                      parseInt(company.salary.toString()) < 1000
+                        ? parseInt(company.salary.toString()) * 1000
+                        : company.salary | price
+                    }}
                   </div>
                 </td>
                 <td
-                  class="px-4 py-3 whitespace-nowrap text-sm font-medium bg-white"
+                  class="px-4 py-3 text-sm font-medium bg-white whitespace-nowrap"
                 >
                   <div class="flex">
                     <div class="flex">
@@ -147,21 +151,21 @@
                   </div>
                 </td>
                 <td
-                  class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium bg-white rounded-tr-xl rounded-br-md"
+                  class="px-4 py-3 text-sm font-medium text-right bg-white whitespace-nowrap rounded-tr-xl rounded-br-md"
                   :class="{ opened: opened.includes(company.salary_id) }"
                   @click="toggle(company.salary_id)"
                 >
                   <button
                     v-if="String(company.comment).length === 0"
                     disable
-                    class="text-grayC text-xs flex items-center space-x-3 cursor-text"
+                    class="flex items-center text-xs text-grayC space-x-3 cursor-text"
                     style="font-family: 'Inter', sans-serif"
                     type="button"
                   >
                     Comments
                     <span class="flex items-center">
                       <span
-                        class="cursor-pointer h-3 text-center w-3 ml-1 text-grayC rounded-full border border-grayC flex items-center justify-center"
+                        class="flex items-center justify-center w-3 h-3 ml-1 text-center border rounded-full cursor-pointer text-grayC border-grayC"
                         style="font-size: 8px"
                       >
                         !
@@ -170,7 +174,7 @@
                   </button>
                   <button
                     v-else
-                    class="text-xs flex items-center space-x-3 cursor-pointer"
+                    class="flex items-center text-xs cursor-pointer space-x-3"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                     type="button"
                   >
@@ -186,7 +190,7 @@
                 colspan="10"
                 class="w-10/12 bg-primary"
               >
-                <div class="bg-white w-full p-4 my-3 shadow-sm rounded-sm">
+                <div class="w-full p-4 my-3 bg-white rounded-sm shadow-sm">
                   <p
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
@@ -217,7 +221,7 @@
                 colspan="10"
                 class="w-10/12 bg-primary"
               >
-                <div class="bg-white w-full p-4 my-3 shadow-sm rounded-sm">
+                <div class="w-full p-4 my-3 bg-white rounded-sm shadow-sm">
                   <p
                     class="py-2 text-xs md:text-sm"
                     style="color: #b1b1b1; font-family: 'Inter', sans-serif"
