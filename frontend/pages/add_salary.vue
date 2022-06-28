@@ -1,22 +1,22 @@
 <template>
   <div>
-    <main class="site__main pt-6 md:pt-12 pb-10 md:pb-20">
-      <div class="container mx-auto w-10/12">
+    <main class="pt-6 pb-10 site__main md:pt-12 md:pb-20">
+      <div class="container w-10/12 mx-auto">
         <Title
           title="Fill the form and submit your contribution"
           font-size="header"
           only-title="onlyTitle"
         />
         <p
-          class="text-center text-xs sm:text-base pt-2 md:pt-4 font-normal"
+          class="pt-2 text-xs font-normal text-center sm:text-base md:pt-4"
           style="color: #2e2e2e; font-family: 'Inter', sans-serif"
         >
           Your entry is anonymous. Please ensure that it is fair, accurate and
           honest.
         </p>
         <form @submit.prevent="addRating">
-          <div class="site__main-row flex flex-col md:w-7/12 mx-auto">
-            <div class="site__main-row w-full mt-5 md:mt-16">
+          <div class="flex flex-col mx-auto site__main-row md:w-7/12">
+            <div class="w-full mt-5 site__main-row md:mt-16">
               <div class="flex">
                 <p
                   class="text-xs font-bold md:text-lg"
@@ -26,7 +26,7 @@
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                    class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[0].id)"
                   >
@@ -40,7 +40,7 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light text-xs leading-5"
+                    class="text-xs font-light leading-5"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This text requires you to enter the present or past company
@@ -57,7 +57,7 @@
                 :value="newRating.company_name"
                 type="text"
                 style="height: 61px"
-                class="site__input-field border border-grayC mt-2 w-full rounded-md mb-4 md:mb-16"
+                class="w-full mt-2 mb-4 border site__input-field border-grayC rounded-md md:mb-16"
                 @input="
                   (event) => (newRating.company_name = event.target.value)
                 "
@@ -66,12 +66,12 @@
               <ul
                 v-if="companyComplation"
                 style="background: white"
-                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
+                class="h-20 mb-2 -mt-3 overflow-y-scroll rounded-lg cursor-pointer md:h-32 md:-mt-14 md:mb-4"
               >
                 <li
                   v-for="(name, index) in filteredCompanyNames"
                   :key="index"
-                  class="shadow-sm py-2 px-4"
+                  class="px-4 py-2 shadow-sm"
                   @click="setCompanyName(name)"
                 >
                   {{ name }}
@@ -79,7 +79,7 @@
               </ul>
               <div class="flex">
                 <p
-                  class="text-xs md:text-lg font-bold"
+                  class="text-xs font-bold md:text-lg"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Job Title
@@ -87,7 +87,7 @@
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                    class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[3].id)"
                   >
@@ -101,7 +101,7 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light text-xs leading-5"
+                    class="text-xs font-light leading-5"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This field requires you to enter the title of the position
@@ -114,22 +114,22 @@
                 :value="newRating.job_title"
                 type="text"
                 style="height: 61px"
-                class="site__input-field border border-grayC mt-2 w-full rounded-md"
+                class="w-full mt-2 border site__input-field border-grayC rounded-md"
                 @input="(event) => (newRating.job_title = event.target.value)"
                 @focus="jobTitleFocus()"
               />
-              <div id="myAlertJob" class="mb-4 md:mb-16 mt-2">
+              <div id="myAlertJob" class="mt-2 mb-4 md:mb-16">
                 <notification :message="errorJobtitle" />
               </div>
               <ul
                 v-if="jobTitleComplation"
                 style="background: white"
-                class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
+                class="h-20 mb-2 -mt-3 overflow-y-scroll rounded-lg cursor-pointer md:h-32 md:-mt-14 md:mb-4"
               >
                 <li
                   v-for="(job, index) in filteredJobTitles"
                   :key="index"
-                  class="shadow-sm py-2 px-4"
+                  class="px-4 py-2 shadow-sm"
                   @click="setJobTitle(job)"
                 >
                   {{ job }}
@@ -137,14 +137,14 @@
               </ul>
               <div class="flex">
                 <p
-                  class="text-xs md:text-lg font-bold"
+                  class="text-xs font-bold md:text-lg"
                   style="color: #b1b1b1; font-family: 'Inter', sans-serif"
                 >
                   Seniority
                 </p>
                 <div class="flex items-center">
                   <span
-                    class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                    class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                     :class="{ opened: opened.includes(tooltips[0].id) }"
                     @click="toggle(tooltips[5].id)"
                   >
@@ -158,7 +158,7 @@
               >
                 <div class="w-full my-1">
                   <p
-                    class="font-light text-xs leading-5"
+                    class="text-xs font-light leading-5"
                     style="color: #000000; font-family: 'Inter', sans-serif"
                   >
                     This field requires you to enter the seniority of the job
@@ -186,7 +186,7 @@
             </div>
             <div class="flex">
               <p
-                class="text-xs md:text-lg font-bold"
+                class="text-xs font-bold md:text-lg"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 City
@@ -194,7 +194,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                  class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[4].id)"
                 >
@@ -208,7 +208,7 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light text-xs leading-5"
+                  class="text-xs font-light leading-5"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to enter the town you are/were
@@ -222,22 +222,22 @@
               :value="newRating.city"
               type="text"
               style="height: 61px"
-              class="site__input-field border border-grayC mt-2 w-full rounded-md"
+              class="w-full mt-2 border site__input-field border-grayC rounded-md"
               @input="(event) => (newRating.city = event.target.value)"
               @focus="cityFocus()"
             />
-            <div id="myAlertCity" class="mb-4 md:mb-8 mt-2">
+            <div id="myAlertCity" class="mt-2 mb-4 md:mb-8">
               <notification :message="errorCity" />
             </div>
             <ul
               v-if="cityComplation"
               style="background: white"
-              class="h-20 md:h-32 overflow-y-scroll rounded-lg -mt-3 md:-mt-14 mb-2 md:mb-4 cursor-pointer"
+              class="h-20 mb-2 -mt-3 overflow-y-scroll rounded-lg cursor-pointer md:h-32 md:-mt-14 md:mb-4"
             >
               <li
                 v-for="(city, index) in filteredCities"
                 :key="index"
-                class="shadow-sm py-2 px-4"
+                class="px-4 py-2 shadow-sm"
                 @click="setCity(city)"
               >
                 {{ city }}
@@ -245,7 +245,7 @@
             </ul>
             <div class="flex">
               <p
-                class="text-xs md:text-lg font-bold"
+                class="text-xs font-bold md:text-lg"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 Monthly Salary (FCFA)
@@ -253,7 +253,7 @@
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                  class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[1].id)"
                 >
@@ -267,7 +267,7 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light leading-5 text-xs"
+                  class="text-xs font-light leading-5"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to enter the pre-tax/gross salary you
@@ -279,23 +279,23 @@
             <input
               v-model="fSalaryValue"
               style="height: 61px"
-              class="site__input-field border border-grayC mt-2 w-full rounded-md cursor-text pl-2"
+              class="w-full pl-2 mt-2 border site__input-field border-grayC rounded-md cursor-text"
               @keypress="onlyNumber"
               @focus="blurAll()"
             />
-            <div id="myAlertSalary" class="mb-2 md:mb-8 mt-2">
+            <div id="myAlertSalary" class="mt-2 mb-2 md:mb-8">
               <notification :message="errorSalary" />
             </div>
             <div class="flex">
               <p
-                class="text-xs md:text-lg font-bold"
+                class="text-xs font-bold md:text-lg"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 Rate
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                  class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[6].id)"
                 >
@@ -309,7 +309,7 @@
             >
               <div class="w-full mt-1 mb-2">
                 <p
-                  class="font-light text-xs leading-5"
+                  class="text-xs font-light leading-5"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to rate your overall experience with
@@ -330,14 +330,14 @@
             />
             <div class="flex">
               <p
-                class="text-xs md:text-lg font-bold"
+                class="text-xs font-bold md:text-lg"
                 style="color: #b1b1b1; font-family: 'Inter', sans-serif"
               >
                 Comments
               </p>
               <div class="flex items-center">
                 <span
-                  class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                  class="flex items-center justify-center w-4 h-4 ml-2 text-xs text-center border rounded-full cursor-pointer text-grayC border-grayC"
                   :class="{ opened: opened.includes(tooltips[0].id) }"
                   @click="toggle(tooltips[2].id)"
                 >
@@ -351,7 +351,7 @@
             >
               <div class="w-full my-1">
                 <p
-                  class="font-light text-xs leading-5"
+                  class="text-xs font-light leading-5"
                   style="color: #000000; font-family: 'Inter', sans-serif"
                 >
                   This field requires you to tell us more about your experience
@@ -368,12 +368,12 @@
               type="textarea"
               rows="5"
               style="height: 120px"
-              class="resize rounded-md w-full h-full mt-2 border border-grayC mb-4"
+              class="w-full h-full mt-2 mb-4 border resize rounded-md border-grayC"
               @focus="blurAll()"
             />
 
             <div
-              class="site__input-btn mt-10 flex flex-col md:flex-row items-center justify-center md:justify-end"
+              class="flex flex-col items-center justify-center mt-10 site__input-btn md:flex-row md:justify-end"
             >
               <div class="w-full md:w-1/5">
                 <NuxtLink to="/">
@@ -385,7 +385,7 @@
                 </NuxtLink>
               </div>
               <button
-                class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-6"
+                class="w-full pt-6 ml-0 md:w-1/5 md:pt-0 md:ml-6"
                 type="submit"
               >
                 <Button
@@ -398,8 +398,8 @@
         </form>
       </div>
     </main>
-    <footer class="site__footer pb-16">
-      <div class="container mx-auto w-9/12 -pt-7">
+    <footer class="pb-16 site__footer">
+      <div class="container w-9/12 mx-auto -pt-7">
         <Footer />
       </div>
     </footer>
@@ -622,6 +622,12 @@ export default {
             block: 'center',
           })
         } else {
+          if (parseInt(this.newRating.salary.toString()) < 1000) {
+            this.$store.dispatch(
+              'postRating',
+              parseInt(this.newRating.toString()) * 1000
+            )
+          }
           this.$store.dispatch('postRating', this.newRating)
           this.$router.push('/')
         }
