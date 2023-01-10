@@ -33,15 +33,15 @@
               text-white text-xs
               lg:text-sm
               font-medium
-              md:ml-10
-              lg:ml-20
+              md:ml-20
+              xl:pl-6
               text-center
             "
             style="font-family: 'Inter', sans-serif"
           >
             {{ average | price }}
           </p>
-          <div class="flex pt-1 md:pt-0 ml-0 md:ml-24 md:mr-10">
+          <div class="flex pt-1 md:pt-0 ml-0 md:ml-8 xl:ml-20 md:mr-10">
             <div v-for="(item, index) in stars" :key="index" class="flex">
               <img class="w-4 h-4 mr-1" :src="starsPicture" />
             </div>
