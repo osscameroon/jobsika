@@ -44,6 +44,11 @@ CREATE TABLE IF NOT EXISTS cities (
     updatedat DATE
 );
 
+CREATE TABLE IF NOT EXISTS job_offers (
+    id BIGSERIAL NOT NULL,
+    createdat DATE,
+    updatedat DATE
+);
 
 -- +goose StatementEnd
 -- +goose Down
@@ -53,4 +58,5 @@ DROP TABLE IF EXISTS companies;
 DROP TABLE IF EXISTS jobtitles;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS company_ratings;
+DROP TABLE IF EXISTS job_offers;
 -- +goose StatementEnd
