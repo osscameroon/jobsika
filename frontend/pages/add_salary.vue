@@ -470,6 +470,41 @@ export default {
       ],
     }
   },
+  head() {
+    return {
+      meta: [
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'Company ratings  | Salaries | Cameroon | Anonymous'
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content: 'JobSika is a website employers and employees can search and find company ratings and salaries in Cameroon.'
+        },
+        {
+          hid: 'og:type',
+          property: 'og:type',
+          content: 'website',
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: '../assets/logo.jpeg'
+        },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: 'https://jobsika.cm/'
+        },
+        {
+          property: 'og:locale',
+          content: 'en'
+        }
+      ]
+    };
+  },
   computed: {
     companies() {
       return this.$store.state.companies.companies
@@ -545,7 +580,7 @@ export default {
       await this.fetchCities()
       await this.fetchSeniorities()
     } catch (err) {
-      console.log(err)
+      console.error(err)
     }
   },
   methods: {
