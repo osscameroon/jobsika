@@ -86,7 +86,7 @@ describe(`${endpoint}`, function () {
                     apply_url: "",
                     apply_email_address: "ossdevs-cm@gmail.com"
                 })
-                .expect(201)
+                .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
                     expect(res.body).contain("company name is mandatory");
@@ -107,7 +107,7 @@ describe(`${endpoint}`, function () {
                     apply_url: "",
                     apply_email_address: "ossdevs-cm@gmail.com"
                 })
-                .expect(201)
+                .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
                     expect(res.body).contain("job title is mandatory");
@@ -128,7 +128,7 @@ describe(`${endpoint}`, function () {
                     apply_url: "",
                     apply_email_address: "ossdevs-cm@gmail.com"
                 })
-                .expect(201)
+                .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
                     expect(res.body).contain("job description is mandatory");
@@ -149,7 +149,7 @@ describe(`${endpoint}`, function () {
                     apply_url: "",
                     apply_email_address: ""
                 })
-                .expect(201)
+                .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
                     expect(res.body).contain("apply url or apply email address is mandatory");
@@ -170,7 +170,7 @@ describe(`${endpoint}`, function () {
                     apply_url: "",
                     apply_email_address: "ossdevs-cm@gmail"
                 })
-                .expect(201)
+                .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
                     expect(res.body).contain("apply email address is not a valid email address");
