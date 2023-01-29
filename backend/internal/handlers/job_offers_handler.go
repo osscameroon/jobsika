@@ -44,7 +44,7 @@ func PostJobOffer(c *gin.Context) {
 		return
 	}
 
-	err = db.PostJobOffer(query)
+	offer, err := db.PostJobOffer(query)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
@@ -52,5 +52,17 @@ func PostJobOffer(c *gin.Context) {
 		return
 	}
 
-	c.JSON(http.StatusCreated, gin.H{"message": "created"})
+	c.JSON(http.StatusCreated, v1beta.JobOfferPresenter{
+		ID:                offer.ID,
+		CreatedAt:         offer.CreatedAt,
+		UpdatedAt:         offer.UpdatedAt,
+		Email:             offer.Email,
+		CompanyName:       offer.CompanyName,
+		JobTitle:          query.JobTitle,
+		IsRemote:          offer.IsRemote,
+		Description:       offer.Description,
+		HowToApply:        offer.HowToApply,
+		ApplyUrl:          offer.ApplyUrl,
+		ApplyEmailAddress: offer.ApplyEmailAddress,
+	})
 }

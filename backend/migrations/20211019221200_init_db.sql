@@ -45,7 +45,15 @@ CREATE TABLE IF NOT EXISTS cities (
 );
 
 CREATE TABLE IF NOT EXISTS job_offers (
-    id BIGSERIAL NOT NULL,
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    email VARCHAR(255),
+    company_name VARCHAR(255),
+    title_id INTEGER NOT NULL,
+    is_remote BOOLEAN,
+    description VARCHAR(5000),
+    how_to_apply VARCHAR(1000),
+    apply_url VARCHAR(255),
+    apply_email_address VARCHAR(255),
     createdat DATE,
     updatedat DATE
 );
