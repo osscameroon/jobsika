@@ -47,7 +47,7 @@ describe(`${endpoint}`, function () {
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("email is mandatory");
+                    expect(res.body).contain("email is mandatory");
                 });
         });
 
@@ -68,7 +68,7 @@ describe(`${endpoint}`, function () {
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("email is not a valid email address");
+                    expect(res.body).contain("email is not a valid email address");
                 });
         });
 
@@ -89,7 +89,7 @@ describe(`${endpoint}`, function () {
                 .expect(201)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("company name is mandatory");
+                    expect(res.body).contain("company name is mandatory");
                 });
         });
 
@@ -110,7 +110,7 @@ describe(`${endpoint}`, function () {
                 .expect(201)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("job title is mandatory");
+                    expect(res.body).contain("job title is mandatory");
                 });
         });
 
@@ -131,7 +131,7 @@ describe(`${endpoint}`, function () {
                 .expect(201)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("job description is mandatory");
+                    expect(res.body).contain("job description is mandatory");
                 });
         });
 
@@ -152,7 +152,7 @@ describe(`${endpoint}`, function () {
                 .expect(201)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("apply url or apply email address is mandatory");
+                    expect(res.body).contain("apply url or apply email address is mandatory");
                 });
         });
 
@@ -173,7 +173,7 @@ describe(`${endpoint}`, function () {
                 .expect(201)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(res.body).contains("apply email address is not a valid email address");
+                    expect(res.body).contain("apply email address is not a valid email address");
                 });
         });
     });

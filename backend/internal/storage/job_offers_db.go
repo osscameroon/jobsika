@@ -8,7 +8,6 @@ import (
 
 // PostJobOffer post new job offer
 func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
-
 	offer := v1beta.JobOffer{
 		Email:             query.Email,
 		CompanyName:       query.CompanyName,
@@ -20,7 +19,6 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 	}
 
 	err := db.c.Transaction(func(tx *gorm.DB) error {
-
 		jobTitle, err := postJobTitle(tx, query.JobTitle)
 		if err != nil {
 			log.Error(err)
