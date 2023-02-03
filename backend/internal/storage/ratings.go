@@ -12,11 +12,11 @@ import (
 	"gorm.io/gorm"
 )
 
-//maxEntryBeforeDisplay The maximum number of entries before we can display the
-//company name, and any other sensitive data
+// maxEntryBeforeDisplay The maximum number of entries before we can display the
+// company name, and any other sensitive data
 const maxEntryBeforeDisplay = 3
 
-//Paginate returns a query scoped to a certain page
+// Paginate returns a query scoped to a certain page
 func Paginate(pageStr, limitStr string) (offset, limit int) {
 	page, _ := strconv.Atoi(pageStr)
 	if page == 0 {
@@ -78,7 +78,7 @@ func (db DB) queryRatings() *gorm.DB {
 		Joins("LEFT JOIN company_ratings r ON s.company_rating_id = r.id")
 }
 
-//GetRatings get ratings
+// GetRatings get ratings
 func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) (v1beta.RatingResponse, error) {
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
@@ -127,7 +127,7 @@ func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) 
 	return resp, nil
 }
 
-//GetRatingByID get rating by `id`
+// GetRatingByID get rating by `id`
 func (db DB) GetRatingByID(id int64) (v1beta.Rating, error) {
 	rating := v1beta.Rating{}
 	ret := db.queryRatings().Where("s.id = ?", id).Limit(1).Find(&rating)
@@ -142,7 +142,7 @@ func (db DB) GetRatingByID(id int64) (v1beta.Rating, error) {
 	return rating, nil
 }
 
-//GetAverageRating get average rating
+// GetAverageRating get average rating
 func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta.AverageRating, error) {
 	r := struct {
 		AVGRating string `gorm:"column:rating"`
@@ -184,7 +184,7 @@ func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta
 	return rating, nil
 }
 
-//PostRatings post new rating
+// PostRatings post new rating
 func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 	query.CompanyName = strings.Title(strings.ToLower(query.CompanyName))
 	query.JobTitle = strings.Title(strings.ToLower(query.JobTitle))
@@ -197,7 +197,7 @@ func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
 			return err
 		}
 
-		jobTitle, err := postJobTitle(tx, query)
+		jobTitle, err := postJobTitle(tx, query.JobTitle)
 		if err != nil {
 			log.Error(err)
 			return err
@@ -263,29 +263,6 @@ func postCompany(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.Company, err
 	}
 
 	return company, nil
-}
-
-func postJobTitle(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.JobTitle, error) {
-	jobTitle := v1beta.JobTitle{}
-
-	//Check if the jobTitle already exist
-	ret := tx.Table("jobtitles").Where("title = ?", query.JobTitle).Find(&jobTitle)
-	if ret.Error != nil {
-		return jobTitle, ret.Error
-	}
-
-	if jobTitle.Title == "" {
-		//if we did not find the jobTitle, we create a new jobTitle entry
-		jobTitle = v1beta.JobTitle{
-			Title: query.JobTitle,
-		}
-		ret := tx.Table("jobtitles").Create(&jobTitle)
-		if ret.Error != nil {
-			return jobTitle, ret.Error
-		}
-	}
-
-	return jobTitle, nil
 }
 
 func postCity(tx *gorm.DB, query v1beta.RatingPostQuery) (v1beta.City, error) {
