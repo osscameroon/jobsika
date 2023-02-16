@@ -44,6 +44,19 @@ CREATE TABLE IF NOT EXISTS cities (
     updatedat DATE
 );
 
+CREATE TABLE IF NOT EXISTS job_offers (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    email VARCHAR(255),
+    company_name VARCHAR(255),
+    title_id INTEGER NOT NULL,
+    is_remote BOOLEAN,
+    description VARCHAR(5000),
+    how_to_apply VARCHAR(1000),
+    apply_url VARCHAR(255),
+    apply_email_address VARCHAR(255),
+    createdat DATE,
+    updatedat DATE
+);
 
 -- +goose StatementEnd
 -- +goose Down
@@ -53,4 +66,5 @@ DROP TABLE IF EXISTS companies;
 DROP TABLE IF EXISTS jobtitles;
 DROP TABLE IF EXISTS cities;
 DROP TABLE IF EXISTS company_ratings;
+DROP TABLE IF EXISTS job_offers;
 -- +goose StatementEnd

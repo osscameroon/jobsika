@@ -1,12 +1,13 @@
 package storage
 
 import (
+	"gorm.io/gorm"
 	"os"
 
 	"github.com/elhmn/jobsika/pkg/models/v1beta"
 )
 
-//GetJobTitles get jobtitles
+// GetJobTitles get jobtitles
 func (db DB) GetJobTitles() ([]string, error) {
 	var titles []string
 	jobTitles := []v1beta.JobTitle{}
@@ -56,7 +57,30 @@ func (db DB) GetJobTitles() ([]string, error) {
 	return titles, nil
 }
 
-//DefaultJobTitles is collection of default jobtitles
+func postJobTitle(tx *gorm.DB, title string) (v1beta.JobTitle, error) {
+	jobTitle := v1beta.JobTitle{}
+
+	//Check if the jobTitle already exist
+	ret := tx.Table("jobtitles").Where("title = ?", title).Find(&jobTitle)
+	if ret.Error != nil {
+		return jobTitle, ret.Error
+	}
+
+	if jobTitle.Title == "" {
+		//if we did not find the jobTitle, we create a new jobTitle entry
+		jobTitle = v1beta.JobTitle{
+			Title: title,
+		}
+		ret := tx.Table("jobtitles").Create(&jobTitle)
+		if ret.Error != nil {
+			return jobTitle, ret.Error
+		}
+	}
+
+	return jobTitle, nil
+}
+
+// DefaultJobTitles is collection of default jobtitles
 var DefaultJobTitles = []string{
 	"2D Animator",
 	"3D Animator",
