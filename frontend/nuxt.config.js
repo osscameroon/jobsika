@@ -15,12 +15,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
+  css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    'plugins/filters.js'
-  ],
+  plugins: ['plugins/filters.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -48,12 +46,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    vendor: ['aframe']
+    vendor: ['aframe'],
   },
 
   publicRuntimeConfig: {
-    baseURL: process.env.BASE_URL
+    baseURL: process.env.BASE_URL,
   },
 
-  target: 'static'
+  target: 'static',
 }

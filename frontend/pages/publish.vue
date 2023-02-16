@@ -1,0 +1,15 @@
+<template>
+    <main class="flex items-center justify-center">
+        <h1
+            class="font-bold md:text-4xl text-center text-blueDark py-32 sm:py-40 md:py-44 xl:py-72 sm:w-3/4 xl:w-1/2 text-xl xl:text-4xl px-4 xl:px-0">
+            Your job offer will be published as soon as your payment is approuved
+        </h1>
+    </main>
+</template>
+
+<script>
+export default {
+    name: 'PublishIndex',
+    layout: 'app'
+}
+</script>
