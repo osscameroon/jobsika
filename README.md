@@ -5,7 +5,8 @@ JobSika is a website that allows people to anonymously rate their companies and 
 
 #### Dependencies
 To run the application locally, you should:
-1. Install the required dependencies:
+1. Fork the project from the GitHub repository. To do this, click the "Fork" button in the top-right corner of the repository page and follow the instructions.
+2. Install the required dependencies:
 
 - Golang version 1.16
 - GNU make
