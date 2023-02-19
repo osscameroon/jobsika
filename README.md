@@ -1,5 +1,5 @@
 # Jobsika
-Jobsika, is Company ratings and salaries in Cameroon.
+JobSika is a website that allows people to anonymously rate their companies and share their salaries, in order to create a more level playing field between employers and employees. People can contribute their salary information to the website and help to change the current narrative around salary information.
 
 ### Development
 
