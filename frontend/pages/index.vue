@@ -11,7 +11,7 @@
             project goals? Look no further - the right person is out there and
             ready to take on the challenge.
           </h4>
-          <NuxtLink to="#"
+          <NuxtLink to="/add_job"
             class="cursor-pointer p-4 text-white font-bold flex items-center justify-center lg:text-base bg-blueDark h-12 rounded-lg mt-8 text-sm">
             Post a job now
           </NuxtLink>
@@ -29,14 +29,11 @@
               class="w-64 font-normal text-sm md:text-base flex justify-center items-center pt-4 md:pt-2 xl:pt-0 text-gray-700">
               Don't miss out on any job
             </p>
-            <input
-              class="select-input w-full xl:w-44 mt-4 md:mt-2 xl:mt-0 p-4 text-xs md:text-sm font-bold h-12 text-center"
-              placeholder="Enter your email" />
             <div class="pt-4 md:pt-2 xl:pt-0  w-full xl:w-36 xl:ml-4">
-              <NuxtLink to="/add_salary"
+              <button @click="showModal = true"
                 class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-xs md:text-sm px-4 border-2 h-12 rounded-md border-blue">
                 Subscribe
-              </NuxtLink>
+              </button>
             </div>
           </div>
         </div>
@@ -61,7 +58,7 @@
                   <div class="pt-1 xl:pt-0 xl:ml-8 flex flex-row items-center">
                     <div class="w-4 h-4 bg-gray-200"></div>
                     <p class="text-xs my-2 mx-1 text-gray-500 ml-1">
-                    {{ item.structure }}
+                      {{ item.structure }}
                     </p>
                   </div>
                 </div>
@@ -110,6 +107,7 @@
         </div>
       </div>
     </div>
+    <SubmitModal v-show="showModal" @close-modal="showModal = false" />
   </main>
 </template>
 
@@ -119,6 +117,7 @@ export default {
   layout: 'app',
   data() {
     return {
+      showModal: false,
       plusIcon: require('../assets/plus_dark.png'),
       money: require('../assets/money.png'),
       tags: ["Figma", "Nuxt", "UI/UX Design"],

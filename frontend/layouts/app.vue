@@ -27,7 +27,7 @@
           </nav>
           <div class="flex flex-col lg:flex-row">
             <div class="lg:pt-0 w-full lg:w-36 lg:mr-4">
-              <NuxtLink to="#"
+              <NuxtLink to="/add_job"
                 class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg">
                 Post a job
               </NuxtLink>

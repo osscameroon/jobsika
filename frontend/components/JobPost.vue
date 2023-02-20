@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-white shadow-md p-3 md:p-6 rounded-md">
+    <div class="bg-white shadow-md p-3 md:p-6 rounded-md hover:shadow-xl" @mouseover="active = true"   @mouseleave="active = false">
         <div class="flex flex-col xl:flex-row">
             <div class="w-36 h-36 border rounded-md flex justify-center items-center">
                 <img class="w-auto h-24" :src="picture" />
@@ -27,15 +27,14 @@
                     </p>
                 </div>
             </div>
-            <div class="flex xl:justify-end items-center w-full xl:w-3/12 pt-4 xl:pt-0">
+            <div class="xl:justify-end items-center w-full xl:w-3/12 pt-4 xl:pt-0 flex">
                 <NuxtLink to="#"
-                    class="cursor-pointer px-12 py-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg">
+                    :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg ${active == true ? 'flex' : 'hidden'}`">
                     Apply
                 </NuxtLink>
             </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -80,7 +79,14 @@ export default {
             location: require('../assets/location.png'),
             position: require('../assets/position.png'),
             clock: require('../assets/clock.png'),
+            active: false
+        }
+    },
+    methods: {
+        mouseOver() {
+            this.active = !this.active;
         }
     }
+
 }
 </script>
