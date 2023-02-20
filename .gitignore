@@ -112,3 +112,12 @@ sw.*
 
 # Vim swap files
 *.swp
+
+# python Environments folder
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
