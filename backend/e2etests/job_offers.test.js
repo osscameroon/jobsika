@@ -177,4 +177,18 @@ describe(`${endpoint}`, function () {
                 });
         });
     });
+    describe("GET", function (){
+        it("return a list of offers with page=1 & limit=2", async function () {
+            return request(apiHost)
+                .get(`${endpoint}?page=1&limit=2`)
+                .send()
+                .expect(200)
+                .expect("Content-Type", "application/json; charset=utf-8")
+                .then((res) => {
+                    const body = JSON.stringify(res.body)
+                    expect(body).contains('"hits":');
+                    expect(body).contains('"limit":2,"nbHits":4,"offset":0}');
+                });
+        });
+    })
 });

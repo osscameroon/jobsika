@@ -6,6 +6,59 @@ import (
 	"gorm.io/gorm"
 )
 
+func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, city string, isRemote string) (v1beta.JobOffersResponse, error) {
+	offset, limitInt := Paginate(page, limit)
+	var nbHits int64
+
+	// Build the query
+	query := db.queryJobOffers().Order("jb.createdat DESC")
+
+	if jobtitle != "" {
+		query = query.Where("j.title LIKE ?", "%"+jobtitle+"%")
+	}
+
+	if company != "" {
+		query = query.Where("c.name LIKE ?", "%"+company+"%")
+	}
+
+	if city != "" {
+		query = query.Where("ct.name LIKE ?", "%"+city+"%")
+	}
+
+	switch isRemote {
+	case "true":
+		query = query.Where("jb.seniority = ?", true)
+		break
+	case "false":
+		query = query.Where("jb.seniority = ?", false)
+		break
+	}
+
+	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
+	if err != nil {
+		return v1beta.JobOffersResponse{}, err
+	}
+
+	var jobOffers []v1beta.JobOfferPresenter
+	for rows.Next() {
+		j := v1beta.JobOfferPresenter{}
+		err := db.c.ScanRows(rows, &j)
+		if err != nil {
+			return v1beta.JobOffersResponse{}, err
+		}
+		jobOffers = append(jobOffers, j)
+	}
+
+	resp := v1beta.JobOffersResponse{
+		Hits:   jobOffers,
+		NbHits: nbHits,
+		Offset: int64(offset),
+		Limit:  int64(limitInt),
+	}
+
+	return resp, nil
+}
+
 // PostJobOffer post new job offer
 func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
 	offer := v1beta.JobOffer{

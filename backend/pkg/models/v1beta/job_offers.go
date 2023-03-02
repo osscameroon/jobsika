@@ -85,3 +85,20 @@ type JobOfferPresenter struct {
 	ApplyUrl          string `json:"apply_url"`
 	ApplyEmailAddress string `json:"apply_email_address"`
 }
+
+type JobOffersResponse struct {
+	Hits   []JobOfferPresenter `json:"hits"`
+	NbHits int64               `json:"limit"`
+	Offset int64               `json:"nbHits"`
+	Limit  int64               `json:"offset"`
+}
+
+type GetJobOffersQuery struct {
+	Page     string
+	Offset   string
+	Limit    string
+	JobTitle string
+	Company  string
+	City     string
+	IsRemote string
+}

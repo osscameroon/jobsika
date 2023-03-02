@@ -10,6 +10,37 @@ import (
 	"strings"
 )
 
+func GetJobOffers(c *gin.Context) {
+	//Initialize db client
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find job offers"})
+		return
+	}
+
+	//Get parameters
+	var query v1beta.GetJobOffersQuery
+	query.Page = c.DefaultQuery("page", "1")
+	query.Limit = c.DefaultQuery("limit", "20")
+	query.JobTitle = c.Query("jobtitle")
+	query.Company = c.Query("company")
+	query.City = c.Query("city")
+	query.IsRemote = c.Query("isRemote")
+
+	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.City, query.IsRemote)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find job offers"})
+		return
+	}
+
+	c.JSON(http.StatusOK, offers)
+
+}
+
 // PostJobOffer handles /offers POST endpoint
 func PostJobOffer(c *gin.Context) {
 	contentType := c.Request.Header.Get("Content-Type")

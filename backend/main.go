@@ -49,6 +49,7 @@ func main() {
 	router.GET("/cities", handlers.GetCities)
 
 	//JobOffers
+	router.GET("/offers", handlers.GetJobOffers)
 	router.POST("/offers", handlers.PostJobOffer)
 
 	if err := router.Run(":7000"); err != nil {
