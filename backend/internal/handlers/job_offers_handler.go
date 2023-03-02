@@ -39,7 +39,6 @@ func GetJobOffers(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, offers)
-
 }
 
 // PostJobOffer handles /offers POST endpoint
