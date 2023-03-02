@@ -110,7 +110,7 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.apply_email_address,
 		jt.title as job_title
 	`).
-		Joins("left join job_titles as jt on jb.title_id = jt.id")
+		Joins("left join jobtitles as jt on jb.title_id = jt.id")
 }
 
 // GetJobOfferById get job offers by id

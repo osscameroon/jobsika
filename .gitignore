@@ -112,3 +112,7 @@ sw.*
 
 # Vim swap files
 *.swp
+
+#visual studio code
+.vscode
+backend/__debug_bin
