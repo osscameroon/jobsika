@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, city string, isRemote string) (v1beta.JobOffersResponse, error) {
+func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, isRemote string) (v1beta.JobOffersResponse, error) {
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
 
@@ -18,20 +18,14 @@ func (db DB) GetJobOffers(page string, limit string, jobtitle string, company st
 	}
 
 	if company != "" {
-		query = query.Where("c.name LIKE ?", "%"+company+"%")
-	}
-
-	if city != "" {
-		query = query.Where("ct.name LIKE ?", "%"+city+"%")
+		query = query.Where("jb.company_name LIKE ?", "%"+company+"%")
 	}
 
 	switch isRemote {
 	case "true":
-		query = query.Where("jb.seniority = ?", true)
-		break
+		query = query.Where("jb.is_remote = ?", true)
 	case "false":
-		query = query.Where("jb.seniority = ?", false)
-		break
+		query = query.Where("jb.is_remote = ?", false)
 	}
 
 	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
@@ -39,7 +33,7 @@ func (db DB) GetJobOffers(page string, limit string, jobtitle string, company st
 		return v1beta.JobOffersResponse{}, err
 	}
 
-	var jobOffers []v1beta.JobOfferPresenter
+	jobOffers := make([]v1beta.JobOfferPresenter, 0)
 	for rows.Next() {
 		j := v1beta.JobOfferPresenter{}
 		err := db.c.ScanRows(rows, &j)

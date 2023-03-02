@@ -2,12 +2,13 @@ package handlers
 
 import (
 	"errors"
+	"net/http"
+	"strings"
+
 	"github.com/elhmn/jobsika/internal/server"
 	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	log "github.com/sirupsen/logrus"
-	"net/http"
-	"strings"
 )
 
 func GetJobOffers(c *gin.Context) {
@@ -29,7 +30,7 @@ func GetJobOffers(c *gin.Context) {
 	query.City = c.Query("city")
 	query.IsRemote = c.Query("isRemote")
 
-	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.City, query.IsRemote)
+	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.IsRemote)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,

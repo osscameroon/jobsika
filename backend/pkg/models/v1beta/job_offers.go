@@ -88,9 +88,9 @@ type JobOfferPresenter struct {
 
 type JobOffersResponse struct {
 	Hits   []JobOfferPresenter `json:"hits"`
-	NbHits int64               `json:"limit"`
-	Offset int64               `json:"nbHits"`
-	Limit  int64               `json:"offset"`
+	NbHits int64               `json:"nbHits"`
+	Offset int64               `json:"offset"`
+	Limit  int64               `json:"limit"`
 }
 
 type GetJobOffersQuery struct {
