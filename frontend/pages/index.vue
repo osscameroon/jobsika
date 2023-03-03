@@ -94,12 +94,12 @@
             </div>
           </div>
         </div>
-        <div class="py-2 md:py-8">
+        <div class="py-2 md:py-3">
           <Company />
           <More />
         </div>
       </div>
-      <div class="rounded-md bg-white p-4">
+      <div class="rounded-md bg-white p-4 my-2 md:my-3">
         <div class="rounded-md m-2 shadow-lg flex p-4 flex-col md:flex-row items-center text-gray-500 justify-center">
           <img :src="money" class="w-14 h-14" />
           <p class="text-sm text-medium text-gray-500 text-center md:text-left pt-2 md:pt-0">

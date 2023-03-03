@@ -2,26 +2,32 @@
     <transition name="modal-fade">
         <div class="modal-overlay" @click="$emit('close-modal')">
             <div class="modal" @click.stop>
-                <h4 class="font-semibold text-2xl text-center text-black">Subscribe</h4>
-                <h4 class="font-light text-2xl leading-8 pt-2 text-center">Don't miss any job from JobSika</h4>
-                <form class="mt-12">
+                <h4 class="font-semibold text-2xl xl:text-4xl text-center text-black">Subscribe</h4>
+                <h4 class="font-light text-base leading-8 pt-2 text-center">Don't miss any job from JobSika</h4>
+                <form class="mt-10">
                     <div class="mx-7">
                         <div>
-                            <p class="text-base font-normal text-black text-left">
-                                Enter you Telegram handle
-                            </p>
-                            <input type="text" class="border border-grayC w-full rounded-md h-16 mt-3" />
+                            <h4 class="text-lg font-semibold text-grayC text-left">
+                                Your telegram ID
+                            </h4>
+                            <p style="font-size: 9px;" class="pt-1 font-normal text-left">Your telegram ID is your
+                                identification name that
+                                usually starts with @</p>
+                            <input type="text" class="border border-grayC w-full rounded-md h-11 mt-1" />
                         </div>
-                        <div class="mt-9">
-                            <p class="text-base font-normal text-black text-left">
+                        <div class="mt-7">
+                            <h4 class="text-lg font-semibold text-grayC text-left">
                                 Enter your email
+                            </h4>
+                            <p style="font-size: 9px;" class="pt-1 font-normal text-left">
+                                All new job offers will be sent to your email
                             </p>
-                            <input type="text" class="border border-grayC w-full rounded-md h-16 mt-3" />
+                            <input type="text" class="border border-grayC w-full rounded-md h-11 mt-1" />
                         </div>
                     </div>
-                    <div class="flex items-center justify-center mt-12">
+                    <div class="flex items-center justify-center my-12">
                         <button
-                            class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg w-80">
+                            class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg w-full mx-7">
                             Sign up
                         </button>
                     </div>
@@ -54,7 +60,7 @@ export default {}
     text-align: center;
     background-color: white;
     height: 550px;
-    width: 500px;
+    width: 479px;
     margin-top: 10%;
     padding: 60px 0;
     border-radius: 20px;
