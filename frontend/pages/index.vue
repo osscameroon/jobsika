@@ -2,11 +2,11 @@
   <main>
     <div class="container mx-auto md:w-7/12 px-4 md:px-0">
       <div class="pt-10 lg:pt-14">
-        <div class="flex items-center justify-center flex-col">
+        <div class="flex items-center justify-center flex-col leading-10">
           <h2 class="font-bold text-2xl md:text-4xl text-center text-black">
             Find the perfect talent for your project
           </h2>
-          <h4 class="text-sm md:text-base text-center lg:w-4/5 pt-4 font-[500] text-gray-700">
+          <h4 style="color: #7694A0;" class="text-sm md:text-base text-center lg:w-4/5 font-[500] text-gray-700 pt-4">
             Are you looking for the perfect talent to help you achieve your
             project goals? Look no further - the right person is out there and
             ready to take on the challenge.
