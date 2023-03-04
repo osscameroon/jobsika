@@ -27,10 +27,10 @@ func GetJobOffers(c *gin.Context) {
 	query.Limit = c.DefaultQuery("limit", "20")
 	query.JobTitle = c.Query("jobtitle")
 	query.Company = c.Query("company")
-	query.City = c.Query("city")
+	query.Location = c.Query("location")
 	query.IsRemote = c.Query("isRemote")
 
-	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.IsRemote)
+	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.Location, query.IsRemote)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
@@ -45,7 +45,7 @@ func GetJobOffers(c *gin.Context) {
 func PostJobOffer(c *gin.Context) {
 	contentType := c.Request.Header.Get("Content-Type")
 	if !strings.Contains(contentType, "application/json") {
-		log.Error(errors.New("Wrong contentType"))
+		log.Error(errors.New("wrong contentType"))
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "could not post job offer"})
 		return
@@ -87,13 +87,18 @@ func PostJobOffer(c *gin.Context) {
 		ID:                offer.ID,
 		CreatedAt:         offer.CreatedAt,
 		UpdatedAt:         offer.UpdatedAt,
-		Email:             offer.Email,
 		CompanyName:       offer.CompanyName,
 		JobTitle:          query.JobTitle,
 		IsRemote:          offer.IsRemote,
+		Location:          offer.Location,
+		Department:        offer.Department,
+		SalaryRangeMin:    offer.SalaryRangeMin,
+		SalaryRangeMax:    offer.SalaryRangeMax,
 		Description:       offer.Description,
+		Benefits:          offer.Benefits,
 		HowToApply:        offer.HowToApply,
 		ApplyUrl:          offer.ApplyUrl,
 		ApplyEmailAddress: offer.ApplyEmailAddress,
+		ApplyPhoneNumber:  offer.ApplyPhoneNumber,
 	})
 }

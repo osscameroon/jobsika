@@ -1,5 +1,4 @@
 INSERT INTO job_offers (
-        id,
         company_name,
         company_email,
         title_id,
@@ -19,7 +18,6 @@ INSERT INTO job_offers (
         updatedat
     )
 VALUES (
-        1,
         'Acme Corporation',
         'jobs@acmecorp.com',
         1,
@@ -39,7 +37,6 @@ VALUES (
         '2022-01-01'
     ),
     (
-        2,
         'Globex Corporation',
         'jobs@globexcorp.com',
         2,
@@ -59,7 +56,6 @@ VALUES (
         '2022-01-02'
     ),
     (
-        3,
         'Stark Industries',
         'jobs@starkindustries.com',
         3,
@@ -79,7 +75,6 @@ VALUES (
         '2022-01-03'
     ),
     (
-        4,
         'Wayne Enterprises',
         'jobs@wayneenterprises.com',
         4,
@@ -99,7 +94,6 @@ VALUES (
         '2022-01-04'
     ),
     (
-        5,
         'Umbrella Corporation',
         'jobs@umbrellacorp.com',
         5,
@@ -117,4 +111,4 @@ VALUES (
         'research scientist, virology, molecular biology',
         '2022-01-05',
         '2022-01-05'
-    ),
+    )

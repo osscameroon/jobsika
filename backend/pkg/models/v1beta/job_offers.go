@@ -9,7 +9,7 @@ import (
 
 // JobOffer defines the job_offers structure
 type JobOffer struct {
-	ID        int64     `json:"id" gorm:"column:id"`
+	ID        int64     `json:"id" gorm:"column:id;primaryKey;autoIncrement:true"`
 	CreatedAt time.Time `json:"createdat" gorm:"column:createdat"`
 	UpdatedAt time.Time `json:"updatedat" gorm:"column:updatedat"`
 
@@ -137,7 +137,8 @@ type JobOfferPresenter struct {
 	IsRemote          bool   `json:"is_remote"`
 	Location          string `json:"location"`
 	Department        string `json:"department"`
-	SalaryRange       string `json:"salary_range"`
+	SalaryRangeMin    int64  `json:"salary_range_min"`
+	SalaryRangeMax    int64  `json:"salary_range_max"`
 	Description       string `json:"description"`
 	Benefits          string `json:"benefits"`
 	HowToApply        string `json:"how_to_apply"`

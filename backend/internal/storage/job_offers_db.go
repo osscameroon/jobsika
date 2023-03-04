@@ -6,7 +6,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, isRemote string) (v1beta.JobOffersResponse, error) {
+func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, location string, isRemote string) (v1beta.JobOffersResponse, error) {
 	offset, limitInt := Paginate(page, limit)
 	var nbHits int64
 
@@ -19,6 +19,10 @@ func (db DB) GetJobOffers(page string, limit string, jobtitle string, company st
 
 	if company != "" {
 		query = query.Where("jb.company_name LIKE ?", "%"+company+"%")
+	}
+
+	if location != "" {
+		query = query.Where("jb.location LIKE ?", "%"+location+"%")
 	}
 
 	switch isRemote {
