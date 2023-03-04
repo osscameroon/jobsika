@@ -56,13 +56,20 @@ func (db DB) GetJobOffers(page string, limit string, jobtitle string, company st
 // PostJobOffer post new job offer
 func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
 	offer := v1beta.JobOffer{
-		Email:             query.Email,
 		CompanyName:       query.CompanyName,
+		CompanyEmail:      query.CompanyEmail,
 		IsRemote:          query.IsRemote,
+		Location:          query.Location,
+		Department:        query.Department,
+		SalaryRangeMin:    query.SalaryRangeMin,
+		SalaryRangeMax:    query.SalaryRangeMax,
 		Description:       query.Description,
+		Benefits:          query.Benefits,
 		HowToApply:        query.HowToApply,
 		ApplyUrl:          query.ApplyUrl,
 		ApplyEmailAddress: query.ApplyEmailAddress,
+		ApplyPhoneNumber:  query.ApplyPhoneNumber,
+		Tags:              query.Tags,
 	}
 
 	err := db.c.Transaction(func(tx *gorm.DB) error {
@@ -94,14 +101,21 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.id,
 		jb.createdat,
 		jb.updatedat,
-		jb.email,
 		jb.company_name,
+		jb.company_email,
 		jb.title_id,
 		jb.is_remote,
+		jb.location,
+		jb.department,
+		jb.salary_range_min,
+		jb.salary_range_max,
 		jb.description,
+		jb.benefits,
 		jb.how_to_apply,
 		jb.apply_url,
 		jb.apply_email_address,
+		jb.apply_phone_number,
+		jb.tags,
 		jt.title as job_title
 	`).
 		Joins("left join jobtitles as jt on jb.title_id = jt.id")

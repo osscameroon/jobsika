@@ -32,7 +32,6 @@ type JobOffer struct {
 
 // OfferPostQuery defines the body object used to create a new jb offer on a POST query
 type OfferPostQuery struct {
-	Email             string `json:"email"`
 	CompanyName       string `json:"company_name"`
 	CompanyEmail      string `json:"company_email"`
 	JobTitle          string `json:"job_title"`
@@ -42,6 +41,7 @@ type OfferPostQuery struct {
 	SalaryRangeMin    int64  `json:"salary_range_min"`
 	SalaryRangeMax    int64  `json:"salary_range_max"`
 	Description       string `json:"description"`
+	Benefits          string `json:"benefits"`
 	HowToApply        string `json:"how_to_apply"`
 	ApplyUrl          string `json:"apply_url"`
 	ApplyEmailAddress string `json:"apply_email_address"`
@@ -51,13 +51,9 @@ type OfferPostQuery struct {
 
 // Validate check if the mandatory fields are filled, and make some changes in the tags field
 func (r *OfferPostQuery) Validate() error {
-	if strings.TrimSpace(r.Email) == "" {
-		return errors.New("email is mandatory")
-	}
-
 	emailRegex := regexp.MustCompile(`(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}`)
-	if !emailRegex.MatchString(r.Email) {
-		return errors.New("email is not a valid email address")
+	if !emailRegex.MatchString(r.CompanyEmail) {
+		return errors.New("company email is not a valid email address")
 	}
 
 	if strings.TrimSpace(r.CompanyName) == "" {
@@ -73,7 +69,7 @@ func (r *OfferPostQuery) Validate() error {
 	}
 
 	if strings.TrimSpace(r.ApplyUrl) == "" && strings.TrimSpace(r.ApplyEmailAddress) == "" && strings.TrimSpace(r.ApplyPhoneNumber) == "" {
-		return errors.New("apply url or apply email address is mandatory")
+		return errors.New("apply url or apply email address or apply phone number is mandatory")
 	}
 
 	if strings.TrimSpace(r.ApplyEmailAddress) != "" {

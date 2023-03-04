@@ -1,20 +1,120 @@
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (1, 'jgittoes0@g.co', 'Yombu', 1, false, 'Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.', 'Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo.', 'https://about.me/nulla/ultrices/aliquet/maecenas/leo.js', 'owhitton0@seesaa.net', '01/01/2022', '4/22/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (2, 'mcuskery1@seattletimes.com', 'Youopia', 2, false, 'Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet.', 'Curabitur gravida nisi at nibh. In hac habitasse platea dictumst.', 'https://abc.net.au/adipiscing/molestie/hendrerit/at.aspx', 'ravramchik1@china.com.cn', '02/16/2022', '10/2/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (3, 'djerok2@fema.gov', 'DabZ', 3, false, 'Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.', 'In eleifend quam a odio.', 'https://wordpress.com/lectus/pellentesque/eget/nunc/donec/quis.json', 'simm2@bbb.org', '03/15/2022', '12/16/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (4, 'gpelchat3@dropbox.com', 'Oodoo', 4, false, 'Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.', 'Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.', 'https://zimbio.com/ultrices.aspx', 'adouce3@oracle.com', '04/30/2022', '4/23/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (5, 'anelthorpe4@yandex.ru', 'Rhyzio', 5, false, 'Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.', 'Integer a nibh. In quis justo.', 'https://loc.gov/vulputate/justo/in/blandit.js', 'sginni4@toplist.cz', '05/8/2022', '12/3/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (6, 'kcleaver5@yolasite.com', 'Abata', 6, false, 'Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa.', 'Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue.', 'https://pen.io/non/mattis/pulvinar/nulla/pede/ullamcorper.json', 'pashbee5@reference.com', '06/9/2022', '1/25/2023');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (7, 'ykose6@indiegogo.com', 'Skajo', 7, false, 'Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.', 'Integer ac neque.', 'https://nationalgeographic.com/potenti/cras/in/purus/eu.xml', 'msplevings6@prweb.com', '07/10/2022', '10/16/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (8, 'bnorker7@mit.edu', 'Camido', 8, true, 'Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue.', 'Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.', 'https://cdc.gov/varius/integer/ac/leo/pellentesque/ultrices.html', 'mruppertz7@ed.gov', '8/20/2022', '12/13/2022');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (9, 'kbattill8@chron.com', 'Camimbo', 9, true, 'Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus.', 'Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem.', 'http://reuters.com/commodo/placerat/praesent/blandit/nam/nulla/integer.png', 'ggarrigan8@nbcnews.com', '09/28/2022', '2/14/2023');
-insert into job_offers (id, email, company_name, title_id, is_remote, description, how_to_apply, apply_url, apply_email_address, createdat, updatedat) 
-values (10, 'cbinfield9@github.com', 'Zoombox', 10, false, 'In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.', 'Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.', 'http://salon.com/quam/nec.html', 'sbenoit9@example.com', '02/20/2023', '5/13/2022');
+INSERT INTO job_offers (
+        id,
+        company_name,
+        company_email,
+        title_id,
+        is_remote,
+        location,
+        department,
+        salary_range_min,
+        salary_range_max,
+        description,
+        benefits,
+        how_to_apply,
+        apply_url,
+        apply_email_address,
+        apply_phone_number,
+        tags,
+        createdat,
+        updatedat
+    )
+VALUES (
+        1,
+        'Acme Corporation',
+        'jobs@acmecorp.com',
+        1,
+        true,
+        'Remote',
+        'IT',
+        50000,
+        70000,
+        'We are seeking a software engineer with experience in Java and Spring Framework.',
+        'Health insurance, dental insurance, 401k',
+        'Please submit your resume and cover letter.',
+        'https://www.acmecorp.com/careers',
+        'jobs@acmecorp.com',
+        '555-555-5555',
+        'Java, Spring, software engineer',
+        '2022-01-01',
+        '2022-01-01'
+    ),
+    (
+        2,
+        'Globex Corporation',
+        'jobs@globexcorp.com',
+        2,
+        false,
+        'New York, NY',
+        'Marketing',
+        60000,
+        80000,
+        'We are seeking a marketing specialist with experience in digital marketing and social media.',
+        'Health insurance, dental insurance, 401k',
+        'Please submit your resume and cover letter.',
+        'https://www.globexcorp.com/careers',
+        'jobs@globexcorp.com',
+        '555-555-5555',
+        'marketing, social media, digital marketing',
+        '2022-01-02',
+        '2022-01-02'
+    ),
+    (
+        3,
+        'Stark Industries',
+        'jobs@starkindustries.com',
+        3,
+        false,
+        'Los Angeles, CA',
+        'Engineering',
+        80000,
+        100000,
+        'We are seeking a mechanical engineer with experience in designing and testing electromechanical systems.',
+        'Health insurance, dental insurance, 401k',
+        'Please submit your resume and cover letter.',
+        'https://www.starkindustries.com/careers',
+        'jobs@starkindustries.com',
+        '555-555-5555',
+        'mechanical engineer, electromechanical systems',
+        '2022-01-03',
+        '2022-01-03'
+    ),
+    (
+        4,
+        'Wayne Enterprises',
+        'jobs@wayneenterprises.com',
+        4,
+        true,
+        'Remote',
+        'Finance',
+        70000,
+        90000,
+        'We are seeking a financial analyst with experience in budgeting and forecasting.',
+        'Health insurance, dental insurance, 401k',
+        'Please submit your resume and cover letter.',
+        'https://www.wayneenterprises.com/careers',
+        'jobs@wayneenterprises.com',
+        '555-555-5555',
+        'financial analyst, budgeting, forecasting',
+        '2022-01-04',
+        '2022-01-04'
+    ),
+    (
+        5,
+        'Umbrella Corporation',
+        'jobs@umbrellacorp.com',
+        5,
+        false,
+        'Raccoon City, IL',
+        'Research and Development',
+        90000,
+        110000,
+        'We are seeking a research scientist with experience in virology and molecular biology.',
+        'Health insurance, dental insurance, 401k',
+        'Please submit your resume and cover letter.',
+        'https://www.umbrellacorp.com/careers',
+        'jobs@umbrellacorp.com',
+        '555-555-5555',
+        'research scientist, virology, molecular biology',
+        '2022-01-05',
+        '2022-01-05'
+    ),
