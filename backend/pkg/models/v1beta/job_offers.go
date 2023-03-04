@@ -118,7 +118,6 @@ func (r *OfferPostQuery) Validate() error {
 			finalTags += tag
 
 			finalTagsMap[tag] = struct{}{}
-
 		}
 
 		r.Tags = finalTags
