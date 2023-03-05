@@ -2,7 +2,7 @@
   <div>
     <main class="site__main pt-6 md:pt-12 pb-10 md:pb-20">
       <div class="container mx-auto w-10/12">
-        <Title title="Fill the form and submit your contribution" font-size="header" only-title="onlyTitle" />
+        <Title title="Fill in the form and submit your contribution" font-size="header" only-title="onlyTitle" />
         <p class="text-center text-xs sm:text-base pt-2 md:pt-4 font-normal"
           style="color: #2e2e2e; font-family: 'Inter', sans-serif">
           Your entry is anonymous. Please ensure that it is fair, accurate and
