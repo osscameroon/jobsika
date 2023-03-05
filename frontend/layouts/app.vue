@@ -8,19 +8,9 @@
           </a>
           <nav>
             <ul class="flex flex-col lg:flex-row items-center py-4 lg:py-0 justify-center">
-              <!-- <NuxtLink
-                v-for="(item, index) in navs"
-                :key="index"
-                :to="`${item.link}`"
-                :class="`h-7 lg:w-20 lg:h-16 py-2 flex justify-center items-center text-sm lg:text-base font-bold ${
-                  setID === item.id ? 'nav-select' : 'nav-noselect'
-                }`"
-                @click.native="setID = item.id"
-              >
-                {{ item.name }}
-              </NuxtLink> -->
-              <NuxtLink v-for="(item, index) in navs" :key="index" :to="`${item.link}`"
-                class="h-7 lg:h-16 py-2 flex justify-center items-center text-sm lg:text-base font-bold px-3 text-gray-700">
+              <NuxtLink v-for="(item, index) in navs" :key="index" :to="`${item.link}`" @click.native="setID = item.id"
+                :class="`h-7 lg:w-20 lg:h-16 py-2 flex justify-center items-center text-sm lg:text-base font-bold ${setID === item.id ? 'nav-select' : 'nav-noselect'
+                  }`">
                 {{ item.name }}
               </NuxtLink>
             </ul>

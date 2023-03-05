@@ -12,7 +12,7 @@
             ready to take on the challenge.
           </h4>
           <NuxtLink to="/add_job"
-            class="cursor-pointer p-4 text-white font-bold flex items-center justify-center lg:text-base bg-blueDark h-12 rounded-lg mt-8 text-sm">
+            class="cursor-pointer p-4 text-white font-bold flex items-center justify-center lg:text-base bg-blueDark h-12 rounded-lg mt-8 text-sm w-full md:w-44">
             Post a job now
           </NuxtLink>
         </div>
@@ -29,18 +29,18 @@
               class="w-64 font-normal text-sm md:text-lg flex justify-center items-center pt-4 md:pt-2 xl:pt-0 text-gray-700">
               Don't miss out on any job
             </p>
-            <div class="pt-4 md:pt-2 xl:pt-0  w-full xl:w-40 xl:ml-4">
+            <div class="pt-4 md:pt-2 xl:pt-0  w-full xl:w-40 xl:ml-4 flex items-center justify-center">
               <button @click="showModal = true"
-                class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-xs md:text-lg px-4 border-2 h-12 rounded-md border-blue">
+                class="cursor-pointer p-4 text-blueDark w-full font-bold flex items-center justify-center text-sm md:text-lg px-4 border-2 h-12 rounded-md border-blue">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="site__main-company py-2 md:py-3">
+      <div class="site__main-company py-3">
         <div class="grid grid-cols-1 md:grid-cols-2">
-          <div v-for="(item, index) in jobs" :key="index" class="bg-white py-6 px-7 border h-24">
+          <div v-for="(item, index) in jobs" :key="index" class="bg-white py-6 px-7 border h-44 md:h-24">
             <div>
               <div class="pt-4 xl:pt-0 flex flex-col">
                 <h4 class="text-lg font-bold">{{ item.title }} <span class="text-gray-600 font-light"> {{

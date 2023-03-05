@@ -25,9 +25,10 @@ body {
 }
 
 .nav-select {
-  text-decoration:  #7994A0 solid;
-  border-bottom-width: 2px;
-  width: 65px;
+  text-decoration:  #235365 solid 80px;
+  border-color: #235365;
+  border-bottom-width: 3px;
+  width: 80px;
 }
 .nav-noselect {
   text-decoration: none;
