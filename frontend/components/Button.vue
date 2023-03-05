@@ -1,7 +1,7 @@
 <template>
   <div
     :style="myStyle"
-    class="site__btn cursor-pointer py-2 text-white font-bold flex items-center justify-center text-xs md:text-sm"
+    class="site__btn cursor-pointer p-4 text-white font-bold flex items-center justify-center text-xs md:text-sm h-12"
     style="border-radius: 6px"
   >
     <div v-if="showPicture === 'nothing'" />

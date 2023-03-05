@@ -1,12 +1,8 @@
 <template>
-  <div
-    class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6"
-  >
+  <div class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6">
     <div class="flex-1 flex justify-center sm:hidden">
       <span
-        @click="startpage()"
-        style="border-color: #919191"
-        class="
+style="border-color: #919191" class="
           relative
           inline-flex
           items-center
@@ -22,66 +18,55 @@
           hover:bg-gray-50
           cursor-pointer
           mx-2
-        "
-      >
+        " @click="startpage()">
         <span style="color: #919191" class="font-bold">&laquo;</span>
       </span>
 
       <span
-        style="font-family: 'Inter', sans-serif"
-        :class="`
-          relative
-          inline-flex
-          items-center
-          px-4
-          py-1
-          md:py-2
-          border border-gray-300
-          text-xs
-          md:text-sm
-          font-medium
-          rounded-md
-          text-gray-700
-          cursor-pointer
-          ${
-            page === 1
-              ? 'bg-blue text-white border-none'
-              : 'bg-blueDark text-white border-none'
-          }
-          `"
-        @click="previewpage()"
-      >
+style="font-family: 'Inter', sans-serif" :class="`
+      relative
+      inline-flex
+      items-center
+      px-4
+      py-1
+      md:py-2
+      border border-gray-300
+      text-xs
+      md:text-sm
+      font-medium
+      rounded-md
+      text-gray-700
+      cursor-pointer
+      ${page === 1
+    ? 'bg-blue text-white border-none'
+    : 'bg-blueDark text-white border-none'
+  }
+      `" @click="previewpage()">
         Previous
       </span>
       <span
-        style="font-family: 'Inter', sans-serif"
-        :class="`
-          ml-3
-          relative
-          inline-flex
-          items-center
-          px-4
-          py-1
-          md:py-2
-          text-xs
-          md:text-sm
-          font-medium
-          rounded-md
-          cursor-pointer
-          ${
-            page === numberPage
-              ? 'bg-blue text-white border-none'
-              : 'bg-blueDark text-white border-none'
-          }
-          `"
-        @click="nextpage()"
-      >
+style="font-family: 'Inter', sans-serif" :class="`
+      ml-3
+      relative
+      inline-flex
+      items-center
+      px-4
+      py-1
+      md:py-2
+      text-xs
+      md:text-sm
+      font-medium
+      rounded-md
+      cursor-pointer
+      ${page === numberPage
+    ? 'bg-blue text-white border-none'
+    : 'bg-blueDark text-white border-none'
+  }
+      `" @click="nextpage()">
         Next
       </span>
       <span
-        @click="limitpage()"
-        style="border-color: #919191"
-        class="
+style="border-color: #919191" class="
           relative
           inline-flex
           items-center
@@ -97,25 +82,16 @@
           hover:bg-gray-50
           cursor-pointer
           mx-2
-        "
-      >
+        " @click="limitpage()">
         <span style="color: #919191" class="font-bold">&raquo;</span>
       </span>
     </div>
     <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
       <div>
-        <p
-          v-if="nbOfItems == 0"
-          style="font-family: 'Inter', sans-serif"
-          class="text-xs md:text-sm text-gray-700"
-        >
+        <p v-if="nbOfItems == 0" class="text-xs md:text-sm text-gray-700">
           No items found
         </p>
-        <p
-          v-else
-          style="font-family: 'Inter', sans-serif"
-          class="text-xs md:text-sm text-gray-700"
-        >
+        <p v-else class="text-xs md:text-sm text-gray-700">
           Showing
           <span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
           to
@@ -126,13 +102,9 @@
         </p>
       </div>
       <div>
-        <nav
-          class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-          aria-label="Pagination"
-        >
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
           <span
-            @click="startpage()"
-            class="
+class="
               relative
               inline-flex
               items-center
@@ -147,78 +119,65 @@
               text-gray-500
               hover:bg-gray-50
               cursor-pointer
-            "
-          >
+            " @click="startpage()">
             <span class="font-bold">&laquo;</span>
           </span>
           <div @click="previewpage()">
             <span
-              :class="`z-10
-                bg-indigo-50
-                border-indigo-500
-                text-indigo-600
-                relative
-                inline-flex
-                items-center
-                px-2
-                py-2
-                border
-                text-xs
-                md:text-sm
-                font-medium
-                cursor-pointer
-                ${page === current1 ? 'bg-blue' : 'bg-white'}
-                `"
-            >
+:class="`z-10
+                          border 
+                          border-gray-300
+            relative
+            inline-flex
+            items-center
+            px-2
+            py-2
+            border
+            text-xs
+            md:text-sm
+            font-medium
+            cursor-pointer
+            ${page === current1 ? 'bg-blue' : 'bg-white'}
+            `">
               <span class="sr-only">Previous</span>
               <svg
-                class="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
+class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                aria-hidden="true">
                 <path
-                  fill-rule="evenodd"
+fill-rule="evenodd"
                   d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
+                  clip-rule="evenodd" />
               </svg>
             </span>
           </div>
-          <div
-            v-for="current1 in leftSide"
-            :key="current1"
-            @click="changepage(current1)"
-          >
+          <div v-for="current1 in leftSide" :key="current1" @click="changepage(current1)">
             <span
-              :class="`z-10
-                bg-indigo-50
-                border-indigo-500
-                text-indigo-600
-                relative
-                inline-flex
-                items-center
-                px-4
-                py-2
-                border
-                text-xs
-                md:text-sm
-                font-medium
-                cursor-pointer
-                ${page === current1 ? 'bg-blue' : 'bg-white'}
-                `"
-            >
+:class="`z-10
+                          border 
+                          border-gray-300
+              text-gray-500
+            relative
+            inline-flex
+            items-center
+            px-4
+            py-2
+            border
+            text-xs
+            md:text-sm
+            font-medium
+            cursor-pointer
+            ${page === current1 ? 'bg-blue' : 'bg-white'}
+            `">
               {{ current1 }}
             </span>
           </div>
           <div>
             <span
-              class="
+class="
                 z-10
-                bg-blue
-                border-indigo-500
-                text-indigo-600
+                          border 
+                          border-gray-300
+              text-gray-500
                 relative
                 inline-flex
                 items-center
@@ -229,77 +188,62 @@
                 md:text-sm
                 font-medium
                 cursor-pointer
-              "
-            >
+              ">
               {{ page }}
             </span>
           </div>
-          <div
-            v-for="current in rightSide"
-            :key="current"
-            @click="changepage(current)"
-          >
+          <div v-for="current in rightSide" :key="current" @click="changepage(current)">
             <span
-              :class="`
-                z-10
-                bg-indigo-50
-                border-indigo-500
-                text-indigo-600
-                relative
-                inline-flex
-                items-center
-                px-4
-                py-2
-                border
-                text-xs
-                md:text-sm
-                font-medium
-                cursor-pointer
-                ${page === current1 ? 'bg-blue' : 'bg-white'}
-              `"
-            >
+:class="`
+              z-10
+                          border 
+                          border-gray-300
+              text-gray-500
+              relative
+              inline-flex
+              items-center
+              px-4
+              py-2
+              text-xs
+              md:text-sm
+              font-medium
+              cursor-pointer
+              ${page === current1 ? 'bg-blue' : 'bg-white'}
+            `">
               {{ current }}
             </span>
           </div>
           <div @click="nextpage()">
             <span
-              :class="`
-                z-10
-                bg-indigo-50
-                border-indigo-500
-                text-indigo-600
-                relative
-                inline-flex
-                items-center
-                px-2
-                py-2
-                border
-                text-xs
-                md:text-sm
-                font-medium
-                cursor-pointer
-                ${page === current1 ? 'bg-blue' : 'bg-white'}
-              `"
-            >
+:class="`
+              z-10
+                          border-gray-300
+              text-gray-500
+              relative
+              inline-flex
+              items-center
+              px-2
+              py-2
+              border
+              text-xs
+              md:text-sm
+              font-medium
+              cursor-pointer
+              ${page === current1 ? 'bg-blue' : 'bg-white'}
+            `">
               <span class="sr-only">Next</span>
               <svg
-                class="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
+class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                aria-hidden="true">
                 <path
-                  fill-rule="evenodd"
+fill-rule="evenodd"
                   d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                />
+                  clip-rule="evenodd" />
               </svg>
             </span>
           </div>
           <span
-            @click="limitpage()"
-            class="
+class="
               relative
               inline-flex
               items-center
@@ -314,8 +258,7 @@
               text-gray-500
               hover:bg-gray-50
               cursor-pointer
-            "
-          >
+            " @click="limitpage()">
             <span class="font-bold">&raquo;</span>
           </span>
         </nav>
@@ -326,7 +269,7 @@
 
 <script>
 export default {
-  name: 'Pagination_Number',
+  name: 'PaginationNumber',
   data() {
     return {
       current1: '',
@@ -373,6 +316,9 @@ export default {
       return this.$store.state.ratings.filtercompany
     },
   },
+  async created() {
+    await this.fetchRatings()
+  },
   methods: {
     async fetchRatings() {
       await this.$store.dispatch('getRatings', {
@@ -413,10 +359,6 @@ export default {
         this.changepage(this.numberPage)
       }
     },
-  },
-  async created() {
-    await this.fetchRatings()
-    console.log('number of page', this.numberPage)
   },
 }
 </script>
