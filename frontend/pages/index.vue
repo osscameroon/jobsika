@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="container mx-auto md:w-11/12 px-4 md:px-0">
+    <div class="container mx-auto md:w-7/12 px-4 md:px-0">
       <div class="pt-10 lg:pt-14">
         <div class="flex items-center justify-center flex-col leading-10">
           <h2 class="font-bold text-2xl md:text-4xl text-center text-black">
