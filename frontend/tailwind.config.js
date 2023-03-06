@@ -11,6 +11,8 @@ module.exports = {
         grayC: '#b1b1b1',
         grayDark: '#504E57',
         grayNav: '#454545',
+        primaryGray: '#7694A0',
+        primaryGray50: '#b7c9d2',
       },
     },
   },

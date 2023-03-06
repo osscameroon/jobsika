@@ -7,23 +7,16 @@
                 </h2>
             </div>
             <div class="pt-8 md:pt-16">
-                <div class="flex flex-col xl:flex-row items-center justify-center xl:mx-12">
-                    <div class="xl:w-2/3">
-                        <p
-                            class="font-normal text-sm md:text-lg flex justify-center items-center pt-4 md:pt-2 xl:pt-0 text-center text-gray-700">
-                            Receive the jobs right in your inbox as soon as they are posted
-                        </p>
-                    </div>
-                    <div class="flex flex-col xl:flex-row xl:w-1/3 xl:justify-end">
-                        <input
-                            class="select-input w-full xl:w-44 mt-4 md:mt-2 xl:mt-0 p-4 text-xs md:text-sm font-bold h-12 text-center"
-                            placeholder="Enter your email" />
-                        <div class="pt-4 md:pt-2 xl:pt-0  w-full xl:w-36 xl:ml-4">
-                            <NuxtLink to="/add_salary"
-                                class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-xs md:text-sm px-4 border-2 h-12 rounded-md border-blue">
-                                Subscribe
-                            </NuxtLink>
-                        </div>
+                <div class="flex flex-col xl:flex-row xl:justify-end">
+                    <p
+                        class="font-normal text-sm md:text-lg flex justify-center items-center pt-4 md:pt-2 xl:pt-0 text-center text-gray-700">
+                        Receive the jobs right in your inbox as soon as they are posted
+                    </p>
+                    <div class="pt-4 md:pt-2 xl:pt-0 w-full xl:w-36 xl:ml-4">
+                        <button @click="showModal = true"
+                            class="mx-auto xl:mx-0 w-1/2 xl:w-36 cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-xs md:text-lg px-4 border-2 h-12 rounded-md border-blue">
+                            Subscribe
+                        </button>
                     </div>
                 </div>
             </div>
@@ -33,7 +26,9 @@
                         :marker="item.marker" :time="item.time" :description="item.description" :tags="item.tags" />
                 </div>
             </div>
+          <JobPagination />
         </div>
+        <SubmitModal v-show="showModal" @close-modal="showModal = false" />
     </main>
 </template>
 
@@ -43,6 +38,7 @@ export default {
     layout: 'app',
     data() {
         return {
+            showModal: false,
             jobs: [
                 {
                     title: "Flutter Developer",

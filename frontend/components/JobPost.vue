@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-white shadow-md p-3 md:p-6 rounded-md hover:shadow-xl" @mouseover="active = true"   @mouseleave="active = false">
+    <div class="bg-white shadow-md p-3 md:p-4 rounded-md hover:shadow-xl" @mouseover="active = true"   @mouseleave="active = false">
         <div class="flex flex-col xl:flex-row">
-            <div class="w-36 h-36 border rounded-md flex justify-center items-center">
+            <div class="w-28 h-28 border rounded-md flex justify-center items-center">
                 <img class="w-auto h-24" :src="picture" />
             </div>
             <div class="xl:w-7/12 pt-4 xl:pt-0 xl:ml-8 flex flex-col">
@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <p class="text-xs font-extralight text-gray-600">{{ description }}</p>
-                <div class="pt-2 xl:pt-4 flex flex-wrap">
+                <div class="pt-1 flex flex-wrap">
                     <p v-for="(item, index) in tags" :key="index" class="text-xs m-2 text-gray-500">
                         <span class="bg-gray-200 rounded-full px-4 py-1">{{ item }}</span>
                     </p>
