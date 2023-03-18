@@ -6,26 +6,30 @@ import (
 	"gorm.io/gorm"
 )
 
-func (db DB) GetJobOffers(page string, limit string, jobtitle string, company string, location string, isRemote string) (v1beta.JobOffersResponse, error) {
-	offset, limitInt := Paginate(page, limit)
+func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse, error) {
+	offset, limitInt := Paginate(q.Page, q.Limit)
 	var nbHits int64
 
 	// Build the query
 	query := db.queryJobOffers().Order("jb.createdat DESC")
 
-	if jobtitle != "" {
-		query = query.Where("j.title LIKE ?", "%"+jobtitle+"%")
+	if q.JobTitle != "" {
+		query = query.Where("j.title LIKE ?", "%"+q.JobTitle+"%")
 	}
 
-	if company != "" {
-		query = query.Where("jb.company_name LIKE ?", "%"+company+"%")
+	if q.Company != "" {
+		query = query.Where("jb.company_name LIKE ?", "%"+q.Company+"%")
 	}
 
-	if location != "" {
-		query = query.Where("jb.location LIKE ?", "%"+location+"%")
+	if q.City != "" {
+		query = query.Where("jb.city LIKE ?", "%"+q.City+"%")
 	}
 
-	switch isRemote {
+	if q.Country != "" {
+		query = query.Where("jb.country LIKE ?", "%"+q.Country+"%")
+	}
+
+	switch q.IsRemote {
 	case "true":
 		query = query.Where("jb.is_remote = ?", true)
 	case "false":
@@ -63,7 +67,8 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 		CompanyName:       query.CompanyName,
 		CompanyEmail:      query.CompanyEmail,
 		IsRemote:          query.IsRemote,
-		Location:          query.Location,
+		City:              query.City,
+		Country:           query.Country,
 		Department:        query.Department,
 		SalaryRangeMin:    query.SalaryRangeMin,
 		SalaryRangeMax:    query.SalaryRangeMax,

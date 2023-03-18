@@ -16,7 +16,8 @@ type JobOffer struct {
 	CompanyEmail      string `json:"company_email" gorm:"column:company_email"`
 	TitleID           int64  `json:"title" gorm:"column:title_id"`
 	IsRemote          bool   `json:"is_remote" gorm:"column:is_remote"`
-	Location          string `json:"location" gorm:"column:location"`
+	City              string `json:"city" gorm:"column:city"`
+	Country           string `json:"country" gorm:"column:country"`
 	Department        string `json:"department" gorm:"column:department"`
 	SalaryRangeMin    int64  `json:"salary_range_min" gorm:"column:salary_range_min"`
 	SalaryRangeMax    int64  `json:"salary_range_max" gorm:"column:salary_range_max"`
@@ -35,7 +36,8 @@ type OfferPostQuery struct {
 	CompanyEmail      string `json:"company_email"`
 	JobTitle          string `json:"job_title"`
 	IsRemote          bool   `json:"is_remote"`
-	Location          string `json:"location"`
+	City              string `json:"city" gorm:"column:city"`
+	Country           string `json:"country" gorm:"column:country"`
 	Department        string `json:"department"`
 	SalaryRangeMin    int64  `json:"salary_range_min"`
 	SalaryRangeMax    int64  `json:"salary_range_max"`
@@ -91,8 +93,8 @@ func (r *OfferPostQuery) Validate() error {
 		return errors.New("min salary is higher than max salary")
 	}
 
-	if strings.TrimSpace(r.Location) == "" && !r.IsRemote {
-		return errors.New("location is mandatory when is not remote")
+	if (strings.TrimSpace(r.City) == "" || strings.TrimSpace(r.Country) == "") && !r.IsRemote {
+		return errors.New("city and country are mandatory when is not remote")
 	}
 
 	r.Tags = FormatTags(r.Tags)
@@ -107,7 +109,8 @@ type JobOfferPresenter struct {
 	CompanyName       string `json:"company_name"`
 	JobTitle          string `json:"job_title"`
 	IsRemote          bool   `json:"is_remote"`
-	Location          string `json:"location"`
+	City              string `json:"city" gorm:"column:city"`
+	Country           string `json:"country" gorm:"column:country"`
 	Department        string `json:"department"`
 	SalaryRangeMin    int64  `json:"salary_range_min"`
 	SalaryRangeMax    int64  `json:"salary_range_max"`
@@ -117,6 +120,7 @@ type JobOfferPresenter struct {
 	ApplyUrl          string `json:"apply_url"`
 	ApplyEmailAddress string `json:"apply_email_address"`
 	ApplyPhoneNumber  string `json:"apply_phone_number"`
+	Tags              string `json:"tags"`
 }
 
 type JobOffersResponse struct {
@@ -132,6 +136,7 @@ type GetJobOffersQuery struct {
 	Limit    string
 	JobTitle string
 	Company  string
-	Location string
+	City     string
+	Country  string
 	IsRemote string
 }

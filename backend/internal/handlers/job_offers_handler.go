@@ -27,10 +27,11 @@ func GetJobOffers(c *gin.Context) {
 	query.Limit = c.DefaultQuery("limit", "20")
 	query.JobTitle = c.Query("jobtitle")
 	query.Company = c.Query("company")
-	query.Location = c.Query("location")
+	query.City = c.Query("city")
+	query.Country = c.Query("country")
 	query.IsRemote = c.Query("isRemote")
 
-	offers, err := db.GetJobOffers(query.Page, query.Limit, query.JobTitle, query.Company, query.Location, query.IsRemote)
+	offers, err := db.GetJobOffers(query)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
@@ -90,7 +91,8 @@ func PostJobOffer(c *gin.Context) {
 		CompanyName:       offer.CompanyName,
 		JobTitle:          query.JobTitle,
 		IsRemote:          offer.IsRemote,
-		Location:          offer.Location,
+		City:              offer.City,
+		Country:           offer.Country,
 		Department:        offer.Department,
 		SalaryRangeMin:    offer.SalaryRangeMin,
 		SalaryRangeMax:    offer.SalaryRangeMax,
@@ -100,5 +102,6 @@ func PostJobOffer(c *gin.Context) {
 		ApplyUrl:          offer.ApplyUrl,
 		ApplyEmailAddress: offer.ApplyEmailAddress,
 		ApplyPhoneNumber:  offer.ApplyPhoneNumber,
+		Tags:              offer.Tags,
 	})
 }

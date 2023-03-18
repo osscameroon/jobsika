@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS job_offers (
     company_email VARCHAR(255),
     title_id INTEGER NOT NULL,
     is_remote BOOLEAN,
-    location VARCHAR(255),
+    city VARCHAR(255),
+    country VARCHAR(255),
     department VARCHAR(255),
     salary_range_min BIGSERIAL,
     salary_range_max BIGSERIAL,
@@ -61,7 +62,7 @@ CREATE TABLE IF NOT EXISTS job_offers (
     apply_email_address VARCHAR(255),
     apply_phone_number VARCHAR(255),
     tags VARCHAR(255),
-    
+
     createdat DATE,
     updatedat DATE
 );
