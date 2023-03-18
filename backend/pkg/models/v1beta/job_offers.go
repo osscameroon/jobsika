@@ -79,7 +79,6 @@ func (r *OfferPostQuery) Validate() error {
 	}
 
 	if strings.TrimSpace(r.ApplyPhoneNumber) != "" {
-
 		if !IsPhoneNumberValid(r.ApplyPhoneNumber) {
 			return errors.New("apply phone number is not a valid phone number")
 		}
