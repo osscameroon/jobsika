@@ -50,7 +50,6 @@ type OfferPostQuery struct {
 
 // Validate check if the mandatory fields are filled, and make some changes in the tags field
 func (r *OfferPostQuery) Validate() error {
-
 	if !IsEmailValid(r.CompanyEmail) {
 		return errors.New("company email is not a valid email address")
 	}
