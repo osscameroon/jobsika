@@ -2,7 +2,6 @@ package v1beta
 
 import (
 	"errors"
-	"regexp"
 	"strings"
 	"time"
 )
@@ -51,8 +50,8 @@ type OfferPostQuery struct {
 
 // Validate check if the mandatory fields are filled, and make some changes in the tags field
 func (r *OfferPostQuery) Validate() error {
-	emailRegex := regexp.MustCompile(`(?i)[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}`)
-	if !emailRegex.MatchString(r.CompanyEmail) {
+
+	if !IsEmailValid(r.CompanyEmail) {
 		return errors.New("company email is not a valid email address")
 	}
 
@@ -73,14 +72,14 @@ func (r *OfferPostQuery) Validate() error {
 	}
 
 	if strings.TrimSpace(r.ApplyEmailAddress) != "" {
-		if !emailRegex.MatchString(r.ApplyEmailAddress) {
+		if !IsEmailValid(r.ApplyEmailAddress) {
 			return errors.New("apply email address is not a valid email address")
 		}
 	}
 
 	if strings.TrimSpace(r.ApplyPhoneNumber) != "" {
-		phoneRegex := regexp.MustCompile(`^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$`)
-		if !phoneRegex.MatchString(r.ApplyPhoneNumber) {
+
+		if !IsPhoneNumberValid(r.ApplyPhoneNumber) {
 			return errors.New("apply phone number is not a valid phone number")
 		}
 	}
@@ -97,32 +96,7 @@ func (r *OfferPostQuery) Validate() error {
 		return errors.New("location is mandatory when is not remote")
 	}
 
-	// tag should be separated by a comma, each tag should be at least 1 characters long with no space, tags with space will be ignored, tags sould be unique
-	if strings.TrimSpace(r.Tags) != "" {
-		tags := strings.Split(r.Tags, ",")
-		finalTags := ""
-		finalTagsMap := make(map[string]struct{})
-		for _, tag := range tags {
-			if strings.TrimSpace(tag) == "" {
-				continue
-			}
-
-			if _, tagIsDuplicate := finalTagsMap[tag]; tagIsDuplicate {
-				continue
-			}
-
-			if finalTags != "" {
-				finalTags += ","
-			}
-
-			finalTags += tag
-
-			finalTagsMap[tag] = struct{}{}
-		}
-
-		r.Tags = finalTags
-	}
-
+	r.Tags = FormatTags(r.Tags)
 	return nil
 }
 
