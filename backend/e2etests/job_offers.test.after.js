@@ -262,7 +262,7 @@ describe(`${endpoint}`, function () {
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(JSON.stringify(res.body)).contain("location is mandatory when is not remote");
+                    expect(JSON.stringify(res.body)).contain("city and country are mandatory when is not remote");
                 });
         });
     });
