@@ -359,6 +359,6 @@ export default {
         this.changepage(this.numberPage)
       }
     },
-  },
+  }
 }
 </script>
