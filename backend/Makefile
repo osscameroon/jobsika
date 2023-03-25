@@ -54,7 +54,7 @@ $(E2ETEST_DEPS):
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data
-	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
+	docker compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
 .PHONY: docker-build
@@ -96,17 +96,17 @@ endif
 
 ## start-api: starts the api and its dependencies in a docker container
 start-api:
-	docker-compose up
+	docker compose up --remove-orphans
 
 ## stop-api: stops the api and its dependencies in a docker container
 stop-api:
-	docker-compose down && \
+	docker compose down && \
 	rm -rf postgres-data
 
 ## start-postgres: starts postgres sql, setup and populate yotas database
 start-postgres:
-	docker-compose up start-postgres
-	docker-compose logs -f
+	docker compose up start-postgres --remove-orphans
+	docker compose logs -f
 
 ## connect-postgres: connect to postgres sql
 connect-postgres:
@@ -132,7 +132,7 @@ reset-postgres:
 
 ## stop-postgres: remove local postgres-data and teardown postgres
 stop-postgres:
-	docker-compose down && \
+	docker compose down && \
 	rm -rf postgres-data
 
 .PHONY:check-swagger
