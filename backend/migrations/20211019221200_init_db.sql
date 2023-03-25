@@ -58,9 +58,9 @@ CREATE TABLE IF NOT EXISTS job_offers (
     description VARCHAR(5000),
     benefits VARCHAR(1000),
     how_to_apply VARCHAR(1000),
-    apply_url VARCHAR(255),
-    apply_email_address VARCHAR(255),
-    apply_phone_number VARCHAR(255),
+    application_url VARCHAR(255),
+    application_email_address VARCHAR(255),
+    application_phone_number VARCHAR(255),
     tags VARCHAR(255),
 
     createdat DATE,

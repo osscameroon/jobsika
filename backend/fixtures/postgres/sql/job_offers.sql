@@ -11,9 +11,9 @@ INSERT INTO job_offers (
         description,
         benefits,
         how_to_apply,
-        apply_url,
-        apply_email_address,
-        apply_phone_number,
+        application_url,
+        application_email_address,
+        application_phone_number,
         tags,
         createdat,
         updatedat

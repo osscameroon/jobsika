@@ -26,9 +26,9 @@ describe(`${endpoint}`, function () {
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     benefits: "Health insurance, dental insurance, 401k",
                     how_to_apply: "Please submit your resume and cover letter.",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com",
-                    apply_phone_number: "555-555-5555",
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com",
+                    application_phone_number: "555-555-5555",
                     tags: "remote, golang, backend, engineer"
                 })
                 .expect(201)
@@ -53,8 +53,8 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
@@ -78,8 +78,8 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
@@ -103,8 +103,8 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
@@ -128,8 +128,8 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
@@ -153,8 +153,8 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
@@ -163,7 +163,7 @@ describe(`${endpoint}`, function () {
                 });
         });
 
-        it("post a job offer without apply url and apply email address and apply phone number", async function () {
+        it("post a job offer without application url and email address and phone number", async function () {
             return request(apiHost)
                 .post(`${endpoint}`)
                 .set("Accept", "application/json")
@@ -178,18 +178,18 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "",
-                    apply_phone_number: ""
+                    application_url: "",
+                    application_email_address: "",
+                    application_phone_number: ""
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(JSON.stringify(res.body)).contain("apply url or apply email address or apply phone number is mandatory");
+                    expect(JSON.stringify(res.body)).contain("application url or email address or phone number is mandatory");
                 });
         });
 
-        it("post a job offer without a valid apply email address", async function () {
+        it("post a job offer without a valid application email address", async function () {
             return request(apiHost)
                 .post(`${endpoint}`)
                 .set("Accept", "application/json")
@@ -202,17 +202,17 @@ describe(`${endpoint}`, function () {
                     country: "",
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(JSON.stringify(res.body)).contain("apply email address is not a valid email address");
+                    expect(JSON.stringify(res.body)).contain("application email address is not a valid email address");
                 });
         });
 
-        it("post a job offer without a valid apply phone number", async function () {
+        it("post a job offer without a valid application phone number", async function () {
             return request(apiHost)
                 .post(`${endpoint}`)
                 .set("Accept", "application/json")
@@ -227,14 +227,14 @@ describe(`${endpoint}`, function () {
                     salary_range_max: 150000,
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     how_to_apply: "",
-                    apply_url: "",
-                    apply_email_address: "",
-                    apply_phone_number: "invalid phone number"
+                    application_url: "",
+                    application_email_address: "",
+                    application_phone_number: "invalid phone number"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
                 .then((res) => {
-                    expect(JSON.stringify(res.body)).contain("apply phone number is not a valid phone number");
+                    expect(JSON.stringify(res.body)).contain("application phone number is not a valid phone number");
                 });
         });
 
@@ -255,9 +255,9 @@ describe(`${endpoint}`, function () {
                     description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
                     benefits: "Health insurance, dental insurance, 401k",
                     how_to_apply: "Please submit your resume and cover letter.",
-                    apply_url: "",
-                    apply_email_address: "ossdevs-cm@gmail.com",
-                    apply_phone_number: "555-555-5555"
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com",
+                    application_phone_number: "555-555-5555"
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")

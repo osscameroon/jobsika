@@ -12,42 +12,42 @@ type JobOffer struct {
 	CreatedAt time.Time `json:"createdat" gorm:"column:createdat"`
 	UpdatedAt time.Time `json:"updatedat" gorm:"column:updatedat"`
 
-	CompanyName       string `json:"company_name" gorm:"column:company_name"`
-	CompanyEmail      string `json:"company_email" gorm:"column:company_email"`
-	TitleID           int64  `json:"title" gorm:"column:title_id"`
-	IsRemote          bool   `json:"is_remote" gorm:"column:is_remote"`
-	City              string `json:"city" gorm:"column:city"`
-	Country           string `json:"country" gorm:"column:country"`
-	Department        string `json:"department" gorm:"column:department"`
-	SalaryRangeMin    int64  `json:"salary_range_min" gorm:"column:salary_range_min"`
-	SalaryRangeMax    int64  `json:"salary_range_max" gorm:"column:salary_range_max"`
-	Description       string `json:"description" gorm:"column:description"`
-	Benefits          string `json:"benefits" gorm:"column:benefits"`
-	HowToApply        string `json:"how_to_apply" gorm:"column:how_to_apply"`
-	ApplyUrl          string `json:"apply_url" gorm:"column:apply_url"`
-	ApplyEmailAddress string `json:"apply_email_address" gorm:"column:apply_email_address"`
-	ApplyPhoneNumber  string `json:"apply_phone_number" gorm:"column:apply_phone_number"`
-	Tags              string `json:"tags" gorm:"column:tags"`
+	CompanyName             string `json:"company_name" gorm:"column:company_name"`
+	CompanyEmail            string `json:"company_email" gorm:"column:company_email"`
+	TitleID                 int64  `json:"title" gorm:"column:title_id"`
+	IsRemote                bool   `json:"is_remote" gorm:"column:is_remote"`
+	City                    string `json:"city" gorm:"column:city"`
+	Country                 string `json:"country" gorm:"column:country"`
+	Department              string `json:"department" gorm:"column:department"`
+	SalaryRangeMin          int64  `json:"salary_range_min" gorm:"column:salary_range_min"`
+	SalaryRangeMax          int64  `json:"salary_range_max" gorm:"column:salary_range_max"`
+	Description             string `json:"description" gorm:"column:description"`
+	Benefits                string `json:"benefits" gorm:"column:benefits"`
+	HowToApply              string `json:"how_to_apply" gorm:"column:how_to_apply"`
+	ApplicationUrl          string `json:"application_url" gorm:"column:application_url"`
+	ApplicationEmailAddress string `json:"application_email_address" gorm:"column:application_email_address"`
+	ApplicationPhoneNumber  string `json:"application_phone_number" gorm:"column:application_phone_number"`
+	Tags                    string `json:"tags" gorm:"column:tags"`
 }
 
 // OfferPostQuery defines the body object used to create a new jb offer on a POST query
 type OfferPostQuery struct {
-	CompanyName       string `json:"company_name"`
-	CompanyEmail      string `json:"company_email"`
-	JobTitle          string `json:"job_title"`
-	IsRemote          bool   `json:"is_remote"`
-	City              string `json:"city" gorm:"column:city"`
-	Country           string `json:"country" gorm:"column:country"`
-	Department        string `json:"department"`
-	SalaryRangeMin    int64  `json:"salary_range_min"`
-	SalaryRangeMax    int64  `json:"salary_range_max"`
-	Description       string `json:"description"`
-	Benefits          string `json:"benefits"`
-	HowToApply        string `json:"how_to_apply"`
-	ApplyUrl          string `json:"apply_url"`
-	ApplyEmailAddress string `json:"apply_email_address"`
-	ApplyPhoneNumber  string `json:"apply_phone_number"`
-	Tags              string `json:"tags"`
+	CompanyName             string `json:"company_name"`
+	CompanyEmail            string `json:"company_email"`
+	JobTitle                string `json:"job_title"`
+	IsRemote                bool   `json:"is_remote"`
+	City                    string `json:"city" gorm:"column:city"`
+	Country                 string `json:"country" gorm:"column:country"`
+	Department              string `json:"department"`
+	SalaryRangeMin          int64  `json:"salary_range_min"`
+	SalaryRangeMax          int64  `json:"salary_range_max"`
+	Description             string `json:"description"`
+	Benefits                string `json:"benefits"`
+	HowToApply              string `json:"how_to_apply"`
+	ApplicationUrl          string `json:"application_url"`
+	ApplicationEmailAddress string `json:"application_email_address"`
+	ApplicationPhoneNumber  string `json:"application_phone_number"`
+	Tags                    string `json:"tags"`
 }
 
 // Validate check if the mandatory fields are filled, and make some changes in the tags field
@@ -68,19 +68,19 @@ func (r *OfferPostQuery) Validate() error {
 		return errors.New("job description is mandatory")
 	}
 
-	if strings.TrimSpace(r.ApplyUrl) == "" && strings.TrimSpace(r.ApplyEmailAddress) == "" && strings.TrimSpace(r.ApplyPhoneNumber) == "" {
-		return errors.New("apply url or apply email address or apply phone number is mandatory")
+	if strings.TrimSpace(r.ApplicationUrl) == "" && strings.TrimSpace(r.ApplicationEmailAddress) == "" && strings.TrimSpace(r.ApplicationPhoneNumber) == "" {
+		return errors.New("application url or email address or phone number is mandatory")
 	}
 
-	if strings.TrimSpace(r.ApplyEmailAddress) != "" {
-		if !IsEmailValid(r.ApplyEmailAddress) {
-			return errors.New("apply email address is not a valid email address")
+	if strings.TrimSpace(r.ApplicationEmailAddress) != "" {
+		if !IsEmailValid(r.ApplicationEmailAddress) {
+			return errors.New("application email address is not a valid email address")
 		}
 	}
 
-	if strings.TrimSpace(r.ApplyPhoneNumber) != "" {
-		if !IsPhoneNumberValid(r.ApplyPhoneNumber) {
-			return errors.New("apply phone number is not a valid phone number")
+	if strings.TrimSpace(r.ApplicationPhoneNumber) != "" {
+		if !IsPhoneNumberValid(r.ApplicationPhoneNumber) {
+			return errors.New("application phone number is not a valid phone number")
 		}
 	}
 
@@ -105,21 +105,21 @@ type JobOfferPresenter struct {
 	CreatedAt time.Time `json:"createdat" gorm:"column:createdat"`
 	UpdatedAt time.Time `json:"updatedat" gorm:"column:updatedat"`
 
-	CompanyName       string `json:"company_name"`
-	JobTitle          string `json:"job_title"`
-	IsRemote          bool   `json:"is_remote"`
-	City              string `json:"city" gorm:"column:city"`
-	Country           string `json:"country" gorm:"column:country"`
-	Department        string `json:"department"`
-	SalaryRangeMin    int64  `json:"salary_range_min"`
-	SalaryRangeMax    int64  `json:"salary_range_max"`
-	Description       string `json:"description"`
-	Benefits          string `json:"benefits"`
-	HowToApply        string `json:"how_to_apply"`
-	ApplyUrl          string `json:"apply_url"`
-	ApplyEmailAddress string `json:"apply_email_address"`
-	ApplyPhoneNumber  string `json:"apply_phone_number"`
-	Tags              string `json:"tags"`
+	CompanyName             string `json:"company_name"`
+	JobTitle                string `json:"job_title"`
+	IsRemote                bool   `json:"is_remote"`
+	City                    string `json:"city" gorm:"column:city"`
+	Country                 string `json:"country" gorm:"column:country"`
+	Department              string `json:"department"`
+	SalaryRangeMin          int64  `json:"salary_range_min"`
+	SalaryRangeMax          int64  `json:"salary_range_max"`
+	Description             string `json:"description"`
+	Benefits                string `json:"benefits"`
+	HowToApply              string `json:"how_to_apply"`
+	ApplicationUrl          string `json:"application_url"`
+	ApplicationEmailAddress string `json:"application_email_address"`
+	ApplicationPhoneNumber  string `json:"application_phone_number"`
+	Tags                    string `json:"tags"`
 }
 
 type JobOffersResponse struct {
