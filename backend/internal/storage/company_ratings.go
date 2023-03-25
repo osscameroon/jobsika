@@ -1,6 +1,6 @@
 package storage
 
-import "github.com/elhmn/jobsika/pkg/models/v1beta"
+import "github.com/osscameroon/jobsika/pkg/models/v1beta"
 
 //GetCompanyRatings get company ratings
 func (db DB) GetCompanyRatings(query v1beta.CompanyRatingQuery) ([]v1beta.CompanyRating, error) {

@@ -3,8 +3,8 @@ package config
 import (
 	"os"
 
-	"github.com/elhmn/jobsika/internal/storage"
 	"github.com/joho/godotenv"
+	"github.com/osscameroon/jobsika/internal/storage"
 )
 
 var (

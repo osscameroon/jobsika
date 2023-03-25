@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "github.com/elhmn/jobsika/docs"
-	"github.com/elhmn/jobsika/internal/handlers"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	_ "github.com/osscameroon/jobsika/docs"
+	"github.com/osscameroon/jobsika/internal/handlers"
 )
 
 func main() {
