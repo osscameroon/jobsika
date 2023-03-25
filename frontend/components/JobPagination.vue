@@ -318,6 +318,7 @@ export default {
   },
   async created() {
     await this.fetchRatings()
+    // console.log('number of page', this.numberPage)
   },
   methods: {
     async fetchRatings() {
@@ -359,6 +360,6 @@ export default {
         this.changepage(this.numberPage)
       }
     },
-  }
+  },
 }
 </script>
