@@ -40,7 +40,7 @@ run4test:
 ## : run the api using `ENVIRONMENT=dev make run` or `make run4test` to avoid timeouts
 .PHONY: e2etest
 e2etest: $(E2ETEST_DEPS)
-	-cd ./e2etests/ && API_HOST="http://localhost:7000/" npm test
+	-rm -rf postgres-data; cd ./e2etests/ && API_HOST="http://localhost:7000/" npm test
 	@make reset-postgres > /dev/null
 
 ## e2etest-compose: run end to end tests in the docker-compose.test.yaml
@@ -53,6 +53,7 @@ $(E2ETEST_DEPS):
 
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
+	-rm -rf postgres-data
 	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
