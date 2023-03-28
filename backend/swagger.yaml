@@ -14,7 +14,7 @@ definitions:
         type: integer
         x-go-name: Salary
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Company:
     description: Company defines the company structure
     properties:
@@ -38,7 +38,7 @@ definitions:
         type: string
         x-go-name: UpdatedAt
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Rating:
     description: |-
       Rating defines the rating structure
@@ -87,7 +87,7 @@ definitions:
         type: string
         x-go-name: Seniority
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   RatingPostQuery:
     description: |-
       RatingPostQuery defines the body object used to
@@ -117,7 +117,7 @@ definitions:
         type: string
         x-go-name: Seniority
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   RatingResponse:
     properties:
       hits:
@@ -138,7 +138,7 @@ definitions:
         type: integer
         x-go-name: Offset
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Salary:
     description: Salary defines the salary structure
     properties:
@@ -183,7 +183,7 @@ definitions:
         type: string
         x-go-name: UpdatedAt
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
 host: localhost:7000
 info:
   description: Documentation of our jobsika API.

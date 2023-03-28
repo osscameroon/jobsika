@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/elhmn/jobsika/internal/config"
-	"github.com/elhmn/jobsika/internal/storage"
+	"github.com/osscameroon/jobsika/internal/config"
+	"github.com/osscameroon/jobsika/internal/storage"
 )
 
 //Server defines the api server struct

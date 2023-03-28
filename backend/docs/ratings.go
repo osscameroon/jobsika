@@ -1,7 +1,7 @@
 package docs
 
 import (
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 )
 
 // swagger:route GET /ratings ratings idOfRatingWithoutID
