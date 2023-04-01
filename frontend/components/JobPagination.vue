@@ -265,7 +265,7 @@
   
 <script>
 export default {
-	name: 'Jobs Pagination_Number',
+	name: 'Jobs_Pagination_Number',
 	data() {
 		return {
 			current1: '',
