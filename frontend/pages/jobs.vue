@@ -22,8 +22,8 @@
             </div>
             <div class="pt-8">
                 <div v-for="(item, index) in jobs" :key="index" class="mb-6">
-                    <JobPost :picture="item.picture" :title="item.title" :city="item.city" :structure="item.structure"
-                        :marker="item.marker" :time="item.time" :description="item.description" :tags="item.tags" />
+                    <JobPost :picture="image" :title="item.job_title" :city="item.city" :structure="item.company_name"
+                        :marker="item.is_remote ? 'Remote' : 'Local' " :time="item.createdat" :description="item.description" :tags="item.tags" />
                 </div>
             </div>
           <JobPagination />
@@ -39,50 +39,25 @@ export default {
     data() {
         return {
             showModal: false,
-            jobs: [
-                {
-                    title: "Flutter Developer",
-                    structure: "Ejara",
-                    marker: "Hybrid or remote",
-                    city: "in Douala",
-                    time: "2 days",
-                    description: "Au-delà du business, Ejara est un rêve, un élan, une énergie qui vise à fournir à l'Afrique francophone des outils efficaces pour faciliter et faire de la ...",
-                    picture: require('../assets/ejara.png'),
-                    tags: ["Figma", "Vue", "UI/UX Design"]
-                },
-                {
-                    title: "Frontend Developer",
-                    structure: "OSS Cameroon",
-                    marker: "Remote",
-                    city: "in Yaounde",
-                    time: "4 days",
-                    description: "Au-delà du business, Ejara est un rêve, un élan, une énergie qui vise à fournir à l'Afrique francophone des outils efficaces pour faciliter et faire de la ...",
-                    picture: require('../assets/job.png'),
-                    tags: ["Figma", "Nuxt", "UI/UX Design"]
-                },
-                {
-                    title: "Flutter Developer",
-                    structure: "Ejara",
-                    marker: "Hybrid or remote",
-                    city: "in Douala",
-                    time: "2 days",
-                    description: "Au-delà du business, Ejara est un rêve, un élan, une énergie qui vise à fournir à l'Afrique francophone des outils efficaces pour faciliter et faire de la ...",
-                    picture: require('../assets/ejara.png'),
-                    tags: ["Figma", "Vue", "UI/UX Design"]
-                },
-                {
-                    title: "Frontend Developer",
-                    structure: "OSS Cameroon",
-                    marker: "Remote",
-                    city: "in Yaounde",
-                    time: "4 days",
-                    description: "Au-delà du business, Ejara est un rêve, un élan, une énergie qui vise à fournir à l'Afrique francophone des outils efficaces pour faciliter et faire de la ...",
-                    picture: require('../assets/job.png'),
-                    tags: ["Figma", "Nuxt", "UI/UX Design"]
-                },
-            ]
+            image: require('../assets/job.png'),
         }
     },
+    computed:{
+        jobs(){
+            return this.$store.state.jobs.jobs;
+        }
+    },
+    async created() {
+		await this.fetchJobs();
+	},
+    methods: {
+        async fetchJobs() {
+		    await this.$store.dispatch('getJobs', {
+			    page: this.page,
+			    limit: this.limit
+		    })
+	    },
+    }
 }
 </script>
 <style>

@@ -22,7 +22,7 @@
                 </div>
                 <p class="text-xs font-extralight text-gray-600">{{ description }}</p>
                 <div class="pt-1 flex flex-wrap">
-                    <p v-for="(item, index) in tags" :key="index" class="text-xs m-2 text-gray-500">
+                    <p v-for="(item, index) in tags.split(',')" :key="index" class="text-xs m-2 text-gray-500">
                         <span class="bg-gray-200 rounded-full px-4 py-1">{{ item }}</span>
                     </p>
                 </div>
