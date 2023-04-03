@@ -238,6 +238,13 @@ import Vue from 'vue'
 import { mapMutations } from 'vuex'
 export default Vue.extend({
   name: 'CompanyComponent',
+  props: {
+    isHomePage: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
+  },
   data() {
     return {
       isOpen: false,
@@ -255,7 +262,11 @@ export default Vue.extend({
       return this.$store.state.ratings.limit
     },
     ratings() {
-      return this.$store.state.ratings.ratings
+      if(this.isHomePage){
+        return this.$store.state.ratings.ratings.slice(0, 5);
+      }else{
+        return this.$store.state.ratings.ratings;
+      }
     },
     filterjob() {
       return this.$store.state.ratings.filterjob
