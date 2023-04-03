@@ -40,29 +40,29 @@
       </div>
       <div class="site__main-company py-3">
         <div class="grid grid-cols-1 md:grid-cols-2">
-          <div v-for="(item, index) in jobs" :key="index" class="bg-white py-6 px-7 border h-44 md:h-24">
+          <div v-for="(item, index) in jobslist" :key="index" class="bg-white py-6 px-7 border h-44 md:h-24">
             <div>
               <div class="pt-4 xl:pt-0 flex flex-col">
-                <h4 class="text-lg font-bold">{{ item.title }} <span class="text-gray-600 font-light"> {{
+                <h4 class="text-lg font-bold">{{ item.job_title }} <span class="text-gray-600 font-light"> in {{
                   item.city
                 }}</span></h4>
                 <div class="flex flex-col xl:flex-row pt-2">
                   <div class="pt-1 xl:pt-0 flex flex-row items-center">
                     <img class="w-auto h-4" :src="location"/>
                     <p class="text-xs mx-1 text-gray-500 ml-1">
-                      {{ item.structure }}
+                      {{ item.company_name }}
                     </p>
                   </div>
                   <div class="pt-1 xl:pt-0 xl:ml-2 flex flex-row items-center">
                     <img class="w-auto h-4" :src="position"/>
                     <p class="text-xs mx-1 text-gray-500 ml-1">
-                      {{ item.site }}
+                      {{ item.application_url }}
                     </p>
                   </div>
                   <div class="pt-1 xl:pt-0 xl:ml-2 flex flex-row items-center">
                     <img class="w-auto h-4" :src="clock"/>
                     <p class="text-xs mx-1 text-gray-500 ml-1">
-                      {{ item.delay }}
+                      {{ item.createdat }}
                     </p>
                   </div>
                 </div>
@@ -71,7 +71,7 @@
           </div>
 
         </div>
-        <More />
+        <More title="See more Jobs" path="/jobs" />
       </div>
       <div class="pt-12 md:pt-20">
         <div class="flex flex-col xl:flex-row items-center justify-center">
@@ -95,8 +95,8 @@
           </div>
         </div>
         <div class="py-2 md:py-3">
-          <Company />
-          <More />
+          <Company isHomePage />
+          <More title="See more Salaries" path="/salaries" />
         </div>
       </div>
       <div class="rounded-md bg-white p-4 my-2 md:my-3">
@@ -128,52 +128,30 @@ export default {
       clock: require('../assets/clock.png'),
       money: require('../assets/money.png'),
       tags: ["Figma", "Nuxt", "UI/UX Design"],
-      jobs: [
-        {
-          title: "Flutter Developer",
-          city: "in Douala",
-          site: "Hybrid and remote",
-          delay: "2 Months",
-          structure: "Mboa Digital",
-        },
-        {
-          title: "Senior compliance audit manager",
-          site: "Onsite",
-          delay: "11 days",
-          city: "in Yaounde",
-          structure: "MTN",
-        },
-        {
-          title: "Frontend Dev in Douala",
-          city: "in Douala",
-          site: "Onsite",
-          delay: "11 days",
-          structure: "Bjongo hub",
-        },
-        {
-          title: "Frontend Developer",
-          city: "in Yaounde",
-          site: "Onsite",
-          delay: "2 Months",
-          structure: "OSS Cameroon",
-        },
-        {
-          title: "Frontend Dev in Douala",
-          city: "in Douala",
-          site: "Onsite",
-          delay: "11 days",
-          structure: "Bjongo hub",
-        },
-        {
-          title: "Frontend Developer",
-          city: "in Yaounde",
-          site: "Onsite",
-          delay: "2 Months",
-          structure: "OSS Cameroon",
-        },
-      ]
     }
   },
+  computed:{
+    jobslist(){
+      return this.$store.state.jobs.jobs.slice(0, 6)
+    }
+  },
+  async created() {
+		await this.fetchJobs();
+    await this.fetchRatings();
+	},
+  methods: {
+    async fetchJobs() {
+			await this.$store.dispatch('getJobs', {
+				page: this.page,
+				limit: this.limit
+			})
+		},
+    async fetchRatings() {
+      await this.$store.dispatch('getRatings', {
+        page: 1
+      })
+    },
+  }
 }
 </script>
 
