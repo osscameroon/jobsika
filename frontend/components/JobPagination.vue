@@ -317,7 +317,7 @@ export default {
 	},
 	methods: {
 		async fetchJobs() {
-			await this.$store.dispatch('getJobss', {
+			await this.$store.dispatch('getJobs', {
 				page: this.page,
 				limit: this.limit
 			})
