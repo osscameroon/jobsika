@@ -76,8 +76,8 @@ export const actions = {
   },
   async getJobs({ commit }, payload) {
     const params = {
-      page: payload.page,
-      limit: payload.limit
+      page: payload.page ? payload.page : 1,
+      limit: payload.limit ? payload.limit : 10
     }
     const resp = await axios.get(
       this.$config.baseURL + '/jobs',
