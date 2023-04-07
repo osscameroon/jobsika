@@ -74,6 +74,22 @@ export const actions = {
       commit("ratings/SETAVERAGESTARS", resp.data.rating)
     }
   },
+  async getJobs({ commit }, payload) {
+    const params = {
+      page: payload.page ? payload.page : 1,
+      limit: payload.limit ? payload.limit : 10
+    }
+    const resp = await axios.get(
+      this.$config.baseURL + '/jobs',
+      {
+        params: { ...params }
+      }
+    )
+    if(resp){
+      commit("jobs/SETNBHITS", resp.data.nbHits);
+      commit("jobs/SETJOBS", resp.data.hits);
+    }
+  },
   filterJob({ commit }, value){
     commit("jobtitles/SETFILTERJOB", value)
   },
