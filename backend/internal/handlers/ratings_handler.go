@@ -6,13 +6,13 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/elhmn/jobsika/internal/server"
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 )
 
-//GetRatings handles user sign in
+// GetRatings handles user sign in
 func GetRatings(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
@@ -42,7 +42,7 @@ func GetRatings(c *gin.Context) {
 	c.JSON(http.StatusOK, ratings)
 }
 
-//GetRatingByID returns a rating by id
+// GetRatingByID returns a rating by id
 func GetRatingByID(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
@@ -73,7 +73,7 @@ func GetRatingByID(c *gin.Context) {
 	c.JSON(http.StatusOK, rating)
 }
 
-//GetAverageRating handles /average-rating GET endpoint
+// GetAverageRating handles /average-rating GET endpoint
 func GetAverageRating(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
@@ -101,7 +101,7 @@ func GetAverageRating(c *gin.Context) {
 	c.JSON(http.StatusOK, rating)
 }
 
-//PostRatings handles /ratings POST endpoint
+// PostRatings handles /ratings POST endpoint
 func PostRatings(c *gin.Context) {
 	contentType := c.Request.Header.Get("Content-Type")
 	if !strings.Contains(contentType, "application/json") {

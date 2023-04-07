@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/elhmn/jobsika/internal/server"
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 )
 

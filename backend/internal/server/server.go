@@ -1,11 +1,11 @@
 package server
 
 import (
-	"github.com/elhmn/jobsika/internal/config"
-	"github.com/elhmn/jobsika/internal/storage"
+	"github.com/osscameroon/jobsika/internal/config"
+	"github.com/osscameroon/jobsika/internal/storage"
 )
 
-//Server defines the api server struct
+// Server defines the api server struct
 type Server struct {
 	DB   storage.DB
 	Conf config.Config
@@ -13,7 +13,7 @@ type Server struct {
 
 var defaultServer *Server
 
-//GetDefaultServer returns a default server configuration
+// GetDefaultServer returns a default server configuration
 func GetDefaultServer() (*Server, error) {
 	if defaultServer == nil {
 		conf := config.GetDefaultConfig()
@@ -31,7 +31,7 @@ func GetDefaultServer() (*Server, error) {
 	return defaultServer, nil
 }
 
-//GetDefaultDBClient returns the database default client
+// GetDefaultDBClient returns the database default client
 func GetDefaultDBClient() (storage.DB, error) {
 	s, err := GetDefaultServer()
 	if err != nil {
@@ -41,7 +41,7 @@ func GetDefaultDBClient() (storage.DB, error) {
 	return s.DB, nil
 }
 
-//GetDefaultConfig returns the server default config
+// GetDefaultConfig returns the server default config
 func GetDefaultConfig() config.Config {
 	s, err := GetDefaultServer()
 	if err != nil {

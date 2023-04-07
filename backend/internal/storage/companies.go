@@ -3,10 +3,10 @@ package storage
 import (
 	"os"
 
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 )
 
-//GetCompanies get companies
+// GetCompanies get companies
 func (db DB) GetCompanies() ([]v1beta.Company, error) {
 	companies := []v1beta.Company{}
 
@@ -51,7 +51,7 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 	return companies, nil
 }
 
-//GetCompanyByID get company by `id`
+// GetCompanyByID get company by `id`
 func (db DB) GetCompanyByID(id int64) (v1beta.Company, error) {
 	company := v1beta.Company{}
 	ret := db.c.First(&company, "id = ?", id)
@@ -62,7 +62,7 @@ func (db DB) GetCompanyByID(id int64) (v1beta.Company, error) {
 	return company, nil
 }
 
-//CameroonianCompanies is collection of default cameroonian companies
+// CameroonianCompanies is collection of default cameroonian companies
 var CameroonianCompanies = []string{
 	"CCAA",
 	"ADC",
