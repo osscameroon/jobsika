@@ -1,11 +1,11 @@
 package storage
 
 import (
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	"os"
 )
 
-//GetCities get cities
+// GetCities get cities
 func (db DB) GetCities() ([]string, error) {
 	var citiesNames []string
 	cities := []v1beta.City{}
@@ -55,7 +55,7 @@ func (db DB) GetCities() ([]string, error) {
 	return citiesNames, nil
 }
 
-//DefaultCities is a collection of default cities of Cameroon
+// DefaultCities is a collection of default cities of Cameroon
 var DefaultCities = []string{
 	"Douala",
 	"Yaoundé",

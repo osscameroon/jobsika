@@ -1,4 +1,4 @@
-module github.com/elhmn/jobsika
+module github.com/osscameroon/jobsika
 
 go 1.16
 

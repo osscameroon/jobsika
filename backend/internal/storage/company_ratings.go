@@ -1,8 +1,8 @@
 package storage
 
-import "github.com/elhmn/jobsika/pkg/models/v1beta"
+import "github.com/osscameroon/jobsika/pkg/models/v1beta"
 
-//GetCompanyRatings get company ratings
+// GetCompanyRatings get company ratings
 func (db DB) GetCompanyRatings(query v1beta.CompanyRatingQuery) ([]v1beta.CompanyRating, error) {
 	if query.CompanyID != 0 {
 		ratings := []v1beta.CompanyRating{}
@@ -23,7 +23,7 @@ func (db DB) GetCompanyRatings(query v1beta.CompanyRatingQuery) ([]v1beta.Compan
 	return ratings, nil
 }
 
-//GetCompanyRatingsByID get company ratings by ID
+// GetCompanyRatingsByID get company ratings by ID
 func (db DB) GetCompanyRatingsByID(id int64) (v1beta.CompanyRating, error) {
 	rating := v1beta.CompanyRating{}
 	ret := db.c.First(&rating, "id = ?", id)

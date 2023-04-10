@@ -3,8 +3,8 @@ package config
 import (
 	"os"
 
-	"github.com/elhmn/jobsika/internal/storage"
 	"github.com/joho/godotenv"
+	"github.com/osscameroon/jobsika/internal/storage"
 )
 
 var (
@@ -17,7 +17,7 @@ var (
 
 var defaultConfig *Config
 
-//Config describes the server configuration
+// Config describes the server configuration
 type Config struct {
 	DBOpts storage.DBOptions
 	//Environment can be set to stage or production
@@ -25,7 +25,7 @@ type Config struct {
 	JWTKey      string
 }
 
-//GetDefaultConfig returns a config with default values  and env variables
+// GetDefaultConfig returns a config with default values  and env variables
 func GetDefaultConfig() Config {
 	if defaultConfig == nil {
 		//load postgres env variables

@@ -1,10 +1,10 @@
 package main
 
 import (
-	_ "github.com/elhmn/jobsika/docs"
-	"github.com/elhmn/jobsika/internal/handlers"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	_ "github.com/osscameroon/jobsika/docs"
+	"github.com/osscameroon/jobsika/internal/handlers"
 )
 
 func main() {
@@ -51,6 +51,9 @@ func main() {
 	//JobOffers
 	router.GET("/jobs", handlers.GetJobOffers)
 	router.POST("/jobs", handlers.PostJobOffer)
+
+	//Subscribers
+	router.POST("/subscribers", handlers.PostSubscribers)
 
 	if err := router.Run(":7000"); err != nil {
 		return

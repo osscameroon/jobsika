@@ -4,14 +4,14 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/elhmn/jobsika/internal/server"
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/osscameroon/jobsika/internal/server"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 )
 
-//GetCompanyRatings return a list of company ratings
+// GetCompanyRatings return a list of company ratings
 func GetCompanyRatings(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
@@ -41,7 +41,7 @@ func GetCompanyRatings(c *gin.Context) {
 	c.JSON(http.StatusOK, ratings)
 }
 
-//GetCompanyRatingsByID return company ratings by id
+// GetCompanyRatingsByID return company ratings by id
 func GetCompanyRatingsByID(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()

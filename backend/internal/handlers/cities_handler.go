@@ -1,14 +1,14 @@
 package handlers
 
 import (
-	"github.com/elhmn/jobsika/internal/server"
+	"github.com/osscameroon/jobsika/internal/server"
 	log "github.com/sirupsen/logrus"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
-//GetCities returns a list of cities
+// GetCities returns a list of cities
 func GetCities(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()

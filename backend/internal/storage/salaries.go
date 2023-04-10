@@ -1,8 +1,8 @@
 package storage
 
-import "github.com/elhmn/jobsika/pkg/models/v1beta"
+import "github.com/osscameroon/jobsika/pkg/models/v1beta"
 
-//GetSalaries get salaries
+// GetSalaries get salaries
 func (db DB) GetSalaries() ([]v1beta.Salary, error) {
 	salaries := []v1beta.Salary{}
 	ret := db.c.Find(&salaries)
@@ -13,7 +13,7 @@ func (db DB) GetSalaries() ([]v1beta.Salary, error) {
 	return salaries, nil
 }
 
-//GetSalaryByID get salary by `id`
+// GetSalaryByID get salary by `id`
 func (db DB) GetSalaryByID(id int64) (v1beta.Salary, error) {
 	salary := v1beta.Salary{}
 	ret := db.c.First(&salary, "id = ?", id)

@@ -3,12 +3,12 @@ package handlers
 import (
 	"net/http"
 
-	"github.com/elhmn/jobsika/internal/server"
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
 	log "github.com/sirupsen/logrus"
 )
 
-//GetJobTitles return a list of job titles
+// GetJobTitles return a list of job titles
 func GetJobTitles(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()

@@ -4,12 +4,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/elhmn/jobsika/internal/server"
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
 	log "github.com/sirupsen/logrus"
 )
 
-//GetSalaries handles user sign in
+// GetSalaries handles user sign in
 func GetSalaries(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
@@ -31,7 +31,7 @@ func GetSalaries(c *gin.Context) {
 	c.JSON(http.StatusOK, salaries)
 }
 
-//GetSalaryByID returns a salary by id
+// GetSalaryByID returns a salary by id
 func GetSalaryByID(c *gin.Context) {
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()

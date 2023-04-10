@@ -1,7 +1,7 @@
 package storage
 
 import (
-	"github.com/elhmn/jobsika/pkg/models/v1beta"
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
 )
