@@ -9,20 +9,20 @@
             <div class="pt-8 md:pt-16"></div>
             <div>
                 <div class="flex flex-col md:flex-row md:justify-center">
-                    <div
-                        class="px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4">
+                    <div :class="isActiveJob === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4 cursor-pointer' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'"
+                        @click='selectTabJob()'>
                         Job details
                     </div>
-                    <div
-                        class="px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4">
+                    <div :class="isActiveOption === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4 cursor-pointer' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'"
+                        @click='selectTabOption()'>
                         Options
                     </div>
-                    <div
-                        class="px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4">
+                    <div :class="isActivePayment === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4 cursor-pointer' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'"
+                        @click='selectTabPayment()'>
                         Payments
                     </div>
                 </div>
-                <form>
+                <form v-show="isActiveJob">
                     <div class="flex flex-col md:w-7/12 mx-auto">
                         <div class="grid gap-7 grid-cols-1 mt-20">
                             <div>
@@ -117,7 +117,7 @@
                                 </div>
                                 <textarea cols="6" rows="5" type="text"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4">
-                                                                                                                            </textarea>
+                                    </textarea>
                             </div>
                             <div>
                                 <div class="flex mb-2">
@@ -347,16 +347,126 @@
                             </div>
                         </div>
                         <div class="mt-10 flex flex-col md:flex-row items-center justify-center xl:justify-start">
-                            <NuxtLink to="/options">
-                                <button class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40" type="submit">
-                                    <Button show-picture="nothing"
-                                        my-style="background: #235365;padding: 20px 80px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
-                                        name="Next" />
-                                </button>
-                            </NuxtLink>
+                            <div @click='selectTabOption()' class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40">
+                                <Button show-picture="nothing"
+                                    my-style="background: #235365;padding: 20px 80px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
+                                    name="Next" />
+                            </div>
                         </div>
                     </div>
                 </form>
+
+                <div v-show="isActiveOption === true">
+                    <div>
+                        <div class="flex flex-col md:w-10/12 mx-auto mt-7">
+                            <p class="font-bold text-base leading-10 mx-auto">
+                                Start hiring at FCFA 15 000 only
+                            </p>
+                            <div class="mt-12">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value=""
+                                        class="w-6 h-6 text-primaryGray  rounded focus:bg-primaryGray">
+                                    <label for="default-checkbox" class="ml-4 text-xl font-normal text-gray-900">Company
+                                        logo
+                                        (+2.000XAF)</label>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value=""
+                                        class="w-6 h-6 text-primaryGray  rounded focus:bg-primaryGray">
+                                    <label for="default-checkbox" class="ml-4 text-xl font-normal text-gray-900">Diffusion
+                                        on OSS
+                                        Groups and accounts ( (8 x users in our databases) XAF)</label>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value=""
+                                        class="w-6 h-6 text-primaryGray  rounded focus:bg-primaryGray">
+                                    <label for="default-checkbox" class="ml-4 text-xl font-normal text-gray-900">Personal
+                                        notifications(Email & Telegram (JobSika Bot)) ( (15 x users in our databases)
+                                        XAF)</label>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value=""
+                                        class="w-6 h-6 text-primaryGray  rounded focus:bg-primaryGray">
+                                    <label for="default-checkbox" class="ml-4 text-xl font-normal text-gray-900">Pin the
+                                        Job offer
+                                        on OSS Cameroon groups/account (+ 5.000XAF/week)</label>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <input id="default-checkbox" type="checkbox" value=""
+                                        class="w-6 h-6 text-primaryGray  rounded focus:bg-primaryGray">
+                                    <label for="default-checkbox" class="ml-4 text-xl font-normal text-gray-900">Pin the
+                                        Job offer
+                                        on Jobsika homepage (+10.000 XAF/week)</label>
+                                </div>
+                            </div>
+                            <div class="mt-16 flex flex-col md:flex-row items-center justify-center xl:justify-start">
+                                <div class="w-full md:w-1/5">
+                                    <div class="p-4 text-blueDark border-2 border-blueDark font-bold flex items-center justify-center text-xs md:text-base h-12"
+                                        style="border-radius: 6px">
+                                        Total: 17 500
+                                    </div>
+                                </div>
+                                <div @click='selectTabPayment()' class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-7">
+                                    <Button show-picture="nothing"
+                                        my-style="background: #235365;padding: 20px 80px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
+                                        name="Next" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-show="isActivePayment === true">
+                    <div>
+                        <div class="flex flex-col md:w-11/12 mx-auto mt-14">
+                            <h4 class="font-bold text-5xl leading-10 mx-auto text-center">
+                                How do you want to make your payment?
+                            </h4>
+                            <p style="color: #7694A0;" class="mt-6 text-center text-base mx-10">
+                                Last step! please choose a payment method. Your job offer will be published as soon as your
+                                payment
+                                is received and approved by admins
+                            </p>
+                            <div class="mt-12">
+                                <NuxtLink to="#">
+                                    <Payment name="Open collective" />
+                                </NuxtLink>
+                                <div class="mt-10 md:mt-20" />
+                                <NuxtLink to="#">
+                                    <Payment name="Mobile money/ Visa/Mastercard" />
+                                </NuxtLink>
+                            </div>
+                            <div class="w-full mt-16 flex items-center justify-center">
+                                <div @click='selectTabPaymentStatus()' class="w-full md:w-1/4 pt-6">
+                                    <Button show-picture="nothing"
+                                        my-style="background: #235365;padding: 20px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
+                                        name="Make payment" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-show="statusPayment === true">
+                    <div>
+                        <div class="flex flex-col md:w-11/12 mx-auto mt-14">
+                            <div class="flex items-center justify-center my-6">
+                                <img :src="checkImg" alt="" class="h-96 w-1/3 object-contain" />
+                            </div>
+                            <p style="color: #235365;" class="mt-6 text-center text-xl md:w-1/2 mx-auto font-bold">
+                                Pending approuval. Your job will be published as soon as your payment is approuved
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -370,6 +480,11 @@ export default {
         return {
             opened: [],
             uploadImg: require("../assets/upload.png"),
+            checkImg: require("../assets/payment.png"),
+            isActiveOption: false,
+            isActiveJob: true,
+            isActivePayment: false,
+            statusPayment: false,
             tooltips: [
                 {
                     id: 1,
@@ -415,6 +530,29 @@ export default {
                 this.opened.push(id)
             }
         },
+
+        selectTabJob() {
+            this.isActiveOption = false
+            this.isActivePayment = false
+            this.isActiveJob = true
+            this.statusPayment = false
+        },
+        selectTabOption() {
+            this.isActiveOption = true
+            this.isActivePayment = false
+            this.isActiveJob = false
+            this.statusPayment = false
+        },
+        selectTabPayment() {
+            this.isActivePayment = true
+            this.isActiveOption = false
+            this.isActiveJob = false
+            this.statusPayment = false
+        },
+        selectTabPaymentStatus() {
+            this.isActivePayment = false
+            this.statusPayment = true
+        }
 
     },
 }
