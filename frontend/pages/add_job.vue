@@ -22,7 +22,7 @@
                         Payments
                     </div>
                 </div>
-                <form v-show="isActiveJob">
+                <form v-if="isActiveJob">
                     <div class="flex flex-col md:w-7/12 mx-auto">
                         <div class="grid gap-7 grid-cols-1 mt-20">
                             <div>
@@ -356,7 +356,7 @@
                     </div>
                 </form>
 
-                <div v-show="isActiveOption === true">
+                <div v-if="isActiveOption === true">
                     <div>
                         <div class="flex flex-col md:w-10/12 mx-auto mt-7">
                             <p class="font-bold text-base leading-10 mx-auto">
@@ -424,7 +424,7 @@
                     </div>
                 </div>
 
-                <div v-show="isActivePayment === true">
+                <div v-if="isActivePayment === true">
                     <div>
                         <div class="flex flex-col md:w-11/12 mx-auto mt-14">
                             <h4 class="font-bold text-5xl leading-10 mx-auto text-center">
@@ -454,7 +454,7 @@
                         </div>
                     </div>
                 </div>
-                <div v-show="statusPayment === true">
+                <div v-if="statusPayment === true">
                     <div>
                         <div class="flex flex-col md:w-11/12 mx-auto mt-14">
                             <div class="flex items-center justify-center my-6">
