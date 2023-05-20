@@ -55,6 +55,9 @@ func main() {
 	//Subscribers
 	router.POST("/subscribers", handlers.PostSubscribers)
 
+	//Pay
+	router.POST("/pay", handlers.PostPay)
+
 	if err := router.Run(":7000"); err != nil {
 		return
 	}
