@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 )
@@ -28,19 +29,32 @@ func PostPay(c *gin.Context) {
 		return
 	}
 
-	err := query.Validate()
-	if err != nil {
+	if err := query.Validate(); err != nil {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": err.Error()})
 		return
 	}
 
-	//Record customer payment request
+	//1- Record customer payment request
 
-	//Create a new opencollective tier
+	//2- Create a new opencollective tier
 	//The deletion should happen on the webhook or a day after created
+	paymentClient, err := server.GetDefaultPaymentClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment"})
+		return
+	}
+	url, err := paymentClient.CreateTier()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment"})
+		return
+	}
 
 	//Send the link to the newly created opencollective tier to back to the client
-	c.JSON(http.StatusOK, gin.H{"message": "Payment request recorded"})
+	c.JSON(http.StatusOK, gin.H{"tier_url": url})
 }

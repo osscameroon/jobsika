@@ -2,13 +2,15 @@ package server
 
 import (
 	"github.com/osscameroon/jobsika/internal/config"
+	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/storage"
 )
 
 // Server defines the api server struct
 type Server struct {
-	DB   storage.DB
-	Conf config.Config
+	DB            storage.DB
+	Conf          config.Config
+	PaymentClient payment.Client
 }
 
 var defaultServer *Server
@@ -22,9 +24,15 @@ func GetDefaultServer() (*Server, error) {
 			return nil, err
 		}
 
+		paymentClient, err := payment.NewClient(conf.OCOpts)
+		if err != nil {
+			return nil, err
+		}
+
 		defaultServer = &Server{
-			DB:   *db,
-			Conf: conf,
+			DB:            *db,
+			Conf:          conf,
+			PaymentClient: *paymentClient,
 		}
 	}
 
@@ -49,4 +57,14 @@ func GetDefaultConfig() config.Config {
 	}
 
 	return s.Conf
+}
+
+// GetDefaultPaymentClient returns the default payment client
+func GetDefaultPaymentClient() (payment.Client, error) {
+	s, err := GetDefaultServer()
+	if err != nil {
+		return payment.Client{}, err
+	}
+
+	return s.PaymentClient, nil
 }
