@@ -7,6 +7,9 @@ import (
 	"strconv"
 	"strings"
 
+	"golang.org/x/text/cases"
+	"golang.org/x/text/language"
+
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -89,7 +92,7 @@ func (db DB) GetRatings(page, limit, jobtitle, company, city, seniority string) 
 		c.name = ?
   		and (Select count(ss.id)
        		from salaries ss
-       		where ss.title_id = s.title_id and 
+       		where ss.title_id = s.title_id and
 			ss.company_id = s.company_id) >= ?`, company, maxEntryBeforeDisplay)
 	}
 	if jobtitle != "" {
@@ -155,7 +158,7 @@ func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta
 		c.name = ?
   		and (Select count(ss.id)
        		from salaries ss
-       		where ss.title_id = s.title_id and 
+       		where ss.title_id = s.title_id and
 			ss.company_id = s.company_id) >= ?`, company, maxEntryBeforeDisplay)
 	}
 	if jobtitle != "" {
@@ -186,9 +189,10 @@ func (db DB) GetAverageRating(jobtitle, company, city, seniority string) (v1beta
 
 // PostRatings post new rating
 func (db DB) PostRatings(query v1beta.RatingPostQuery) error {
-	query.CompanyName = strings.Title(strings.ToLower(query.CompanyName))
-	query.JobTitle = strings.Title(strings.ToLower(query.JobTitle))
-	query.City = strings.Title(strings.ToLower(query.City))
+	caser := cases.Title(language.English)
+	query.CompanyName = caser.String(strings.ToLower(query.CompanyName))
+	query.JobTitle = caser.String(strings.ToLower(query.JobTitle))
+	query.City = caser.String(strings.ToLower(query.City))
 
 	return db.c.Transaction(func(tx *gorm.DB) error {
 		company, err := postCompany(tx, query)
