@@ -29,7 +29,7 @@ build:
 ## run: run the api
 .PHONY: run
 run:
-	go run .
+	ENVIRONMENT=development go run .
 
 ## run4test: run the api in test environment (fixes timeouts)
 .PHONY: run4test

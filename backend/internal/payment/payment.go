@@ -2,6 +2,7 @@ package payment
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/osscameroon/jobsika/internal/graphql"
 )
@@ -12,7 +13,7 @@ type IClient interface {
 }
 
 const TierDescription = `
-You are about to pay %d USD for a job offer on jobsika.com.
+You are about to pay %.2f EUR for a job offer on jobsika.com.
 
 Please proceed to payment and once done, you will receive an email with the job offer details.
 `
@@ -125,14 +126,19 @@ func (c Client) CreateTier() (PostTierResponse, error) {
 	}
 `)
 
-	price := 5
+	price := 5.0
+	name := "jobsika-joboffer"
+	if os.Getenv("ENVIRONMENT") == "development" {
+		price = 0.01
+		name = "test-jobsika-joboffer"
+	}
 	variables := map[string]interface{}{
 		"tier": map[string]interface{}{
 			"amount": map[string]interface{}{
 				"value":    price,
-				"currency": "USD",
+				"currency": "EUR",
 			},
-			"name":              "jobsika-joboffer",
+			"name":              name,
 			"description":       fmt.Sprintf(TierDescription, price),
 			"button":            "PAY NOW",
 			"type":              "PRODUCT",
