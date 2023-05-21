@@ -1,9 +1,9 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE IF NOT EXISTS payment_record (
-    id BIGSERIAL NOT NULL,
-    email VARCHAR(255) NOT NULL PRIMARY KEY,
-    tier_id INTEGER NOT NULL,
+CREATE TABLE IF NOT EXISTS payment_records (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    tier_id VARCHAR(255) NOT NULL,
 	legacy_id INTEGER NOT NULL,
 	slug VARCHAR(255) NOT NULL,
 	tier_url VARCHAR(255) NOT NULL,
@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS payment_record (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE IF EXISTS payment_record;
+DROP TABLE IF EXISTS payment_records;
 -- +goose StatementEnd

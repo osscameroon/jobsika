@@ -25,7 +25,7 @@ const OPEN_COLLECTIVE_CONTRIBUTE = "https://opencollective.com/osscameroon/contr
 type PostTierResponse struct {
 	CreateTier struct {
 		ID          string `json:"id"`
-		LegacyID    int    `json:"legacyId"`
+		LegacyID    int64  `json:"legacyId"`
 		Slug        string `json:"slug"`
 		Name        string `json:"name"`
 		Description string `json:"description"`
@@ -81,7 +81,7 @@ func NewClient(opts OpenCollectiveOptions) (*Client, error) {
 	}, nil
 }
 
-func (c Client) CreateTier() (string, error) {
+func (c Client) CreateTier() (PostTierResponse, error) {
 	query := graphql.Query(`
 	mutation (
   	  $tier: TierCreateInput!
@@ -150,9 +150,8 @@ func (c Client) CreateTier() (string, error) {
 	response := PostTierResponse{}
 
 	if err := c.graphQLClient.Run(query, variables, &response); err != nil {
-		return "", err
+		return PostTierResponse{}, err
 	}
 
-	tier_url := fmt.Sprintf("%s%s-%d", OPEN_COLLECTIVE_CONTRIBUTE, response.CreateTier.Slug, response.CreateTier.LegacyID)
-	return tier_url, nil
+	return response, nil
 }

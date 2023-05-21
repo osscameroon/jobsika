@@ -2,10 +2,12 @@ package handlers
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/server"
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
@@ -36,9 +38,7 @@ func PostPay(c *gin.Context) {
 		return
 	}
 
-	//1- Record customer payment request
-
-	//2- Create a new opencollective tier
+	//Create a new opencollective tier
 	//The deletion should happen on the webhook or a day after created
 	paymentClient, err := server.GetDefaultPaymentClient()
 	if err != nil {
@@ -47,11 +47,34 @@ func PostPay(c *gin.Context) {
 			gin.H{"error": "could not create payment"})
 		return
 	}
-	url, err := paymentClient.CreateTier()
+	response, err := paymentClient.CreateTier()
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"error": "could not create payment"})
+		return
+	}
+
+	//Record customer payment request
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to get db client"})
+		return
+	}
+	url := fmt.Sprintf("%s%s-%d", payment.OPEN_COLLECTIVE_CONTRIBUTE, response.CreateTier.Slug, response.CreateTier.LegacyID)
+	err = db.CreatePaymentRecord(&v1beta.PaymentRecord{
+		TierId:   response.CreateTier.ID,
+		LegacyId: response.CreateTier.LegacyID,
+		Slug:     response.CreateTier.Slug,
+		Email:    query.Email,
+		TierUrl:  url,
+	})
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find job titles"})
 		return
 	}
 
