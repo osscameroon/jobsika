@@ -21,7 +21,7 @@ func (db DB) GetCompanies() ([]v1beta.Company, error) {
 	if cameroonianCompany.Name == "" {
 		tmpCameroonianCompanies := CameroonianCompanies
 		//If we are running tests we use a short list of companies
-		if os.Getenv("ENVIRONMENT") == "test" {
+		if os.Getenv("TEST") == "true" {
 			tmpCameroonianCompanies = []string{"Tester"}
 		}
 

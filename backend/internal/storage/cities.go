@@ -1,8 +1,9 @@
 package storage
 
 import (
-	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	"os"
+
+	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 )
 
 // GetCities get cities
@@ -21,7 +22,7 @@ func (db DB) GetCities() ([]string, error) {
 	if defaultCity.Name == "" {
 		tmpCities := DefaultCities
 		//If we are running tests we use a short list of cities
-		if os.Getenv("ENVIRONMENT") == "test" {
+		if os.Getenv("TEST") == "true" {
 			tmpCities = []string{"Tester"}
 		}
 

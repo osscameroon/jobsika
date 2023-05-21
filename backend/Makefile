@@ -34,10 +34,10 @@ run:
 ## run4test: run the api in test environment (fixes timeouts)
 .PHONY: run4test
 run4test:
-	ENVIRONMENT=test go run .
+	ENVIRONMENT=development TEST=true go run .
 
 ## e2etest: run end to end tests against local api
-## : run the api using `ENVIRONMENT=dev make run` or `make run4test` to avoid timeouts
+## : run the api using `ENVIRONMENT=development TEST=true make run` or `make run4test` to avoid timeouts
 .PHONY: e2etest
 e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data; cd ./e2etests/ && API_HOST="http://localhost:7000/" npm test
