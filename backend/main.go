@@ -58,6 +58,9 @@ func main() {
 	//Pay
 	router.POST("/pay", handlers.PostPay)
 
+	//GetOrderID
+	router.GET("/getorder", handlers.GetOrderID)
+
 	//OpenCollectionWebhook
 	router.POST("/open-collective-webhook", handlers.OpenCollectiveWebhook)
 

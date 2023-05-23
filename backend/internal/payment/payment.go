@@ -3,6 +3,7 @@ package payment
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/osscameroon/jobsika/internal/graphql"
 )
@@ -258,4 +259,79 @@ func (c Client) DeleteTier(legacyId int64) error {
 	}
 
 	return nil
+}
+
+// GetOder
+type GetOrderResponse struct {
+	Order struct {
+		ID       string `json:"id"`
+		LegacyID int    `json:"legacyId"`
+		Tier     struct {
+			ID                string `json:"id"`
+			LegacyID          int    `json:"legacyId"`
+			Slug              string `json:"slug"`
+			Name              string `json:"name"`
+			Description       string `json:"description"`
+			Button            string `json:"button"`
+			Type              string `json:"type"`
+			Interval          string `json:"interval"`
+			Frequency         string `json:"frequency"`
+			Presets           []int  `json:"presets"`
+			MaxQuantity       int    `json:"maxQuantity"`
+			AvailableQuantity int    `json:"availableQuantity"`
+			CustomFields      struct {
+			} `json:"customFields"`
+			AmountType        string    `json:"amountType"`
+			EndsAt            time.Time `json:"endsAt"`
+			InvoiceTemplate   string    `json:"invoiceTemplate"`
+			UseStandalonePage bool      `json:"useStandalonePage"`
+			SingleTicket      bool      `json:"singleTicket"`
+		} `json:"tier"`
+	} `json:"order"`
+}
+
+func (c Client) GetOrder(orderID int64) (GetOrderResponse, error) {
+	query := graphql.Query(`
+query (
+  $order: OrderReferenceInput!
+  ) {
+  order(order: $order) {
+    id
+    legacyId
+    tier {
+      id
+      legacyId
+      slug
+      name
+      description
+      button
+      type
+      interval
+      frequency
+      presets
+      maxQuantity
+      availableQuantity
+      customFields
+      amountType
+      endsAt
+      invoiceTemplate
+      useStandalonePage
+      singleTicket
+    }
+  }
+}
+`)
+
+	variables := map[string]interface{}{
+		"order": map[string]interface{}{
+			"legacyId": orderID,
+		},
+	}
+
+	response := GetOrderResponse{}
+	if err := c.graphQLClient.Run(query, variables, &response); err != nil {
+		return GetOrderResponse{}, err
+	}
+
+	return response, nil
 }

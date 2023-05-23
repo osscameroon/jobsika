@@ -1,9 +1,13 @@
 package handlers
 
 import (
+	"fmt"
+	"net/http"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/osscameroon/jobsika/internal/server"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -76,4 +80,34 @@ func OpenCollectiveWebhook(c *gin.Context) {
 	}
 
 	log.Info("OpenCollectiveWebhook was triggered!")
+}
+
+// GetOrderID retrieves an open collective order id
+// This endpoint was created for testing purposes
+func GetOrderID(c *gin.Context) {
+	orderID, err := strconv.ParseInt(c.Query("orderID"), 10, 64)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to parse order id"})
+		return
+	}
+
+	paymentClient, err := server.GetDefaultPaymentClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment client"})
+		return
+	}
+	response, err := paymentClient.GetOrder(orderID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment client"})
+		return
+	}
+
+	fmt.Printf("legacyID: %d\n", response.Order.Tier.LegacyID)
+	log.Info("GetOrders was triggered!")
 }
