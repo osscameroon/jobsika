@@ -58,6 +58,9 @@ func main() {
 	//Pay
 	router.POST("/pay", handlers.PostPay)
 
+	//OpenCollectionWebhook
+	router.POST("/open-collective-webhook", handlers.OpenCollectiveWebhook)
+
 	if err := router.Run(":7000"); err != nil {
 		return
 	}
