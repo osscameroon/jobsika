@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -63,16 +64,27 @@ func PostPay(c *gin.Context) {
 			gin.H{"error": "failed to get db client"})
 		return
 	}
+
+	jobOfferID, err := strconv.ParseInt(query.JobOfferID, 10, 64)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to parse job offer id"})
+		return
+	}
+
 	url := fmt.Sprintf("%s%s-%d", payment.OPEN_COLLECTIVE_CONTRIBUTE, response.CreateTier.Slug, response.CreateTier.LegacyID)
 	err = db.CreatePaymentRecord(&v1beta.PaymentRecord{
-		TierId:   response.CreateTier.ID,
-		LegacyId: response.CreateTier.LegacyID,
-		Slug:     response.CreateTier.Slug,
-		Email:    query.Email,
-		TierUrl:  url,
+		TierId:     response.CreateTier.ID,
+		JobOfferID: jobOfferID,
+		LegacyId:   response.CreateTier.LegacyID,
+		Slug:       response.CreateTier.Slug,
+		Email:      query.Email,
+		TierUrl:    url,
 	})
 	if err != nil {
 		log.Error(err)
+		//TODO: if we fail to record the payment, we should delete the tier
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"error": "could not find job titles"})
 		return

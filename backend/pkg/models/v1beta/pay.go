@@ -7,8 +7,9 @@ import (
 
 type PayPostQuery struct {
 	// The email of the user making the payment
-	Email string `json:"email"`
-	Tier  string `json:"tier"`
+	Email      string `json:"email"`
+	Tier       string `json:"tier"`
+	JobOfferID string `json:"job_offer_id"`
 }
 
 // Validate check if the mandatory fields are filled
