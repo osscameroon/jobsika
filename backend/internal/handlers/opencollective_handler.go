@@ -45,7 +45,7 @@ type WebhookPayload struct {
 			Group                             string      `json:"group"`
 			Amount                            int         `json:"amount"`
 			IsDebt                            bool        `json:"isDebt"`
-			OrderID                           int         `json:"OrderId"`
+			OrderID                           int64       `json:"OrderId"`
 			Currency                          string      `json:"currency"`
 			IsRefund                          bool        `json:"isRefund"`
 			ExpenseID                         interface{} `json:"ExpenseId"`
@@ -79,6 +79,45 @@ func OpenCollectiveWebhook(c *gin.Context) {
 		return
 	}
 
+	paymentClient, err := server.GetDefaultPaymentClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment client"})
+		return
+	}
+	response, err := paymentClient.GetOrder(payload.Data.Transaction.OrderID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not create payment client"})
+		return
+	}
+
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to get db client"})
+		return
+	}
+
+	tierID := response.Order.Tier.LegacyID
+	_, err = db.GetPaymentRecordByID(tierID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to get payment record"})
+		return
+	}
+
+	if err := paymentClient.DeleteTier(tierID); err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to delete tier"})
+		return
+	}
+
 	log.Info("OpenCollectiveWebhook was triggered!")
 }
 
@@ -107,6 +146,24 @@ func GetOrderID(c *gin.Context) {
 			gin.H{"error": "could not create payment client"})
 		return
 	}
+
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to get db client"})
+		return
+	}
+
+	tierID := response.Order.Tier.LegacyID
+	paymentRecord, err := db.GetPaymentRecordByID(tierID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to get payment record"})
+		return
+	}
+	fmt.Printf("paymentRecord: %+v\n", paymentRecord)
 
 	fmt.Printf("legacyID: %d\n", response.Order.Tier.LegacyID)
 	log.Info("GetOrders was triggered!")

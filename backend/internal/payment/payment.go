@@ -268,7 +268,7 @@ type GetOrderResponse struct {
 		LegacyID int    `json:"legacyId"`
 		Tier     struct {
 			ID                string `json:"id"`
-			LegacyID          int    `json:"legacyId"`
+			LegacyID          int64  `json:"legacyId"`
 			Slug              string `json:"slug"`
 			Name              string `json:"name"`
 			Description       string `json:"description"`
