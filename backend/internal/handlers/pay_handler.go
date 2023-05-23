@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/osscameroon/jobsika/internal/payment"
@@ -83,10 +84,19 @@ func PostPay(c *gin.Context) {
 		TierUrl:    url,
 	})
 	if err != nil {
+		retry := 0
+		for retry < 3 {
+			if err := paymentClient.DeleteTier(response.CreateTier.LegacyID); err != nil {
+				retry++
+				time.Sleep(time.Duration(retry*100) * time.Millisecond)
+			} else {
+				break
+			}
+		}
+
 		log.Error(err)
-		//TODO: if we fail to record the payment, we should delete the tier
 		c.JSON(http.StatusInternalServerError,
-			gin.H{"error": "could not find job titles"})
+			gin.H{"error": "failed to create payment record"})
 		return
 	}
 
