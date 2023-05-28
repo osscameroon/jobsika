@@ -10,7 +10,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/server"
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
@@ -83,7 +82,7 @@ func PostPay(c *gin.Context) {
 		return
 	}
 
-	url := fmt.Sprintf("%s%s-%d", payment.OPEN_COLLECTIVE_CONTRIBUTE, response.CreateTier.Slug, response.CreateTier.LegacyID)
+	url := fmt.Sprintf("%s%s-%d", paymentClient.GetContributionURL(), response.CreateTier.Slug, response.CreateTier.LegacyID)
 	err = db.CreatePaymentRecord(&v1beta.PaymentRecord{
 		TierId:     response.CreateTier.ID,
 		JobOfferID: jobOfferID,

@@ -20,8 +20,7 @@ Please proceed to payment and once done, you will receive an email with the job 
 `
 
 const OSSCAMEROON_SLUG = "osscameroon"
-const OSSCAMEROON_ID = "4rxg0j35-lzkwm6vz-bxbqvoe9-8n47daby"
-const OPEN_COLLECTIVE_CONTRIBUTE = "https://opencollective.com/osscameroon/contribute/"
+const OPEN_COLLECTIVE_CONTRIBUTE = "https://opencollective.com/%s/contribute/"
 
 // PostTierResponse
 type PostTierResponse struct {
@@ -65,11 +64,13 @@ type PostTierResponse struct {
 //create a struct
 type Client struct {
 	graphQLClient *graphql.Client
+	orgSlug       string
 }
 
 type OpenCollectiveOptions struct {
-	URL string
-	KEY string
+	URL     string
+	KEY     string
+	OrgSlug string
 }
 
 func NewClient(opts OpenCollectiveOptions) (*Client, error) {
@@ -78,9 +79,19 @@ func NewClient(opts OpenCollectiveOptions) (*Client, error) {
 		return nil, fmt.Errorf("failed to create graphql client")
 	}
 
+	orgSlug := opts.OrgSlug
+	if orgSlug == "" {
+		orgSlug = OSSCAMEROON_SLUG
+	}
+
 	return &Client{
 		graphQLClient: client,
+		orgSlug:       orgSlug,
 	}, nil
+}
+
+func (c Client) GetContributionURL() string {
+	return fmt.Sprintf(OPEN_COLLECTIVE_CONTRIBUTE, c.orgSlug)
 }
 
 func (c Client) CreateTier() (PostTierResponse, error) {
@@ -149,7 +160,6 @@ mutation (
 			"useStandalonePage": true,
 		},
 		"account": map[string]interface{}{
-			"id":   OSSCAMEROON_ID,
 			"slug": OSSCAMEROON_SLUG,
 		},
 	}

@@ -48,8 +48,9 @@ func GetDefaultConfig() Config {
 			Environment: os.Getenv("ENVIRONMENT"),
 			JWTKey:      os.Getenv("JWT_KEY"),
 			OCOpts: payment.OpenCollectiveOptions{
-				URL: os.Getenv("OPEN_COLLECTIVE_API_URL"),
-				KEY: os.Getenv("OPEN_COLLECTIVE_API_KEY"),
+				URL:     os.Getenv("OPEN_COLLECTIVE_API_URL"),
+				KEY:     os.Getenv("OPEN_COLLECTIVE_API_KEY"),
+				OrgSlug: os.Getenv("OPEN_COLLECTIVE_ORG_SLUG"),
 			},
 		}
 	}
