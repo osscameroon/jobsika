@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -37,6 +38,14 @@ func PostPay(c *gin.Context) {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": err.Error()})
+		return
+	}
+
+	//We can't proceed with a payment on test mode as this will create unecessary
+	//payment on opencollective
+	if os.Getenv("TEST") == "true" {
+		//Send the link to the newly created opencollective tier to back to the client
+		c.JSON(http.StatusOK, gin.H{"tier_url": "https://opencollective.com/osscameroon/something-something"})
 		return
 	}
 
