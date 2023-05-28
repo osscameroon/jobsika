@@ -13,6 +13,7 @@ To run the application locally, you should:
 - GNU make
 - docker with docker-compose
 - [swagger](https://goswagger.io/install.html)
+- Nodejs version 12.x.x
 
 #### Here is the detail steps you can take to install the required dependencies:
 - Jump to the ./backend folder: `cd ./backend`
