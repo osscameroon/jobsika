@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	_ "github.com/osscameroon/jobsika/docs"
 	"github.com/osscameroon/jobsika/internal/handlers"
+	_ "github.com/osscameroon/jobsika/swagger"
 )
 
 func main() {

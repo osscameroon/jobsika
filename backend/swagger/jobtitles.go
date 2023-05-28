@@ -1,4 +1,4 @@
-package docs
+package swagger
 
 // swagger:route GET /jobtitles jobtitles idOfCompanyWithoutID
 // Companies returns the list of jobtitles
