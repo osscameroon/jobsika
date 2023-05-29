@@ -22,8 +22,8 @@
             </div>
             <div class="pt-8">
                 <div v-for="(item, index) in jobs" :key="index" class="mb-6">
-                    <JobPost :picture="image" :title="item.job_title" :city="item.city" :structure="item.company_name"
-                        :marker="item.is_remote ? 'Remote' : 'Local' " :time="item.createdat" :description="item.description" :tags="item.tags" />
+                    <JobPost :details="jobs" :myIndex="index" :picture="image" :title="item.job_title" :city="item.city" :structure="item.company_name" minSalary="150 000" maxSalary="200 000"
+                        :marker="item.is_remote ? 'Remote' : 'Local' " :time="item.createdat" :description="item.description" :tags="item.tags" mail="devjobs@ejara.com" />
                 </div>
             </div>
           <JobPagination />
