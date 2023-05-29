@@ -41,7 +41,7 @@
 					: 'bg-blueDark text-white border-none'
 				}
 	            `" @click="previewpage()">
-				Previous
+				{{$t("global_label_previous")}}
 			</span>
 			<span style="font-family: 'Inter', sans-serif" :class="`
 						ml-3
@@ -61,7 +61,7 @@
 					: 'bg-blueDark text-white border-none'
 				}
 	        `" @click="nextpage()">
-				Next
+				{{$t("global_label_next")}}
 			</span>
 			<span @click="limitpage()" style="border-color: #919191" class="
 	            relative
@@ -86,16 +86,16 @@
 		<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
 			<div>
 				<p v-if="nbOfItems == 0" style="font-family: 'Inter', sans-serif" class="text-xs md:text-sm text-gray-700">
-					No items found
+          {{$t("global_label_no_results")}}
 				</p>
 				<p v-else style="font-family: 'Inter', sans-serif" class="text-xs md:text-sm text-gray-700">
-					Showing
+          {{$t("global_label_showing")}}
 					<span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
-					to
+          {{$t("global_label_to")}}
 					<span class="font-medium">{{ limit * (page - 1) + nbOfItems }}</span>
-					of
+          {{$t("global_label_of")}}
 					<span class="font-medium">{{ nbHits }}</span>
-					results
+          {{$t("global_label_results")}}
 				</p>
 			</div>
 			<div>
@@ -137,7 +137,7 @@
 							  ${page === current1 ? 'bg-blue' : 'bg-white'}
 							`"
 						>
-							<span class="sr-only">Previous</span>
+							<span class="sr-only">{{$t("global_label_previous")}}</span>
 							<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
 								aria-hidden="true">
 								<path fill-rule="evenodd"
@@ -229,7 +229,7 @@
 							${page === current1 ? 'bg-blue' : 'bg-white'}
 						`"
 						>
-							<span class="sr-only">Next</span>
+							<span class="sr-only">{{$t("global_label_next")}}</span>
 							<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
 								aria-hidden="true">
 								<path fill-rule="evenodd"
@@ -262,7 +262,7 @@
 		</div>
 	</div>
 </template>
-  
+
 <script>
 export default {
 	name: 'Jobs_Pagination_Number',
@@ -356,4 +356,3 @@ export default {
 	},
 }
 </script>
-  

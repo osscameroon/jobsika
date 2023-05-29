@@ -35,4 +35,10 @@ export default {
   "jobs_page_title": "Trouvez l'emploi qui correspond à vos compétences et à votre passion",
   "jobs_page_cta": "Recevez les offres directement dans votre boîte de réception dès qu'elles sont publiées",
   "global_label_apply": "Postuler",
+  "global_label_previous": "Précédent",
+  "global_label_next": "Suivant",
+  "global_label_showing": "Affiché",
+  "global_label_to": "à",
+  "global_label_of": "sur",
+  "global_label_results": "résultats",
 }

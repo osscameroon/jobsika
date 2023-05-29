@@ -35,4 +35,11 @@ export default {
   "jobs_page_title": "Find the job that fits your skills and passion",
   "jobs_page_cta": "Receive the jobs right in your inbox as soon as they are posted",
   "global_label_apply": "Apply",
+  "global_label_previous": "Previous",
+  "global_label_next": "Next",
+  "global_label_showing": "Showing",
+  "global_label_to": "to",
+  "global_label_of": "of",
+  "global_label_results": "results",
+  "global_label_no_results": "No items found",
 }
