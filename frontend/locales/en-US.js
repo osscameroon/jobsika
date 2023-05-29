@@ -42,4 +42,10 @@ export default {
   "global_label_of": "of",
   "global_label_results": "results",
   "global_label_no_results": "No items found",
+  "subscribe_modal_title": "Don't miss any job from JobSika",
+  "subscribe_modal_field_id": "Your telegram ID",
+  "subscribe_modal_field_id_note": "Your telegram ID is your identification name that usually starts with @",
+  "subscribe_modal_field_email": "Your email",
+  "subscribe_modal_field_email_note": "All new job offers will be sent to your email",
+  "subscribe_modal_submit": "Sign up",
 }

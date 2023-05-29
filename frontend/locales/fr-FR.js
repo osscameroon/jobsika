@@ -41,4 +41,11 @@ export default {
   "global_label_to": "à",
   "global_label_of": "sur",
   "global_label_results": "résultats",
+  "global_label_no_results": "Aucun résultat",
+  "subscribe_modal_title": "Ne manquez aucune offre d'emploi de JobSika",
+  "subscribe_modal_field_id" : "Votre ID Telegram",
+  "subscribe_modal_field_id_note" : "Votre ID Telegram est votre nom d'identification qui commence généralement par @",
+  "subscribe_modal_field_email" : "Votre email",
+  "subscribe_modal_field_email_note" : "Toutes les nouvelles offres d'emploi seront envoyées à votre adresse électronique",
+  "subscribe_modal_submit" : "Sign up",
 }
