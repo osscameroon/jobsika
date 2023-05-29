@@ -11,7 +11,7 @@
               <NuxtLink v-for="(item, index) in navs" :key="index" :to="`${item.link}`" @click.native="setID = item.id"
                 :class="`h-7 lg:w-20 lg:h-16 py-2 flex justify-center items-center text-sm lg:text-base font-bold ${setID === item.id ? 'nav-select' : 'nav-noselect'
                   }`">
-                {{ item.name }}
+                {{ $t(item.name) }}
               </NuxtLink>
             </ul>
           </nav>
@@ -19,14 +19,14 @@
             <div class="lg:pt-0 w-full lg:w-36 lg:mr-4">
               <NuxtLink to="/add_job"
                 class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg">
-                Post a job
+                {{ $t("btn_label_post_job") }}
               </NuxtLink>
             </div>
             <div class="pt-4 lg:pt-0 w-full lg:w-36 lg:ml-4">
               <NuxtLink to="/add_salary"
                 class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-sm lg:text-base border-2 h-12 rounded-lg border-blue">
                 <img :src="plusIcon" class="w-5 h-5 mr-1" />
-                Contribute
+                {{ $t("btn_label_contribute") }}
               </NuxtLink>
             </div>
           </div>
@@ -52,17 +52,17 @@ export default {
         {
           id: 'home',
           link: '/',
-          name: 'HOME',
+          name: 'menu_item_home',
         },
         {
           id: '#jobs',
           link: '/jobs',
-          name: 'JOBS',
+          name: 'menu_item_jobs',
         },
         {
           id: '#salaries',
           link: '/salaries',
-          name: 'SALARIES',
+          name: 'menu_item_salaries',
         },
       ],
       setID: 'home',

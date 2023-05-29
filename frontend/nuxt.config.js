@@ -64,6 +64,7 @@ export default {
     defaultLocale: "en",
     strategy: "prefix_except_default",
     lazy: true,
+    langDir: "locales/",
     vueI18n: {
       fallbackLocale: "en",
       messages: {
