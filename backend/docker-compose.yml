@@ -32,6 +32,7 @@ services:
     env_file:
       - ./.docker-env
       - ./.api-env
+      - ./.opencollective-env
     volumes:
       - .:/api
     ports:
