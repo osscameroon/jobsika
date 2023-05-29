@@ -35,4 +35,4 @@ services:
     volumes:
       - .:/api
     ports:
-      - 7000:7000
+      - 7001:7000 # TODO: change to 7000 before commit
