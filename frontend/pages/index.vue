@@ -62,7 +62,7 @@
                   <div class="pt-1 xl:pt-0 xl:ml-2 flex flex-row items-center">
                     <img class="w-auto h-4" :src="clock"/>
                     <p class="text-xs mx-1 text-gray-500 ml-1">
-                      {{ item.createdat }}
+                      {{ new Date(item.createdat).toLocaleDateString() }}
                     </p>
                   </div>
                 </div>
