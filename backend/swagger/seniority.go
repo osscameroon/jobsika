@@ -1,4 +1,4 @@
-package docs
+package swagger
 
 // swagger:route GET /seniority seniority idOfSeniority
 // Companies returns seniority endpoint

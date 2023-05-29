@@ -3,8 +3,8 @@ package main
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	_ "github.com/osscameroon/jobsika/docs"
 	"github.com/osscameroon/jobsika/internal/handlers"
+	_ "github.com/osscameroon/jobsika/swagger"
 )
 
 func main() {
@@ -54,6 +54,15 @@ func main() {
 
 	//Subscribers
 	router.POST("/subscribers", handlers.PostSubscribers)
+
+	//Pay
+	router.POST("/pay", handlers.PostPay)
+
+	//GetOrderID
+	router.GET("/getorder", handlers.GetOrderID)
+
+	//OpenCollectionWebhook
+	router.POST("/open-collective-webhook", handlers.OpenCollectiveWebhook)
 
 	if err := router.Run(":7000"); err != nil {
 		return

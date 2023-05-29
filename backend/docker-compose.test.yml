@@ -19,7 +19,8 @@ services:
     env_file:
       - ./.docker-env
     environment:
-      - ENVIRONMENT=test
+      - TEST=true
+      - ENVIRONMENT=development
     volumes:
       - .:/api
     ports:

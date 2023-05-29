@@ -1,4 +1,4 @@
-package docs
+package swagger
 
 // swagger:route GET /health health idOfHealth
 // Companies returns health endpoint

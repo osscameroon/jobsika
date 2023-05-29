@@ -18,6 +18,7 @@
 jobsika
 postgres-data
 .env
+.opencollective-env
 
 #node
 node_modules
