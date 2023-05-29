@@ -32,4 +32,7 @@ export default {
   "home_page_ad_0": "Are you a UX Designer near Douala? ",
   "home_page_ad_1": "Add your salary",
   "home_page_ad_2": "to help others like yourself make more informed decisions on where they go to work, including better decisions around pay and compensation.",
+  "jobs_page_title": "Find the job that fits your skills and passion",
+  "jobs_page_cta": "Receive the jobs right in your inbox as soon as they are posted",
+  "global_label_apply": "Apply",
 }

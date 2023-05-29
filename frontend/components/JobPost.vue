@@ -30,7 +30,7 @@
             <div class="xl:justify-end items-center w-full xl:w-3/12 pt-4 xl:pt-0 flex">
                 <NuxtLink to="#"
                     :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg ${active == true ? 'flex' : 'hidden'}`">
-                    Apply
+                    {{ $t('global_label_apply') }}
                 </NuxtLink>
             </div>
         </div>
