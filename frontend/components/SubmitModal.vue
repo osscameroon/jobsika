@@ -6,24 +6,13 @@
                 <h4 class="font-light text-base leading-8 pt-2 text-center">Don't miss any job from JobSika</h4>
                 <form class="mt-10">
                     <div class="mx-7">
-                        <div>
-                            <h4 class="text-lg font-semibold text-grayC text-left">
-                                Your telegram ID
-                            </h4>
-                            <p style="font-size: 9px;" class="pt-1 font-normal text-left">Your telegram ID is your
-                                identification name that
-                                usually starts with @</p>
-                            <input type="text" class="border border-grayC w-full rounded-md h-11 mt-1" />
-                        </div>
-                        <div class="mt-7">
-                            <h4 class="text-lg font-semibold text-grayC text-left">
-                                Enter your email
-                            </h4>
-                            <p style="font-size: 9px;" class="pt-1 font-normal text-left">
-                                All new job offers will be sent to your email
-                            </p>
-                            <input type="text" class="border border-grayC w-full rounded-md h-11 mt-1" />
-                        </div>
+                        <h4 class="text-lg font-semibold text-grayC text-left">
+                            Enter your email
+                        </h4>
+                        <p style="font-size: 9px;" class="pt-1 font-normal text-left">
+                            All new job offers will be sent to your email
+                        </p>
+                        <input type="text" class="border border-grayC w-full rounded-md h-11 mt-1" />
                     </div>
                     <div class="flex items-center justify-center my-12">
                         <button
