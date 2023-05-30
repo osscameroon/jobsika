@@ -19,14 +19,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Seniorities
+          {{ $t('global_label_all_seniorties') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -45,7 +45,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Job Title
+    {{ $t('salary_table_header_job_title')}}
       </h4>
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
@@ -59,14 +59,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Titles
+          {{ $t('global_label_all_job_title') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -85,7 +85,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Companies
+        {{ $t('global_label_companies')}}
       </h4>
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
@@ -99,14 +99,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Compagnies
+          {{ $t('global_label_all_companies') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -125,7 +125,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Cities
+        {{ $t('global_label_cities') }}
       </h4>
       <select
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
@@ -139,14 +139,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Cities
+          {{ $t('global_label_all_cities') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           style="font-family: 'Inter', sans-serif"
@@ -164,6 +164,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   name: 'SelectComponent',
   props: {},

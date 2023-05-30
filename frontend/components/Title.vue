@@ -3,12 +3,12 @@
     <div :style="myStyle" class="pt-2 md:pt-8 lg:pt-14">
       <div class="site__title-text text-center">
         <h2 v-if="content === 'subtitle'" style="color: #000000; font-family: 'Inter', sans-serif"
-          class="font-bold text-xl md:text-2xl flex justify-center md:justify-start">
+            class="font-bold text-xl md:text-2xl flex justify-center md:justify-start">
           {{ title }}
         </h2>
 
         <h2 v-else style="color: #000000; font-family: 'Inter', sans-serif"
-          class="font-bold text-3xl md:text-4xl flex justify-center">
+            class="font-bold text-3xl md:text-4xl flex justify-center">
           {{ title }}
         </h2>
       </div>
@@ -37,30 +37,27 @@
                 font-family: 'Inter', sans-serif;
                 line-height: 1.5rem;
               ">
-              ...But here is what you need to know:
+              {{ $t("about_anonymous_title") }}
             </p>
             <div class="ml-0 md:ml-8 my-1">
               <u class="no-underline">
                 <li>
-                  <span class="text-xs md:text-sm mt-1 leading-5" style="color: #808081">
-                    <span class="font-bold">The company name</span> is only
-                    displayed if at least 3 people in the same company with the
-                    same job title contribute. Until then, a generic description
-                    like "A local company" will be displayed.
+                  <span
+                    class="text-xs md:text-sm mt-1 leading-5" style="color: #808081"
+                    v-html="$t('about_anonymous_0')"
+                  >
                   </span>
                 </li>
                 <li>
-                  <span class="text-xs md:text-sm mt-2 leading-5" style="color: #808081">
-                    <span class="font-bold">The comment</span> is only displayed
-                    if at least 3 people in the same company with the same job
-                    title contribute.
+                  <span class="text-xs md:text-sm mt-2 leading-5" style="color: #808081"
+                        v-html="$t('about_anonymous_1')"
+                  >
                   </span>
                 </li>
                 <li>
-                  <span class="text-xs md:text-sm mt-2 leading-5" style="color: #808081">
-                    <span class="font-bold">The rating</span> is only displayed
-                    if at least 3 people in the same company with the same job
-                    title contribute.
+                  <span class="text-xs md:text-sm mt-2 leading-5" style="color: #808081"
+                        v-html="$t('about_anonymous_2')"
+                  >
                   </span>
                 </li>
               </u>
@@ -70,7 +67,7 @@
         <div class="flex justify-between lg:items-end lg:flex-row flex-col">
           <div v-if="fontSize === 'header'" class="flex justify-center md:justify-start">
             <h4 style="color: #235365; font-family: 'Inter', sans-serif"
-              class="pt-3 font-bold text-2xl md:text-3xl text-center">
+                class="pt-3 font-bold text-2xl md:text-3xl text-center">
               {{ subTitle }}
             </h4>
           </div>
@@ -79,7 +76,7 @@
           </h4>
           <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
             <NuxtLink to="/add_salary">
-              <Button myStyle="background: #235365; font-family: 'Inter', sans-serif" name="Contribute" />
+              <Button myStyle="background: #235365; font-family: 'Inter', sans-serif" name="Contribute"/>
             </NuxtLink>
           </div>
         </div>
@@ -95,7 +92,7 @@
         <div class="flex justify-between lg:items-end lg:flex-row flex-col">
           <div v-if="fontSize === 'header'" class="flex justify-center md:justify-start">
             <h4 style="color: #235365; font-family: 'Inter', sans-serif"
-              class="pt-3 font-bold text-2xl md:text-3xl text-center">
+                class="pt-3 font-bold text-2xl md:text-3xl text-center">
               {{ subTitle }}
             </h4>
           </div>
@@ -104,7 +101,10 @@
           </h4>
           <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
             <NuxtLink to="/add_salary">
-              <Button myStyle="background: #235365;" name="Contribute" />
+              <Button
+                myStyle="background: #235365;"
+                :name="$t('btn_label_contribute')"
+              />
             </NuxtLink>
           </div>
         </div>
@@ -116,6 +116,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import Button from '../components/Button.vue'
+
 export default Vue.extend({
   name: 'TitleComponent',
   props: {
