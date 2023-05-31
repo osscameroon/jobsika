@@ -9,14 +9,16 @@
             <div class="pt-8 md:pt-16"></div>
             <div>
                 <div class="flex flex-col md:flex-row md:justify-center">
-                    <div :class="isActiveJob === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'">
+                    <div
+                        :class="isActiveJob === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'">
                         Job details
                     </div>
                     <!-- <div :class="isActiveOption === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4 cursor-pointer' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'"
                         @click='selectTabOption()'>
                         Options
                     </div> -->
-                    <div :class="isActivePayment === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'">
+                    <div
+                        :class="isActivePayment === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'">
                         Payments
                     </div>
                 </div>
@@ -37,21 +39,16 @@
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">Enter your company's brand/trade name:
-                                    without Inc.,
-                                    Ltd., B.V., Pte., etc.</p>
                                 <div v-if="opened.includes(tooltips[0].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p style="font-size: 9px;" class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
-                                        </p>
+                                        <p class="font-normal h-6" style="font-size: 10px;">Enter your company's brand/trade
+                                            name:
+                                            without Inc.,
+                                            Ltd., B.V., Pte., etc.</p>
                                     </div>
                                 </div>
-                                <input type="text" style="height: 61px"
+                                <input
+type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -63,26 +60,21 @@
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                                             :class="{ opened: opened.includes(tooltips[1].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            @click="toggle(tooltips[1].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">This field requires you to enter the
-                                    title of the
-                                    position and/or specialization (if applicable). E.g. "Accountant(Audit)"</p>
                                 <div v-if="opened.includes(tooltips[1].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p style="font-size: 9px;" class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
-                                        </p>
+                                        <p class="font-normal h-6" style="font-size: 10px;">This field requires you to enter
+                                            the
+                                            title of the
+                                            position and/or specialization (if applicable). E.g. "Accountant(Audit)"</p>
                                     </div>
                                 </div>
-                                <input type="text" style="height: 61px"
+                                <input
+type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -94,26 +86,22 @@
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                                             :class="{ opened: opened.includes(tooltips[2].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            @click="toggle(tooltips[2].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">Please add a brief description of the
-                                    role you are
-                                    hiring for, make it straight forward and concise</p>
                                 <div v-if="opened.includes(tooltips[2].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
-                                        </p>
+                                        <p class="font-normal h-6" style="font-size: 10px;">Please add a brief description
+                                            of
+                                            the
+                                            role you are
+                                            hiring for, make it straight forward and concise</p>
                                     </div>
                                 </div>
-                                <textarea cols="6" rows="5" type="text"
+                                <textarea
+cols="6" rows="5" type="text"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4">
                                     </textarea>
                             </div>
@@ -126,14 +114,15 @@
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
                                             :class="{ opened: opened.includes(tooltips[3].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            @click="toggle(tooltips[3].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
                                 <div v-if="opened.includes(tooltips[3].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
+                                        <p class="font-normal h-14" style="font-size: 10px;">Please add a brief description
+                                            of
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
                                             amet non
                                             doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
@@ -161,25 +150,19 @@
                                     <div class="flex items-center">
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                                            :class="{ opened: opened.includes(tooltips[3].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            :class="{ opened: opened.includes(tooltips[4].id) }"
+                                            @click="toggle(tooltips[4].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">
-                                    This field requires you to enter the town you are/were employed in. For remote workers,
-                                    please enter
-                                    the town you are/were based in.
-                                </p>
                                 <div v-if="opened.includes(tooltips[4].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
+                                        <p class="font-normal h-6" style="font-size: 10px;">
+                                            This field requires you to enter the town you are/were employed in. For remote
+                                            workers,
+                                            please enter
+                                            the town you are/were based in.
                                         </p>
                                     </div>
                                 </div>
@@ -202,29 +185,24 @@
                                     <div class="flex items-center">
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                                            :class="{ opened: opened.includes(tooltips[4].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            :class="{ opened: opened.includes(tooltips[5].id) }"
+                                            @click="toggle(tooltips[5].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">
-                                    This field requires you to enter the pre-tax/gross salary you get, vacation money
-                                    included. You can
-                                    find this amount in your contract or on your paycheck.
-                                </p>
-                                <div v-if="opened.includes(tooltips[4].id)" class="w-full bg-primary">
+                                <div v-if="opened.includes(tooltips[5].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
+                                        <p class="font-normal h-6" style="font-size: 10px;">
+                                            This field requires you to enter the pre-tax/gross salary you get, vacation
+                                            money
+                                            included. You can
+                                            find this amount in your contract or on your paycheck.
                                         </p>
                                     </div>
                                 </div>
-                                <input type="text" style="height: 61px"
+                                <input
+type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -235,33 +213,29 @@
                                     <div class="flex items-center">
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                                            :class="{ opened: opened.includes(tooltips[4].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            :class="{ opened: opened.includes(tooltips[6].id) }"
+                                            @click="toggle(tooltips[6].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">
-                                    This field requires you to enter the pre-tax/gross salary you get, vacation money
-                                    included. You can
-                                    find this amount in your contract or on your paycheck.
-                                </p>
-                                <div v-if="opened.includes(tooltips[4].id)" class="w-full bg-primary">
+                                <div v-if="opened.includes(tooltips[6].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
+                                        <p class="font-normal h-6" style="font-size: 10px;">
+                                            This field requires you to enter the pre-tax/gross salary you get, vacation
+                                            money
+                                            included. You can
+                                            find this amount in your contract or on your paycheck.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row">
-                                    <input type="number" style="height: 61px"
+                                    <input
+type="number" style="height: 61px"
                                         class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:mr-2"
                                         placeholder="Minimum" />
-                                    <input type="number" style="height: 61px"
+                                    <input
+type="number" style="height: 61px"
                                         class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:ml-2"
                                         placeholder="Maximum" />
                                 </div>
@@ -274,27 +248,21 @@
                                     <div class="flex items-center">
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                                            :class="{ opened: opened.includes(tooltips[6].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            :class="{ opened: opened.includes(tooltips[7].id) }"
+                                            @click="toggle(tooltips[7].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">
-                                    How will you want people to apply for this job?
-                                </p>
-                                <div v-if="opened.includes(tooltips[6].id)" class="w-full bg-primary">
+                                <div v-if="opened.includes(tooltips[7].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
+                                        <p class="font-normal h-6" style="font-size: 10px;">
+                                            How will you want people to apply for this job?
                                         </p>
                                     </div>
                                 </div>
-                                <input type="text" style="height: 61px"
+                                <input
+type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -305,39 +273,34 @@
                                     <div class="flex items-center">
                                         <span
                                             class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                                            :class="{ opened: opened.includes(tooltips[5].id) }"
-                                            @click="toggle(tooltips[0].id)">
+                                            :class="{ opened: opened.includes(tooltips[8].id) }"
+                                            @click="toggle(tooltips[8].id)">
                                             !
                                         </span>
                                     </div>
                                 </div>
-                                <p class="font-normal h-6" style="font-size: 9px;">
-                                    How will you want people to apply for this job? Enter the email or any other infos that
-                                    will help
-                                    people apply for the job
-                                </p>
-                                <div v-if="opened.includes(tooltips[5].id)" class="w-full bg-primary">
+                                <div v-if="opened.includes(tooltips[8].id)" class="w-full bg-primary">
                                     <div class="w-full my-1">
-                                        <p class="font-light text-xs leading-5">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat fugiat harum
-                                            amet non
-                                            doloribus tenetur aliquid fuga pariatur, repudiandae, voluptatem voluptates
-                                            nesciunt
-                                            consectetur dignissimos aut nobis, magni et voluptas aperiam!
+                                        <p class="font-normal h-6" style="font-size: 10px;">
+                                            How will you want people to apply for this job? Enter the email or any other
+                                            infos that
+                                            will help
+                                            people apply for the job
                                         </p>
                                     </div>
                                 </div>
-                                <input type="text" style="height: 61px"
+                                <input
+type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
-                                <p class="font-normal h-6 md:w-3/4" style="font-size: 9px;">
+                                <p class="font-normal h-8 md:w-3/4" style="font-size: 10px;">
                                     Please upload your logo. If no logo is upload , a default logo will be used. Using a
                                     personalised
                                     logo increases your job offer visibility by 60%
                                 </p>
                                 <div class="w-40 h-32 bg-white rounded-lg mt-3 flex items-center">
-                                    <div class="flex justify-center items-center mx-auto">
+                                    <div class="flex justify-center items-center mx-auto cursor-pointer">
                                         <img :src="uploadImg" class="w-6 h-6" />
                                         <h4 class="ml-1 text-base font-semibold text-grayC">Upload logo</h4>
                                     </div>
@@ -345,8 +308,9 @@
                             </div>
                         </div>
                         <div class="mt-10 flex flex-col md:flex-row items-center justify-center xl:justify-start">
-                            <div @click='selectTabPayment()' class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40">
-                                <Button show-picture="nothing"
+                            <div class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40" @click='selectTabPayment()'>
+                                <Button
+show-picture="nothing"
                                     my-style="background: #235365;padding: 20px 80px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
                                     name="Next" />
                             </div>
@@ -370,8 +334,9 @@
                                 </NuxtLink>
                             </div>
                             <div class="w-full mt-16 flex items-center justify-center">
-                                <div @click='selectTabPaymentStatus()' class="w-full md:w-1/4 pt-6">
-                                    <Button show-picture="nothing"
+                                <div class="w-full md:w-1/4 pt-6" @click='selectTabPaymentStatus()'>
+                                    <Button
+show-picture="nothing"
                                         my-style="background: #235365;padding: 20px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
                                         name="Make payment" />
                                 </div>
@@ -441,6 +406,42 @@ export default {
                 },
                 {
                     id: 8,
+                    name: 'rate',
+                },
+                {
+                    id: 9,
+                    name: 'rate',
+                },
+                {
+                    id: 10,
+                    name: 'rate',
+                },
+                {
+                    id: 11,
+                    name: 'rate',
+                },
+                {
+                    id: 12,
+                    name: 'rate',
+                },
+                {
+                    id: 13,
+                    name: 'rate',
+                },
+                {
+                    id: 14,
+                    name: 'rate',
+                },
+                {
+                    id: 15,
+                    name: 'rate',
+                },
+                {
+                    id: 16,
+                    name: 'rate',
+                },
+                {
+                    id: 17,
                     name: 'rate',
                 },
             ],
