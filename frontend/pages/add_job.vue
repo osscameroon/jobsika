@@ -47,8 +47,7 @@
                                             Ltd., B.V., Pte., etc.</p>
                                     </div>
                                 </div>
-                                <input
-type="text" style="height: 61px"
+                                <input type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -73,8 +72,7 @@ type="text" style="height: 61px"
                                             position and/or specialization (if applicable). E.g. "Accountant(Audit)"</p>
                                     </div>
                                 </div>
-                                <input
-type="text" style="height: 61px"
+                                <input type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -100,8 +98,7 @@ type="text" style="height: 61px"
                                             hiring for, make it straight forward and concise</p>
                                     </div>
                                 </div>
-                                <textarea
-cols="6" rows="5" type="text"
+                                <textarea cols="6" rows="5" type="text"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4">
                                     </textarea>
                             </div>
@@ -201,8 +198,7 @@ cols="6" rows="5" type="text"
                                         </p>
                                     </div>
                                 </div>
-                                <input
-type="text" style="height: 61px"
+                                <input type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -230,12 +226,10 @@ type="text" style="height: 61px"
                                     </div>
                                 </div>
                                 <div class="flex flex-col md:flex-row">
-                                    <input
-type="number" style="height: 61px"
+                                    <input type="number" style="height: 61px"
                                         class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:mr-2"
                                         placeholder="Minimum" />
-                                    <input
-type="number" style="height: 61px"
+                                    <input type="number" style="height: 61px"
                                         class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:ml-2"
                                         placeholder="Maximum" />
                                 </div>
@@ -261,8 +255,7 @@ type="number" style="height: 61px"
                                         </p>
                                     </div>
                                 </div>
-                                <input
-type="text" style="height: 61px"
+                                <input type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -289,8 +282,7 @@ type="text" style="height: 61px"
                                         </p>
                                     </div>
                                 </div>
-                                <input
-type="text" style="height: 61px"
+                                <input type="text" style="height: 61px"
                                     class="border border-grayC mt-2 w-full rounded-md mb-4" />
                             </div>
                             <div>
@@ -309,8 +301,7 @@ type="text" style="height: 61px"
                         </div>
                         <div class="mt-10 flex flex-col md:flex-row items-center justify-center xl:justify-start">
                             <div class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40" @click='selectTabPayment()'>
-                                <Button
-show-picture="nothing"
+                                <Button show-picture="nothing"
                                     my-style="background: #235365;padding: 20px 80px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
                                     name="Next" />
                             </div>
@@ -321,25 +312,33 @@ show-picture="nothing"
                     <div>
                         <div class="flex flex-col md:w-11/12 mx-auto mt-14">
                             <h4 class="font-bold text-5xl leading-10 mx-auto text-center">
-                                How do you want to make your payment?
+                                Payment instruction
                             </h4>
-                            <p style="color: #7694A0;" class="mt-6 text-center text-base mx-10">
-                                Last step! please choose a payment method. Your job offer will be published as soon as your
-                                payment
-                                is received and approved by admins
+                            <p style="color: #5b5b5b;" class="mt-6 text-center text-base mx-10 font-light">
+                                Before you proceed with your payment, here is what you need to know!
                             </p>
-                            <div class="mt-12">
-                                <NuxtLink to="#">
-                                    <Payment name="Open collective" />
-                                </NuxtLink>
-                            </div>
-                            <div class="w-full mt-16 flex items-center justify-center">
-                                <div class="w-full md:w-1/4 pt-6" @click='selectTabPaymentStatus()'>
-                                    <Button
-show-picture="nothing"
-                                        my-style="background: #235365;padding: 20px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2);"
-                                        name="Make payment" />
+                            <div class="mt-12 flex justify-center items-center">
+                                <div class="bg-primaryGray p-2 rounded-md md:w-3/5">
+                                    <p style="font-size: 10px;" class="bg-gray-100 w-40 text-center py-1 rounded-md">
+                                        Powered by Open Collective
+                                    </p>
+                                    <div
+                                        class="flex flex-col items-center justify-center text-white text-2xl md:text-5xl mt-14">
+                                        <h1 class="font-extrabold">10 000<span class="text-lg">FCFA</span></h1>
+                                        <div class="mt-10 text-xs leading-8">
+                                            <p v-for="(item, index) in instructions" :key="index">&#8226; {{ item }}</p>
+                                        </div>
+                                        <div class="md:w-1/4 py-6" @click='selectTabPaymentStatus()'>
+                                            <Button show-picture="nothing"
+                                                my-style="background: #235365;padding: 20px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2); width: 164px;"
+                                                name="Proceed payment" />
+                                        </div>
+                                    </div>
                                 </div>
+                            </div>
+                            <div class="mt-10 text-xs leading-8 mx-auto flex flex-col items-center">
+                                <p v-for="(item, index) in instructions1" :key="index" style="color: #5b5b5b;"
+                                    class="text-left text-base font-light md:w-4/6 mb-4">&#8226; {{ item }}</p>
                             </div>
                         </div>
                     </div>
@@ -347,11 +346,17 @@ show-picture="nothing"
                 <div v-if="statusPayment === true">
                     <div>
                         <div class="flex flex-col md:w-11/12 mx-auto mt-14">
+                            <h4 class="font-bold text-5xl leading-10 mx-auto text-center">
+                                Payment successfully
+                            </h4>
+                            <p style="color: #5b5b5b;" class="mt-6 text-center text-base mx-10 font-light">
+                                Thanks for making the payment and supporting OSS Caemeroon
+                            </p>
                             <div class="flex items-center justify-center my-6">
                                 <img :src="checkImg" alt="" class="h-96 w-1/3 object-contain" />
                             </div>
                             <p style="color: #235365;" class="mt-6 text-center text-xl md:w-1/2 mx-auto font-bold">
-                                Pending approuval. Your job will be published as soon as your payment is approuved
+                                Your job is now approved. Go to the job page to see your job details
                             </p>
                         </div>
 
@@ -445,6 +450,14 @@ export default {
                     name: 'rate',
                 },
             ],
+            instructions: [
+                "Company logo (+2.000XAF)",
+                "Diffusion on OSS Groups and accounts ( (8 x users in our databases) XAF)"
+            ],
+            instructions1: [
+                "After you choose an option, you will will be redirected to the open collective website where you can finalize payment and enter your payment infos",
+                "You will receive an email of your job offer"
+            ]
         }
     },
     methods: {
