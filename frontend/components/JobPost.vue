@@ -17,7 +17,7 @@
                     </div>
                     <div class="xl:ml-4 pt-2 xl:pt-0 flex">
                         <img :src="clock" class="w-4 h-4 mr-1" />
-                        <p class="text-xs font-extralight text-gray-600">{{ time }}</p>
+                        <p class="text-xs font-extralight text-gray-600">{{new Date(time).toLocaleDateString() }}</p>
                     </div>
                 </div>
                 <p class="text-xs font-extralight text-gray-600">{{ description }}</p>
