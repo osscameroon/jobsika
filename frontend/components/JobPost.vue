@@ -1,6 +1,7 @@
 <template>
     <div :class="{ opened: opened.includes(details[myIndex].id) }" @click="toggle(details[myIndex].id)">
-        <div class="bg-white cursor-pointer shadow-md p-3 md:p-4 rounded-md hover:shadow-xl" @mouseover="active = true"
+        <div class="bg-white cursor-pointer shadow-md p-3 md:p-4 rounded-md hover:shadow-xl"
+            @mouseover="opened.includes(details[myIndex].id) === true ? active = false : active = true"
             @mouseleave="active = false">
             <div class="flex flex-col xl:flex-row">
                 <div class="w-28 h-28 border rounded-md flex justify-center items-center">
@@ -127,9 +128,6 @@ export default {
         }
     },
     methods: {
-        mouseOver() {
-            this.active = !this.active;
-        },
         toggle(id) {
             const index = this.opened.indexOf(id)
             if (index > -1) {
