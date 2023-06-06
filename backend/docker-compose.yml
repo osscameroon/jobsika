@@ -50,6 +50,7 @@ services:
   api:
     depends_on:
       - start-postgres
+      - start-minio
     image: golang:buster
     command: ["/bin/bash", "-c", "cd /api/ && make run"]
     env_file:

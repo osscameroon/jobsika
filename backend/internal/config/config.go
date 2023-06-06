@@ -12,6 +12,7 @@ import (
 var (
 	postgresEnvFile       = ".postgres-env"
 	openCollectiveEnvFile = ".opencollective-env"
+	s3EnvFile             = ".s3-env"
 	//StageEnv stage environment
 	StageEnv = "stage"
 	//ProdEnv production environment
@@ -40,6 +41,7 @@ func GetDefaultConfig() Config {
 		//load postgres env variables
 		godotenv.Load(postgresEnvFile)
 		godotenv.Load(openCollectiveEnvFile)
+		godotenv.Load(s3EnvFile)
 
 		defaultConfig = &Config{
 			DBOpts: storage.DBOptions{
@@ -60,6 +62,7 @@ func GetDefaultConfig() Config {
 				S3AccessKey: os.Getenv("S3_ACCESS_KEY"),
 				S3SecretKey: os.Getenv("S3_SECRET_KEY"),
 				Endpoint:    os.Getenv("S3_ENDPOINT"),
+				Bucket:      os.Getenv("S3_BUCKET"),
 			},
 		}
 	}

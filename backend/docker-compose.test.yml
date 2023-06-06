@@ -13,6 +13,7 @@ services:
   api:
     depends_on:
       - postgres
+      - start-minio
     restart: always
     image: golang:buster
     command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres-and-run-api.sh

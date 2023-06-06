@@ -3,6 +3,7 @@ package handlers
 import (
 	"errors"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"github.com/gin-gonic/gin"
@@ -76,7 +77,22 @@ func PostJobOffer(c *gin.Context) {
 		return
 	}
 
-	offer, err := db.PostJobOffer(query)
+	var uploadImageFunc func(int64) error
+	// if we have an image, we need to upload it
+	if len(query.CompanyImage) > 0 {
+		uploadImageFunc = func(jobOfferID int64) error {
+			fs, err := server.GetDefaultFileStorage()
+			if err != nil {
+				return err
+			}
+			_, err = fs.UploadJobOfferCompanyPicture(query.CompanyImage, jobOfferID)
+			return err
+		}
+	} else {
+		uploadImageFunc = nil
+	}
+
+	offer, err := db.PostJobOffer(query, uploadImageFunc)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
@@ -104,4 +120,56 @@ func PostJobOffer(c *gin.Context) {
 		ApplicationPhoneNumber:  offer.ApplicationPhoneNumber,
 		Tags:                    offer.Tags,
 	})
+}
+
+//GetJobOfferImage handles /offers/:id/image GET endpoint
+func GetJobOfferImage(c *gin.Context) {
+	db, err := server.GetDefaultDBClient()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find job offer"})
+		return
+	}
+
+	jobOfferIDStr := c.Param("id")
+	jobOfferID, err := strconv.ParseInt(jobOfferIDStr, 10, 64)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "failed to parse job offer id"})
+		return
+	}
+
+	jobOffer, err := db.GetJobOfferById(jobOfferID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusNotFound,
+			gin.H{"error": "could not find job offer"})
+		return
+	}
+
+	if !jobOffer.HasImage {
+		c.JSON(http.StatusNotFound,
+			gin.H{"error": "job offer does not have an image"})
+		return
+	}
+
+	fs, err := server.GetDefaultFileStorage()
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not find job offer image"})
+		return
+	}
+
+	image, err := fs.DownloadJobOfferCompanyPicture(jobOffer.ID)
+	if err != nil {
+		log.Error(err)
+		c.JSON(http.StatusInternalServerError,
+			gin.H{"error": "could not return job offer image"})
+		return
+	}
+
+	c.DataFromReader(http.StatusOK, *image.ContentLength, *image.ContentType, image.Body, nil)
 }

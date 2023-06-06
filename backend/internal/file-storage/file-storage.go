@@ -9,14 +9,16 @@ import (
 
 //
 type FileStorage struct {
-	//The database client
+	//The object storage client
 	s3Client *s3.S3
+	config   FileStorageOptions
 }
 
 type FileStorageOptions struct {
 	S3AccessKey string
 	S3SecretKey string
 	Endpoint    string
+	Bucket      string
 }
 
 //NewFileStorage returns a new FileStorage client
@@ -38,5 +40,6 @@ func NewFileStorage(opt FileStorageOptions) (*FileStorage, error) {
 
 	return &FileStorage{
 		s3Client: s3Client,
+		config:   opt,
 	}, nil
 }

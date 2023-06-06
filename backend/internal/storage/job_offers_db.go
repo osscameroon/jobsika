@@ -62,7 +62,9 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 }
 
 // PostJobOffer post new job offer
-func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
+// the uploadImageFunc is a function that will be called after the job offer is created
+// we made it to avoid circular dependency between storage and server package
+func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobOfferID int64) error) (*v1beta.JobOffer, error) {
 	offer := v1beta.JobOffer{
 		CompanyName:             query.CompanyName,
 		CompanyEmail:            query.CompanyEmail,
@@ -88,6 +90,10 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 			return err
 		}
 
+		if len(query.CompanyImage) > 0 && uploadImageFunc != nil {
+			offer.HasImage = true
+		}
+
 		offer.TitleID = jobTitle.ID
 		res := tx.Table("job_offers").Create(&offer)
 		if res.Error != nil {
@@ -95,9 +101,16 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 			return res.Error
 		}
 
+		if uploadImageFunc != nil {
+			err = uploadImageFunc(offer.ID)
+			if err != nil {
+				log.Error(err)
+				return err
+			}
+		}
+
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
@@ -126,6 +139,7 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.application_email_address,
 		jb.application_phone_number,
 		jb.tags,
+		jb.has_image,
 		jt.title as job_title
 	`).
 		Joins("left join jobtitles as jt on jb.title_id = jt.id")

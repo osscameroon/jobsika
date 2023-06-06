@@ -28,11 +28,13 @@ type JobOffer struct {
 	ApplicationEmailAddress string `json:"application_email_address" gorm:"column:application_email_address"`
 	ApplicationPhoneNumber  string `json:"application_phone_number" gorm:"column:application_phone_number"`
 	Tags                    string `json:"tags" gorm:"column:tags"`
+	HasImage                bool   `json:"has_image" gorm:"column:has_image"`
 }
 
 // OfferPostQuery defines the body object used to create a new jb offer on a POST query
 type OfferPostQuery struct {
 	CompanyName             string `json:"company_name"`
+	CompanyImage            []byte `json:"company_image"`
 	CompanyEmail            string `json:"company_email"`
 	JobTitle                string `json:"job_title"`
 	IsRemote                bool   `json:"is_remote"`
@@ -120,6 +122,7 @@ type JobOfferPresenter struct {
 	ApplicationEmailAddress string `json:"application_email_address"`
 	ApplicationPhoneNumber  string `json:"application_phone_number"`
 	Tags                    string `json:"tags"`
+	HasImage                bool   `json:"has_image" gorm:"column:has_image"`
 }
 
 type JobOffersResponse struct {
