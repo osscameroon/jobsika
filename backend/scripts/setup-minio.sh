@@ -14,4 +14,4 @@ fi
 export $(grep -v '#.*' $ENV_FILE | xargs)
 
 mc alias set local http://minio:9000 $MINIO_ROOT_USER $MINIO_ROOT_PASSWORD
-mc admin user svcacct add --access-key "$MINIO_ACCESS_KEY" --secret-key "$MINIO_SECRET_KEY" local $MINIO_ROOT_USER
+mc admin user svcacct add --access-key "$S3_ACCESS_KEY" --secret-key "$S3_SECRET_KEY" local $MINIO_ROOT_USER

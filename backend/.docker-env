@@ -5,5 +5,5 @@ POSTGRES_HOST=postgres
 POSTGRES_PORT=5432
 MINIO_ROOT_USER=minioadmin
 MINIO_ROOT_PASSWORD=minioadmin
-MINIO_ACCESS_KEY=minioadminaccesskey
-MINIO_SECRET_KEY=minioadminsecretkey
+S3_ACCESS_KEY=minioadminaccesskey
+S3_SECRET_KEY=minioadminsecretkey
