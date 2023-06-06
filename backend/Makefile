@@ -54,6 +54,7 @@ $(E2ETEST_DEPS):
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data
+	-rm -rf minio-data
 	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
@@ -102,6 +103,7 @@ start-api:
 stop-api:
 	docker-compose down && \
 	rm -rf postgres-data
+	rm -rf minio-data
 
 ## start-postgres: starts postgres sql, setup and populate yotas database
 start-postgres:
