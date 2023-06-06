@@ -4,6 +4,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
+	filestorage "github.com/osscameroon/jobsika/internal/file-storage"
 	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/storage"
 )
@@ -28,6 +29,9 @@ type Config struct {
 
 	//OCOpts contains the open collective options
 	OCOpts payment.OpenCollectiveOptions
+
+	//FileStorageOpts contains the file storage options
+	FileStorageOpts filestorage.FileStorageOptions
 }
 
 // GetDefaultConfig returns a config with default values  and env variables
@@ -51,6 +55,11 @@ func GetDefaultConfig() Config {
 				URL:     os.Getenv("OPEN_COLLECTIVE_API_URL"),
 				KEY:     os.Getenv("OPEN_COLLECTIVE_API_KEY"),
 				OrgSlug: os.Getenv("OPEN_COLLECTIVE_ORG_SLUG"),
+			},
+			FileStorageOpts: filestorage.FileStorageOptions{
+				S3AccessKey: os.Getenv("S3_ACCESS_KEY"),
+				S3SecretKey: os.Getenv("S3_SECRET_KEY"),
+				Endpoint:    os.Getenv("S3_ENDPOINT"),
 			},
 		}
 	}
