@@ -17,6 +17,7 @@
 #application
 jobsika
 postgres-data
+minio-data
 .env
 .opencollective-env
 
