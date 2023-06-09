@@ -35,7 +35,7 @@ services:
     env_file:
       - ./.docker-env
     volumes:
-      - ./minio-data:/data
+      - minio-storage:/data
     ports:
       - 9000:9000
       - 9090:9090
@@ -45,7 +45,7 @@ services:
       - host.docker.internal:host-gateway
     depends_on:
       - minio
-    image: golang:1.20
+    image: golang:buster
     command: /api/scripts/wait-for-it/wait-for-it.sh minio:9000 -t 120 -- /api/scripts/setup-minio.sh
     env_file:
       - ./.docker-env
@@ -61,3 +61,6 @@ services:
       API_HOST: "http://api:7000/"
     volumes:
       - .:/api
+
+volumes:
+  minio-storage: {}
