@@ -12,5 +12,8 @@ jobs:
       run:
         working-directory: ./frontend
     steps:
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 14
       - uses: actions/checkout@v2
       - run: yarn install && yarn lint
