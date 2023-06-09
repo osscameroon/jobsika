@@ -1,40 +1,15 @@
 <template>
   <main>
     <div class="container mx-auto md:w-7/12 px-4 md:px-0">
-      <div class="pt-10 lg:pt-14">
+      <div class="pt-10 lg:pt-20">
         <h2 class="font-bold text-2xl md:text-4xl text-center text-black">
           Add a job
         </h2>
       </div>
-      <div class="pt-8 md:pt-16"></div>
       <div>
-        <div class="flex flex-col md:flex-row md:justify-center">
-          <div
-            :class="
-              isActiveJob === false
-                ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'
-                : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'
-            "
-          >
-            Job details
-          </div>
-          <!-- <div :class="isActiveOption === false ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4 cursor-pointer' : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'"
-                        @click='selectTabOption()'>
-                        Options
-                    </div> -->
-          <div
-            :class="
-              isActivePayment === false
-                ? 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray50 h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'
-                : 'px-14 py-4 text-white font-bold flex items-center justify-center lg:text-base bg-primaryGray h-14 rounded-lg mt-8 text-sm w-full md:w-56 md:mx-4'
-            "
-          >
-            Payments
-          </div>
-        </div>
-        <form v-if="isActiveJob">
+        <form>
           <div class="flex flex-col md:w-7/12 mx-auto">
-            <div class="grid gap-7 grid-cols-1 mt-20">
+            <div class="grid gap-7 grid-cols-1 mt-10">
               <div>
                 <div class="flex">
                   <p
@@ -58,7 +33,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       Enter your company's brand/trade name: without Inc., Ltd.,
                       B.V., Pte., etc.
                     </p>
@@ -93,7 +71,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       This field requires you to enter the title of the position
                       and/or specialization (if applicable). E.g.
                       "Accountant(Audit)"
@@ -129,7 +110,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       Please add a brief description of the role you are hiring
                       for, make it straight forward and concise
                     </p>
@@ -151,22 +135,13 @@
                   >
                     Employment type
                   </p>
-                  <div class="flex items-center">
-                    <span
-                      class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
-                      :class="{ opened: opened.includes(tooltips[3].id) }"
-                      @click="toggle(tooltips[3].id)"
-                    >
-                      !
-                    </span>
-                  </div>
                 </div>
                 <div
                   v-if="opened.includes(tooltips[3].id)"
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-14" style="font-size: 10px">
+                    <p class="font-normal h-14" style="font-size: 12px">
                       Please add a brief description of Lorem ipsum dolor sit
                       amet consectetur adipisicing elit. Quaerat fugiat harum
                       amet non doloribus tenetur aliquid fuga pariatur,
@@ -207,7 +182,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-10 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       This field requires you to enter the town you are/were
                       employed in. For remote workers, please enter the town you
                       are/were based in.
@@ -246,7 +224,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-10 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       This field requires you to enter the pre-tax/gross salary
                       you get, vacation money included. You can find this amount
                       in your contract or on your paycheck.
@@ -282,7 +263,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-10 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       This field requires you to enter the pre-tax/gross salary
                       you get, vacation money included. You can find this amount
                       in your contract or on your paycheck.
@@ -327,7 +311,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       How will you want people to apply for this job?
                     </p>
                   </div>
@@ -361,7 +348,10 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-6" style="font-size: 10px">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       How will you want people to apply for this job? Enter the
                       email or any other infos that will help people apply for
                       the job
@@ -375,7 +365,10 @@
                 />
               </div>
               <div>
-                <p class="font-normal h-8 md:w-3/4" style="font-size: 10px">
+                <p
+                  class="font-normal h-8 md:w-3/4 text-gray-700"
+                  style="font-size: 12px"
+                >
                   Please upload your logo. If no logo is upload , a default logo
                   will be used. Using a personalised logo increases your job
                   offer visibility by 60%
@@ -423,10 +416,6 @@ export default {
       opened: [],
       uploadImg: require('../assets/upload.png'),
       checkImg: require('../assets/payment.png'),
-      isActiveOption: false,
-      isActiveJob: true,
-      isActivePayment: false,
-      statusPayment: false,
       tooltips: [
         {
           id: 1,
@@ -507,29 +496,6 @@ export default {
       } else {
         this.opened.push(id)
       }
-    },
-
-    selectTabJob() {
-      this.isActiveOption = false
-      this.isActivePayment = false
-      this.isActiveJob = true
-      this.statusPayment = false
-    },
-    selectTabOption() {
-      this.isActiveOption = true
-      this.isActivePayment = false
-      this.isActiveJob = false
-      this.statusPayment = false
-    },
-    selectTabPayment() {
-      this.isActivePayment = true
-      this.isActiveOption = false
-      this.isActiveJob = false
-      this.statusPayment = false
-    },
-    selectTabPaymentStatus() {
-      this.isActivePayment = false
-      this.statusPayment = true
     },
   },
 }

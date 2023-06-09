@@ -8,7 +8,7 @@
         <h4 class="font-light text-base leading-8 pt-2 text-center">
           Don't miss any job from JobSika
         </h4>
-        <form class="mt-10">
+        <div class="mt-10">
           <div class="mx-7">
             <h4 class="text-lg font-semibold text-grayC text-left">
               Enter your email
@@ -22,13 +22,14 @@
             />
           </div>
           <div class="flex items-center justify-center my-12">
-            <button
+            <div
               class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg w-full mx-7"
+              @click="$emit('success-modal')"
             >
               Sign up
-            </button>
+            </div>
           </div>
-        </form>
+        </div>
       </div>
       <div class="close" @click="$emit('close-modal')">
         <p class="font-semibold text-lg text-gray-500">X</p>

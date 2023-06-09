@@ -114,23 +114,16 @@
           <More title="See more Salaries" path="/salaries" />
         </div>
       </div>
-      <div class="rounded-md bg-white p-4 my-2 md:my-3">
-        <div
-          class="rounded-md m-2 shadow-lg flex p-4 flex-col md:flex-row items-center text-gray-500 justify-center"
-        >
-          <img :src="money" class="w-14 h-14" />
-          <p
-            class="text-sm text-medium text-gray-500 text-center md:text-left pt-2 md:pt-0"
-          >
-            Are you a UX Designer near Douala?
-            <NuxtLink class="text-blueDark" to="#">Add your salary</NuxtLink> to
-            help others like yourself make more informed decisions on where they
-            go to work, including better decisions around pay and compensation.
-          </p>
-        </div>
-      </div>
     </div>
-    <SubmitModal v-show="showModal" @close-modal="showModal = false" />
+    <SubmitModal
+      v-show="showModal"
+      @close-modal="showModal = false"
+      @success-modal="showModalSuccess = true"
+    />
+    <SubmitModalSucces
+      v-show="showModalSuccess"
+      @close-modal=";(showModalSuccess = false) & (showModal = false)"
+    />
   </main>
 </template>
 
@@ -141,6 +134,7 @@ export default {
   data() {
     return {
       showModal: false,
+      showModalSuccess: false,
       plusIcon: require('../assets/plus_dark.png'),
       location: require('../assets/location.png'),
       position: require('../assets/position.png'),
