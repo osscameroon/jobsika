@@ -3,11 +3,11 @@
     <ul class="site__rating-list flex items-center justify-between">
       <li
         v-for="star in maxStars"
-        @click="rate(star)"
-        :class="{ active: star <= stars }"
         :key="star.stars"
+        :class="{ active: star <= stars }"
         class="star"
         style="cursor: pointer"
+        @click="rate(star)"
       >
         <img
           class="w-7 h-7 px-1 md:px-0"
@@ -20,7 +20,20 @@
 <script>
 export default {
   name: 'RatingComponent',
-  props: ['grade', 'maxStars', 'hasCounter'],
+  props: {
+    grade: {
+      type: String,
+      default: '',
+    },
+    maxStars: {
+      type: String,
+      default: '',
+    },
+    hasCounter: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       stars: this.grade,

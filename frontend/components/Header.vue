@@ -10,14 +10,7 @@
           type="text"
           name="name"
           :placeholder="name"
-          class="
-            w-full
-            border-none
-            text-gray-600
-            font-medium
-            text-sm
-            md:text-base
-          "
+          class="w-full border-none text-gray-600 font-medium text-sm md:text-base"
           style="font-family: 'Inter', sans-serif"
         />
       </div>
@@ -30,7 +23,10 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'HeaderComponent',
   props: {
-    name: String,
+    name: {
+      type: String,
+      default: '',
+    },
   },
 })
 </script>

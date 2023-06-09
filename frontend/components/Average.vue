@@ -16,33 +16,18 @@
           </p>
         </div>
         <div
-          class="
-            site__average__content
-            w-full
-            flex flex-col
-            md:flex-row
-            items-center
-            md:w-1/2
-            ml-10
-            mr-2
-            md:ml-0 md:mr-0
-          "
+          class="site__average__content w-full flex flex-col md:flex-row items-center md:w-1/2 ml-10 mr-2 md:ml-0 md:mr-0"
         >
           <p
             v-if="parseInt(average) !== 0"
-            class="
-              text-white text-xs
-              lg:text-sm
-              font-medium
-              md:ml-20
-              xl:pl-6
-              text-center
-            "
+            class="text-white text-xs lg:text-sm font-medium md:ml-20 xl:pl-6 text-center"
             style="font-family: 'Inter', sans-serif"
           >
             {{ average | price }}
           </p>
-          <p v-else class="text-white text-xs lg:text-sm text-center">loading..</p>
+          <p v-else class="text-white text-xs lg:text-sm text-center">
+            loading..
+          </p>
           <div class="flex pt-1 md:pt-0 ml-0 md:ml-8 xl:ml-20 md:mr-10">
             <div v-for="(item, index) in stars" :key="index" class="flex">
               <img class="w-4 h-4 mr-1" :src="starsPicture" />

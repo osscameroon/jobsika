@@ -30,8 +30,14 @@
 export default {
   name: 'TooltipComponent',
   props: {
-    title: String,
-    content: String,
+    title: {
+      type: String,
+      default: '',
+    },
+    content: {
+      type: String,
+      default: '',
+    },
   },
 }
 </script>
@@ -57,6 +63,7 @@ export default {
   padding: 20px 30px;
   border-radius: 5px;
 }
+
 .close,
 .send {
   margin: 10% 0 0 16px;

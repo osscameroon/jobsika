@@ -8,9 +8,9 @@
         Seniority
       </h4>
       <select
+        v-model="myfilterseniority"
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfilterseniority"
         @change="onChangeSeniority"
       >
         <option
@@ -29,11 +29,11 @@
           any
         </option>
         <option
-          style="font-family: 'Inter', sans-serif"
           v-for="(seniority, index) in seniorities"
-          :key="index"
-          :value="seniority"
           v-show="seniority !== ''"
+          :key="index"
+          style="font-family: 'Inter', sans-serif"
+          :value="seniority"
           class="text-xs md:text-sm"
         >
           {{ seniority }}
@@ -48,9 +48,9 @@
         Job Title
       </h4>
       <select
+        v-model="myfilterjob"
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfilterjob"
         @change="onChangeJobTitle"
       >
         <option
@@ -69,11 +69,11 @@
           any
         </option>
         <option
-          style="font-family: 'Inter', sans-serif"
           v-for="(link, index) in jobtitles"
-          :key="index"
-          :value="link"
           v-show="link !== ''"
+          :key="index"
+          style="font-family: 'Inter', sans-serif"
+          :value="link"
           class="text-xs md:text-sm"
         >
           {{ link }}
@@ -88,9 +88,9 @@
         Companies
       </h4>
       <select
+        v-model="myfiltercompany"
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfiltercompany"
         @change="onChangeCompany"
       >
         <option
@@ -109,11 +109,11 @@
           any
         </option>
         <option
-          style="font-family: 'Inter', sans-serif"
           v-for="link in companies"
-          :key="link.id"
-          :value="link.name"
           v-show="link.name !== ''"
+          :key="link.id"
+          style="font-family: 'Inter', sans-serif"
+          :value="link.name"
           class="text-xs md:text-sm"
         >
           {{ link.name }}
@@ -128,9 +128,9 @@
         Cities
       </h4>
       <select
+        v-model="myfiltercity"
         class="form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
         aria-label="Default select example"
-        v-model="myfiltercity"
         @change="onChangeCity"
       >
         <option
@@ -149,11 +149,11 @@
           any
         </option>
         <option
-          style="font-family: 'Inter', sans-serif"
           v-for="(city, index) in cities"
-          :key="index"
-          :value="city"
           v-show="city !== ''"
+          :key="index"
+          style="font-family: 'Inter', sans-serif"
+          :value="city"
           class="text-xs md:text-sm"
         >
           {{ city }}

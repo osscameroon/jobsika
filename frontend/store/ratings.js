@@ -1,4 +1,3 @@
-
 export const state = () => ({
   page: 1,
   limit: 10,
@@ -19,24 +18,35 @@ export const getters = {
 
 export const mutations = {
   SETPAGE(state, value) {
-    state.page = value;
+    state.page = value
   },
   SETLIMIT(state, value) {
-    state.limit = value;
+    state.limit = value
   },
   SETNBHITS(state, value) {
-    state.nbHits = value;
+    state.nbHits = value
   },
   SETRATINGS(state, payload) {
-    state.ratings = [].concat(payload);
+    state.ratings = [].concat(payload)
   },
   ADDRATING(state, payload) {
-    state.ratings = [{ company_name: payload.company_name, salary: payload.salary, city: payload.city, seniority: payload.seniority, rating: payload.rating, comment: payload.comment, job_title: payload.job_title }, ...state.ratings]
+    state.ratings = [
+      {
+        company_name: payload.company_name,
+        salary: payload.salary,
+        city: payload.city,
+        seniority: payload.seniority,
+        rating: payload.rating,
+        comment: payload.comment,
+        job_title: payload.job_title,
+      },
+      ...state.ratings,
+    ]
   },
-  SETAVERAGE(state, value){
-    state.average = value;
+  SETAVERAGE(state, value) {
+    state.average = value
   },
-  SETAVERAGESTARS(state, value){
-    state.averageStars = value;
-  }
+  SETAVERAGESTARS(state, value) {
+    state.averageStars = value
+  },
 }

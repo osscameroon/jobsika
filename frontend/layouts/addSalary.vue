@@ -1,21 +1,7 @@
 <template>
   <div class="site bg-primary">
     <header
-      class="
-        site__logo
-        flex
-        bg-blueDark
-        items-center
-        justify-center
-        md:justify-start
-        py-3
-        md:py-2
-        z-50
-        sticky
-        top-0
-        left-0
-        shadow-md
-      "
+      class="site__logo flex bg-blueDark items-center justify-center md:justify-start py-3 md:py-2 z-50 sticky top-0 left-0 shadow-md"
     >
       <div class="md:container md:mx-auto md:w-10/12">
         <nuxt-link to="/" class="cursor-pointer">
@@ -42,5 +28,3 @@ export default {
   },
 }
 </script>
-
-

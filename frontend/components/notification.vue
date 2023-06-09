@@ -10,6 +10,11 @@
 <script>
 export default {
   name: 'NotificationComponent',
-  props: ['message'],
+  props: {
+    message: {
+      type: String,
+      default: '',
+    },
+  },
 }
 </script>
