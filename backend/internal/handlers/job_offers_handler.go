@@ -58,6 +58,7 @@ func PostJobOffer(c *gin.Context) {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "could not post job offer"})
+		return
 	}
 
 	err := query.Validate()
