@@ -54,7 +54,6 @@ $(E2ETEST_DEPS):
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data
-	-rm -rf minio-data
 	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
@@ -101,9 +100,8 @@ start-api:
 
 ## stop-api: stops the api and its dependencies in a docker container
 stop-api:
-	docker-compose down && \
+	docker-compose down -v && \
 	rm -rf postgres-data
-	rm -rf minio-data
 
 ## start-postgres: starts postgres sql, setup and populate yotas database
 start-postgres:
@@ -134,7 +132,7 @@ reset-postgres:
 
 ## stop-postgres: remove local postgres-data and teardown postgres
 stop-postgres:
-	docker-compose down && \
+	docker-compose down -v && \
 	rm -rf postgres-data
 
 .PHONY:check-swagger
@@ -148,6 +146,13 @@ swagger.yaml: check-swagger
 .PHONY:serve-swagger
 serve-swagger: swagger.yaml check-swagger
 	swagger serve -F=swagger swagger.yaml
+
+start-minio:
+	docker compose up start-minio
+	docker compose logs -f
+
+stop-minio:
+	docker compose down -v
 
 ## install-deps: install main dependencies
 install-deps:
