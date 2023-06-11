@@ -51,6 +51,7 @@ func main() {
 	//JobOffers
 	router.GET("/jobs", handlers.GetJobOffers)
 	router.POST("/jobs", handlers.PostJobOffer)
+	router.GET("/jobs/:id/image", handlers.GetJobOfferImage)
 
 	//Subscribers
 	router.POST("/subscribers", handlers.PostSubscribers)

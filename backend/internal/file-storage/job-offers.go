@@ -13,12 +13,15 @@ const (
 )
 
 // UploadJobOfferCompanyPicture uploads a job offer company picture to the file storage.
-func (fs FileStorage) UploadJobOfferCompanyPicture(file []byte, jobOfferID int64) (string, error) {
-	fileName := fmt.Sprintf("%s/%d/%d.png", JobOffersCompanyPicturesFolder, jobOfferID, jobOfferID)
+func (fs FileStorage) UploadJobOfferCompanyPicture(file []byte, jobOfferID int64, mimeType string, extension string) (string, error) {
+	// get the right file extension based on content type of the file
+
+	fileName := fmt.Sprintf("%s/%d/%d%s", JobOffersCompanyPicturesFolder, jobOfferID, jobOfferID, extension)
 	_, err := fs.s3Client.PutObject(&s3.PutObjectInput{
-		Bucket: aws.String(fs.config.Bucket),
-		Key:    aws.String(fileName),
-		Body:   bytes.NewReader(file),
+		Bucket:      aws.String(fs.config.Bucket),
+		Key:         aws.String(fileName),
+		Body:        bytes.NewReader(file),
+		ContentType: aws.String(mimeType),
 	})
 	if err != nil {
 		return "", err
@@ -28,11 +31,10 @@ func (fs FileStorage) UploadJobOfferCompanyPicture(file []byte, jobOfferID int64
 }
 
 // DownloadJobOfferCompanyPicture downloads a job offer company picture from the file storage.
-func (fs FileStorage) DownloadJobOfferCompanyPicture(jobOfferID int64) (*s3.GetObjectOutput, error) {
-	fileName := fmt.Sprintf("%s/%d/%d.png", JobOffersCompanyPicturesFolder, jobOfferID, jobOfferID)
+func (fs FileStorage) DownloadJobOfferCompanyPicture(location string) (*s3.GetObjectOutput, error) {
 	result, err := fs.s3Client.GetObject(&s3.GetObjectInput{
 		Bucket: aws.String(fs.config.Bucket),
-		Key:    aws.String(fileName),
+		Key:    aws.String(location),
 	})
 	if err != nil {
 		return nil, err

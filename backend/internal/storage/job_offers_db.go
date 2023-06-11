@@ -48,6 +48,7 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 		if err != nil {
 			return v1beta.JobOffersResponse{}, err
 		}
+		j.HasImage = j.CompanyImageLocation != ""
 		jobOffers = append(jobOffers, j)
 	}
 
@@ -64,8 +65,8 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 // PostJobOffer post new job offer
 // the uploadImageFunc is a function that will be called after the job offer is created
 // we made it to avoid circular dependency between storage and server package
-func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobOfferID int64) error) (*v1beta.JobOffer, error) {
-	offer := v1beta.JobOffer{
+func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobOfferID int64) (string, error)) (*v1beta.JobOffer, error) {
+	offer := &v1beta.JobOffer{
 		CompanyName:             query.CompanyName,
 		CompanyEmail:            query.CompanyEmail,
 		IsRemote:                query.IsRemote,
@@ -90,19 +91,21 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 			return err
 		}
 
-		if len(query.CompanyImage) > 0 && uploadImageFunc != nil {
-			offer.HasImage = true
-		}
-
 		offer.TitleID = jobTitle.ID
-		res := tx.Table("job_offers").Create(&offer)
+		res := tx.Table("job_offers").Create(offer)
 		if res.Error != nil {
 			log.Error(res.Error)
 			return res.Error
 		}
 
 		if uploadImageFunc != nil {
-			err = uploadImageFunc(offer.ID)
+			offer.CompanyImageLocation, err = uploadImageFunc(offer.ID)
+			if err != nil {
+				log.Error(err)
+				return err
+			}
+
+			err = tx.Table("job_offers").Where("id = ?", offer.ID).Update("company_image_location", offer.CompanyImageLocation).Error
 			if err != nil {
 				log.Error(err)
 				return err
@@ -115,7 +118,7 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 		return nil, err
 	}
 
-	return &offer, nil
+	return offer, nil
 }
 
 func (db DB) queryJobOffers() *gorm.DB {
@@ -139,7 +142,7 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.application_email_address,
 		jb.application_phone_number,
 		jb.tags,
-		jb.has_image,
+		jb.company_image_location,
 		jt.title as job_title
 	`).
 		Joins("left join jobtitles as jt on jb.title_id = jt.id")

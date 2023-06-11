@@ -55,6 +55,7 @@ services:
   e2etests:
     depends_on:
       - api
+      - start-minio
     image: node:14-stretch
     command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest-compose
     environment:

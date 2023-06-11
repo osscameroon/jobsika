@@ -6,10 +6,22 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/gabriel-vasile/mimetype"
 	"github.com/gin-gonic/gin"
 	"github.com/osscameroon/jobsika/internal/server"
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
+)
+
+var (
+	allowedEtensions = map[string]struct{}{
+		".jpg":  {},
+		".jpeg": {},
+		".png":  {},
+		".gif":  {},
+		".svg":  {},
+		".webp": {},
+	}
 )
 
 func GetJobOffers(c *gin.Context) {
@@ -69,6 +81,29 @@ func PostJobOffer(c *gin.Context) {
 		return
 	}
 
+	var uploadImageFunc func(int64) (string, error)
+	// if we have an image, we need to upload it
+	if len(query.CompanyImage) > 0 {
+		// check if the image provided is a valid image and have the right extension/mime type
+		extensionDeatils := mimetype.Detect([]byte(query.CompanyImage))
+		if _, ok := allowedEtensions[extensionDeatils.Extension()]; !ok {
+			log.Error(errors.New("wrong image extension"))
+			c.JSON(http.StatusBadRequest,
+				gin.H{"error": "provided image has wrong extension"})
+			return
+		}
+
+		uploadImageFunc = func(jobOfferID int64) (string, error) {
+			fs, err := server.GetDefaultFileStorage()
+			if err != nil {
+				return "", err
+			}
+			return fs.UploadJobOfferCompanyPicture(query.CompanyImage, jobOfferID, extensionDeatils.String(), extensionDeatils.Extension())
+		}
+	} else {
+		uploadImageFunc = nil
+	}
+
 	//Initialize db client
 	db, err := server.GetDefaultDBClient()
 	if err != nil {
@@ -76,21 +111,6 @@ func PostJobOffer(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError,
 			gin.H{"error": "could not post job offer"})
 		return
-	}
-
-	var uploadImageFunc func(int64) error
-	// if we have an image, we need to upload it
-	if len(query.CompanyImage) > 0 {
-		uploadImageFunc = func(jobOfferID int64) error {
-			fs, err := server.GetDefaultFileStorage()
-			if err != nil {
-				return err
-			}
-			_, err = fs.UploadJobOfferCompanyPicture(query.CompanyImage, jobOfferID)
-			return err
-		}
-	} else {
-		uploadImageFunc = nil
 	}
 
 	offer, err := db.PostJobOffer(query, uploadImageFunc)
@@ -120,10 +140,11 @@ func PostJobOffer(c *gin.Context) {
 		ApplicationEmailAddress: offer.ApplicationEmailAddress,
 		ApplicationPhoneNumber:  offer.ApplicationPhoneNumber,
 		Tags:                    offer.Tags,
+		HasImage:                offer.CompanyImageLocation != "",
 	})
 }
 
-//GetJobOfferImage handles /offers/:id/image GET endpoint
+//GetJobOfferImage handles /jobs/:id/image GET endpoint
 func GetJobOfferImage(c *gin.Context) {
 	db, err := server.GetDefaultDBClient()
 	if err != nil {
@@ -150,7 +171,7 @@ func GetJobOfferImage(c *gin.Context) {
 		return
 	}
 
-	if !jobOffer.HasImage {
+	if jobOffer.CompanyImageLocation == "" {
 		c.JSON(http.StatusNotFound,
 			gin.H{"error": "job offer does not have an image"})
 		return
@@ -164,7 +185,7 @@ func GetJobOfferImage(c *gin.Context) {
 		return
 	}
 
-	image, err := fs.DownloadJobOfferCompanyPicture(jobOffer.ID)
+	image, err := fs.DownloadJobOfferCompanyPicture(jobOffer.CompanyImageLocation)
 	if err != nil {
 		log.Error(err)
 		c.JSON(http.StatusInternalServerError,
