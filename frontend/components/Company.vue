@@ -242,8 +242,8 @@ export default Vue.extend({
     isHomePage: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -262,10 +262,10 @@ export default Vue.extend({
       return this.$store.state.ratings.limit
     },
     ratings() {
-      if(this.isHomePage){
-        return this.$store.state.ratings.ratings.slice(0, 5);
-      }else{
-        return this.$store.state.ratings.ratings;
+      if (this.isHomePage) {
+        return this.$store.state.ratings.ratings.slice(0, 5)
+      } else {
+        return this.$store.state.ratings.ratings
       }
     },
     filterjob() {
