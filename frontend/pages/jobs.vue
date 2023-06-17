@@ -26,20 +26,33 @@
       <div class="pt-8">
         <div v-for="(item, index) in jobs" :key="index" class="mb-6">
           <JobPost
+            :details="jobs"
+            :my-index="index"
             :picture="image"
             :title="item.job_title"
             :city="item.city"
             :structure="item.company_name"
+            min-salary="150 000"
+            max-salary="200 000"
             :marker="item.is_remote ? 'Remote' : 'Local'"
             :time="item.createdat"
             :description="item.description"
             :tags="item.tags"
+            mail="devjobs@ejara.com"
           />
         </div>
       </div>
       <JobPagination />
     </div>
-    <SubmitModal v-show="showModal" @close-modal="showModal = false" />
+    <SubmitModal
+      v-show="showModal"
+      @close-modal="showModal = false"
+      @success-modal="showModalSuccess = true"
+    />
+    <SubmitModalSucces
+      v-show="showModalSuccess"
+      @close-modal=";(showModalSuccess = false) & (showModal = false)"
+    />
   </main>
 </template>
 
@@ -50,6 +63,7 @@ export default {
   data() {
     return {
       showModal: false,
+      showModalSuccess: false,
       image: require('../assets/job.png'),
     }
   },
