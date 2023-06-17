@@ -1,5 +1,6 @@
 <template>
-  <div
+  <NuxtLink
+    to="/job_detail"
     :class="{ opened: opened.includes(details[myIndex].id) }"
     @click="toggle(details[myIndex].id)"
   >
@@ -87,20 +88,20 @@
           </div>
         </div>
         <div
-          class="xl:justify-end items-start w-full xl:w-3/12 pt-4 xl:pt-0 flex"
+          :class="`md:justify-end  w-full xl:w-3/12 pt-4 xl:pt-0 flex items-center ${
+            active === true ? 'flex' : 'hidden'
+          }`"
         >
           <NuxtLink
             to="#"
-            :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm lg:text-base bg-primaryGray h-12 rounded-lg ${
-              opened.includes(details[myIndex].id) ? 'flex' : 'hidden'
-            }`"
+            :class="`cursor-pointer px-12 flex justify-center items-center text-white font-bold  text-sm lg:text-base bg-primaryGray h-12 rounded-lg`"
           >
             Apply
           </NuxtLink>
         </div>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script>
