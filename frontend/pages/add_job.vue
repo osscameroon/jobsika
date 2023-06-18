@@ -390,7 +390,7 @@
             <div
               class="mt-10 flex flex-col md:flex-row items-center justify-center xl:justify-start"
             >
-              <NuxtLink to="/payment_instruction">
+              <NuxtLink to="/confirm_job">
                 <div class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40">
                   <Button
                     show-picture="nothing"
