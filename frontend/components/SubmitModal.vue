@@ -81,7 +81,6 @@ export default {}
   width: 150px;
 }
 
-
 .modal-fade-enter,
 .modal-fade-leave-to {
   opacity: 0;
@@ -92,6 +91,3 @@ export default {}
   transition: opacity 0.5s ease;
 }
 </style>
-
-
-

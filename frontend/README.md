@@ -4,14 +4,13 @@
 
 Make sure you are using Node.js v14. You can use [nvm](https://github.com/nvm-sh/nvm) to manage multiple Node.js versions.
 
-
 ### Run the frontend
 
 Before running the frontend, you may want to create a `.env` file,
 copy the content of `.env.example` and paste it in the newly created `.env`.
 You can now edit the `BASE_URL` which indicates where your frontend will be pointing to.
 
-``` bash
+```bash
 BASE_URL=https://api.jobsika.stage.osscameroon.com
 ```
 

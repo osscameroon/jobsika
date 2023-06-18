@@ -22,6 +22,15 @@
 <script>
 export default {
   name: 'ErrorComponent',
-  props: ['title', 'content'],
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    content: {
+      type: String,
+      default: '',
+    },
+  },
 }
 </script>

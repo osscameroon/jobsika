@@ -1,10 +1,16 @@
 <template>
   <div>
-    <header class="bg-white flex justify-center items-center lg:justify-start py-3 lg:py-2 z-50 sticky top-0 left-0">
+    <header
+      class="bg-white flex justify-center items-center lg:justify-start py-3 lg:py-2 z-50 sticky top-0 left-0"
+    >
       <div class="lg:container lg:mx-auto lg:w-10/12">
         <div class="flex flex-col lg:flex-row lg:justify-between items-center">
           <a href="/" class="cursor-pointer">
-            <img :src="logo" alt="logo" class="site__logo-pic w-32 h-12 lg:w-32 lg:h-auto" />
+            <img
+              :src="logo"
+              alt="logo"
+              class="site__logo-pic w-32 h-12 lg:w-32 lg:h-auto"
+            />
           </a>
           <nav>
             <ul class="flex flex-col lg:flex-row items-center py-4 lg:py-0 justify-center">
@@ -23,8 +29,10 @@
               </NuxtLink>
             </div>
             <div class="pt-4 lg:pt-0 w-full lg:w-36 lg:ml-4">
-              <NuxtLink to="/add_salary"
-                class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-sm lg:text-base border-2 h-12 rounded-lg border-blue">
+              <NuxtLink
+                to="/add_salary"
+                class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-sm lg:text-base border-2 h-12 rounded-lg border-blue"
+              >
                 <img :src="plusIcon" class="w-5 h-5 mr-1" />
                 {{ $t("btn_label_contribute") }}
               </NuxtLink>

@@ -1,4 +1,4 @@
-package docs
+package swagger
 
 import (
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"

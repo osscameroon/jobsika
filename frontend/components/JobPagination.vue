@@ -1,28 +1,19 @@
 <template>
-	<div class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6">
-		<div class="flex-1 flex justify-center sm:hidden">
-			<span @click="startpage()" style="border-color: #919191" class="
-				inline-flex
-				relative
-				px-3
-				items-center
-				rounded-md
-				py-2
-				bg-white
-				border
-				md:text-sm
-				text-xs
-				text-gray-500
-				font-medium
-				cursor-pointer
-				hover:bg-gray-50
-				mx-2
-	    "
-			>
-				<span style="color: #919191" class="font-bold">&laquo;</span>
-			</span>
+  <div
+    class="bg-primary py-4 md:py-8 flex items-center justify-between sm:px-6"
+  >
+    <div class="flex-1 flex justify-center sm:hidden">
+      <span
+        style="border-color: #919191"
+        class="inline-flex relative px-3 items-center rounded-md py-2 bg-white border md:text-sm text-xs text-gray-500 font-medium cursor-pointer hover:bg-gray-50 mx-2"
+        @click="startpage()"
+      >
+        <span style="color: #919191" class="font-bold">&laquo;</span>
+      </span>
 
-			<span style="font-family: 'Inter', sans-serif" :class="`
+      <span
+        style="font-family: 'Inter', sans-serif"
+        :class="`
 				    relative
 	          inline-flex
 	          items-center
@@ -55,7 +46,6 @@
 						md:text-sm
 						font-medium
 						rounded-md
-						cursor-pointer
 						${page === numberPage
 					? 'bg-blue text-white border-none'
 					: 'bg-blueDark text-white border-none'
@@ -163,33 +153,24 @@
 						  cursor-pointer
 						  ${page === current1 ? 'bg-blue' : 'bg-white'}
 					  `"
-						>
-							{{ current1 }}
-						</span>
-					</div>
-					<div>
-						<span class="
-	          z-10
-	          bg-blue
-	          border-indigo-500
-	          text-indigo-600
-	          relative
-	          inline-flex
-	          items-center
-	          px-4
-	          py-2
-	          border
-	          text-xs
-	          md:text-sm
-	          font-medium
-	          cursor-pointer
-	        "
-					>
-							{{ page }}
-						</span>
-					</div>
-					<div v-for="current in rightSide" :key="current" @click="changepage(current)">
-						<span :class="`
+            >
+              {{ current1 }}
+            </span>
+          </div>
+          <div>
+            <span
+              class="z-10 bg-blue border-indigo-500 text-indigo-600 relative inline-flex items-center px-4 py-2 border text-xs md:text-sm font-medium cursor-pointer"
+            >
+              {{ page }}
+            </span>
+          </div>
+          <div
+            v-for="current in rightSide"
+            :key="current"
+            @click="changepage(current)"
+          >
+            <span
+              :class="`
 							z-10
 							bg-indigo-50
 							border-indigo-500
@@ -206,12 +187,13 @@
 							cursor-pointer
 							${page === current1 ? 'bg-blue' : 'bg-white'}
 						`"
-						>
-							{{ current }}
-						</span>
-					</div>
-					<div @click="nextpage()">
-						<span :class="`
+            >
+              {{ current }}
+            </span>
+          </div>
+          <div @click="nextpage()">
+            <span
+              :class="`
 							z-10
 							bg-indigo-50
 							border-indigo-500
@@ -265,94 +247,94 @@
 
 <script>
 export default {
-	name: 'Jobs_Pagination_Number',
-	data() {
-		return {
-			current1: '',
-		}
-	},
-	computed: {
-		page() {
-			return this.$store.state.jobs.page
-		},
-		limit() {
-			return this.$store.state.jobs.limit
-		},
-		nbHits() {
-			return this.$store.state.jobs.nbHits
-		},
-		nbOfItems() {
-			return this.$store.state.jobs.jobs.length
-		},
-		numberPage() {
-			return Math.ceil(this.nbHits / this.limit)
-		},
-		leftSide() {
-			const result = []
-			for (let i = 5; i >= 1; i--) {
-				if (this.page - i > 0) {
-					result.push(this.page - i)
-				}
-			}
-			return result
-		},
-		rightSide() {
-			const result = []
-			for (let i = 1; i <= 5; i++) {
-				if (this.page + i < this.numberPage) {
-					result.push(this.page + i)
-				}
-			}
-			return result
-		},
-		filterjob() {
-			return this.$store.state.ratings.filterjob
-		},
-		filtercompany() {
-			return this.$store.state.ratings.filtercompany
-		},
-	},
-	async created() {
-		await this.fetchJobs();
-	},
-	methods: {
-		async fetchJobs() {
-			await this.$store.dispatch('getJobs', {
-				page: this.page,
-				limit: this.limit
-			})
-		},
-		async setpage(value) {
-			await this.$store.commit('jobs/SETPAGE', value)
-		},
-		changepage(value) {
-			this.setpage(value)
-			this.fetchJobs()
-		},
-		nextpage() {
-			if (this.page + 1 <= this.numberPage) {
-				this.changepage(this.page + 1)
-			}
-		},
-		previewpage() {
-			if (this.page - 1 > 0) {
-				this.changepage(this.page - 1)
-			}
-		},
-		startpage() {
-			if (this.page === 1) {
-				return null
-			} else {
-				this.changepage(1)
-			}
-		},
-		limitpage() {
-			if (this.numberPage === 1) {
-				return null
-			} else {
-				this.changepage(this.numberPage)
-			}
-		},
-	},
+  name: 'JobsPaginationNumber',
+  data() {
+    return {
+      current1: '',
+    }
+  },
+  computed: {
+    page() {
+      return this.$store.state.jobs.page
+    },
+    limit() {
+      return this.$store.state.jobs.limit
+    },
+    nbHits() {
+      return this.$store.state.jobs.nbHits
+    },
+    nbOfItems() {
+      return this.$store.state.jobs.jobs.length
+    },
+    numberPage() {
+      return Math.ceil(this.nbHits / this.limit)
+    },
+    leftSide() {
+      const result = []
+      for (let i = 5; i >= 1; i--) {
+        if (this.page - i > 0) {
+          result.push(this.page - i)
+        }
+      }
+      return result
+    },
+    rightSide() {
+      const result = []
+      for (let i = 1; i <= 5; i++) {
+        if (this.page + i < this.numberPage) {
+          result.push(this.page + i)
+        }
+      }
+      return result
+    },
+    filterjob() {
+      return this.$store.state.ratings.filterjob
+    },
+    filtercompany() {
+      return this.$store.state.ratings.filtercompany
+    },
+  },
+  async created() {
+    await this.fetchJobs()
+  },
+  methods: {
+    async fetchJobs() {
+      await this.$store.dispatch('getJobs', {
+        page: this.page,
+        limit: this.limit,
+      })
+    },
+    async setpage(value) {
+      await this.$store.commit('jobs/SETPAGE', value)
+    },
+    changepage(value) {
+      this.setpage(value)
+      this.fetchJobs()
+    },
+    nextpage() {
+      if (this.page + 1 <= this.numberPage) {
+        this.changepage(this.page + 1)
+      }
+    },
+    previewpage() {
+      if (this.page - 1 > 0) {
+        this.changepage(this.page - 1)
+      }
+    },
+    startpage() {
+      if (this.page === 1) {
+        return null
+      } else {
+        this.changepage(1)
+      }
+    },
+    limitpage() {
+      if (this.numberPage === 1) {
+        return null
+      } else {
+        this.changepage(this.numberPage)
+      }
+    },
+  },
 }
 </script>

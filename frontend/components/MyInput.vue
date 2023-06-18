@@ -10,16 +10,7 @@
       v-if="myInput === 'input'"
       v-model="nameInput"
       :type="typeInput"
-      class="
-        site__input-field
-        border-none
-        mt-2
-        md:mt-3
-        w-full
-        rounded-md
-        mb-4
-        md:mb-16
-      "
+      class="site__input-field border-none mt-2 md:mt-3 w-full rounded-md mb-4 md:mb-16"
       :style="myStyle"
       data-type="currency"
       @change="onChangeInput"
@@ -40,7 +31,24 @@
 import Vue from 'vue'
 export default Vue.extend({
   name: 'MyInputComponent',
-  props: ['title', 'myStyle', 'myInput', 'typeInput'],
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    myStyle: {
+      type: String,
+      default: '',
+    },
+    typeInput: {
+      type: String,
+      default: '',
+    },
+    myInput: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       nameInput: '',

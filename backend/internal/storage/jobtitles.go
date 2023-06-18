@@ -1,8 +1,9 @@
 package storage
 
 import (
-	"gorm.io/gorm"
 	"os"
+
+	"gorm.io/gorm"
 
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 )
@@ -23,7 +24,7 @@ func (db DB) GetJobTitles() ([]string, error) {
 	if defaultJobTitle.Title == "" {
 		tmpJobTitles := DefaultJobTitles
 		//If we are running tests we use a short list of jobtitles
-		if os.Getenv("ENVIRONMENT") == "test" {
+		if os.Getenv("TEST") == "true" {
 			tmpJobTitles = []string{"Tester"}
 		}
 

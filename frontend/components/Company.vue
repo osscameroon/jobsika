@@ -243,8 +243,8 @@ export default Vue.extend({
     isHomePage: {
       type: Boolean,
       required: false,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {

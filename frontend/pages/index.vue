@@ -38,7 +38,11 @@
       </div>
       <div class="site__main-company py-3">
         <div class="grid grid-cols-1 md:grid-cols-2">
-          <div v-for="(item, index) in jobslist" :key="index" class="bg-white py-6 px-7 border h-44 md:h-24">
+          <div
+            v-for="(item, index) in jobslist"
+            :key="index"
+            class="bg-white py-6 px-7 border h-44 md:h-24"
+          >
             <div>
               <div class="pt-4 xl:pt-0 flex flex-col">
                 <h4 class="text-lg font-bold">{{ item.job_title }} <span class="text-gray-600 font-light"> in {{
@@ -46,28 +50,27 @@
                   }}</span></h4>
                 <div class="flex flex-col xl:flex-row pt-2">
                   <div class="pt-1 xl:pt-0 flex flex-row items-center">
-                    <img class="w-auto h-4" :src="location"/>
+                    <img class="w-auto h-4" :src="location" />
                     <p class="text-xs mx-1 text-gray-500 ml-1">
                       {{ item.company_name }}
                     </p>
                   </div>
                   <div class="pt-1 xl:pt-0 xl:ml-2 flex flex-row items-center">
-                    <img class="w-auto h-4" :src="position"/>
+                    <img class="w-auto h-4" :src="position" />
                     <p class="text-xs mx-1 text-gray-500 ml-1">
                       {{ item.application_url }}
                     </p>
                   </div>
                   <div class="pt-1 xl:pt-0 xl:ml-2 flex flex-row items-center">
-                    <img class="w-auto h-4" :src="clock"/>
+                    <img class="w-auto h-4" :src="clock" />
                     <p class="text-xs mx-1 text-gray-500 ml-1">
-                      {{ item.createdat }}
+                      {{ new Date(item.createdat).toLocaleDateString() }}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
         <More
           :title="$t('label_see_more_jobs')"
@@ -122,18 +125,19 @@ export default {
   data() {
     return {
       showModal: false,
+      showModalSuccess: false,
       plusIcon: require('../assets/plus_dark.png'),
       location: require('../assets/location.png'),
       position: require('../assets/position.png'),
       clock: require('../assets/clock.png'),
       money: require('../assets/money.png'),
-      tags: ["Figma", "Nuxt", "UI/UX Design"],
+      tags: ['Figma', 'Nuxt', 'UI/UX Design'],
     }
   },
   computed: {
     jobslist() {
       return this.$store.state.jobs.jobs.slice(0, 6)
-    }
+    },
   },
   async created() {
     await this.fetchJobs();
@@ -144,14 +148,14 @@ export default {
       await this.$store.dispatch('getJobs', {
         page: this.page,
         limit: this.limit
+
       })
     },
     async fetchRatings() {
       await this.$store.dispatch('getRatings', {
-        page: 1
+        page: 1,
       })
     },
-  }
+  },
 }
 </script>
-

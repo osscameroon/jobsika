@@ -14,9 +14,18 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'ButtonComponent',
   props: {
-    name: String,
-    myStyle: String,
-    showPicture: String,
+    name: {
+      type: String,
+      default: '',
+    },
+    myStyle: {
+      type: String,
+      default: '',
+    },
+    showPicture: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {

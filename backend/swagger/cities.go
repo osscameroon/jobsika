@@ -1,4 +1,4 @@
-package docs
+package swagger
 
 // swagger:route GET /cities cities idOfCities
 // Companies returns cities endpoint

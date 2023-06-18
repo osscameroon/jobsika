@@ -1,5 +1,5 @@
 <template>
-  <div class="site__title" v-if="onlyTitle === 'onlyTitle'">
+  <div v-if="onlyTitle === 'onlyTitle'" class="site__title">
     <div :style="myStyle" class="pt-2 md:pt-8 lg:pt-14">
       <div class="site__title-text text-center">
         <h2 v-if="content === 'subtitle'" style="color: #000000; font-family: 'Inter', sans-serif"
@@ -15,24 +15,31 @@
     </div>
   </div>
 
-  <div class="site__title" v-else>
+  <div v-else class="site__title">
     <div v-if="header === 'header'" class="pt-2 md:pt-8 lg:pt-14">
       <div class="site__title-text">
         <div class="flex justify-center md:justify-start">
-          <h2 style="color: #000000; font-family: 'Inter', sans-serif" class="font-bold text-3xl md:text-4xl">
+          <h2
+            style="color: #000000; font-family: 'Inter', sans-serif"
+            class="font-bold text-3xl md:text-4xl"
+          >
             {{ title }}
           </h2>
           <div class="flex items-center -mb-1">
             <span
               class="cursor-pointer h-5 text-center w-5 ml-2 text-grayDark rounded-full border border-grayDark text-xs"
-              :class="{ opened: opened.includes(tooltips[0].id) }" @click="toggle(tooltips[0].id)">
+              :class="{ opened: opened.includes(tooltips[0].id) }"
+              @click="toggle(tooltips[0].id)"
+            >
               !
             </span>
           </div>
         </div>
         <div v-if="opened.includes(tooltips[0].id)" class="w-full bg-primary">
           <div class="w-full my-3 ml-3 md:ml-0">
-            <p class="text-xs md:text-base font-bold" style="
+            <p
+              class="text-xs md:text-base font-bold"
+              style="
                 color: #235365;
                 font-family: 'Inter', sans-serif;
                 line-height: 1.5rem;
@@ -71,7 +78,11 @@
               {{ subTitle }}
             </h4>
           </div>
-          <h4 v-else style="color: #235365; font-family: 'Inter', sans-serif" class="pt-3 font-bold text-base">
+          <h4
+            v-else
+            style="color: #235365; font-family: 'Inter', sans-serif"
+            class="pt-3 font-bold text-base"
+          >
             {{ subTitle }}
           </h4>
           <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
@@ -85,7 +96,10 @@
     <div v-else class="pt-2 md:pt-8 lg:pt-14">
       <div class="site__title-text">
         <div class="flex justify-center md:justify-start">
-          <h2 style="color: #000000; font-family: 'Inter', sans-serif" class="font-bold text-3xl md:text-4xl">
+          <h2
+            style="color: #000000; font-family: 'Inter', sans-serif"
+            class="font-bold text-3xl md:text-4xl"
+          >
             {{ title }}
           </h2>
         </div>
@@ -96,7 +110,11 @@
               {{ subTitle }}
             </h4>
           </div>
-          <h4 v-else style="color: #235365; font-family: 'Inter', sans-serif" class="pt-3 font-bold text-base">
+          <h4
+            v-else
+            style="color: #235365; font-family: 'Inter', sans-serif"
+            class="pt-3 font-bold text-base"
+          >
             {{ subTitle }}
           </h4>
           <div class="site__title-btn pt-10 lg:pt-0 w-full sm:w-1/2 lg:w-36">
@@ -119,17 +137,38 @@ import Button from '../components/Button.vue'
 
 export default Vue.extend({
   name: 'TitleComponent',
-  props: {
-    title: String,
-    subTitle: String,
-    fontSize: String,
-    onlyTitle: String,
-    content: String,
-    myStyle: String,
-    header: String,
-  },
   components: {
     Button,
+  },
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+    subTitle: {
+      type: String,
+      default: '',
+    },
+    fontSize: {
+      type: String,
+      default: '',
+    },
+    onlyTitle: {
+      type: String,
+      default: '',
+    },
+    content: {
+      type: String,
+      default: '',
+    },
+    header: {
+      type: String,
+      default: '',
+    },
+    myStyle: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
