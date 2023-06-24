@@ -4,7 +4,7 @@ export const actions = {
   async getRatings({ commit }, payload) {
     const params = {
       page: payload.page,
-      limit: payload.limit,
+      limit: payload.limit ? payload.limit : 10,
       company: payload.company ? payload.company : '',
       jobtitle: payload.jobtitle ? payload.jobtitle : '',
       seniority: payload.seniority ? payload.seniority : '',
