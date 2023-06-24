@@ -3,7 +3,7 @@ import axios from 'axios'
 export const actions = {
   async getRatings({ commit }, payload) {
     const params = {
-      page: payload.page,
+      page: payload.page ? payload.page : 1,
       limit: payload.limit ? payload.limit : 10,
       company: payload.company ? payload.company : '',
       jobtitle: payload.jobtitle ? payload.jobtitle : '',
