@@ -157,7 +157,7 @@ export default {
       default: 0,
     },
     details: {
-      type: [Object],
+      type: [Array],
       default: null,
     },
   },

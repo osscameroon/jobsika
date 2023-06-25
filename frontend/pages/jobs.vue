@@ -71,9 +71,12 @@ export default {
     jobs() {
       return this.$store.state.jobs.jobs
     },
+    limit() {
+      return this.$store.state.jobs.limit
+    },
   },
   async created() {
-    await this.fetchJobs()
+    await this.fetchJobs();
   },
   methods: {
     async fetchJobs() {

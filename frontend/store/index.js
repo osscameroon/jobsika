@@ -77,6 +77,18 @@ export const actions = {
       commit('jobs/SETJOBS', resp.data.hits)
     }
   },
+  async postJob({ commit }, data) {
+    try {
+      const resp = await axios.post(this.$config.baseURL + '/jobs', data)
+      if (resp) {
+        commit('jobs/SETNEWJOB', resp.data);
+        return {status: true, data: resp.data};
+      }
+    } catch (error) {
+      return {status: false, data: {}};
+    }
+
+  },
   filterJob({ commit }, value) {
     commit('jobtitles/SETFILTERJOB', value)
   },
@@ -88,5 +100,8 @@ export const actions = {
   },
   filterCity({ commit }, value) {
     commit('cities/SETFILTERCITY', value)
+  },
+  setNewJob({ commit }, value) {
+    commit('jobs/SETNEWJOB', value)
   },
 }

@@ -7,7 +7,7 @@
         </h2>
       </div>
       <div>
-        <form>
+        <form @submit.prevent="saveNewJob">
           <div class="flex flex-col md:w-7/12 mx-auto">
             <div class="grid gap-7 grid-cols-1 mt-10">
               <div>
@@ -43,6 +43,7 @@
                   </div>
                 </div>
                 <input
+                  v-model="newJob.company_name"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
@@ -54,7 +55,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Job title
+                    Company Email
                   </p>
                   <div class="flex items-center">
                     <span
@@ -75,13 +76,12 @@
                       class="font-normal h-6 text-gray-700"
                       style="font-size: 12px"
                     >
-                      This field requires you to enter the title of the position
-                      and/or specialization (if applicable). E.g.
-                      "Accountant(Audit)"
+                      Enter your company's Email:
                     </p>
                   </div>
                 </div>
                 <input
+                  v-model="newJob.company_email"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
@@ -93,7 +93,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Description of role
+                    Job title
                   </p>
                   <div class="flex items-center">
                     <span
@@ -114,12 +114,53 @@
                       class="font-normal h-6 text-gray-700"
                       style="font-size: 12px"
                     >
+                      This field requires you to enter the title of the position
+                      and/or specialization (if applicable). E.g.
+                      "Accountant(Audit)"
+                    </p>
+                  </div>
+                </div>
+                <input
+                  v-model="newJob.job_title"
+                  type="text"
+                  style="height: 61px"
+                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                />
+              </div>
+              <div>
+                <div class="flex">
+                  <p
+                    class="text-xs font-bold md:text-lg"
+                    style="color: #b1b1b1"
+                  >
+                    Description of role
+                  </p>
+                  <div class="flex items-center">
+                    <span
+                      class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                      :class="{ opened: opened.includes(tooltips[3].id) }"
+                      @click="toggle(tooltips[3].id)"
+                    >
+                      !
+                    </span>
+                  </div>
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[3].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="w-full my-1">
+                    <p
+                      class="font-normal h-6 text-gray-700"
+                      style="font-size: 12px"
+                    >
                       Please add a brief description of the role you are hiring
                       for, make it straight forward and concise
                     </p>
                   </div>
                 </div>
                 <textarea
+                  v-model="newJob.description"
                   cols="6"
                   rows="5"
                   type="text"
@@ -133,39 +174,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Employment type
-                  </p>
-                </div>
-                <div
-                  v-if="opened.includes(tooltips[3].id)"
-                  class="w-full bg-primary"
-                >
-                  <div class="w-full my-1">
-                    <p class="font-normal h-14" style="font-size: 12px">
-                      Please add a brief description of Lorem ipsum dolor sit
-                      amet consectetur adipisicing elit. Quaerat fugiat harum
-                      amet non doloribus tenetur aliquid fuga pariatur,
-                      repudiandae, voluptatem voluptates nesciunt consectetur
-                      dignissimos aut nobis, magni et voluptas aperiam!
-                    </p>
-                  </div>
-                </div>
-                <select
-                  class="form-select mt-2 mb-4 appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
-                  style="height: 61px"
-                  aria-label="Default select example"
-                >
-                  <option class="text-xs md:text-sm">Partial time</option>
-                  <option class="text-xs md:text-sm">Full time</option>
-                </select>
-              </div>
-              <div>
-                <div class="flex">
-                  <p
-                    class="text-xs font-bold md:text-lg"
-                    style="color: #b1b1b1"
-                  >
-                    Location
+                    City
                   </p>
                   <div class="flex items-center">
                     <span
@@ -182,23 +191,26 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p
-                      class="font-normal h-10 text-gray-700"
-                      style="font-size: 12px"
-                    >
-                      This field requires you to enter the town you are/were
-                      employed in. For remote workers, please enter the town you
-                      are/were based in.
+                    <p class="font-normal h-14" style="font-size: 12px">
+                      The City of the Job
                     </p>
                   </div>
                 </div>
                 <select
-                  class="mt-2 mb-4 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                  v-model="newJob.city"
+                  class="form-select mt-2 mb-4 appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
                   aria-label="Default select example"
                 >
-                  <option class="text-xs md:text-sm">Remote</option>
-                  <option class="text-xs md:text-sm">On Site</option>
+                  <option class="text-xs md:text-sm" value="">Select the City</option>
+                  <option
+                    v-for="city in cities"
+                    :key="city"
+                    :value="city"
+                    class="text-xs md:text-sm"
+                  >
+                    {{ city }}
+                  </option>
                 </select>
               </div>
               <div>
@@ -207,7 +219,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Company email
+                    Location
                   </p>
                   <div class="flex items-center">
                     <span
@@ -228,17 +240,21 @@
                       class="font-normal h-10 text-gray-700"
                       style="font-size: 12px"
                     >
-                      This field requires you to enter the pre-tax/gross salary
-                      you get, vacation money included. You can find this amount
-                      in your contract or on your paycheck.
+                      This field requires you to enter the town you are/were
+                      employed in. For remote workers, please enter the town you
+                      are/were based in.
                     </p>
                   </div>
                 </div>
-                <input
-                  type="text"
+                <select
+                  v-model="newJob.is_remote"
+                  class="mt-2 mb-4 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
-                />
+                  aria-label="Default select example"
+                >
+                  <option class="text-xs md:text-sm" :value="true">Remote</option>
+                  <option class="text-xs md:text-sm" :value="false">On Site</option>
+                </select>
               </div>
               <div>
                 <div class="flex">
@@ -246,7 +262,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Salary range
+                    Application email
                   </p>
                   <div class="flex items-center">
                     <span
@@ -273,20 +289,12 @@
                     </p>
                   </div>
                 </div>
-                <div class="flex flex-col md:flex-row">
-                  <input
-                    type="number"
-                    style="height: 61px"
-                    class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:mr-2"
-                    placeholder="Minimum"
-                  />
-                  <input
-                    type="number"
-                    style="height: 61px"
-                    class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:ml-2"
-                    placeholder="Maximum"
-                  />
-                </div>
+                <input
+                  v-model="newJob.application_email_address"
+                  type="text"
+                  style="height: 61px"
+                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                />
               </div>
               <div>
                 <div class="flex">
@@ -294,7 +302,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Apply URL
+                    Phone Number
                   </p>
                   <div class="flex items-center">
                     <span
@@ -312,14 +320,17 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
+                      class="font-normal h-10 text-gray-700"
                       style="font-size: 12px"
                     >
-                      How will you want people to apply for this job?
+                      This field requires you to enter the pre-tax/gross salary
+                      you get, vacation money included. You can find this amount
+                      in your contract or on your paycheck.
                     </p>
                   </div>
                 </div>
                 <input
+                  v-model="newJob.application_phone_number"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
@@ -331,7 +342,7 @@
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
                   >
-                    Keywords
+                    Salary range
                   </p>
                   <div class="flex items-center">
                     <span
@@ -349,20 +360,72 @@
                 >
                   <div class="w-full my-1">
                     <p
+                      class="font-normal h-10 text-gray-700"
+                      style="font-size: 12px"
+                    >
+                      This field requires you to enter the pre-tax/gross salary
+                      you get, vacation money included. You can find this amount
+                      in your contract or on your paycheck.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex flex-col md:flex-row">
+                  <input
+                    v-model="newJob.salary_range_min"
+                    type="number"
+                    style="height: 61px"
+                    class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:mr-2"
+                    placeholder="Minimum"
+                  />
+                  <input
+                    v-model="newJob.salary_range_max"
+                    type="number"
+                    style="height: 61px"
+                    class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:ml-2"
+                    placeholder="Maximum"
+                  />
+                </div>
+              </div>
+              <div>
+                <div class="flex">
+                  <p
+                    class="text-xs font-bold md:text-lg"
+                    style="color: #b1b1b1"
+                  >
+                    How to apply
+                  </p>
+                  <div class="flex items-center">
+                    <span
+                      class="cursor-pointer h-4 text-center w-4 ml-2 text-grayC rounded-full border border-grayC text-xs flex items-center justify-center"
+                      :class="{ opened: opened.includes(tooltips[9].id) }"
+                      @click="toggle(tooltips[9].id)"
+                    >
+                      !
+                    </span>
+                  </div>
+                </div>
+                <div
+                  v-if="opened.includes(tooltips[9].id)"
+                  class="w-full bg-primary"
+                >
+                  <div class="w-full my-1">
+                    <p
                       class="font-normal h-6 text-gray-700"
                       style="font-size: 12px"
                     >
                       How will you want people to apply for this job? Enter the
                       email or any other infos that will help people apply for
-                      the job
+                      the job.
                     </p>
                   </div>
                 </div>
-                <input
+                <textarea
+                  v-model="newJob.how_to_apply"
+                  cols="6"
+                  rows="5"
                   type="text"
-                  style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
-                />
+                ></textarea>
               </div>
               <div>
                 <p
@@ -390,7 +453,7 @@
             <div
               class="mt-10 flex flex-col md:flex-row items-center justify-center xl:justify-start"
             >
-              <NuxtLink to="/confirm_job">
+              <button type="submit">
                 <div class="w-full md:w-1/5 ml-0 pt-6 md:pt-0 md:ml-40">
                   <Button
                     show-picture="nothing"
@@ -398,7 +461,7 @@
                     name="Next"
                   />
                 </div>
-              </NuxtLink>
+              </button>
             </div>
           </div>
         </form>
@@ -416,6 +479,24 @@ export default {
       opened: [],
       uploadImg: require('../assets/upload.png'),
       checkImg: require('../assets/payment.png'),
+      newJob: {
+        company_name: '',
+        company_email: '',
+        job_title: '',
+        is_remote: false,
+        city: '',
+        country: 'Cameroon',
+        department: '',
+        salary_range_min: 0,
+        salary_range_max: 0,
+        description: '',
+        benefits: '',
+        how_to_apply: '',
+        application_url: '',
+        application_email_address: '',
+        application_phone_number: '',
+        tags: ''
+      },
       tooltips: [
         {
           id: 1,
@@ -457,36 +538,16 @@ export default {
           id: 10,
           name: 'rate',
         },
-        {
-          id: 11,
-          name: 'rate',
-        },
-        {
-          id: 12,
-          name: 'rate',
-        },
-        {
-          id: 13,
-          name: 'rate',
-        },
-        {
-          id: 14,
-          name: 'rate',
-        },
-        {
-          id: 15,
-          name: 'rate',
-        },
-        {
-          id: 16,
-          name: 'rate',
-        },
-        {
-          id: 17,
-          name: 'rate',
-        },
       ],
     }
+  },
+  computed: {
+    cities() {
+      return this.$store.state.cities.cities
+    },
+  },
+  async created() {
+    await this.fetchCities();
   },
   methods: {
     toggle(id) {
@@ -497,9 +558,25 @@ export default {
         this.opened.push(id)
       }
     },
+    async fetchCities() {
+      await this.$store.dispatch('getCities');
+    },
+    saveNewJob(){
+      if(this.newJob){
+        this.$store.dispatch("setNewJob",
+          {
+            ...this.newJob,
+            salary_range_min: parseFloat(this.newJob.salary_range_min),
+            salary_range_max: parseFloat(this.newJob.salary_range_max)
+          }
+        );
+        this.$router.push("/confirm_job");
+      }
+    }
   },
 }
 </script>
+
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
 </style>
