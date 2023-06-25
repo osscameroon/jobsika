@@ -13,10 +13,10 @@ services:
   api:
     depends_on:
       - postgres
-      - start-minio
+      - minio
     restart: always
     image: golang:buster
-    command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres-and-run-api.sh
+    command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-minio-postgres-and-run-api.sh
     env_file:
       - ./.docker-env
     environment:
@@ -40,22 +40,21 @@ services:
       - 9000:9000
       - 9090:9090
 
-  start-minio:
-    extra_hosts:
-      - host.docker.internal:host-gateway
-    depends_on:
-      - minio
-    image: golang:buster
-    command: /api/scripts/wait-for-it/wait-for-it.sh minio:9000 -t 120 -- /api/scripts/setup-minio.sh
-    env_file:
-      - ./.docker-env
-    volumes:
-      - .:/api
+  # start-minio:
+  #   extra_hosts:
+  #     - host.docker.internal:host-gateway
+  #   depends_on:
+  #     - minio
+  #   image: golang:buster
+  #   command: /api/scripts/wait-for-it/wait-for-it.sh minio:9000 -t 120 -- /api/scripts/setup-minio.sh
+  #   env_file:
+  #     - ./.docker-env
+  #   volumes:
+  #     - .:/api
 
   e2etests:
     depends_on:
       - api
-      - start-minio
     image: node:14-stretch
     command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest-compose
     environment:

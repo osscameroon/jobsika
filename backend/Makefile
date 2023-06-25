@@ -54,6 +54,7 @@ $(E2ETEST_DEPS):
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data
+	docker-compose down -v
 	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
@@ -132,7 +133,7 @@ reset-postgres:
 
 ## stop-postgres: remove local postgres-data and teardown postgres
 stop-postgres:
-	docker-compose down -v && \
+	docker-compose down && \
 	rm -rf postgres-data
 
 .PHONY:check-swagger

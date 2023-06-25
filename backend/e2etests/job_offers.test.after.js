@@ -1,11 +1,12 @@
 import { expect } from "chai";
 import request from "supertest";
 import dotenv from "dotenv";
+import fs from "fs";
+import path from 'path';
 
 dotenv.config();
 const apiHost = process.env.API_HOST;
 const endpoint = "jobs";
-const fs = require('fs');
 
 
 describe(`${endpoint}`, function () {
@@ -269,14 +270,15 @@ describe(`${endpoint}`, function () {
         });
 
         it("post a valid job offer with image", async function () {
-            const imageData = fs.readFileSync("./oss.svg");
+            const fileContent = fs.readFileSync("./oss.svg");
+            const base64Content = fileContent.toString('base64');
             return request(apiHost)
                 .post(`${endpoint}`)
                 .set("Accept", "application/json")
                 .send({
                     company_email: "ossdevs-cm@gmail.com",
                     company_name: "OssCameroon",
-                    company_image: imageData,
+                    company_image: base64Content,
                     job_title: "Frontend Dev",
                     is_remote: true,
                     city: "Douala",
