@@ -40,18 +40,6 @@ services:
       - 9000:9000
       - 9090:9090
 
-  # start-minio:
-  #   extra_hosts:
-  #     - host.docker.internal:host-gateway
-  #   depends_on:
-  #     - minio
-  #   image: golang:buster
-  #   command: /api/scripts/wait-for-it/wait-for-it.sh minio:9000 -t 120 -- /api/scripts/setup-minio.sh
-  #   env_file:
-  #     - ./.docker-env
-  #   volumes:
-  #     - .:/api
-
   e2etests:
     depends_on:
       - api
