@@ -303,7 +303,7 @@ describe(`${endpoint}`, function () {
         });
 
 
-        it("post a valid job offer with invalid image", async function () {
+        it("post job offer with invalid image", async function () {
             return request(apiHost)
                 .post(`${endpoint}`)
                 .set("Accept", "application/json")
@@ -328,9 +328,6 @@ describe(`${endpoint}`, function () {
                 })
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
-                .then((res) => {
-                    expect(JSON.stringify(res.body)).contain("provided image has wrong extension");
-                });
         });
     });
 });

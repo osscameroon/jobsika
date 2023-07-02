@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -69,7 +70,7 @@ func PostJobOffer(c *gin.Context) {
 	if err := c.ShouldBind(&query); err != nil {
 		log.Error(err)
 		c.JSON(http.StatusBadRequest,
-			gin.H{"error": "could not post job offer"})
+			gin.H{"error": fmt.Sprintf("could not post job offer: %s", err.Error())})
 		return
 	}
 
