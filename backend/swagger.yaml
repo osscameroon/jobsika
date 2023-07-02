@@ -1,743 +1,760 @@
 basePath: /
 consumes:
-- application/json; charset=utf-8
+    - application/json; charset=utf-8
 definitions:
-  AverageRating:
-    description: AverageRating defines the average rating structure
-    properties:
-      rating:
-        format: int64
-        type: integer
-        x-go-name: Rating
-      salary:
-        format: int64
-        type: integer
-        x-go-name: Salary
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  Company:
-    description: Company defines the company structure
-    properties:
-      createdat:
-        format: date-time
-        type: string
-        x-go-name: CreatedAt
-      id:
-        format: int64
-        type: integer
-        x-go-name: ID
-      name:
-        type: string
-        x-go-name: Name
-      rating:
-        format: int64
-        type: integer
-        x-go-name: Rating
-      updatedat:
-        format: date-time
-        type: string
-        x-go-name: UpdatedAt
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  Rating:
-    description: |-
-      Rating defines the rating structure
-      This structure combines a salary and a company rating entry
-    properties:
-      city:
-        type: string
-        x-go-name: City
-      comment:
-        type: string
-        x-go-name: Comment
-      company_id:
-        format: int64
-        type: integer
-        x-go-name: CompanyID
-      company_name:
-        type: string
-        x-go-name: CompanyName
-      company_rating_id:
-        format: int64
-        type: integer
-        x-go-name: CompanyRatingID
-      country:
-        type: string
-        x-go-name: Country
-      createdat:
-        format: date-time
-        type: string
-        x-go-name: CreatedAt
-      job_title:
-        type: string
-        x-go-name: JobTitle
-      rating:
-        format: int64
-        type: integer
-        x-go-name: Rating
-      salary:
-        format: int64
-        type: integer
-        x-go-name: Salary
-      salary_id:
-        format: int64
-        type: integer
-        x-go-name: SalaryID
-      seniority:
-        type: string
-        x-go-name: Seniority
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  RatingPostQuery:
-    description: |-
-      RatingPostQuery defines the body object used to
-      create a new query
-    properties:
-      city:
-        type: string
-        x-go-name: City
-      comment:
-        type: string
-        x-go-name: Comment
-      company_name:
-        type: string
-        x-go-name: CompanyName
-      job_title:
-        type: string
-        x-go-name: JobTitle
-      rating:
-        format: int64
-        type: integer
-        x-go-name: Rating
-      salary:
-        format: int64
-        type: integer
-        x-go-name: Salary
-      seniority:
-        type: string
-        x-go-name: Seniority
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  RatingResponse:
-    properties:
-      hits:
-        items:
-          $ref: '#/definitions/Rating'
-        type: array
-        x-go-name: Hits
-      limit:
-        format: int64
-        type: integer
-        x-go-name: Limit
-      nbHits:
-        format: int64
-        type: integer
-        x-go-name: NBHits
-      offset:
-        format: int64
-        type: integer
-        x-go-name: Offset
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  Salary:
-    description: Salary defines the salary structure
-    properties:
-      city:
-        type: string
-        x-go-name: City
-      company_id:
-        format: int64
-        type: integer
-        x-go-name: CompanyID
-      company_rating_id:
-        format: int64
-        type: integer
-        x-go-name: CompanyRatingID
-      country:
-        type: string
-        x-go-name: Country
-      createdat:
-        format: date-time
-        type: string
-        x-go-name: CreatedAt
-      id:
-        format: int64
-        type: integer
-        x-go-name: ID
-      salary:
-        format: int64
-        type: integer
-        x-go-name: Salary
-      seniority:
+    AverageRating:
+        description: AverageRating defines the average rating structure
+        properties:
+            rating:
+                format: int64
+                type: integer
+                x-go-name: Rating
+            salary:
+                format: int64
+                type: integer
+                x-go-name: Salary
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    Company:
+        description: Company defines the company structure
+        properties:
+            createdat:
+                format: date-time
+                type: string
+                x-go-name: CreatedAt
+            id:
+                format: int64
+                type: integer
+                x-go-name: ID
+            name:
+                type: string
+                x-go-name: Name
+            rating:
+                format: int64
+                type: integer
+                x-go-name: Rating
+            updatedat:
+                format: date-time
+                type: string
+                x-go-name: UpdatedAt
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    JobOfferPresenter:
+        properties:
+            application_email_address:
+                type: string
+                x-go-name: ApplicationEmailAddress
+            application_phone_number:
+                type: string
+                x-go-name: ApplicationPhoneNumber
+            application_url:
+                type: string
+                x-go-name: ApplicationUrl
+            benefits:
+                type: string
+                x-go-name: Benefits
+            city:
+                type: string
+                x-go-name: City
+            company_name:
+                type: string
+                x-go-name: CompanyName
+            country:
+                type: string
+                x-go-name: Country
+            createdat:
+                format: date-time
+                type: string
+                x-go-name: CreatedAt
+            department:
+                type: string
+                x-go-name: Department
+            description:
+                type: string
+                x-go-name: Description
+            has_image:
+                type: boolean
+                x-go-name: HasImage
+            how_to_apply:
+                type: string
+                x-go-name: HowToApply
+            id:
+                format: int64
+                type: integer
+                x-go-name: ID
+            is_remote:
+                type: boolean
+                x-go-name: IsRemote
+            job_title:
+                type: string
+                x-go-name: JobTitle
+            salary_range_max:
+                format: int64
+                type: integer
+                x-go-name: SalaryRangeMax
+            salary_range_min:
+                format: int64
+                type: integer
+                x-go-name: SalaryRangeMin
+            tags:
+                type: string
+                x-go-name: Tags
+            updatedat:
+                format: date-time
+                type: string
+                x-go-name: UpdatedAt
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    JobOffersResponse:
+        properties:
+            hits:
+                items:
+                    $ref: '#/definitions/JobOfferPresenter'
+                type: array
+                x-go-name: Hits
+            limit:
+                format: int64
+                type: integer
+                x-go-name: Limit
+            nbHits:
+                format: int64
+                type: integer
+                x-go-name: NbHits
+            offset:
+                format: int64
+                type: integer
+                x-go-name: Offset
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    OfferPostQuery:
+        description: OfferPostQuery defines the body object used to create a new jb offer on a POST query
+        properties:
+            application_email_address:
+                type: string
+                x-go-name: ApplicationEmailAddress
+            application_phone_number:
+                type: string
+                x-go-name: ApplicationPhoneNumber
+            application_url:
+                type: string
+                x-go-name: ApplicationUrl
+            benefits:
+                type: string
+                x-go-name: Benefits
+            city:
+                type: string
+                x-go-name: City
+            company_email:
+                type: string
+                x-go-name: CompanyEmail
+            company_image:
+                items:
+                    format: uint8
+                    type: integer
+                type: array
+                x-go-name: CompanyImage
+            company_name:
+                type: string
+                x-go-name: CompanyName
+            country:
+                type: string
+                x-go-name: Country
+            department:
+                type: string
+                x-go-name: Department
+            description:
+                type: string
+                x-go-name: Description
+            how_to_apply:
+                type: string
+                x-go-name: HowToApply
+            is_remote:
+                type: boolean
+                x-go-name: IsRemote
+            job_title:
+                type: string
+                x-go-name: JobTitle
+            salary_range_max:
+                format: int64
+                type: integer
+                x-go-name: SalaryRangeMax
+            salary_range_min:
+                format: int64
+                type: integer
+                x-go-name: SalaryRangeMin
+            tags:
+                type: string
+                x-go-name: Tags
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    Rating:
         description: |-
-          Seniority can be set to the values bellow
-          Intern, Entry-level, Mid-level, Senior, Above Senior level, Executive
-        type: string
-        x-go-name: Seniority
-      title:
-        format: int64
-        type: integer
-        x-go-name: TitleID
-      updatedat:
-        format: date-time
-        type: string
-        x-go-name: UpdatedAt
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  Job:
-    description: Job defines the job structure
-    properties:
-      id:
-        format: int64
-        type: integer
-        x-go-name: ID
-      createdat:
-        format: date-time
-        type: string
-        x-go-name: CreatedAt
-      updatedat:
-        format: date-time
-        type: string
-        x-go-name: UpdatedAt
-      company_name:
-        type: string
-        x-go-name: CompanyName
-      job_title:
-        type: string
-        x-go-name: JobTitle
-      is_remote:
-        type: boolean
-        x-go-name: IsRemote
-      city:
-        type: string
-        x-go-name: City
-      country:
-        type: string
-        x-go-name: Country
-      department:
-        type: string
-        x-go-name: Department
-      salary_range_min:
-        format: int64
-        type: integer
-        x-go-name: SalaryRangeMin
-      salary_range_max:
-        format: int64
-        type: integer
-        x-go-name: SalaryRangeMax
-      description:
-        type: string
-        x-go-name: Description
-      benefits:
-        type: string
-        x-go-name: Benefits
-      how_to_apply:
-        type: string
-        x-go-name: HowToApply
-      application_url:
-        type: string
-        x-go-name: ApplicationURL
-      application_email_address:
-        type: string
-        x-go-name: ApplicationEmailAddress
-      application_phone_number:
-        type: string
-        x-go-name: ApplicationPhoneNumber
-      tags:
-        type: string
-        x-go-name: Tags
-      has_image:
-        type: boolean
+            Rating defines the rating structure
+            This structure combines a salary and a company rating entry
+        properties:
+            city:
+                type: string
+                x-go-name: City
+            comment:
+                type: string
+                x-go-name: Comment
+            company_id:
+                format: int64
+                type: integer
+                x-go-name: CompanyID
+            company_name:
+                type: string
+                x-go-name: CompanyName
+            company_rating_id:
+                format: int64
+                type: integer
+                x-go-name: CompanyRatingID
+            country:
+                type: string
+                x-go-name: Country
+            createdat:
+                format: date-time
+                type: string
+                x-go-name: CreatedAt
+            job_title:
+                type: string
+                x-go-name: JobTitle
+            rating:
+                format: int64
+                type: integer
+                x-go-name: Rating
+            salary:
+                format: int64
+                type: integer
+                x-go-name: Salary
+            salary_id:
+                format: int64
+                type: integer
+                x-go-name: SalaryID
+            seniority:
+                type: string
+                x-go-name: Seniority
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    RatingPostQuery:
         description: |-
-          HasImage is set to true if the job has a company image
-          and false otherwise
-        x-go-name: HasImage
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  JobPostQuery:
-    description: Job defines the job structure used to create a new job
-    properties:
-      company_name:
-        type: string
-        x-go-name: CompanyName
-      company_email:
-        description: |-
-          CompanyEmail is the email address of the company
-          posting the job. It is used to verify the company, send email to them, pay the publication fees
-        type: string
-        x-go-name: CompanyEmail
-      company_image:
-        type: string
-        x-go-name: CompanyImage
-      job_title:
-        type: string
-        x-go-name: JobTitle
-      is_remote:
-        type: boolean
-        x-go-name: IsRemote
-      city:
-        type: string
-        x-go-name: City
-      country:
-        type: string
-        x-go-name: Country
-      department:
-        type: string
-        x-go-name: Department
-      salary_range_min:
-        format: int64
-        type: integer
-        x-go-name: SalaryRangeMin
-      salary_range_max:
-        format: int64
-        type: integer
-        x-go-name: SalaryRangeMax
-      description:
-        type: string
-        x-go-name: Description
-      benefits:
-        type: string
-        x-go-name: Benefits
-      how_to_apply:
-        type: string
-        x-go-name: HowToApply
-      application_url:
-        description: |-
-          ApplicationURL is the url to which the applicant
-          can send their application. 
-          It is mandatory if both ApplicationEmailAddress and ApplicationPhoneNumber are empty
-        type: string
-        x-go-name: ApplicationURL
-      application_email_address:
-        description: |-
-          ApplicationEmailAddress is the email address
-          to which the applicant can send their application.
-          It mandatory if both ApplicationURL and ApplicationPhoneNumber are empty
-        type: string
-        x-go-name: ApplicationEmailAddress
-      application_phone_number:
-        description: |-
-          ApplicationPhoneNumber is the phone number
-          to which the applicant can send their application.
-          It mandatory if both ApplicationEmailAddress and ApplicationURL are empty
-        type: string
-        x-go-name: ApplicationPhoneNumber
-      tags:
-        type: string
-        x-go-name: Tags
-      company_image:
-        type: string
-        format: byte
-        x-go-name: CompanyImage
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-  JobResponse:
-    properties:
-      hits:
-        items:
-          $ref: '#/definitions/Job'
-        type: array
-        x-go-name: Hits
-      limit:
-        format: int64
-        type: integer
-        x-go-name: Limit
-      nbHits:
-        format: int64
-        type: integer
-        x-go-name: NBHits
-      offset:
-        format: int64
-        type: integer
-        x-go-name: Offset
-    type: object
-    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+            RatingPostQuery defines the body object used to
+            create a new query
+        properties:
+            city:
+                type: string
+                x-go-name: City
+            comment:
+                type: string
+                x-go-name: Comment
+            company_name:
+                type: string
+                x-go-name: CompanyName
+            job_title:
+                type: string
+                x-go-name: JobTitle
+            rating:
+                format: int64
+                type: integer
+                x-go-name: Rating
+            salary:
+                format: int64
+                type: integer
+                x-go-name: Salary
+            seniority:
+                type: string
+                x-go-name: Seniority
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    RatingResponse:
+        properties:
+            hits:
+                items:
+                    $ref: '#/definitions/Rating'
+                type: array
+                x-go-name: Hits
+            limit:
+                format: int64
+                type: integer
+                x-go-name: Limit
+            nbHits:
+                format: int64
+                type: integer
+                x-go-name: NBHits
+            offset:
+                format: int64
+                type: integer
+                x-go-name: Offset
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+    Salary:
+        description: Salary defines the salary structure
+        properties:
+            city_id:
+                format: int64
+                type: integer
+                x-go-name: CityID
+            company_id:
+                format: int64
+                type: integer
+                x-go-name: CompanyID
+            company_rating_id:
+                format: int64
+                type: integer
+                x-go-name: CompanyRatingID
+            country:
+                type: string
+                x-go-name: Country
+            createdat:
+                format: date-time
+                type: string
+                x-go-name: CreatedAt
+            id:
+                format: int64
+                type: integer
+                x-go-name: ID
+            salary:
+                format: int64
+                type: integer
+                x-go-name: Salary
+            seniority:
+                description: |-
+                    Seniority can be set to the values bellow
+                    Intern, Entry-level, Mid-level, Senior, Above Senior level, Executive
+                type: string
+                x-go-name: Seniority
+            title:
+                format: int64
+                type: integer
+                x-go-name: TitleID
+            updatedat:
+                format: date-time
+                type: string
+                x-go-name: UpdatedAt
+        type: object
+        x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
 host: localhost:7000
 info:
-  description: Documentation of our jobsika API.
-  title: Camerdevs API.
-  version: 1.0.0
+    description: Documentation of our jobsika API.
+    title: Camerdevs API.
+    version: 1.0.0
 paths:
-  /average-rating:
-    get:
-      description: Ratings returns the list of ratings
-      operationId: idOfAverageRating
-      parameters:
-      - example: Jaxbean
-        in: query
-        name: company
-        type: string
-        x-go-name: Company
-      - example: Recruiting Manager
-        in: query
-        name: jobtitle
-        type: string
-        x-go-name: JobTitle
-      responses:
-        "200":
-          $ref: '#/responses/averageRatingResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - ratings
-  /cities:
-    get:
-      description: Companies returns cities endpoint
-      operationId: idOfCities
-      responses:
-        "200":
-          $ref: '#/responses/citiesResponse'
-      tags:
-      - cities
-  /companies:
-    get:
-      description: Companies returns the list of companies
-      operationId: idOfCompanyWithoutID
-      responses:
-        "200":
-          $ref: '#/responses/companiesResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - companies
-  /companies/{id}:
-    get:
-      description: Companies returns the list of companies
-      operationId: idOfCompany
-      parameters:
-      - example: "1"
-        in: path
-        name: id
-        required: true
-        type: string
-        x-go-name: ID
-      responses:
-        "200":
-          $ref: '#/responses/companiesResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - companies
-  /company-ratings:
-    get:
-      description: CompanyRatings returns the list of company-ratings
-      operationId: idOfCompanyRatingsWithoutID
-      parameters:
-      - format: int64
-        in: query
-        name: company_id
-        type: integer
-        uniqueItems: true
-        x-go-name: CompanyID
-      responses:
-        "200":
-          $ref: '#/responses/company-ratingsResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - company-ratings
-  /company-ratings/{id}:
-    get:
-      description: CompanyRatings returns the list of company-ratings
-      operationId: idOfCompanyRatings
-      parameters:
-      - example: "1"
-        in: path
-        name: id
-        required: true
-        type: string
-        x-go-name: ID
-      responses:
-        "200":
-          $ref: '#/responses/companyRatingResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - company-ratings
-  /health:
-    get:
-      description: Companies returns health endpoint
-      operationId: idOfHealth
-      responses:
-        "200":
-          $ref: '#/responses/healthResponse'
-      tags:
-      - health
-  /jobtitles:
-    get:
-      description: Companies returns the list of jobtitles
-      operationId: idOfCompanyWithoutID
-      responses:
-        "200":
-          $ref: '#/responses/jobtitlesResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - jobtitles
-  /ratings:
-    get:
-      description: Ratings returns the list of ratings
-      operationId: idOfRatingWithoutID
-      parameters:
-      - example: "1"
-        in: query
-        name: page
-        type: string
-        x-go-name: Page
-      - example: "20"
-        in: query
-        name: limit
-        type: string
-        x-go-name: Limit
-      - example: Jaxbean
-        in: query
-        name: company
-        type: string
-        x-go-name: Company
-      - example: Recruiting Manager
-        in: query
-        name: jobtitle
-        type: string
-        x-go-name: JobTitle
-      responses:
-        "200":
-          $ref: '#/responses/ratingsResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - ratings
-    post:
-      description: Ratings create a new rating item
-      operationId: idOfRatingPost
-      parameters:
-      - description: desc
-        in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/RatingPostQuery'
-      responses:
-        "201":
-          $ref: '#/responses/postRatingsResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-      tags:
-      - ratings
-  /ratings/{salaryID}:
-    get:
-      description: Ratings returns the list of ratings
-      operationId: idOfRating
-      parameters:
-      - example: "1"
-        in: path
-        name: id
-        required: true
-        type: string
-        x-go-name: ID
-      responses:
-        "200":
-          $ref: '#/responses/ratingsResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - ratings
-  /salaries:
-    get:
-      description: Salaries returns the list of salaries
-      operationId: idOfSalaryWithoutID
-      responses:
-        "200":
-          $ref: '#/responses/salariesResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - salaries
-  /salaries/{id}:
-    get:
-      description: Salaries returns the list of salaries
-      operationId: idOfSalary
-      parameters:
-      - example: "1"
-        in: path
-        name: id
-        required: true
-        type: string
-        x-go-name: ID
-      responses:
-        "200":
-          $ref: '#/responses/salariesResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - salaries
-  /seniority:
-    get:
-      description: Companies returns seniority endpoint
-      operationId: idOfSeniority
-      responses:
-        "200":
-          $ref: '#/responses/seniorityResponse'
-      tags:
-      - seniority
-  /jobs:
-    get:
-      description:  Get list of available jobs
-      operationId: idOfJobsWithoutID
-      responses:
-        "200":
-          $ref: '#/responses/jobsResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - jobs
-    post:
-      description: create a new job
-      operationId: idOfJobPost
-      parameters:
-      - description: desc
-        in: body
-        name: Body
-        schema:
-          $ref: '#/definitions/JobPostQuery'
-      responses:
-        "201":
-          $ref: '#/responses/postJobResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-      tags:
-      - jobs
-  /jobs/{id}/image:
-    get:
-      description: Get company image of a job
-      operationId: idOfJobImage
-      parameters:
-      - example: "1"
-        in: path
-        name: id
-        required: true
-        type: string
-      responses:
-        "200":
-          $ref: '#/responses/jobImageResponse'
-        "400":
-          $ref: '#/responses/badRequestResponse'
-        "404":
-          $ref: '#/responses/notFoundResponse'
-      tags:
-      - jobs
-    
-
+    /average-rating:
+        get:
+            description: Ratings returns the list of ratings
+            operationId: idOfAverageRating
+            parameters:
+                - example: Jaxbean
+                  in: query
+                  name: company
+                  type: string
+                  x-go-name: Company
+                - example: Recruiting Manager
+                  in: query
+                  name: jobtitle
+                  type: string
+                  x-go-name: JobTitle
+            responses:
+                "200":
+                    $ref: '#/responses/averageRatingResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - ratings
+    /cities:
+        get:
+            description: Companies returns cities endpoint
+            operationId: idOfCities
+            responses:
+                "200":
+                    $ref: '#/responses/citiesResponse'
+            tags:
+                - cities
+    /companies:
+        get:
+            description: Companies returns the list of companies
+            operationId: idOfCompanyWithoutID
+            responses:
+                "200":
+                    $ref: '#/responses/companiesResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - companies
+    /companies/{id}:
+        get:
+            description: Companies returns the list of companies
+            operationId: idOfCompany
+            parameters:
+                - example: "1"
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: ID
+            responses:
+                "200":
+                    $ref: '#/responses/companiesResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - companies
+    /company-ratings:
+        get:
+            description: CompanyRatings returns the list of company-ratings
+            operationId: idOfCompanyRatingsWithoutID
+            parameters:
+                - format: int64
+                  in: query
+                  name: company_id
+                  type: integer
+                  uniqueItems: true
+                  x-go-name: CompanyID
+            responses:
+                "200":
+                    $ref: '#/responses/company-ratingsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - company-ratings
+    /company-ratings/{id}:
+        get:
+            description: CompanyRatings returns the list of company-ratings
+            operationId: idOfCompanyRatings
+            parameters:
+                - example: "1"
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: ID
+            responses:
+                "200":
+                    $ref: '#/responses/companyRatingResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - company-ratings
+    /health:
+        get:
+            description: Companies returns health endpoint
+            operationId: idOfHealth
+            responses:
+                "200":
+                    $ref: '#/responses/healthResponse'
+            tags:
+                - health
+    /jobs:
+        get:
+            description: Jobs returns the list of jobs
+            operationId: idOfJobWithoutID
+            parameters:
+                - example: "1"
+                  in: query
+                  name: page
+                  type: string
+                  x-go-name: Page
+                - example: "20"
+                  in: query
+                  name: limit
+                  type: string
+                  x-go-name: Limit
+                - example: Jaxbean
+                  in: query
+                  name: company
+                  type: string
+                  x-go-name: Company
+                - example: Recruiting Manager
+                  in: query
+                  name: jobtitle
+                  type: string
+                  x-go-name: JobTitle
+                - example: "true"
+                  in: query
+                  name: isremote
+                  type: string
+                  x-go-name: IsRemote
+                - example: Douala
+                  in: query
+                  name: city
+                  type: string
+                  x-go-name: City
+                - example: Cameroon
+                  in: query
+                  name: country
+                  type: string
+                  x-go-name: Country
+            responses:
+                "200":
+                    $ref: '#/responses/jobsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - jobs
+        post:
+            description: Jobs create a new job item
+            operationId: idOfJobPost
+            parameters:
+                - in: body
+                  name: Body
+                  schema:
+                    $ref: '#/definitions/OfferPostQuery'
+            responses:
+                "201":
+                    $ref: '#/responses/postJobsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+            tags:
+                - jobs
+    /jobs/{id}/image:
+        get:
+            description: Jobs return the image of the company posting a job
+            operationId: idOfJobImage
+            parameters:
+                - example: "1"
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: ID
+            responses:
+                "200":
+                    $ref: '#/responses/jobImageResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - jobs
+    /jobtitles:
+        get:
+            description: Companies returns the list of jobtitles
+            operationId: idOfCompanyWithoutID
+            responses:
+                "200":
+                    $ref: '#/responses/jobtitlesResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - jobtitles
+    /ratings:
+        get:
+            description: Ratings returns the list of ratings
+            operationId: idOfRatingWithoutID
+            parameters:
+                - example: "1"
+                  in: query
+                  name: page
+                  type: string
+                  x-go-name: Page
+                - example: "20"
+                  in: query
+                  name: limit
+                  type: string
+                  x-go-name: Limit
+                - example: Jaxbean
+                  in: query
+                  name: company
+                  type: string
+                  x-go-name: Company
+                - example: Recruiting Manager
+                  in: query
+                  name: jobtitle
+                  type: string
+                  x-go-name: JobTitle
+            responses:
+                "200":
+                    $ref: '#/responses/ratingsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - ratings
+        post:
+            description: Ratings create a new rating item
+            operationId: idOfRatingPost
+            parameters:
+                - description: desc
+                  in: body
+                  name: Body
+                  schema:
+                    $ref: '#/definitions/RatingPostQuery'
+            responses:
+                "201":
+                    $ref: '#/responses/postRatingsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+            tags:
+                - ratings
+    /ratings/{salaryID}:
+        get:
+            description: Ratings returns the list of ratings
+            operationId: idOfRating
+            parameters:
+                - example: "1"
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: ID
+            responses:
+                "200":
+                    $ref: '#/responses/ratingsResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - ratings
+    /salaries:
+        get:
+            description: Salaries returns the list of salaries
+            operationId: idOfSalaryWithoutID
+            responses:
+                "200":
+                    $ref: '#/responses/salariesResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - salaries
+    /salaries/{id}:
+        get:
+            description: Salaries returns the list of salaries
+            operationId: idOfSalary
+            parameters:
+                - example: "1"
+                  in: path
+                  name: id
+                  required: true
+                  type: string
+                  x-go-name: ID
+            responses:
+                "200":
+                    $ref: '#/responses/salariesResponse'
+                "400":
+                    $ref: '#/responses/badRequestResponse'
+                "404":
+                    $ref: '#/responses/notFoundResponse'
+            tags:
+                - salaries
+    /seniority:
+        get:
+            description: Companies returns seniority endpoint
+            operationId: idOfSeniority
+            responses:
+                "200":
+                    $ref: '#/responses/seniorityResponse'
+            tags:
+                - seniority
 produces:
-- application/json
+    - application/json
 responses:
-  averageRatingResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      $ref: '#/definitions/AverageRating'
-  badRequestResponse:
-    description: ""
-    schema:
-      properties:
-        error:
-          example: bad request
-          type: string
-          x-go-name: Error
-      type: object
-  citiesResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        type: string
-      type: array
-  companiesResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        $ref: '#/definitions/Company'
-      type: array
-  company-ratingsResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        $ref: '#/definitions/Company'
-      type: array
-  healthResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      properties:
-        message:
-          example: all good !
-          type: string
-          x-go-name: Message
-      type: object
-  jobtitlesResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        type: string
-      type: array
-  notFoundResponse:
-    description: ""
-    schema:
-      properties:
-        error:
-          example: could not found
-          type: string
-          x-go-name: Error
-      type: object
-  postRatingsResponse:
-    description: This text will appear as description of your response body.
-  ratingsResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      $ref: '#/definitions/RatingResponse'
-  salariesResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        $ref: '#/definitions/Salary'
-      type: array
-  seniorityResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      items:
-        type: string
-      type: array
-  jobsResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      $ref: '#/definitions/JobResponse'
-  postJobResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      $ref: '#/definitions/Job'
-  jobImageResponse:
-    description: This text will appear as description of your response body.
-    schema:
-      type: string
-      format: byte
+    averageRatingResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            $ref: '#/definitions/AverageRating'
+    badRequestResponse:
+        description: ""
+        schema:
+            properties:
+                error:
+                    example: bad request
+                    type: string
+                    x-go-name: Error
+            type: object
+    citiesResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                type: string
+            type: array
+    companiesResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                $ref: '#/definitions/Company'
+            type: array
+    company-ratingsResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                $ref: '#/definitions/Company'
+            type: array
+    healthResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            properties:
+                message:
+                    example: all good !
+                    type: string
+                    x-go-name: Message
+            type: object
+    jobImageResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                format: uint8
+                type: integer
+            type: array
+    jobsResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            $ref: '#/definitions/JobOffersResponse'
+    jobtitlesResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                type: string
+            type: array
+    notFoundResponse:
+        description: ""
+        schema:
+            properties:
+                error:
+                    example: could not found
+                    type: string
+                    x-go-name: Error
+            type: object
+    postJobsResponse:
+        description: ""
+        schema:
+            $ref: '#/definitions/JobOfferPresenter'
+    postRatingsResponse:
+        description: This text will appear as description of your response body.
+    ratingsResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            $ref: '#/definitions/RatingResponse'
+    salariesResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                $ref: '#/definitions/Salary'
+            type: array
+    seniorityResponse:
+        description: This text will appear as description of your response body.
+        schema:
+            items:
+                type: string
+            type: array
 schemes:
-- http
-- https
+    - http
+    - https
 swagger: "2.0"

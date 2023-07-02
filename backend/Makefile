@@ -146,7 +146,7 @@ swagger.yaml: check-swagger
 ## serve-swagger: open the api documentation
 .PHONY:serve-swagger
 serve-swagger: swagger.yaml check-swagger
-	swagger serve -F=swagger swagger.yaml
+	swagger serve -F=swagger swagger.yaml --no-open
 
 start-minio:
 	docker compose up start-minio
