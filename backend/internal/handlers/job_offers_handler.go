@@ -158,7 +158,7 @@ func GetJobOfferImage(c *gin.Context) {
 	jobOfferID, err := strconv.ParseInt(jobOfferIDStr, 10, 64)
 	if err != nil {
 		log.Error(err)
-		c.JSON(http.StatusInternalServerError,
+		c.JSON(http.StatusBadRequest,
 			gin.H{"error": "failed to parse job offer id"})
 		return
 	}

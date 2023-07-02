@@ -122,7 +122,7 @@ type JobOfferPresenter struct {
 	ApplicationEmailAddress string `json:"application_email_address"`
 	ApplicationPhoneNumber  string `json:"application_phone_number"`
 	Tags                    string `json:"tags"`
-	HasImage                bool   `json:"has_image" gorm:"column:has_image"`
+	HasImage                bool   `json:"has_image" gorm:"-:all"`
 	CompanyImageLocation    string `json:"-" gorm:"column:company_image_location"`
 }
 

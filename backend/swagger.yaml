@@ -14,7 +14,7 @@ definitions:
         type: integer
         x-go-name: Salary
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Company:
     description: Company defines the company structure
     properties:
@@ -38,7 +38,7 @@ definitions:
         type: string
         x-go-name: UpdatedAt
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Rating:
     description: |-
       Rating defines the rating structure
@@ -87,7 +87,7 @@ definitions:
         type: string
         x-go-name: Seniority
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   RatingPostQuery:
     description: |-
       RatingPostQuery defines the body object used to
@@ -117,7 +117,7 @@ definitions:
         type: string
         x-go-name: Seniority
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   RatingResponse:
     properties:
       hits:
@@ -138,7 +138,7 @@ definitions:
         type: integer
         x-go-name: Offset
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
   Salary:
     description: Salary defines the salary structure
     properties:
@@ -183,7 +183,175 @@ definitions:
         type: string
         x-go-name: UpdatedAt
     type: object
-    x-go-package: github.com/elhmn/jobsika/pkg/models/v1beta
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+  Job:
+    description: Job defines the job structure
+    properties:
+      id:
+        format: int64
+        type: integer
+        x-go-name: ID
+      createdat:
+        format: date-time
+        type: string
+        x-go-name: CreatedAt
+      updatedat:
+        format: date-time
+        type: string
+        x-go-name: UpdatedAt
+      company_name:
+        type: string
+        x-go-name: CompanyName
+      job_title:
+        type: string
+        x-go-name: JobTitle
+      is_remote:
+        type: boolean
+        x-go-name: IsRemote
+      city:
+        type: string
+        x-go-name: City
+      country:
+        type: string
+        x-go-name: Country
+      department:
+        type: string
+        x-go-name: Department
+      salary_range_min:
+        format: int64
+        type: integer
+        x-go-name: SalaryRangeMin
+      salary_range_max:
+        format: int64
+        type: integer
+        x-go-name: SalaryRangeMax
+      description:
+        type: string
+        x-go-name: Description
+      benefits:
+        type: string
+        x-go-name: Benefits
+      how_to_apply:
+        type: string
+        x-go-name: HowToApply
+      application_url:
+        type: string
+        x-go-name: ApplicationURL
+      application_email_address:
+        type: string
+        x-go-name: ApplicationEmailAddress
+      application_phone_number:
+        type: string
+        x-go-name: ApplicationPhoneNumber
+      tags:
+        type: string
+        x-go-name: Tags
+      has_image:
+        type: boolean
+        description: |-
+          HasImage is set to true if the job has a company image
+          and false otherwise
+        x-go-name: HasImage
+    type: object
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+  JobPostQuery:
+    description: Job defines the job structure used to create a new job
+    properties:
+      company_name:
+        type: string
+        x-go-name: CompanyName
+      company_email:
+        description: |-
+          CompanyEmail is the email address of the company
+          posting the job. It is used to verify the company, send email to them, pay the publication fees
+        type: string
+        x-go-name: CompanyEmail
+      company_image:
+        type: string
+        x-go-name: CompanyImage
+      job_title:
+        type: string
+        x-go-name: JobTitle
+      is_remote:
+        type: boolean
+        x-go-name: IsRemote
+      city:
+        type: string
+        x-go-name: City
+      country:
+        type: string
+        x-go-name: Country
+      department:
+        type: string
+        x-go-name: Department
+      salary_range_min:
+        format: int64
+        type: integer
+        x-go-name: SalaryRangeMin
+      salary_range_max:
+        format: int64
+        type: integer
+        x-go-name: SalaryRangeMax
+      description:
+        type: string
+        x-go-name: Description
+      benefits:
+        type: string
+        x-go-name: Benefits
+      how_to_apply:
+        type: string
+        x-go-name: HowToApply
+      application_url:
+        description: |-
+          ApplicationURL is the url to which the applicant
+          can send their application. 
+          It is mandatory if both ApplicationEmailAddress and ApplicationPhoneNumber are empty
+        type: string
+        x-go-name: ApplicationURL
+      application_email_address:
+        description: |-
+          ApplicationEmailAddress is the email address
+          to which the applicant can send their application.
+          It mandatory if both ApplicationURL and ApplicationPhoneNumber are empty
+        type: string
+        x-go-name: ApplicationEmailAddress
+      application_phone_number:
+        description: |-
+          ApplicationPhoneNumber is the phone number
+          to which the applicant can send their application.
+          It mandatory if both ApplicationEmailAddress and ApplicationURL are empty
+        type: string
+        x-go-name: ApplicationPhoneNumber
+      tags:
+        type: string
+        x-go-name: Tags
+      company_image:
+        type: string
+        format: byte
+        x-go-name: CompanyImage
+    type: object
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
+  JobResponse:
+    properties:
+      hits:
+        items:
+          $ref: '#/definitions/Job'
+        type: array
+        x-go-name: Hits
+      limit:
+        format: int64
+        type: integer
+        x-go-name: Limit
+      nbHits:
+        format: int64
+        type: integer
+        x-go-name: NBHits
+      offset:
+        format: int64
+        type: integer
+        x-go-name: Offset
+    type: object
+    x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
 host: localhost:7000
 info:
   description: Documentation of our jobsika API.
@@ -430,6 +598,56 @@ paths:
           $ref: '#/responses/seniorityResponse'
       tags:
       - seniority
+  /jobs:
+    get:
+      description:  Get list of available jobs
+      operationId: idOfJobsWithoutID
+      responses:
+        "200":
+          $ref: '#/responses/jobsResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - jobs
+    post:
+      description: create a new job
+      operationId: idOfJobPost
+      parameters:
+      - description: desc
+        in: body
+        name: Body
+        schema:
+          $ref: '#/definitions/JobPostQuery'
+      responses:
+        "201":
+          $ref: '#/responses/postJobResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+      tags:
+      - jobs
+  /jobs/{id}/image:
+    get:
+      description: Get company image of a job
+      operationId: idOfJobImage
+      parameters:
+      - example: "1"
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          $ref: '#/responses/jobImageResponse'
+        "400":
+          $ref: '#/responses/badRequestResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+      tags:
+      - jobs
+    
+
 produces:
 - application/json
 responses:
@@ -506,6 +724,19 @@ responses:
       items:
         type: string
       type: array
+  jobsResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      $ref: '#/definitions/JobResponse'
+  postJobResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      $ref: '#/definitions/Job'
+  jobImageResponse:
+    description: This text will appear as description of your response body.
+    schema:
+      type: string
+      format: byte
 schemes:
 - http
 - https
