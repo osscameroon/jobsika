@@ -202,7 +202,9 @@
                   style="height: 61px"
                   aria-label="Default select example"
                 >
-                  <option class="text-xs md:text-sm" value="">Select the City</option>
+                  <option class="text-xs md:text-sm" value="">
+                    Select the City
+                  </option>
                   <option
                     v-for="city in cities"
                     :key="city"
@@ -252,8 +254,12 @@
                   style="height: 61px"
                   aria-label="Default select example"
                 >
-                  <option class="text-xs md:text-sm" :value="true">Remote</option>
-                  <option class="text-xs md:text-sm" :value="false">On Site</option>
+                  <option class="text-xs md:text-sm" :value="true">
+                    Remote
+                  </option>
+                  <option class="text-xs md:text-sm" :value="false">
+                    On Site
+                  </option>
                 </select>
               </div>
               <div>
@@ -495,7 +501,7 @@ export default {
         application_url: '',
         application_email_address: '',
         application_phone_number: '',
-        tags: ''
+        tags: '',
       },
       tooltips: [
         {
@@ -547,7 +553,7 @@ export default {
     },
   },
   async created() {
-    await this.fetchCities();
+    await this.fetchCities()
   },
   methods: {
     toggle(id) {
@@ -559,24 +565,22 @@ export default {
       }
     },
     async fetchCities() {
-      await this.$store.dispatch('getCities');
+      await this.$store.dispatch('getCities')
     },
-    saveNewJob(){
-      if(this.newJob){
-        this.$store.dispatch("setNewJob",
-          {
-            ...this.newJob,
-            salary_range_min: parseFloat(this.newJob.salary_range_min),
-            salary_range_max: parseFloat(this.newJob.salary_range_max)
-          }
-        );
-        this.$router.push("/confirm_job");
+    saveNewJob() {
+      if (this.newJob) {
+        this.$store.dispatch('setNewJob', {
+          ...this.newJob,
+          salary_range_min: parseFloat(this.newJob.salary_range_min),
+          salary_range_max: parseFloat(this.newJob.salary_range_max),
+        })
+        this.$router.push('/confirm_job')
       }
-    }
+    },
   },
 }
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;700&display=swap');
 </style>

@@ -22,12 +22,16 @@
               <div class="flex flex-col md:flex-row py-2">
                 <div class="flex">
                   <img :src="location" class="w-4 h-4 mr-1" />
-                  <p class="text-xs font-extralight text-gray-600">{{ newjob.company_name }}</p>
+                  <p class="text-xs font-extralight text-gray-600">
+                    {{ newjob.company_name }}
+                  </p>
                 </div>
                 <div class="xl:ml-4 pt-2 xl:pt-0 flex">
                   <img :src="position" class="w-4 h-4 mr-1" />
                   <!-- <p class="text-xs font-extralight text-gray-600">{{ marker }}</p> -->
-                  <p class="text-xs font-extralight text-gray-600">{{ newjob.is_remote ? 'Remote' : 'On Site' }}</p>
+                  <p class="text-xs font-extralight text-gray-600">
+                    {{ newjob.is_remote ? 'Remote' : 'On Site' }}
+                  </p>
                 </div>
                 <div class="xl:ml-4 pt-2 xl:pt-0 flex">
                   <img :src="clock" class="w-4 h-4 mr-1" />
@@ -73,7 +77,10 @@
                                     </p> -->
                   <p class="text-sm font-extralight pt-4 text-gray-600">
                     <span class="font-bold text-black">Salary range: </span
-                    >Min({{ newjob.salary_range_min }} FCFA), Max({{ newjob.salary_range_max }} FCFA)
+                    >Min({{ newjob.salary_range_min }} FCFA), Max({{
+                      newjob.salary_range_max
+                    }}
+                    FCFA)
                   </p>
                 </div>
                 <div class="my-8">
@@ -82,7 +89,8 @@
                     class="cursor-pointer w-60 px-4 py-1 text-gray-500 font-bold flex items-center justify-center text-xs bg-gray-200 h-10 rounded-full hover:bg-gray-400 hover:text-white"
                   >
                     <p class="flex items-center justify-center">
-                      {{ newjob.how_to_apply }}<span
+                      {{ newjob.how_to_apply
+                      }}<span
                         ><img class="ml-1 w-2 h-auto" alt="pic" :src="arrow"
                       /></span>
                     </p>
@@ -131,15 +139,18 @@ export default {
   },
   computed: {
     newjob() {
-      return this.$store.state.jobs.newjob;
-    }
+      return this.$store.state.jobs.newjob
+    },
   },
   methods: {
     async sendJob() {
-      const {status, data} = await this.$store.dispatch('postJob', this.newjob);
-      if(status){
-        this.$store.dispatch("setNewJob", data);
-        this.$router.push("/payment_instruction");
+      const { status, data } = await this.$store.dispatch(
+        'postJob',
+        this.newjob
+      )
+      if (status) {
+        this.$store.dispatch('setNewJob', data)
+        this.$router.push('/payment_instruction')
       }
     },
   },

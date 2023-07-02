@@ -81,13 +81,12 @@ export const actions = {
     try {
       const resp = await axios.post(this.$config.baseURL + '/jobs', data)
       if (resp) {
-        commit('jobs/SETNEWJOB', resp.data);
-        return {status: true, data: resp.data};
+        commit('jobs/SETNEWJOB', resp.data)
+        return { status: true, data: resp.data }
       }
     } catch (error) {
-      return {status: false, data: {}};
+      return { status: false, data: {} }
     }
-
   },
   filterJob({ commit }, value) {
     commit('jobtitles/SETFILTERJOB', value)

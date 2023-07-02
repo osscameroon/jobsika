@@ -82,8 +82,8 @@ export default {
   },
   computed: {
     newjob() {
-      return this.$store.state.jobs.newjob;
-    }
+      return this.$store.state.jobs.newjob
+    },
   },
 }
 </script>

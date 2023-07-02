@@ -76,7 +76,7 @@ export default {
     },
   },
   async created() {
-    await this.fetchJobs();
+    await this.fetchJobs()
   },
   methods: {
     async fetchJobs() {
