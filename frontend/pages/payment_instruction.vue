@@ -32,7 +32,7 @@
                   </p>
                 </div>
                 <div class="md:w-1/4 py-6">
-                  <NuxtLink to="/payment">
+                  <NuxtLink to="/">
                     <Button
                       show-picture="nothing"
                       my-style="background: #235365;padding: 20px;box-shadow: 0 1px 2px rgb(0 0 0 / 0.2); width: 164px;"
@@ -79,6 +79,11 @@ export default {
         'You will receive an email of your job offer',
       ],
     }
+  },
+  computed: {
+    newjob() {
+      return this.$store.state.jobs.newjob
+    },
   },
 }
 </script>

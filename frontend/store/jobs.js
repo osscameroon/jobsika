@@ -3,6 +3,7 @@ export const state = () => ({
   limit: 10,
   nbHits: 0,
   jobs: [],
+  newjob: {},
 })
 
 export const getters = {
@@ -10,6 +11,7 @@ export const getters = {
   limit: (state) => state.limit,
   nbHits: (state) => state.nbHits,
   jobs: (state) => state.jobs,
+  newjob: (state) => state.newjob,
 }
 
 export const mutations = {
@@ -24,6 +26,9 @@ export const mutations = {
   },
   SETJOBS(state, payload) {
     state.jobs = [].concat(payload)
+  },
+  SETNEWJOB(state, payload) {
+    state.newjob = { ...payload }
   },
   ADDJOB(state, payload) {
     state.jobs = [{ ...payload }, ...state.jobs]

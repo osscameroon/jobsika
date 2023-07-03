@@ -3,8 +3,8 @@ import axios from 'axios'
 export const actions = {
   async getRatings({ commit }, payload) {
     const params = {
-      page: payload.page,
-      limit: payload.limit,
+      page: payload.page ? payload.page : 1,
+      limit: payload.limit ? payload.limit : 10,
       company: payload.company ? payload.company : '',
       jobtitle: payload.jobtitle ? payload.jobtitle : '',
       seniority: payload.seniority ? payload.seniority : '',
@@ -77,6 +77,17 @@ export const actions = {
       commit('jobs/SETJOBS', resp.data.hits)
     }
   },
+  async postJob({ commit }, data) {
+    try {
+      const resp = await axios.post(this.$config.baseURL + '/jobs', data)
+      if (resp) {
+        commit('jobs/SETNEWJOB', resp.data)
+        return { status: true, data: resp.data }
+      }
+    } catch (error) {
+      return { status: false, data: {} }
+    }
+  },
   filterJob({ commit }, value) {
     commit('jobtitles/SETFILTERJOB', value)
   },
@@ -88,5 +99,8 @@ export const actions = {
   },
   filterCity({ commit }, value) {
     commit('cities/SETFILTERCITY', value)
+  },
+  setNewJob({ commit }, value) {
+    commit('jobs/SETNEWJOB', value)
   },
 }
