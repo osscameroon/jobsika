@@ -73,17 +73,11 @@
                 FCFA), Max({{ maxSalary }} FCFA)
               </p>
             </div>
-            <div class="my-8">
-              <NuxtLink
-                to="#"
-                class="cursor-pointer w-60 px-4 py-1 text-gray-500 font-bold flex items-center justify-center text-xs bg-gray-200 h-10 rounded-full hover:bg-gray-400 hover:text-white"
-              >
-                <p class="flex items-center justify-center">
-                  Learn more about the job offer<span
-                    ><img class="ml-1 w-2 h-auto" alt="pic" :src="arrow"
-                  /></span>
-                </p>
-              </NuxtLink>
+            <div class="xl:justify-end items-center w-full xl:w-3/12 pt-4 xl:pt-0 flex">
+                <NuxtLink to="#"
+                    :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg ${active == true ? 'flex' : 'hidden'}`">
+                    {{ $t('global_label_apply') }}
+                </NuxtLink>
             </div>
           </div>
         </div>

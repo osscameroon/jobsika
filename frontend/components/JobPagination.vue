@@ -27,19 +27,14 @@
 	          rounded-md
 	          text-gray-700
 	          cursor-pointer
-            ${
-              page === 1
-                ? 'bg-blue text-white border-none'
-                : 'bg-blueDark text-white border-none'
-            }
-	            `"
-        @click="previewpage()"
-      >
-        Previous
-      </span>
-      <span
-        style="font-family: 'Inter', sans-serif"
-        :class="`
+            ${page === 1
+					? 'bg-blue text-white border-none'
+					: 'bg-blueDark text-white border-none'
+				}
+	            `" @click="previewpage()">
+				{{$t("global_label_previous")}}
+			</span>
+			<span style="font-family: 'Inter', sans-serif" :class="`
 						ml-3
 						relative
 						inline-flex
@@ -51,62 +46,71 @@
 						md:text-sm
 						font-medium
 						rounded-md
-						cursor-pointer
-						${
-              page === numberPage
-                ? 'bg-blue text-white border-none'
-                : 'bg-blueDark text-white border-none'
-            }
-	        `"
-        @click="nextpage()"
-      >
-        Next
-      </span>
-      <span
-        style="border-color: #919191"
-        class="relative inline-flex items-center px-3 py-2 rounded-md border bg-white text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer mx-2"
-        @click="limitpage()"
-      >
-        <span style="color: #919191" class="font-bold">&raquo;</span>
-      </span>
-    </div>
-    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-      <div>
-        <p
-          v-if="nbOfItems == 0"
-          style="font-family: 'Inter', sans-serif"
-          class="text-xs md:text-sm text-gray-700"
-        >
-          No items found
-        </p>
-        <p
-          v-else
-          style="font-family: 'Inter', sans-serif"
-          class="text-xs md:text-sm text-gray-700"
-        >
-          Showing
-          <span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
-          to
-          <span class="font-medium">{{ limit * (page - 1) + nbOfItems }}</span>
-          of
-          <span class="font-medium">{{ nbHits }}</span>
-          results
-        </p>
-      </div>
-      <div>
-        <nav
-          class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-          aria-label="Pagination"
-        >
-          <span
-            class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer"
-            @click="startpage()"
-          >
-            <span class="font-bold">&laquo;</span>
-          </span>
-          <div @click="previewpage()">
-            <span
-              :class="`z-10
+						${page === numberPage
+					? 'bg-blue text-white border-none'
+					: 'bg-blueDark text-white border-none'
+				}
+	        `" @click="nextpage()">
+				{{$t("global_label_next")}}
+			</span>
+			<span @click="limitpage()" style="border-color: #919191" class="
+	            relative
+	            inline-flex
+	            items-center
+	            px-3
+	            py-2
+	            rounded-md
+	            border
+	            bg-white
+	            text-xs
+	            md:text-sm
+	            font-medium
+	            text-gray-500
+	            hover:bg-gray-50
+	            cursor-pointer
+	            mx-2
+	          ">
+				<span style="color: #919191" class="font-bold">&raquo;</span>
+			</span>
+		</div>
+		<div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+			<div>
+				<p v-if="nbOfItems == 0" style="font-family: 'Inter', sans-serif" class="text-xs md:text-sm text-gray-700">
+          {{$t("global_label_no_results")}}
+				</p>
+				<p v-else style="font-family: 'Inter', sans-serif" class="text-xs md:text-sm text-gray-700">
+          {{$t("global_label_showing")}}
+					<span class="font-medium">{{ (page - 1) * limit + 1 }}</span>
+          {{$t("global_label_to")}}
+					<span class="font-medium">{{ limit * (page - 1) + nbOfItems }}</span>
+          {{$t("global_label_of")}}
+					<span class="font-medium">{{ nbHits }}</span>
+          {{$t("global_label_results")}}
+				</p>
+			</div>
+			<div>
+				<nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+					<span @click="startpage()" class="
+	          relative
+	          inline-flex
+	          items-center
+	          px-4
+	          py-2
+	          rounded-l-md
+	          border border-gray-300
+	          bg-white
+	          text-xs
+	          md:text-sm
+	          font-medium
+	          text-gray-500
+	          hover:bg-gray-50
+	          cursor-pointer
+	        "
+					>
+						<span class="font-bold">&laquo;</span>
+					</span>
+					<div @click="previewpage()">
+						<span :class="`z-10
 	              bg-indigo-50
 	              border-indigo-500
 	              text-indigo-600
@@ -122,30 +126,18 @@
 							  cursor-pointer
 							  ${page === current1 ? 'bg-blue' : 'bg-white'}
 							`"
-            >
-              <span class="sr-only">Previous</span>
-              <svg
-                class="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </div>
-          <div
-            v-for="currentleft in leftSide"
-            :key="currentleft"
-            @click="changepage(currentleft)"
-          >
-            <span
-              :class="`z-10
+						>
+							<span class="sr-only">{{$t("global_label_previous")}}</span>
+							<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+								aria-hidden="true">
+								<path fill-rule="evenodd"
+									d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+									clip-rule="evenodd" />
+							</svg>
+						</span>
+					</div>
+					<div v-for="current1 in leftSide" :key="current1" @click="changepage(current1)">
+						<span :class="`z-10
 	            bg-indigo-50
 	            border-indigo-500
 	            text-indigo-600
@@ -218,33 +210,39 @@
 							cursor-pointer
 							${page === current1 ? 'bg-blue' : 'bg-white'}
 						`"
-            >
-              <span class="sr-only">Next</span>
-              <svg
-                class="h-5 w-5"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </span>
-          </div>
-          <span
-            class="relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-50 cursor-pointer"
-            @click="limitpage()"
-          >
-            <span class="font-bold">&raquo;</span>
-          </span>
-        </nav>
-      </div>
-    </div>
-  </div>
+						>
+							<span class="sr-only">{{$t("global_label_next")}}</span>
+							<svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+								aria-hidden="true">
+								<path fill-rule="evenodd"
+									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+									clip-rule="evenodd" />
+							</svg>
+						</span>
+					</div>
+					<span @click="limitpage()" class="
+	          relative
+	          inline-flex
+	          items-center
+	          px-4
+	          py-2
+	          rounded-r-md
+	          border border-gray-300
+	          bg-white
+	          text-xs
+	          md:text-sm
+	          font-medium
+	          text-gray-500
+	          hover:bg-gray-50
+	          cursor-pointer
+	        "
+					>
+						<span class="font-bold">&raquo;</span>
+					</span>
+				</nav>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>

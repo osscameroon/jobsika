@@ -19,14 +19,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Seniorities
+          {{ $t('global_label_all_seniorties') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           v-for="(seniority, index) in seniorities"
@@ -45,7 +45,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Job Title
+    {{ $t('salary_table_header_job_title')}}
       </h4>
       <select
         v-model="myfilterjob"
@@ -59,14 +59,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Titles
+          {{ $t('global_label_all_job_title') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           v-for="(link, index) in jobtitles"
@@ -85,7 +85,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Companies
+        {{ $t('global_label_companies')}}
       </h4>
       <select
         v-model="myfiltercompany"
@@ -99,14 +99,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Compagnies
+          {{ $t('global_label_all_companies') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           v-for="link in companies"
@@ -125,7 +125,7 @@
         style="color: #b1b1b1"
         class="pb-1 font-semibold text-xs md:text-base"
       >
-        Cities
+        {{ $t('global_label_cities') }}
       </h4>
       <select
         v-model="myfiltercity"
@@ -139,14 +139,14 @@
           disabled
           style="font-family: 'Inter', sans-serif"
         >
-          All Cities
+          {{ $t('global_label_all_cities') }}
         </option>
         <option
           class="text-xs md:text-sm"
           value=""
           style="font-family: 'Inter', sans-serif"
         >
-          any
+          {{ $t('global_label_any') }}
         </option>
         <option
           v-for="(city, index) in cities"
@@ -164,6 +164,7 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+
 export default Vue.extend({
   name: 'SelectComponent',
   props: {},
