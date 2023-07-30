@@ -41,16 +41,16 @@
 
 <script>
 export default {
-  data(){
+  data() {
     return {
-      email: ""
+      email: '',
     }
   },
   methods: {
-    submitform(){
+    submitform() {
       this.$emit('success-modal', this.email)
-    }
-  }
+    },
+  },
 }
 </script>
 

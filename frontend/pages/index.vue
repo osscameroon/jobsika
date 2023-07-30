@@ -164,15 +164,15 @@ export default {
         page: 1,
       })
     },
-    async postSubscriber(email){
+    async postSubscriber(email) {
       const resp = await this.$store.dispatch('postSubscriber', {
-        email
+        email,
       })
       this.showModal = false
-      if (resp){
+      if (resp) {
         this.showModalSuccess = true
       }
-    }
+    },
   },
 }
 </script>

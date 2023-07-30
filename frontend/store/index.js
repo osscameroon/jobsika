@@ -88,8 +88,8 @@ export const actions = {
       return { status: false, data: {} }
     }
   },
-  async postSubscriber(_, data){
-    try{
+  async postSubscriber(_, data) {
+    try {
       const resp = await axios.post(this.$config.baseURL + '/subscribers', data)
       return resp
     } catch (error) {
