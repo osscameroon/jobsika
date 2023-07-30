@@ -25,7 +25,7 @@ services:
     volumes:
       - .:/api
     ports:
-      - 7000:7000
+      - 7001:7001
     extra_hosts:
       - host.docker.internal:host-gateway
 
@@ -44,9 +44,9 @@ services:
     depends_on:
       - api
     image: node:14-stretch
-    command: /api/scripts/wait-for-it/wait-for-it.sh api:7000 -t 300 -- make -C /api e2etest-compose
+    command: /api/scripts/wait-for-it/wait-for-it.sh api:7001 -t 300 -- make -C /api e2etest-compose
     environment:
-      API_HOST: "http://api:7000/"
+      API_HOST: "http://api:7001/"
     volumes:
       - .:/api
 

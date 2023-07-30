@@ -44,7 +44,7 @@ Now you should be able to run the backend and make payment requests.
 
 Run the api using `make start-api`
 
-Then run the command `curl -vsS -X POST -H 'Content-Type: application/json' -d '{"email":"test@email.com", "tier": "je suis con", "job_offer_id": "1"}' http://localhost:7000/pay | jq`
+Then run the command `curl -vsS -X POST -H 'Content-Type: application/json' -d '{"email":"test@email.com", "tier": "je suis con", "job_offer_id": "1"}' http://localhost:7001/pay | jq`
 
 You should have a similar output to:
 

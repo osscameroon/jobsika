@@ -60,7 +60,7 @@ services:
     volumes:
       - .:/api
     ports:
-      - 7000:7000
+      - 7001:7001
 
 volumes:
   minio-storage: {}

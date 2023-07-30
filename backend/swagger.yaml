@@ -333,7 +333,7 @@ definitions:
                 x-go-name: UpdatedAt
         type: object
         x-go-package: github.com/osscameroon/jobsika/pkg/models/v1beta
-host: localhost:7000
+host: localhost:7001
 info:
     description: Documentation of our jobsika API.
     title: Camerdevs API.
