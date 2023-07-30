@@ -158,7 +158,7 @@ stop-minio:
 ## install-deps: install main dependencies
 install-deps:
 	@echo "installing golangci-lint..."
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.23.8
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(shell go env GOPATH)/bin v1.53.3 
 	@echo "golangci installed!"
 	@echo "installing errcheck..."
 	go install github.com/kisielk/errcheck@latest
