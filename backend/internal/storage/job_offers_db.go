@@ -36,6 +36,8 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 		query = query.Where("jb.is_remote = ?", false)
 	}
 
+	query = query.Order("jb.createdat DESC").Order("jb.id DESC")
+
 	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
 	if err != nil {
 		return v1beta.JobOffersResponse{}, err
