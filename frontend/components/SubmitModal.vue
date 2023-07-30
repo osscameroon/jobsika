@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     submitform(){
-      this.$emit('success-modal', this.email);
+      this.$emit('success-modal', this.email)
     }
   }
 }

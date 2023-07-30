@@ -167,10 +167,10 @@ export default {
     async postSubscriber(email){
       const resp = await this.$store.dispatch('postSubscriber', {
         email
-      });
-      this.showModal = false;
+      })
+      this.showModal = false
       if (resp){
-        this.showModalSuccess = true;
+        this.showModalSuccess = true
       }
     }
   },
