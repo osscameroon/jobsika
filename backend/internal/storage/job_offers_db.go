@@ -1,6 +1,8 @@
 package storage
 
 import (
+	"time"
+
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -84,6 +86,8 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 		ApplicationEmailAddress: query.ApplicationEmailAddress,
 		ApplicationPhoneNumber:  query.ApplicationPhoneNumber,
 		Tags:                    query.Tags,
+		CreatedAt:               time.Now().UTC(),
+		UpdatedAt:               time.Now().UTC(),
 	}
 
 	err := db.c.Transaction(func(tx *gorm.DB) error {

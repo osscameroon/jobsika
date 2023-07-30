@@ -35,8 +35,8 @@ VALUES (
         'jobs@acmecorp.com',
         '555-555-5555',
         'Java,Spring,software engineer',
-        '2022-01-01',
-        '2022-01-01'
+        '2022-01-01 12:34:56+00:00',
+        '2022-01-01 12:34:56+00:00'
     ),
     (
         'Globex Corporation',
@@ -55,8 +55,8 @@ VALUES (
         'jobs@globexcorp.com',
         '555-555-5555',
         'marketing,social media,digital marketing',
-        '2022-01-02',
-        '2022-01-02'
+        '2022-01-02 12:34:56+00:00',
+        '2022-01-02 12:34:56+00:00'
     ),
     (
         'Stark Industries',
@@ -75,8 +75,8 @@ VALUES (
         'jobs@starkindustries.com',
         '555-555-5555',
         'mechanical engineer,electromechanical systems',
-        '2022-01-03',
-        '2022-01-03'
+        '2022-01-03 12:34:56+00:00',
+        '2022-01-03 12:34:56+00:00'
     ),
     (
         'Wayne Enterprises',
@@ -95,8 +95,8 @@ VALUES (
         'jobs@wayneenterprises.com',
         '555-555-5555',
         'financial analyst,budgeting,forecasting',
-        '2022-01-04',
-        '2022-01-04'
+        '2022-01-04 12:34:56+00:00',
+        '2022-01-04 12:34:56+00:00'
     ),
     (
         'Umbrella Corporation',
@@ -115,6 +115,6 @@ VALUES (
         'jobs@umbrellacorp.com',
         '555-555-5555',
         'research scientist,virology,molecular biology',
-        '2022-01-05',
-        '2022-01-05'
+        '2022-01-05 12:34:56+00:00',
+        '2022-01-05 12:34:56+00:00'
     )
