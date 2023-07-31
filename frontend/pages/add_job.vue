@@ -43,10 +43,17 @@
                   </div>
                 </div>
                 <input
-                  v-model="newJob.company_name"
+                  :value="newJob.company_name"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        company_name: event.target.value,
+                      })
+                  "
                 />
               </div>
               <div>
@@ -81,10 +88,17 @@
                   </div>
                 </div>
                 <input
-                  v-model="newJob.company_email"
+                  :value="newJob.company_email"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        company_email: event.target.value,
+                      })
+                  "
                 />
               </div>
               <div>
@@ -121,10 +135,17 @@
                   </div>
                 </div>
                 <input
-                  v-model="newJob.job_title"
+                  :value="newJob.job_title"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        job_title: event.target.value,
+                      })
+                  "
                 />
               </div>
               <div>
@@ -160,11 +181,18 @@
                   </div>
                 </div>
                 <textarea
-                  v-model="newJob.description"
+                  :value="newJob.description"
                   cols="6"
                   rows="5"
                   type="text"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        description: event.target.value,
+                      })
+                  "
                 >
                 </textarea>
               </div>
@@ -197,10 +225,17 @@
                   </div>
                 </div>
                 <select
-                  v-model="newJob.city"
+                  :value="newJob.city"
                   class="form-select mt-2 mb-4 appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
                   aria-label="Default select example"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        city: event.target.value,
+                      })
+                  "
                 >
                   <option class="text-xs md:text-sm" value="">
                     Select the City
@@ -249,10 +284,17 @@
                   </div>
                 </div>
                 <select
-                  v-model="newJob.is_remote"
+                  :value="newJob.is_remote"
                   class="mt-2 mb-4 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
                   aria-label="Default select example"
+                  @change="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        is_remote: event.target.value === 'true' ? true : false,
+                      })
+                  "
                 >
                   <option class="text-xs md:text-sm" :value="true">
                     Remote
@@ -296,10 +338,17 @@
                   </div>
                 </div>
                 <input
-                  v-model="newJob.application_email_address"
+                  :value="newJob.application_email_address"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        application_email_address: event.target.value,
+                      })
+                  "
                 />
               </div>
               <div>
@@ -336,10 +385,17 @@
                   </div>
                 </div>
                 <input
-                  v-model="newJob.application_phone_number"
+                  :value="newJob.application_phone_number"
                   type="text"
                   style="height: 61px"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        application_phone_number: event.target.value,
+                      })
+                  "
                 />
               </div>
               <div>
@@ -377,18 +433,32 @@
                 </div>
                 <div class="flex flex-col md:flex-row">
                   <input
-                    v-model="newJob.salary_range_min"
+                    :value="newJob.salary_range_min"
                     type="number"
                     style="height: 61px"
                     class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:mr-2"
                     placeholder="Minimum"
+                    @input="
+                      (event) =>
+                        $store.commit('jobs/SETNEWJOB', {
+                          ...newJob,
+                          salary_range_min: event.target.value,
+                        })
+                    "
                   />
                   <input
-                    v-model="newJob.salary_range_max"
+                    :value="newJob.salary_range_max"
                     type="number"
                     style="height: 61px"
                     class="border border-grayC mt-2 w-full md:w-1/2 rounded-md mb-4 md:ml-2"
                     placeholder="Maximum"
+                    @input="
+                      (event) =>
+                        $store.commit('jobs/SETNEWJOB', {
+                          ...newJob,
+                          salary_range_max: event.target.value,
+                        })
+                    "
                   />
                 </div>
               </div>
@@ -426,11 +496,18 @@
                   </div>
                 </div>
                 <textarea
-                  v-model="newJob.how_to_apply"
+                  :value="newJob.how_to_apply"
                   cols="6"
                   rows="5"
                   type="text"
                   class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  @input="
+                    (event) =>
+                      $store.commit('jobs/SETNEWJOB', {
+                        ...newJob,
+                        how_to_apply: event.target.value,
+                      })
+                  "
                 ></textarea>
               </div>
               <div>
@@ -485,24 +562,6 @@ export default {
       opened: [],
       uploadImg: require('../assets/upload.png'),
       checkImg: require('../assets/payment.png'),
-      newJob: {
-        company_name: '',
-        company_email: '',
-        job_title: '',
-        is_remote: false,
-        city: '',
-        country: 'Cameroon',
-        department: '',
-        salary_range_min: 0,
-        salary_range_max: 0,
-        description: '',
-        benefits: '',
-        how_to_apply: '',
-        application_url: '',
-        application_email_address: '',
-        application_phone_number: '',
-        tags: '',
-      },
       tooltips: [
         {
           id: 1,
@@ -550,6 +609,9 @@ export default {
   computed: {
     cities() {
       return this.$store.state.cities.cities
+    },
+    newJob() {
+      return this.$store.state.jobs.newjob
     },
   },
   async created() {
