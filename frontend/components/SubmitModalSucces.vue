@@ -14,6 +14,7 @@
         <div class="flex items-center justify-center w-11/12">
           <button
             class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg w-full mx-7"
+            @click="$emit('close-modal')"
           >
             Alright
           </button>

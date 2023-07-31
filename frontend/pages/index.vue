@@ -100,8 +100,15 @@ to="/add_salary"
         </div>
       </div>
     </div>
-    <SubmitModal v-show="showModal" @close-modal="showModal = false" @success-modal="showModalSuccess = true" />
-    <SubmitModalSucces v-show="showModalSuccess" @close-modal="; (showModalSuccess = false) & (showModal = false)" />
+    <SubmitModal
+      v-show="showModal"
+      @close-modal="showModal = false"
+      @success-modal="postSubscriber"
+    />
+    <SubmitModalSucces
+      v-show="showModalSuccess"
+      @close-modal=";(showModalSuccess = false) & (showModal = false)"
+    />
   </main>
 </template>
 
@@ -141,6 +148,15 @@ export default {
       await this.$store.dispatch('getRatings', {
         page: 1,
       })
+    },
+    async postSubscriber(email) {
+      const resp = await this.$store.dispatch('postSubscriber', {
+        email,
+      })
+      this.showModal = false
+      if (resp) {
+        this.showModalSuccess = true
+      }
     },
   },
 }

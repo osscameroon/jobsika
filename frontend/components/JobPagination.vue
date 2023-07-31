@@ -159,10 +159,10 @@
 						  md:text-sm
 						  font-medium
 						  cursor-pointer
-						  ${page === current1 ? 'bg-blue' : 'bg-white'}
+						  ${page === currentleft ? 'bg-blue' : 'bg-white'}
 					  `"
             >
-              {{ current1 }}
+              {{ currentleft }}
             </span>
           </div>
           <div>
@@ -193,7 +193,7 @@
 							md:text-sm
 							font-medium
 							cursor-pointer
-							${page === current1 ? 'bg-blue' : 'bg-white'}
+							${page === current ? 'bg-blue' : 'bg-white'}
 						`"
             >
               {{ current }}
