@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="container mx-auto md:w-7/12 px-4 md:px-0">
+    <div class="container mx-auto sm:w-9/12 md:w-8/12 lg:w-7/12 px-4 md:px-0">
       <div class="pt-10 lg:pt-14">
         <h2 class="font-bold text-2xl md:text-4xl text-center text-black">
           Find the job that fits your skills and passion
