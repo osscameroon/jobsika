@@ -17,6 +17,7 @@
               All new job offers will be sent to your email
             </p>
             <input
+              v-model="email"
               type="text"
               class="border border-grayC w-full rounded-md h-11 mt-1"
             />
@@ -24,7 +25,7 @@
           <div class="flex items-center justify-center my-12">
             <div
               class="cursor-pointer p-4 text-white font-bold flex items-center justify-center text-sm lg:text-base bg-blueDark h-12 rounded-lg w-full mx-7"
-              @click="$emit('success-modal')"
+              @click="submitform()"
             >
               Sign up
             </div>
@@ -39,7 +40,18 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      email: '',
+    }
+  },
+  methods: {
+    submitform() {
+      this.$emit('success-modal', this.email)
+    },
+  },
+}
 </script>
 
 <style scoped>

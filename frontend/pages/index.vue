@@ -118,7 +118,7 @@
     <SubmitModal
       v-show="showModal"
       @close-modal="showModal = false"
-      @success-modal="showModalSuccess = true"
+      @success-modal="postSubscriber"
     />
     <SubmitModalSucces
       v-show="showModalSuccess"
@@ -163,6 +163,15 @@ export default {
       await this.$store.dispatch('getRatings', {
         page: 1,
       })
+    },
+    async postSubscriber(email) {
+      const resp = await this.$store.dispatch('postSubscriber', {
+        email,
+      })
+      this.showModal = false
+      if (resp) {
+        this.showModalSuccess = true
+      }
     },
   },
 }
