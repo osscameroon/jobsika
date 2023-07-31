@@ -99,7 +99,7 @@
           <div @click="previewpage()">
             <span
               :class="`z-10
-                          border 
+                          border
                           border-gray-300
             relative
             inline-flex
@@ -137,7 +137,7 @@
           >
             <span
               :class="`z-10
-                          border 
+                          border
                           border-gray-300
               text-gray-500
             relative
@@ -150,10 +150,10 @@
             md:text-sm
             font-medium
             cursor-pointer
-            ${page === current1 ? 'bg-blue' : 'bg-white'}
+            ${page === currentleft ? 'bg-blue' : 'bg-white'}
             `"
             >
-              {{ current1 }}
+              {{ currentleft }}
             </span>
           </div>
           <div>
@@ -171,7 +171,7 @@
             <span
               :class="`
               z-10
-                          border 
+                          border
                           border-gray-300
               text-gray-500
               relative
