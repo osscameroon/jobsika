@@ -24,6 +24,41 @@
               {{ new Date(time).toLocaleDateString() }}
             </p>
           </div>
+          <div v-if="opened.includes(details[myIndex].id)" class="w-full">
+            <div class="my-4">
+              <h4 class="text-gray-800 py-4 font-semibold">
+                About {{ structure }}
+              </h4>
+              <p class="text-sm font-extralight pt-4 text-gray-600">
+                {{ description }}
+              </p>
+              <p class="text-sm font-extralight pt-4 text-gray-600">
+                <span class="font-bold text-black">Employment type: </span>Full
+                time
+              </p>
+              <p class="text-sm font-extralight pt-4 text-gray-600">
+                <span class="font-bold text-black">Apply at: </span>{{ mail }}
+              </p>
+              <p class="text-sm font-extralight pt-4 text-gray-600">
+                <span class="font-bold text-black">Salary range: </span>Min({{
+                  minSalary
+                }}
+                FCFA), Max({{ maxSalary }} FCFA)
+              </p>
+            </div>
+            <div class="my-8">
+              <NuxtLink
+                to="#"
+                class="cursor-pointer w-60 px-4 py-1 text-gray-500 font-bold flex items-center justify-center text-xs bg-gray-200 h-10 rounded-full hover:bg-gray-400 hover:text-white"
+              >
+                <p class="flex items-center justify-center">
+                  Learn more about the job offer<span
+                    ><img class="ml-1 w-2 h-auto" alt="pic" :src="arrow"
+                  /></span>
+                </p>
+              </NuxtLink>
+            </div>
+          </div>
         </div>
         <p class="text-xs pt-2 font-extralight text-gray-600 text-center md:text-left w-10/12">{{ cleanText(description)
         }}</p>
@@ -40,7 +75,7 @@
         </NuxtLink>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 
 <script>
@@ -72,12 +107,32 @@ export default {
       type: String,
       default: '',
     },
+    minSalary: {
+      type: String,
+      default: '',
+    },
+    maxSalary: {
+      type: String,
+      default: '',
+    },
     description: {
+      type: String,
+      default: '',
+    },
+    mail: {
       type: String,
       default: '',
     },
     tags: {
       type: [String],
+      default: null,
+    },
+    myIndex: {
+      type: Number,
+      default: 0,
+    },
+    details: {
+      type: [Array],
       default: null,
     },
   },
@@ -86,12 +141,19 @@ export default {
       location: require('../assets/location.png'),
       position: require('../assets/position.png'),
       clock: require('../assets/clock.png'),
+      arrow: require('../assets/arrowd.png'),
       active: false,
+      opened: [],
     }
   },
   methods: {
-    mouseOver() {
-      this.active = !this.active
+    toggle(id) {
+      const index = this.opened.indexOf(id)
+      if (index > -1) {
+        this.opened.splice(index, 1)
+      } else {
+        this.opened.push(id)
+      }
     },
     cleanText(text) {
       return text.slice(0, 250) + (text.length > 250 ? '..' : '')
