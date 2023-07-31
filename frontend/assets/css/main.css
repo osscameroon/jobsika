@@ -25,10 +25,10 @@ body {
 }
 
 .nav-select {
-  text-decoration: #235365 solid 80px;
-  border-color: #235365;
-  border-bottom-width: 3px;
-  width: 80px;
+  text-decoration-line: underline;
+  text-decoration-thickness: 2px;
+  color: #235365;
+  text-underline-offset: 10px;
 }
 .nav-noselect {
   text-decoration: none;
