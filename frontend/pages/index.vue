@@ -11,7 +11,8 @@
             project goals? Look no further - the right person is out there and
             ready to take on the challenge.
           </h4>
-          <NuxtLink to="/add_job"
+          <NuxtLink
+to="/add_job"
             class="cursor-pointer p-4 text-white font-bold flex items-center justify-center lg:text-base bg-blueDark h-12 rounded-lg mt-8 text-sm w-64 px-4 sm:w-44">
             Post a job now
           </NuxtLink>
@@ -84,7 +85,8 @@
               Contribute your salary to help create awareness
             </p>
             <div class="pt-4 md:pt-2 xl:pt-0 w-full xl:w-40 xl:ml-4">
-              <NuxtLink to="/add_salary"
+              <NuxtLink
+to="/add_salary"
                 class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-xs md:text-lg px-4 border-2 h-12 rounded-md border-blue my-4">
                 <img :src="plusIcon" class="w-5 h-5 mr-1" />
                 Contribute

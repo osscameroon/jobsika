@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-white shadow-md p-3 md:p-4 rounded-md hover:shadow-xl" @mouseover="active = true"
+  <div
+class="bg-white shadow-md p-3 md:p-4 rounded-md hover:shadow-xl" @mouseover="active = true"
     @mouseleave="active = false">
     <div class="flex flex-col justify-center items-center md:items-start md:flex-row">
       <div class="w-28 h-28 border rounded-md flex justify-center items-center">
@@ -69,7 +70,8 @@
         </div>
       </div>
       <div class="md:justify-end items-center w-full md:w-3/12 pt-4 md:pt-0 flex">
-        <NuxtLink to="#" :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm md:text-base bg-blueDark h-12 rounded-lg ${active == true ? 'flex' : 'hidden'
+        <NuxtLink
+to="#" :class="`cursor-pointer px-12 py-4 text-white font-bold items-center justify-center text-sm md:text-base bg-blueDark h-12 rounded-lg ${active == true ? 'flex' : 'hidden'
           }`">
           Apply
         </NuxtLink>
