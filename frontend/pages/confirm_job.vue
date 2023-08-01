@@ -106,7 +106,7 @@
               to="/add_job"
               class="cursor-pointer p-4 text-blueDark font-bold flex items-center justify-center text-sm lg:text-base border-2 h-12 rounded-lg border-blue"
             >
-              Cancel
+              Edit
             </NuxtLink>
           </div>
           <div class="pt-4 lg:pt-0 w-full lg:w-44 lg:ml-2">
@@ -144,12 +144,8 @@ export default {
   },
   methods: {
     async sendJob() {
-      const { status, data } = await this.$store.dispatch(
-        'postJob',
-        this.newjob
-      )
-      if (status) {
-        this.$store.dispatch('setNewJob', data)
+      const resp = await this.$store.dispatch('postJob', this.newjob)
+      if (resp.status) {
         this.$router.push('/payment_instruction')
       }
     },

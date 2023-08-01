@@ -3,7 +3,24 @@ export const state = () => ({
   limit: 10,
   nbHits: 0,
   jobs: [],
-  newjob: {},
+  newjob: {
+    company_name: '',
+    company_email: '',
+    job_title: '',
+    is_remote: false,
+    city: '',
+    country: 'Cameroon',
+    department: '',
+    salary_range_min: 0,
+    salary_range_max: 0,
+    description: '',
+    benefits: '',
+    how_to_apply: '',
+    application_url: '',
+    application_email_address: '',
+    application_phone_number: '',
+    tags: '',
+  },
 })
 
 export const getters = {
