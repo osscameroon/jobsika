@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-contrib/cors"
+	limits "github.com/gin-contrib/size"
 	"github.com/gin-gonic/gin"
 	"github.com/osscameroon/jobsika/internal/handlers"
 	_ "github.com/osscameroon/jobsika/swagger"
@@ -49,9 +50,13 @@ func main() {
 	router.GET("/cities", handlers.GetCities)
 
 	//JobOffers
-	router.GET("/jobs", handlers.GetJobOffers)
-	router.POST("/jobs", handlers.PostJobOffer)
-	router.GET("/jobs/:id/image", handlers.GetJobOfferImage)
+	jobsRouter := router.Group("/jobs")
+	{
+		jobsRouter.Use(limits.RequestSizeLimiter(5242880)) // 5MB. if request body is larger than 5MB, it will return 413 error
+		jobsRouter.GET("", handlers.GetJobOffers)
+		jobsRouter.POST("", handlers.PostJobOffer)
+		jobsRouter.GET("/:id/image", handlers.GetJobOfferImage)
+	}
 
 	//Subscribers
 	router.POST("/subscribers", handlers.PostSubscribers)
