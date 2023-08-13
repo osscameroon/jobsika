@@ -94,7 +94,8 @@ export const actions = {
     } catch (error) {
       return undefined
     }
-  },async getJobPaymentLink({ commit }, data) {
+  },
+  async getJobPaymentLink({ commit }, data) {
     try {
       const resp = await axios.post(this.$config.baseURL + '/pay', data)
       commit('jobs/SETPAYMENTLINK', resp.data)

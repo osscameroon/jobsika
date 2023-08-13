@@ -86,7 +86,7 @@ export default {
     },
     paymentlink() {
       return this.$store.state.jobs.paymentlink
-    }
+    },
   },
 }
 </script>

@@ -21,7 +21,7 @@ export const state = () => ({
     application_phone_number: '',
     tags: '',
   },
-  paymentlink: ''
+  paymentlink: '',
 })
 
 export const getters = {
@@ -30,7 +30,7 @@ export const getters = {
   nbHits: (state) => state.nbHits,
   jobs: (state) => state.jobs,
   newjob: (state) => state.newjob,
-  paymentlink: (state) => state.paymentlink
+  paymentlink: (state) => state.paymentlink,
 }
 
 export const mutations = {
@@ -54,5 +54,5 @@ export const mutations = {
   },
   SETPAYMENTLINK(state, payload) {
     state.paymentlink = payload.tier_url
-  }
+  },
 }

@@ -143,7 +143,7 @@ export default {
     },
   },
   methods: {
-    resetStateJob(){
+    resetStateJob() {
       this.$store.commit('jobs/SETNEWJOB', {
         company_name: '',
         company_email: '',
@@ -166,17 +166,17 @@ export default {
     async sendJob() {
       const resp = await this.$store.dispatch('postJob', this.newjob)
       if (!resp.status) {
-        return;
+        return
       }
       const linkrest = await this.$store.dispatch('getJobPaymentLink', {
-        "email": resp.data.application_email_address,
-        "tier": "job_offer",
-        "job_offer_id": `${resp.data.id}`
+        email: resp.data.application_email_address,
+        tier: 'job_offer',
+        job_offer_id: `${resp.data.id}`,
       })
       if (!linkrest.status) {
-        return;
+        return
       }
-      this.resetStateJob();
+      this.resetStateJob()
       this.$router.push('/payment_instruction')
     },
   },
