@@ -143,11 +143,41 @@ export default {
     },
   },
   methods: {
+    resetStateJob(){
+      this.$store.commit('jobs/SETNEWJOB', {
+        company_name: '',
+        company_email: '',
+        job_title: '',
+        is_remote: false,
+        city: '',
+        country: 'Cameroon',
+        department: '',
+        salary_range_min: 0,
+        salary_range_max: 0,
+        description: '',
+        benefits: '',
+        how_to_apply: '',
+        application_url: '',
+        application_email_address: '',
+        application_phone_number: '',
+        tags: '',
+      })
+    },
     async sendJob() {
       const resp = await this.$store.dispatch('postJob', this.newjob)
-      if (resp.status) {
-        this.$router.push('/payment_instruction')
+      if (!resp.status) {
+        return;
       }
+      const linkrest = await this.$store.dispatch('getJobPaymentLink', {
+        "email": resp.data.application_email_address,
+        "tier": "job_offer",
+        "job_offer_id": `${resp.data.id}`
+      })
+      if (!linkrest.status) {
+        return;
+      }
+      this.resetStateJob();
+      this.$router.push('/payment_instruction')
     },
   },
 }
