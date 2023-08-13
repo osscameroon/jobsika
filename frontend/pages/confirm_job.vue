@@ -61,8 +61,8 @@
                     {{ newjob.description }}
                   </p>
                   <p class="text-sm font-extralight pt-4 text-gray-600">
-                    <span class="font-bold text-black">Employment type: </span
-                    >{{ newjob.job_type }}
+                    <span class="font-bold text-black">Phone Number: </span
+                    >{{ newjob.application_phone_number }}
                   </p>
                   <p class="text-sm font-extralight pt-4 text-gray-600">
                     <!-- <span class="font-bold text-black">Apply at: </span>{{ mail }} -->
