@@ -21,6 +21,7 @@ export const state = () => ({
     application_phone_number: '',
     tags: '',
   },
+  paymentlink: ''
 })
 
 export const getters = {
@@ -29,6 +30,7 @@ export const getters = {
   nbHits: (state) => state.nbHits,
   jobs: (state) => state.jobs,
   newjob: (state) => state.newjob,
+  paymentlink: (state) => state.paymentlink
 }
 
 export const mutations = {
@@ -50,4 +52,7 @@ export const mutations = {
   ADDJOB(state, payload) {
     state.jobs = [{ ...payload }, ...state.jobs]
   },
+  SETPAYMENTLINK(state, payload) {
+    state.paymentlink = payload.tier_url
+  }
 }

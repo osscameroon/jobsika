@@ -81,24 +81,6 @@ export const actions = {
     try {
       const resp = await axios.post(this.$config.baseURL + '/jobs', data)
       if (resp) {
-        commit('jobs/SETNEWJOB', {
-          company_name: '',
-          company_email: '',
-          job_title: '',
-          is_remote: false,
-          city: '',
-          country: 'Cameroon',
-          department: '',
-          salary_range_min: 0,
-          salary_range_max: 0,
-          description: '',
-          benefits: '',
-          how_to_apply: '',
-          application_url: '',
-          application_email_address: '',
-          application_phone_number: '',
-          tags: '',
-        })
         return { status: true, data: resp.data }
       }
     } catch (error) {
@@ -108,6 +90,14 @@ export const actions = {
   async postSubscriber(_, data) {
     try {
       const resp = await axios.post(this.$config.baseURL + '/subscribers', data)
+      return resp
+    } catch (error) {
+      return undefined
+    }
+  },async getJobPaymentLink({ commit }, data) {
+    try {
+      const resp = await axios.post(this.$config.baseURL + '/pay', data)
+      commit('jobs/SETPAYMENTLINK', resp.data)
       return resp
     } catch (error) {
       return undefined
