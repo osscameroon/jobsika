@@ -124,7 +124,7 @@ func PostJobOffer(c *gin.Context) {
 		}
 		location, err := fs.UploadJobOfferCompanyPicture(query.CompanyImage, offer.ID, extensionDeatils.String(), extensionDeatils.Extension())
 		if err != nil {
-			db.DeleteJobOffer(offer.ID)
+			_ = db.DeleteJobOffer(offer.ID)
 			log.Error(err)
 			c.JSON(http.StatusInternalServerError,
 				gin.H{"error": "could not post job offer. Image upload failed"})
@@ -133,7 +133,7 @@ func PostJobOffer(c *gin.Context) {
 
 		err = db.PostJobOfferImage(offer.ID, location)
 		if err != nil {
-			db.DeleteJobOffer(offer.ID)
+			_ = db.DeleteJobOffer(offer.ID)
 			log.Error(err)
 			c.JSON(http.StatusInternalServerError,
 				gin.H{"error": "could not post job offer image"})
