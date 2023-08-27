@@ -52,7 +52,6 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 		if err != nil {
 			return v1beta.JobOffersResponse{}, err
 		}
-		j.HasImage = j.CompanyImageLocation != ""
 		jobOffers = append(jobOffers, j)
 	}
 
@@ -67,9 +66,8 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 }
 
 // PostJobOffer post new job offer
-// the uploadImageFunc is a function that will be called after the job offer is created
-// we made it to avoid circular dependency between storage and server package
-func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobOfferID int64) (string, error)) (*v1beta.JobOffer, error) {
+func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
+	currentTime := time.Now().UTC()
 	offer := &v1beta.JobOffer{
 		CompanyName:             query.CompanyName,
 		CompanyEmail:            query.CompanyEmail,
@@ -86,8 +84,8 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 		ApplicationEmailAddress: query.ApplicationEmailAddress,
 		ApplicationPhoneNumber:  query.ApplicationPhoneNumber,
 		Tags:                    query.Tags,
-		CreatedAt:               time.Now().UTC(),
-		UpdatedAt:               time.Now().UTC(),
+		CreatedAt:               currentTime,
+		UpdatedAt:               currentTime,
 	}
 
 	err := db.c.Transaction(func(tx *gorm.DB) error {
@@ -104,20 +102,6 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 			return res.Error
 		}
 
-		if uploadImageFunc != nil {
-			offer.CompanyImageLocation, err = uploadImageFunc(offer.ID)
-			if err != nil {
-				log.Error(err)
-				return err
-			}
-
-			err = tx.Table("job_offers").Where("id = ?", offer.ID).Update("company_image_location", offer.CompanyImageLocation).Error
-			if err != nil {
-				log.Error(err)
-				return err
-			}
-		}
-
 		return nil
 	})
 	if err != nil {
@@ -125,6 +109,36 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery, uploadImageFunc func(jobO
 	}
 
 	return offer, nil
+}
+
+// PostJobOfferImage save job offer image location in the database
+func (db DB) PostJobOfferImage(offerID int64, imageLocation string) error {
+	currentTime := time.Now().UTC()
+	jobOfferImage := v1beta.JobOfferImage{
+		JobOfferID:    offerID,
+		ImageLocation: imageLocation,
+		CreatedAt:     currentTime,
+		UpdatedAt:     currentTime,
+	}
+
+	res := db.c.Table("job_offers_image").Create(&jobOfferImage)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return res.Error
+	}
+
+	return nil
+}
+
+// DeleteJobOffer delete job offer
+func (db DB) DeleteJobOffer(id int64) error {
+	res := db.c.Table("job_offers").Delete(&v1beta.JobOffer{}, id)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return res.Error
+	}
+
+	return nil
 }
 
 func (db DB) queryJobOffers() *gorm.DB {
@@ -148,10 +162,14 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.application_email_address,
 		jb.application_phone_number,
 		jb.tags,
-		jb.company_image_location,
-		jt.title as job_title
+		jt.title as job_title,
+		CASE
+        	WHEN jb_image.image_location <> '' THEN 1
+        	ELSE 0
+    	END AS has_image
 	`).
-		Joins("left join jobtitles as jt on jb.title_id = jt.id")
+		Joins("left join jobtitles as jt on jb.title_id = jt.id").
+		Joins("left join job_offers_image as jb_image on jb.id = jb_image.job_offer_id")
 }
 
 // GetJobOfferById get job offers by id
@@ -164,4 +182,16 @@ func (db DB) GetJobOfferById(id int64) (*v1beta.JobOffer, error) {
 	}
 
 	return &offer, nil
+}
+
+// GetJobOfferImageByJobOfferId get job offer image by job offer id
+func (db DB) GetJobOfferImageByJobOfferId(jobOfferID int64) (*v1beta.JobOfferImage, error) {
+	var image v1beta.JobOfferImage
+	res := db.c.Table("job_offers_image").Where("job_offer_id = ?", jobOfferID).First(&image)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return nil, res.Error
+	}
+
+	return &image, nil
 }

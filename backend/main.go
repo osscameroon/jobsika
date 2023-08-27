@@ -52,7 +52,10 @@ func main() {
 	//JobOffers
 	jobsRouter := router.Group("/jobs")
 	{
-		jobsRouter.Use(limits.RequestSizeLimiter(5242880)) // 5MB. if request body is larger than 5MB, it will return 413 error
+		// 5MB. if request body is larger than 5MB, it will return 413 error.
+		// The text of the job offers will not be larger than 1MB, because 1 MB = 1024 KB = 1024 * 1024 bytes. So you would need approximately 1 million alphanumeric characters to make 1MB.
+		// With that information we can fix the size of job offers limit to 4.5MB
+		jobsRouter.Use(limits.RequestSizeLimiter(5242880))
 		jobsRouter.GET("", handlers.GetJobOffers)
 		jobsRouter.POST("", handlers.PostJobOffer)
 		jobsRouter.GET("/:id/image", handlers.GetJobOfferImage)

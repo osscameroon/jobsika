@@ -460,5 +460,34 @@ describe(`${endpoint}`, function () {
                 .expect(400)
                 .expect("Content-Type", "application/json; charset=utf-8")
         });
+
+        it("post job offer with image exceeded size of 5MB", async function () {
+            let fileData = fs.readFileSync("./image-5_6MB.jpg")
+            let image = Array.from(fileData)
+
+            return request(apiHost)
+                .post(`${endpoint}`)
+                .set("Accept", "application/json")
+                .send({
+                    company_email: "ossdevs-cm@gmail.com",
+                    company_name: "OssCameroon",
+                    company_image: image,
+                    job_title: "Frontend Dev",
+                    is_remote: true,
+                    city: "Douala",
+                    country: "Cameroon",
+                    salary_range_min: 100000,
+                    salary_range_max: 150000,
+                    department: "Research and Development",
+                    description: "OssCameroon is hiring a Remote Go Backend Engineer \n Remote - We are looking for a backend engineer who can work 30+ hr/weekOur ideal candidate has:- 1+ years experience writing in Go (golang.org)- 2-3 years experience writing REST APIs- Experience working at a small startup- A passion for building something meaningful â€¦ Salary and compensation No salary data published by company so we estimated salary based on similar jobs related to Golang, Engineer and Backend jobs that are similar: $70,000 — $120000/year",
+                    benefits: "Health insurance, dental insurance, 401k",
+                    how_to_apply: "Please submit your resume and cover letter.",
+                    application_url: "",
+                    application_email_address: "ossdevs-cm@gmail.com",
+                    application_phone_number: "555-555-5555",
+                    tags: "remote, golang, backend, engineer"
+                })
+                .expect(413)
+        });
     });
 });
