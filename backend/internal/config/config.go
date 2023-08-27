@@ -4,7 +4,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	filestorage "github.com/osscameroon/jobsika/internal/file-storage"
+	filestorage "github.com/osscameroon/jobsika/internal/filestorage"
 	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/storage"
 )

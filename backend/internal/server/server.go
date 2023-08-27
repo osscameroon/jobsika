@@ -2,7 +2,7 @@ package server
 
 import (
 	"github.com/osscameroon/jobsika/internal/config"
-	filestorage "github.com/osscameroon/jobsika/internal/file-storage"
+	filestorage "github.com/osscameroon/jobsika/internal/filestorage"
 	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/storage"
 )
