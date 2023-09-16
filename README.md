@@ -9,7 +9,7 @@ To run the application locally, you should:
 1. Fork the project from the GitHub repository. To do this, click the "Fork" button in the top-right corner of the repository page and follow the instructions.
 2. Install the required dependencies:
 
-- Golang version 1.16
+- Golang version 1.16 and above
 - GNU make
 - docker with docker-compose
 - [swagger](https://goswagger.io/install.html)
