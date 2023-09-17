@@ -16,6 +16,7 @@ To run the application locally, you should:
 
 #### Here is the detail steps you can take to install the required dependencies:
 - Jump to the ./backend folder: `cd ./backend`
+- Create opencollective env file: `cp .opencollective-env-example .opencollective-env`
 - Run the database: `make start-postgres`
 - Run the api: `make run`
 - Build and run: `make run && ./jobsika`
