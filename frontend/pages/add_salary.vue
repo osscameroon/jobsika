@@ -612,9 +612,14 @@ export default {
             behavior: 'smooth',
             block: 'center',
           })
-        } else {
-          this.$store.dispatch('postRating', this.newRating)
-          this.$router.push('/')
+        }else if(this.newRating.salary < 10000){
+            if(confirm("Are you sure of the amount of salary you have entered? ")){
+              this.$store.dispatch('postRating', this.newRating)
+              this.$router.push('/')
+            }
+          } else {
+            this.$store.dispatch('postRating', this.newRating)
+            this.$router.push('/')
         }
       }
     },
