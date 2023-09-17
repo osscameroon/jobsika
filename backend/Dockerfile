@@ -37,6 +37,6 @@ COPY --from=base /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 COPY --from=base /dist/api /
 
 # expose api port
-EXPOSE 7000
+EXPOSE 7001
 
 ENTRYPOINT ["/api"]

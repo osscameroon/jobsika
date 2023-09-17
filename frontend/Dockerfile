@@ -1,6 +1,6 @@
 FROM node:12.22.9-buster-slim
 
-ARG baseURL="http://localhost:7000"
+ARG baseURL="http://localhost:7001"
 ENV BASE_URL=$baseURL
 
 WORKDIR /usr/src/app

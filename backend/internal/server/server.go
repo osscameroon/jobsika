@@ -2,6 +2,7 @@ package server
 
 import (
 	"github.com/osscameroon/jobsika/internal/config"
+	filestorage "github.com/osscameroon/jobsika/internal/filestorage"
 	"github.com/osscameroon/jobsika/internal/payment"
 	"github.com/osscameroon/jobsika/internal/storage"
 )
@@ -11,6 +12,7 @@ type Server struct {
 	DB            storage.DB
 	Conf          config.Config
 	PaymentClient payment.Client
+	FileStorage   filestorage.FileStorage
 }
 
 var defaultServer *Server
@@ -29,10 +31,16 @@ func GetDefaultServer() (*Server, error) {
 			return nil, err
 		}
 
+		fileStorage, err := filestorage.NewFileStorage(conf.FileStorageOpts)
+		if err != nil {
+			return nil, err
+		}
+
 		defaultServer = &Server{
 			DB:            *db,
 			Conf:          conf,
 			PaymentClient: *paymentClient,
+			FileStorage:   *fileStorage,
 		}
 	}
 
@@ -67,4 +75,14 @@ func GetDefaultPaymentClient() (payment.Client, error) {
 	}
 
 	return s.PaymentClient, nil
+}
+
+// GetDefaultFileStorage returns the default file storage
+func GetDefaultFileStorage() (filestorage.FileStorage, error) {
+	s, err := GetDefaultServer()
+	if err != nil {
+		return filestorage.FileStorage{}, err
+	}
+
+	return s.FileStorage, nil
 }

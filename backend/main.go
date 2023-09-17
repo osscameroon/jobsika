@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-contrib/cors"
+	limits "github.com/gin-contrib/size"
 	"github.com/gin-gonic/gin"
 	"github.com/osscameroon/jobsika/internal/handlers"
 	_ "github.com/osscameroon/jobsika/swagger"
@@ -49,8 +50,16 @@ func main() {
 	router.GET("/cities", handlers.GetCities)
 
 	//JobOffers
-	router.GET("/jobs", handlers.GetJobOffers)
-	router.POST("/jobs", handlers.PostJobOffer)
+	jobsRouter := router.Group("/jobs")
+	{
+		// 5MB. if request body is larger than 5MB, it will return 413 error.
+		// The text of the job offers will not be larger than 1MB, because 1 MB = 1024 KB = 1024 * 1024 bytes. So you would need approximately 1 million alphanumeric characters to make 1MB.
+		// With that information we can fix the size of job offers limit to 4.5MB
+		jobsRouter.Use(limits.RequestSizeLimiter(5242880))
+		jobsRouter.GET("", handlers.GetJobOffers)
+		jobsRouter.POST("", handlers.PostJobOffer)
+		jobsRouter.GET("/:id/image", handlers.GetJobOfferImage)
+	}
 
 	//Subscribers
 	router.POST("/subscribers", handlers.PostSubscribers)
@@ -64,7 +73,7 @@ func main() {
 	//OpenCollectionWebhook
 	router.POST("/open-collective-webhook", handlers.OpenCollectiveWebhook)
 
-	if err := router.Run(":7000"); err != nil {
+	if err := router.Run(":7001"); err != nil {
 		return
 	}
 }

@@ -1,6 +1,8 @@
 package storage
 
 import (
+	"time"
+
 	"github.com/osscameroon/jobsika/pkg/models/v1beta"
 	log "github.com/sirupsen/logrus"
 	"gorm.io/gorm"
@@ -36,6 +38,8 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 		query = query.Where("jb.is_remote = ?", false)
 	}
 
+	query = query.Order("jb.createdat DESC").Order("jb.id DESC")
+
 	rows, err := query.Count(&nbHits).Offset(offset).Limit(limitInt).Rows()
 	if err != nil {
 		return v1beta.JobOffersResponse{}, err
@@ -63,7 +67,8 @@ func (db DB) GetJobOffers(q v1beta.GetJobOffersQuery) (v1beta.JobOffersResponse,
 
 // PostJobOffer post new job offer
 func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error) {
-	offer := v1beta.JobOffer{
+	currentTime := time.Now().UTC()
+	offer := &v1beta.JobOffer{
 		CompanyName:             query.CompanyName,
 		CompanyEmail:            query.CompanyEmail,
 		IsRemote:                query.IsRemote,
@@ -79,6 +84,8 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 		ApplicationEmailAddress: query.ApplicationEmailAddress,
 		ApplicationPhoneNumber:  query.ApplicationPhoneNumber,
 		Tags:                    query.Tags,
+		CreatedAt:               currentTime,
+		UpdatedAt:               currentTime,
 	}
 
 	err := db.c.Transaction(func(tx *gorm.DB) error {
@@ -89,7 +96,7 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 		}
 
 		offer.TitleID = jobTitle.ID
-		res := tx.Table("job_offers").Create(&offer)
+		res := tx.Table("job_offers").Create(offer)
 		if res.Error != nil {
 			log.Error(res.Error)
 			return res.Error
@@ -97,12 +104,41 @@ func (db DB) PostJobOffer(query v1beta.OfferPostQuery) (*v1beta.JobOffer, error)
 
 		return nil
 	})
-
 	if err != nil {
 		return nil, err
 	}
 
-	return &offer, nil
+	return offer, nil
+}
+
+// PostJobOfferImage save job offer image location in the database
+func (db DB) PostJobOfferImage(offerID int64, imageLocation string) error {
+	currentTime := time.Now().UTC()
+	jobOfferImage := v1beta.JobOfferImage{
+		JobOfferID:    offerID,
+		ImageLocation: imageLocation,
+		CreatedAt:     currentTime,
+		UpdatedAt:     currentTime,
+	}
+
+	res := db.c.Table("job_offers_image").Create(&jobOfferImage)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return res.Error
+	}
+
+	return nil
+}
+
+// DeleteJobOffer delete job offer
+func (db DB) DeleteJobOffer(id int64) error {
+	res := db.c.Table("job_offers").Delete(&v1beta.JobOffer{}, id)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return res.Error
+	}
+
+	return nil
 }
 
 func (db DB) queryJobOffers() *gorm.DB {
@@ -126,9 +162,14 @@ func (db DB) queryJobOffers() *gorm.DB {
 		jb.application_email_address,
 		jb.application_phone_number,
 		jb.tags,
-		jt.title as job_title
+		jt.title as job_title,
+		CASE
+        	WHEN jb_image.image_location <> '' THEN 1
+        	ELSE 0
+    	END AS has_image
 	`).
-		Joins("left join jobtitles as jt on jb.title_id = jt.id")
+		Joins("left join jobtitles as jt on jb.title_id = jt.id").
+		Joins("left join job_offers_image as jb_image on jb.id = jb_image.job_offer_id")
 }
 
 // GetJobOfferById get job offers by id
@@ -141,4 +182,16 @@ func (db DB) GetJobOfferById(id int64) (*v1beta.JobOffer, error) {
 	}
 
 	return &offer, nil
+}
+
+// GetJobOfferImageByJobOfferId get job offer image by job offer id
+func (db DB) GetJobOfferImageByJobOfferId(jobOfferID int64) (*v1beta.JobOfferImage, error) {
+	var image v1beta.JobOfferImage
+	res := db.c.Table("job_offers_image").Where("job_offer_id = ?", jobOfferID).First(&image)
+	if res.Error != nil {
+		log.Error(res.Error)
+		return nil, res.Error
+	}
+
+	return &image, nil
 }

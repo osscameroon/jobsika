@@ -30,9 +30,20 @@ type JobOffer struct {
 	Tags                    string `json:"tags" gorm:"column:tags"`
 }
 
+// JobOfferImage defines the job_offers_image structure
+type JobOfferImage struct {
+	ID        int64     `json:"id" gorm:"column:id;primaryKey;autoIncrement:true"`
+	CreatedAt time.Time `json:"createdat" gorm:"column:createdat"`
+	UpdatedAt time.Time `json:"updatedat" gorm:"column:updatedat"`
+
+	JobOfferID    int64  `json:"job_offer_id" gorm:"column:job_offer_id"`
+	ImageLocation string `json:"image_location" gorm:"column:image_location"`
+}
+
 // OfferPostQuery defines the body object used to create a new jb offer on a POST query
 type OfferPostQuery struct {
 	CompanyName             string `json:"company_name"`
+	CompanyImage            []byte `json:"company_image"`
 	CompanyEmail            string `json:"company_email"`
 	JobTitle                string `json:"job_title"`
 	IsRemote                bool   `json:"is_remote"`
@@ -120,6 +131,7 @@ type JobOfferPresenter struct {
 	ApplicationEmailAddress string `json:"application_email_address"`
 	ApplicationPhoneNumber  string `json:"application_phone_number"`
 	Tags                    string `json:"tags"`
+	HasImage                bool   `json:"has_image" gorm:"column:has_image"`
 }
 
 type JobOffersResponse struct {
