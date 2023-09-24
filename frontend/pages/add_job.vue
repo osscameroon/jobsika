@@ -10,7 +10,7 @@
         <form @submit.prevent="saveNewJob">
           <div class="flex flex-col md:w-7/12 mx-auto">
             <div class="grid gap-7 grid-cols-1 mt-10">
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -34,8 +34,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       Enter your company's brand/trade name: without Inc., Ltd.,
                       B.V., Pte., etc.
@@ -46,7 +45,7 @@
                   :value="newJob.company_name"
                   type="text"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -56,7 +55,7 @@
                   "
                 />
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -80,8 +79,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       Enter your company's Email:
                     </p>
@@ -91,7 +89,7 @@
                   :value="newJob.company_email"
                   type="text"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -101,7 +99,7 @@
                   "
                 />
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -125,8 +123,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       This field requires you to enter the title of the position
                       and/or specialization (if applicable). E.g.
@@ -138,7 +135,7 @@
                   :value="newJob.job_title"
                   type="text"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -148,8 +145,8 @@
                   "
                 />
               </div>
-              <div>
-                <div class="flex">
+              <div class="mb-4">
+                <div class="flex mb-2">
                   <p
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
@@ -172,32 +169,27 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700 select-none"
                     >
                       Please add a brief description of the role you are hiring
                       for, make it straight forward and concise
                     </p>
                   </div>
                 </div>
-                <textarea
-                  :value="newJob.description"
-                  cols="6"
-                  rows="5"
-                  type="text"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                <rich-text-editor
+                  class="mt-2"
+                  :content="newJob.description"
+                  :toolbar="editorToolbar"
                   @input="
-                    (event) =>
+                    (description) =>
                       $store.commit('jobs/SETNEWJOB', {
                         ...newJob,
-                        description: event.target.value,
+                        description: description,
                       })
-                  "
-                >
-                </textarea>
+                  "/>
               </div>
-              <div>
-                <div class="flex mb-2">
+              <div class="flex flex-col mb-4">
+                <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
                     style="color: #b1b1b1"
@@ -219,14 +211,14 @@
                   class="w-full bg-primary"
                 >
                   <div class="w-full my-1">
-                    <p class="font-normal h-14" style="font-size: 12px">
+                    <p class="font-normal text-xs select-none">
                       The City of the Job
                     </p>
                   </div>
                 </div>
                 <select
                   :value="newJob.city"
-                  class="form-select mt-2 mb-4 appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                  class="form-select mt-2 appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
                   aria-label="Default select example"
                   @input="
@@ -250,7 +242,7 @@
                   </option>
                 </select>
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -274,8 +266,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-10 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs text-gray-700 select-none"
                     >
                       This field requires you to enter the town you are/were
                       employed in. For remote workers, please enter the town you
@@ -285,7 +276,7 @@
                 </div>
                 <select
                   :value="newJob.is_remote"
-                  class="mt-2 mb-4 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
+                  class="mt-2 form-select appearance-none block w-full px-3 py-1.5 text-gray-700 bg-white bg-clip-padding bg-no-repeat border border-grayC rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none text-xs md:text-sm font-bold"
                   style="height: 61px"
                   aria-label="Default select example"
                   @change="
@@ -304,7 +295,7 @@
                   </option>
                 </select>
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -328,8 +319,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-10 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       This field requires you to enter the pre-tax/gross salary
                       you get, vacation money included. You can find this amount
@@ -341,7 +331,7 @@
                   :value="newJob.application_email_address"
                   type="text"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -351,7 +341,7 @@
                   "
                 />
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -375,8 +365,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-10 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       This field requires you to enter the pre-tax/gross salary
                       you get, vacation money included. You can find this amount
@@ -388,7 +377,7 @@
                   :value="newJob.application_phone_number"
                   type="text"
                   style="height: 61px"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -398,7 +387,7 @@
                   "
                 />
               </div>
-              <div>
+              <div class="flex flex-col">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -422,8 +411,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-10 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       This field requires you to enter the pre-tax/gross salary
                       you get, vacation money included. You can find this amount
@@ -462,7 +450,7 @@
                   />
                 </div>
               </div>
-              <div>
+              <div class="flex flex-col mb-4">
                 <div class="flex">
                   <p
                     class="text-xs font-bold md:text-lg"
@@ -486,8 +474,7 @@
                 >
                   <div class="w-full my-1">
                     <p
-                      class="font-normal h-6 text-gray-700"
-                      style="font-size: 12px"
+                      class="font-normal text-xs select-none text-gray-700"
                     >
                       How will you want people to apply for this job? Enter the
                       email or any other infos that will help people apply for
@@ -500,7 +487,7 @@
                   cols="6"
                   rows="5"
                   type="text"
-                  class="border border-grayC mt-2 w-full rounded-md mb-4"
+                  class="border border-grayC mt-2 w-full rounded-md"
                   @input="
                     (event) =>
                       $store.commit('jobs/SETNEWJOB', {
@@ -512,18 +499,17 @@
               </div>
               <div>
                 <p
-                  class="font-normal h-8 md:w-3/4 text-gray-700"
-                  style="font-size: 12px"
+                  class="font-normal text-xs select-none md:w-3/4 text-gray-700"
                 >
                   Please upload your logo. If no logo is upload , a default logo
                   will be used. Using a personalised logo increases your job
                   offer visibility by 60%
                 </p>
                 <div
-                  class="w-40 h-32 bg-white rounded-lg mt-3 flex items-center"
+                  class="w-40 h-32 bg-white rounded-lg mt-3 flex items-center cursor-pointer"
                 >
                   <div
-                    class="flex justify-center items-center mx-auto cursor-pointer"
+                    class="flex justify-center items-center mx-auto"
                   >
                     <img :src="uploadImg" class="w-6 h-6" />
                     <h4 class="ml-1 text-base font-semibold text-grayC">
@@ -554,8 +540,12 @@
 </template>
 
 <script>
+import RichTextEditor from '../components/RichTextEditor.vue'
+import { defaultToolbar } from '../utils/rich-editor-toolbars'
+
 export default {
   name: 'JobsIndex',
+  components: { RichTextEditor },
   layout: 'app',
   data() {
     return {
@@ -604,6 +594,7 @@ export default {
           name: 'rate',
         },
       ],
+      editorToolbar: defaultToolbar
     }
   },
   computed: {

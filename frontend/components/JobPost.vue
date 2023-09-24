@@ -40,9 +40,7 @@
               <h4 class="text-gray-800 py-4 font-semibold">
                 About {{ structure }}
               </h4>
-              <p class="text-sm font-extralight pt-4 text-gray-600">
-                {{ description }}
-              </p>
+              <p class="text-sm font-extralight pt-4 text-gray-600" v-html="description"></p>
               <p class="text-sm font-extralight pt-4 text-gray-600">
                 <span class="font-bold text-black">Employment type: </span>Full
                 time
@@ -179,6 +177,7 @@ export default {
       }
     },
     cleanText(text) {
+      text = text.replace(/<[^>]*>?/gm, '')
       return text.slice(0, 250) + (text.length > 250 ? '..' : '')
     },
   },

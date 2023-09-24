@@ -57,9 +57,7 @@
                   <h4 class="text-gray-800 py-4 font-semibold">
                     {{ newjob.company_name }}
                   </h4>
-                  <p class="text-sm font-extralight pt-4 text-gray-600">
-                    {{ newjob.description }}
-                  </p>
+                  <div class="text-sm font-extralight pt-4 text-gray-600" v-html="newjob.description"></div>
                   <p class="text-sm font-extralight pt-4 text-gray-600">
                     <span class="font-bold text-black">Phone Number: </span
                     >{{ newjob.application_phone_number }}
