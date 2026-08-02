@@ -27,7 +27,7 @@ services:
   api:
     depends_on:
       - start-postgres
-    image: golang:buster
+    image: golang:1.23-bookworm
     command: ["/bin/bash", "-c", "cd /api/ && make run"]
     env_file:
       - ./.docker-env

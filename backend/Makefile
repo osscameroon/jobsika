@@ -1,10 +1,11 @@
 APPNAME=jobsika
 E2ETEST_DEPS=./e2etests/node_modules
+DOCKER_COMPOSE=$(shell if command -v docker-compose >/dev/null 2>&1; then echo docker-compose; else echo docker compose; fi)
 
 .DEFAULT_GOAL := help
 
 define install_goose
-	go install github.com/pressly/goose/v3/cmd/goose@latest
+	go install github.com/pressly/goose/v3/cmd/goose@v3.15.1
 endef
 
 
@@ -54,7 +55,7 @@ $(E2ETEST_DEPS):
 ## docker-e2etest: run e2etests in a docker compose
 docker-e2etest: $(E2ETEST_DEPS)
 	-rm -rf postgres-data
-	docker-compose -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
+	$(DOCKER_COMPOSE) -f docker-compose.test.yml up --abort-on-container-exit --exit-code-from e2etests
 
 ## docker-build: build the api docker image
 .PHONY: docker-build
@@ -96,17 +97,17 @@ endif
 
 ## start-api: starts the api and its dependencies in a docker container
 start-api:
-	docker-compose up
+	$(DOCKER_COMPOSE) up
 
 ## stop-api: stops the api and its dependencies in a docker container
 stop-api:
-	docker-compose down && \
+	$(DOCKER_COMPOSE) down && \
 	rm -rf postgres-data
 
 ## start-postgres: starts postgres sql, setup and populate yotas database
 start-postgres:
-	docker-compose up start-postgres
-	docker-compose logs -f
+	$(DOCKER_COMPOSE) up start-postgres
+	$(DOCKER_COMPOSE) logs -f
 
 ## connect-postgres: connect to postgres sql
 connect-postgres:
@@ -132,7 +133,7 @@ reset-postgres:
 
 ## stop-postgres: remove local postgres-data and teardown postgres
 stop-postgres:
-	docker-compose down && \
+	$(DOCKER_COMPOSE) down && \
 	rm -rf postgres-data
 
 .PHONY:check-swagger
@@ -156,7 +157,7 @@ install-deps:
 	go install github.com/kisielk/errcheck@latest
 	@echo "errcheck installed!"
 	@echo "installing goose..."
-	go install github.com/pressly/goose/v3/cmd/goose@latest
+	go install github.com/pressly/goose/v3/cmd/goose@v3.15.1
 	@echo "goose installed!"
 	@echo "installing swagger..."
 	go install github.com/go-swagger/go-swagger/cmd/swagger@latest
