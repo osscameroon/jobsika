@@ -2,11 +2,13 @@ name: Build frontend prod image
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - frontend/**
-      - .github/workflows/frontend-build-prod-image.yaml
+    branches: [main]
+    paths: [frontend/**, .github/workflows/frontend-build-prod-image.yaml]
+  workflow_dispatch:
+    inputs:
+      baseURL:
+        description: API URL compiled into the frontend
+        default: https://osscameroon-jobsika-backend-03w1jc-15aefa-169-58-71-68.sslip.io
 
 env:
   REGISTRY: ghcr.io
@@ -43,7 +45,7 @@ jobs:
         with:
           context: ./frontend
           build-args: |
-            baseURL=https://www.api.jobsika.cm
+            baseURL=${{ inputs.baseURL || 'https://osscameroon-jobsika-backend-03w1jc-15aefa-169-58-71-68.sslip.io' }}
 
           push: true
           tags: ${{ steps.meta.outputs.tags }}
