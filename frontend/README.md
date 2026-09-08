@@ -19,7 +19,7 @@ In this case, you can run the frontend against the local backend.
 
 To run the backend, move to the `../backend` folder and run `make start-api`. You can read the `../backend/README.md` for more information.
 
-Once the backend is running, edit your `.env` file with `BASE_URL=http://localhost:7000`.
+Once the backend is running, edit your `.env` file with `BASE_URL=http://localhost:7001`.
 
 #### Build machinery
 

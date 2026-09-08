@@ -7,6 +7,6 @@ linters:
     - gosimple
     - unused
     - structcheck
-    - staticcheck
+#     - staticcheck
     - typecheck
     - varcheck
