@@ -17,7 +17,7 @@ services:
     depends_on:
       - postgres
     #replace this with an image that contains dependencies required by setup-postgres.sh
-    image: golang:buster
+    image: golang:1.23-bookworm
     command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres.sh
     env_file:
       - ./.docker-env
@@ -27,7 +27,7 @@ services:
   api:
     depends_on:
       - start-postgres
-    image: golang:buster
+    image: golang:1.23-bookworm
     command: ["/bin/bash", "-c", "cd /api/ && make run"]
     env_file:
       - ./.docker-env

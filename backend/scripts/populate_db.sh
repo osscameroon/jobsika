@@ -7,15 +7,13 @@ fi
 
 #install goose
 if [[ -z "$(which goose)" ]]; then
-	go install github.com/pressly/goose/v3/cmd/goose@latest
+	go install github.com/pressly/goose/v3/cmd/goose@v3.15.1
 fi
 
 #install psql
 if [[ -z "$(which psql)" ]]; then
-	sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 	apt-get update
-	apt-get -y install postgresql
+	apt-get -y install postgresql-client
 fi
 
 ./goose-up.sh $ENV_FILE
