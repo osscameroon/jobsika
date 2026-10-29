@@ -6,13 +6,13 @@ import (
 	"time"
 )
 
-//RatingQuery is a Rating query structure
+// RatingQuery is a Rating query structure
 type RatingQuery struct {
 	ID int64 `form:"rating_id"`
 }
 
-//Rating defines the rating structure
-//This structure combines a salary and a company rating entry
+// Rating defines the rating structure
+// This structure combines a salary and a company rating entry
 type Rating struct {
 	SalaryID        int64     `json:"salary_id" gorm:"column:salary_id"`
 	CompanyID       int64     `json:"company_id" gorm:"column:company_id"`
@@ -35,14 +35,14 @@ type RatingResponse struct {
 	Offset int64    `json:"offset"`
 }
 
-//AverageRating defines the average rating structure
+// AverageRating defines the average rating structure
 type AverageRating struct {
 	Rating int64 `json:"rating" gorm:"column:rating"`
 	Salary int64 `json:"salary" gorm:"column:salary"`
 }
 
-//RatingPostQuery defines the body object used to
-//create a new query
+// RatingPostQuery defines the body object used to
+// create a new query
 type RatingPostQuery struct {
 	CompanyName string `json:"company_name"`
 	JobTitle    string `json:"job_title"`

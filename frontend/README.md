@@ -2,7 +2,8 @@
 
 ### Dependencies
 
-Make sure you are using Node.js v14. You can use [nvm](https://github.com/nvm-sh/nvm) to manage multiple Node.js versions.
+Make sure you are using Node.js v16 (see `.nvmrc`). Newer versions are not supported by the Nuxt 2 dependencies.
+You can also run the dev server in docker from the root of the repository: `make dev`. You can use [nvm](https://github.com/nvm-sh/nvm) to manage multiple Node.js versions.
 
 ### Run the frontend
 
@@ -17,7 +18,7 @@ BASE_URL=https://api.jobsika.stage.osscameroon.com
 Note: it is possible that the backend does not yet contain the data you want to display.
 In this case, you can run the frontend against the local backend.
 
-To run the backend, move to the `../backend` folder and run `make start-api`. You can read the `../backend/README.md` for more information.
+To run the backend, run `make start` from the root of the repository. You can read the `../README.md` for more information.
 
 Once the backend is running, edit your `.env` file with `BASE_URL=http://localhost:7000`.
 

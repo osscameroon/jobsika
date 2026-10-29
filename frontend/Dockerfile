@@ -1,4 +1,4 @@
-FROM node:12.22.9-buster-slim
+FROM node:16-bullseye-slim
 
 ARG baseURL="http://localhost:7000"
 ENV BASE_URL=$baseURL

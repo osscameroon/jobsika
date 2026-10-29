@@ -11,7 +11,7 @@ const (
 	SeniorityExecutive   = "Executive"
 )
 
-//Salary defines the salary structure
+// Salary defines the salary structure
 type Salary struct {
 	ID      int64 `json:"id" gorm:"column:id"`
 	TitleID int64 `json:"title" gorm:"column:title_id"`

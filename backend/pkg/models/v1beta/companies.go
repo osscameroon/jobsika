@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-//Company defines the company structure
+// Company defines the company structure
 type Company struct {
 	ID        int64     `json:"id" gorm:"primaryKey;autoIncrement:true"`
 	Name      string    `json:"name" gorm:"column:name"`

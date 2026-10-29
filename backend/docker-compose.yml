@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   postgres:
     image: postgres:14.1-alpine
@@ -9,31 +7,40 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
 
+  # applies the migrations and loads the fixtures, then exits
   start-postgres:
-    extra_hosts:
-      - host.docker.internal:host-gateway
+    build: ./scripts/setup-postgres
     depends_on:
-      - postgres
-    #replace this with an image that contains dependencies required by setup-postgres.sh
-    image: golang:buster
-    command: /api/scripts/wait-for-it/wait-for-it.sh postgres:5432 -t 120 -- /api/scripts/setup-postgres/setup-postgres.sh
+      postgres:
+        condition: service_healthy
+    command: /api/scripts/setup-postgres/setup-postgres.sh
     env_file:
       - ./.docker-env
     volumes:
-      - .:/api
+      - .:/api:ro
 
   api:
+    build: .
     depends_on:
-      - start-postgres
-    image: golang:buster
-    command: ["/bin/bash", "-c", "cd /api/ && make run"]
+      start-postgres:
+        condition: service_completed_successfully
     env_file:
       - ./.docker-env
       - ./.api-env
-      - ./.opencollective-env
-    volumes:
-      - .:/api
+      # optional, copy .opencollective-env-example to enable payments
+      - path: ./.opencollective-env
+        required: false
+    environment:
+      - ENVIRONMENT=development
     ports:
       - 7000:7000
+
+volumes:
+  postgres-data:

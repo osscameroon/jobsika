@@ -15,7 +15,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-//PostPay handler for POST
+// PostPay handler for POST
 func PostPay(c *gin.Context) {
 	contentType := c.Request.Header.Get("Content-Type")
 	if !strings.Contains(contentType, "application/json") {

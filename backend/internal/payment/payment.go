@@ -61,7 +61,7 @@ type PostTierResponse struct {
 	} `json:"createTier"`
 }
 
-//create a struct
+// create a struct
 type Client struct {
 	graphQLClient *graphql.Client
 	orgSlug       string

@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-//JobTitle defines the jobtitle structure
+// JobTitle defines the jobtitle structure
 type JobTitle struct {
 	ID        int64     `json:"id" gorm:"primaryKey;autoIncrement:true"`
 	Title     string    `json:"title" gorm:"column:title"`

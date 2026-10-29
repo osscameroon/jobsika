@@ -2,7 +2,7 @@ package v1beta
 
 import "time"
 
-//User defines the user structure
+// User defines the user structure
 type User struct {
 	ID          int64     `json:"id" gorm:"column:id;autoincrement"`
 	Email       string    `json:"email" gorm:"column:email"`

@@ -1,0 +1,36 @@
+# runs the whole stack: postgres, migrations/fixtures, api and frontend
+#   docker compose up --build                       -> api on :7000, built frontend on :3000
+#   docker compose --profile dev up frontend-dev    -> api on :7000, frontend dev server (hot reload) on :3000
+include:
+  - backend/docker-compose.yml
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # the browser calls the api directly, so this is the address seen from the host
+        baseURL: http://localhost:7000
+    depends_on:
+      - api
+    ports:
+      - 3000:80
+
+  frontend-dev:
+    profiles: [dev]
+    image: node:16-bullseye-slim
+    working_dir: /app
+    command: sh -c "yarn install --frozen-lockfile && yarn dev"
+    depends_on:
+      - api
+    environment:
+      - HOST=0.0.0.0
+      - BASE_URL=http://localhost:7000
+    volumes:
+      - ./frontend:/app
+      - frontend-node-modules:/app/node_modules
+    ports:
+      - 3000:3000
+
+volumes:
+  frontend-node-modules:

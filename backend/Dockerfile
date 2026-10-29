@@ -1,4 +1,4 @@
-FROM golang:alpine AS base
+FROM golang:1.24-alpine AS base
 
 # update the ca-certificates
 # more on https://github.com/google/go-github/issues/1049
@@ -10,8 +10,7 @@ RUN apk update \
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
-    GOOS=linux \
-    GOARCH=amd64
+    GOOS=linux
 
 WORKDIR /build
 

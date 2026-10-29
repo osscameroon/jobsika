@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - backend/**
+      - Makefile
       - .github/workflows/backend-test.yaml
 
 jobs:
@@ -17,5 +18,4 @@ jobs:
         with:
           go-version: 1.16
       - name: Run Backend Tests
-        working-directory: ./backend
         run: make test

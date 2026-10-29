@@ -7,16 +7,16 @@ import (
 	"gorm.io/gorm"
 )
 
-//IDB defines the DB interface
+// IDB defines the DB interface
 type IDB interface{}
 
-//DB defines the DB storage data structure
+// DB defines the DB storage data structure
 type DB struct {
 	//The database client
 	c *gorm.DB
 }
 
-//DBOptions is a set of options used to initialise the database
+// DBOptions is a set of options used to initialise the database
 type DBOptions struct {
 	Password string
 	DBName   string
@@ -25,7 +25,7 @@ type DBOptions struct {
 	Port     string
 }
 
-//NewDB returns a new DB client
+// NewDB returns a new DB client
 func NewDB(opt DBOptions) (*DB, error) {
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s",
 		opt.Host, opt.User, opt.Password, opt.DBName, opt.Port)
